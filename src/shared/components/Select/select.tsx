@@ -5,6 +5,7 @@ interface SelectProps {
   placeholder?: string;
   options: { value: string; label: string }[];
   disabled?: boolean;
+  error?: string;
   onChange?: (value: string) => void;
 }
 
@@ -13,6 +14,7 @@ const Select = ({
   placeholder = 'Select an option',
   options,
   disabled = false,
+  error,
   onChange,
 }: SelectProps) => {
   return (
@@ -32,6 +34,7 @@ const Select = ({
           </option>
         ))}
       </select>
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   );
 };
