@@ -11,6 +11,7 @@ interface ComboboxProps {
   label?: string;
   placeholder?: string;
   value?: string;
+  loading?: boolean;
   options: ComboboxOption[];
 
   onChange?: (value: string) => void;
@@ -21,6 +22,7 @@ const Combobox = ({
   placeholder = 'Select an option',
   value,
   options,
+  loading = false,
   onChange,
 }: ComboboxProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -56,15 +58,23 @@ const Combobox = ({
 
         {isOpen && (
           <ul className="absolute z-10 mt-1 w-full max-h-60 overflow-auto rounded-md border border-border bg-background shadow-md text-sm">
-            {filteredOptions.map((opt) => (
-              <li
-                key={opt.value}
-                onClick={() => handleSelect(opt)}
-                className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground"
-              >
-                {opt.label}
+            {loading ? (
+              <li className="px-3 py-2 text-muted-foreground">Loading...</li>
+            ) : filteredOptions.length === 0 ? (
+              <li className="px-3 py-2 text-muted-foreground">
+                No options found
               </li>
-            ))}
+            ) : (
+              filteredOptions.map((opt) => (
+                <li
+                  key={opt.value}
+                  onClick={() => handleSelect(opt)}
+                  className="px-3 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground"
+                >
+                  {opt.label}
+                </li>
+              ))
+            )}
           </ul>
         )}
       </div>
