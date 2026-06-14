@@ -71,14 +71,17 @@ const fieldVariants = cva(
 
 function Field({
   className,
+  disabled,
   orientation = 'vertical',
   ...props
-}: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
+}: React.ComponentProps<'div'> &
+  VariantProps<typeof fieldVariants> & { disabled?: boolean }) {
   return (
     <div
       role="group"
       data-slot="field"
       data-orientation={orientation}
+      data-disabled={disabled}
       className={cn(fieldVariants({ orientation }), className)}
       {...props}
     />
@@ -106,7 +109,7 @@ function FieldLabel({
     <Label
       data-slot="field-label"
       className={cn(
-        'group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10',
+        'group/field-label peer/field-label flex w-fit gap-2 font-medium text-sm text-zinc-800 group-data-[invalid=true]/field:text-red-600 leading-snug group-data-[disabled=true]/field:text-zinc-400 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border *:data-[slot=field]:p-2.5  dark:group-data-[invalid=true]/field:text-red-500 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 dark:text-zinc-50 dark:group-data-[disabled=true]/field:text-zinc-600',
         'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
         className
       )}
@@ -216,7 +219,7 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn('text-sm font-normal text-destructive', className)}
+      className={cn('text-sm font-normal text-red-600', className)}
       {...props}
     >
       {content}

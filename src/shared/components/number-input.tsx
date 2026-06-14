@@ -1,34 +1,30 @@
-import { Field, FieldLabel, FieldSet } from '@/shared/ui/field';
+import { Field, FieldLabel } from '@/shared/ui/field';
 import { Input } from '@/shared/ui/input';
+import { IInputsProps } from './text-input';
 
-// Interface
-interface INumberInputProps {
-  label: string;
-  disabled?: boolean;
-}
-
-export function NumberInput({ label, disabled }: INumberInputProps) {
+export function NumberInput({ label, disabled }: IInputsProps) {
   return (
-    <FieldSet className="w-full max-w-xs">
-      {/* Field */}
-      <Field>
-        {/* Label */}
-        <FieldLabel
-          htmlFor="number-input"
-          className={`font-medium text-sm  ${disabled ? 'text-zinc-400 dark:text-zinc-600' : 'text-zinc-800 dark:text-zinc-50'} `}
-        >
-          {label}
-        </FieldLabel>
+    <Field
+      // data-invalid
+      className="w-full max-w-xs"
+      disabled={disabled}
+    >
+      {/* Label */}
+      <FieldLabel htmlFor={label} className={`font-medium text-sm `}>
+        {label}
+      </FieldLabel>
 
-        {/* Text Input */}
-        <Input
-          id="number-input"
-          type="number"
-          placeholder="Placeholder"
-          disabled={disabled}
-          className="[&::-webkit-inner-spin-button]:opacity-100 [&::-webkit-outer-spin-button]:opacity-100"
-        />
-      </Field>
-    </FieldSet>
+      {/* Text Input */}
+      <Input
+        // aria-invalid
+        id={label}
+        type="number"
+        placeholder="Placeholder"
+        disabled={disabled}
+        className="py-2.5 px-4"
+      />
+    </Field>
   );
 }
+
+// [&::-webkit-inner-spin-button]:opacity-100 [&::-webkit-outer-spin-button]:opacity-100
