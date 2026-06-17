@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import { cn } from '@/shared/lib/utils';
-import Providers from '@/shared/context/global/provider';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+import Providers from '@/shared/context/global';
 import { NextIntlClientProvider } from 'next-intl';
 
 const inter = Inter({
