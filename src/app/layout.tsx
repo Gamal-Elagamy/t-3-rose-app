@@ -1,14 +1,8 @@
 import type { Metadata } from 'next';
-import '@/app/globals.css';
+import './globals.css';
 import { cn } from '@/shared/lib/utils';
 import Providers from '@/shared/context/global/provider';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
-
-import { getMessages } from 'next-intl/server';
-
 import { Sarabun, Tajawal } from 'next/font/google';
-import { routing } from '@/i18n/routing';
-import { notFound } from 'next/navigation';
 
 const sarabun = Sarabun({
   subsets: ['latin'],
@@ -33,25 +27,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  const messages = await getMessages();
-
-  const isArabic = locale === 'ar';
-
   return (
     <html
-      lang={locale}
-      dir={isArabic ? 'rtl' : 'ltr'}
       className={cn(
         'h-full',
         'antialiased',
@@ -60,10 +40,8 @@ export default async function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body className={isArabic ? 'font-tajawal' : 'font-sarabun'}>
-        <NextIntlClientProvider messages={messages}>
-          <Providers>{children}</Providers>
-        </NextIntlClientProvider>
+      <body className="bg-ds-bg-subtle">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
