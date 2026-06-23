@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import Providers from '@/shared/providers';
-import { hasLocale, Locale } from 'next-intl';
+import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -19,31 +19,36 @@ const geistMono = Geist_Mono({
 });
 
 type LocaleLayoutProps = LayoutProps<{
-  locale: Locale;
+  locale: string;
 }>;
 
 export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
-  const paramsResult = await params;
-  const locale = paramsResult.locale;
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   const t = await getTranslations({ locale });
-  const title = t('app_name');
+
   return {
-    title,
+    title: t('app_name'),
   };
 }
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LoacaleLayout({ children, params }: LocaleLayoutProps) {
-  // Ensure that the incoming `locale` is valid
-  const paramsResult = await params;
-  const locale = paramsResult.locale;
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale } = await params;
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  // Enable static rendering
+
   setRequestLocale(locale);
+
   return (
     <html
       lang={locale}
