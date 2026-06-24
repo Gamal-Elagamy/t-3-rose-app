@@ -8,11 +8,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 
 import { Sarabun, Tajawal } from 'next/font/google';
-
+// Fonts
 const sarabun = Sarabun({
   subsets: ['latin'],
   variable: '--font-en',
-  display: 'swap',
   weight: ['200', '300', '400', '500', '600', '700', '800'],
   fallback: ['system-ui', 'sans-serif'],
 });
@@ -20,7 +19,6 @@ const sarabun = Sarabun({
 const tajawal = Tajawal({
   subsets: ['arabic'],
   variable: '--font-ar',
-  display: 'swap',
   weight: ['200', '300', '400', '500', '700', '800', '900'],
   fallback: ['system-ui', 'sans-serif'],
 });
@@ -63,7 +61,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable)}
       suppressHydrationWarning
     >
-      <body>
+      <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>{children}</Providers>
       </body>
     </html>
