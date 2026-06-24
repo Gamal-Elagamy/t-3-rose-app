@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist_Mono, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import Providers from '@/shared/providers';
 import { hasLocale } from 'next-intl';
@@ -11,11 +11,6 @@ import { LayoutProps } from '@/shared/lib/types/locale';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
 });
 
 type LocaleLayoutProps = LayoutProps<{
@@ -53,7 +48,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn('h-full', 'antialiased', inter.className, geistMono.variable, inter.variable)}
+      className={cn('h-full', 'antialiased', inter.variable)}
     >
       <body>
         <Providers>{children}</Providers>
