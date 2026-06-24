@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is([data-theme='dark'] *));
 
@@ -347,56 +349,24 @@ html[data-theme='dark'] {
 
   --bg-primary: var(--color-soft-pink-300);
   --bg-primary-saturated: var(--color-soft-pink-200);
-  --bg-primary-faint: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 75%,
-    transparent
-  );
-  --bg-primary-fade: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 25%,
-    transparent
-  );
+  --bg-primary-faint: color-mix(in srgb, var(--color-soft-pink-300) 75%, transparent);
+  --bg-primary-fade: color-mix(in srgb, var(--color-soft-pink-300) 25%, transparent);
 
   --bg-info: var(--color-blue-500);
   --bg-info-faint: var(--color-blue-900);
   --bg-info-fade: color-mix(in srgb, var(--color-blue-500) 25%, transparent);
 
   --bg-secondary: var(--color-maroon-600);
-  --bg-secondary-faint: color-mix(
-    in srgb,
-    var(--color-maroon-600) 50%,
-    transparent
-  );
-  --bg-secondary-fade: color-mix(
-    in srgb,
-    var(--color-maroon-600) 25%,
-    transparent
-  );
+  --bg-secondary-faint: color-mix(in srgb, var(--color-maroon-600) 50%, transparent);
+  --bg-secondary-fade: color-mix(in srgb, var(--color-maroon-600) 25%, transparent);
 
   --bg-success: var(--color-emerald-500);
-  --bg-success-faint: color-mix(
-    in srgb,
-    var(--color-emerald-500) 50%,
-    transparent
-  );
-  --bg-success-fade: color-mix(
-    in srgb,
-    var(--color-emerald-500) 25%,
-    transparent
-  );
+  --bg-success-faint: color-mix(in srgb, var(--color-emerald-500) 50%, transparent);
+  --bg-success-fade: color-mix(in srgb, var(--color-emerald-500) 25%, transparent);
 
   --bg-warning: var(--color-yellow-500);
-  --bg-warning-faint: color-mix(
-    in srgb,
-    var(--color-yellow-500) 50%,
-    transparent
-  );
-  --bg-warning-fade: color-mix(
-    in srgb,
-    var(--color-yellow-50) 25%,
-    transparent
-  );
+  --bg-warning-faint: color-mix(in srgb, var(--color-yellow-500) 50%, transparent);
+  --bg-warning-fade: color-mix(in srgb, var(--color-yellow-50) 25%, transparent);
 
   --bg-danger: var(--color-red-500);
   --bg-danger-saturated: var(--color-red-400);
@@ -412,51 +382,23 @@ html[data-theme='dark'] {
   --text-inverse: var(--color-zinc-800);
 
   --text-primary: var(--color-soft-pink-300);
-  --text-primary-faint: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 75%,
-    transparent
-  );
-  --text-primary-fade: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 25%,
-    transparent
-  );
+  --text-primary-faint: color-mix(in srgb, var(--color-soft-pink-300) 75%, transparent);
+  --text-primary-fade: color-mix(in srgb, var(--color-soft-pink-300) 25%, transparent);
 
   --text-info: var(--color-blue-500);
   --text-info-faint: var(--color-blue-900);
   --text-info-fade: color-mix(in srgb, var(--color-blue-500) 25%, transparent);
 
   --text-secondary: var(--color-maroon-600);
-  --text-secondary-faint: color-mix(
-    in srgb,
-    var(--color-maroon-600) 50%,
-    transparent
-  );
-  --text-secondary-fade: color-mix(
-    in srgb,
-    var(--color-maroon-600) 25%,
-    transparent
-  );
+  --text-secondary-faint: color-mix(in srgb, var(--color-maroon-600) 50%, transparent);
+  --text-secondary-fade: color-mix(in srgb, var(--color-maroon-600) 25%, transparent);
 
   --text-success: var(--color-emerald-500);
-  --text-success-faint: color-mix(
-    in srgb,
-    var(--color-emerald-500) 50%,
-    transparent
-  );
-  --text-success-fade: color-mix(
-    in srgb,
-    var(--color-emerald-500) 25%,
-    transparent
-  );
+  --text-success-faint: color-mix(in srgb, var(--color-emerald-500) 50%, transparent);
+  --text-success-fade: color-mix(in srgb, var(--color-emerald-500) 25%, transparent);
 
   --text-warning: var(--color-yellow-500);
-  --text-warning-faint: color-mix(
-    in srgb,
-    var(--color-yellow-500) 50%,
-    transparent
-  );
+  --text-warning-faint: color-mix(in srgb, var(--color-yellow-500) 50%, transparent);
   --text-warning-fade: var(--color-yellow-50);
 
   --text-danger: var(--color-red-500);
@@ -472,55 +414,23 @@ html[data-theme='dark'] {
   --border-inverse: var(--color-zinc-800);
 
   --border-primary: var(--color-soft-pink-300);
-  --border-primary-faint: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 75%,
-    transparent
-  );
-  --border-primary-fade: color-mix(
-    in srgb,
-    var(--color-soft-pink-300) 25%,
-    transparent
-  );
+  --border-primary-faint: color-mix(in srgb, var(--color-soft-pink-300) 75%, transparent);
+  --border-primary-fade: color-mix(in srgb, var(--color-soft-pink-300) 25%, transparent);
 
   --border-info: var(--color-blue-500);
   --border-info-faint: var(--color-blue-900);
-  --border-info-fade: color-mix(
-    in srgb,
-    var(--color-blue-500) 25%,
-    transparent
-  );
+  --border-info-fade: color-mix(in srgb, var(--color-blue-500) 25%, transparent);
 
   --border-secondary: var(--color-maroon-600);
-  --border-secondary-faint: color-mix(
-    in srgb,
-    var(--color-maroon-600) 50%,
-    transparent
-  );
-  --border-secondary-fade: color-mix(
-    in srgb,
-    var(--color-maroon-600) 25%,
-    transparent
-  );
+  --border-secondary-faint: color-mix(in srgb, var(--color-maroon-600) 50%, transparent);
+  --border-secondary-fade: color-mix(in srgb, var(--color-maroon-600) 25%, transparent);
 
   --border-success: var(--color-emerald-500);
-  --border-success-faint: color-mix(
-    in srgb,
-    var(--color-emerald-500) 50%,
-    transparent
-  );
-  --border-success-fade: color-mix(
-    in srgb,
-    var(--color-emerald-500) 25%,
-    transparent
-  );
+  --border-success-faint: color-mix(in srgb, var(--color-emerald-500) 50%, transparent);
+  --border-success-fade: color-mix(in srgb, var(--color-emerald-500) 25%, transparent);
 
   --border-warning: var(--color-yellow-500);
-  --border-warning-faint: color-mix(
-    in srgb,
-    var(--color-yellow-500) 50%,
-    transparent
-  );
+  --border-warning-faint: color-mix(in srgb, var(--color-yellow-500) 50%, transparent);
   --border-warning-fade: var(--color-yellow-50);
 
   --border-danger: var(--color-red-500);

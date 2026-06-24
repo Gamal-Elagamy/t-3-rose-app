@@ -1,0 +1,6 @@
+{
+  "title": "Welcome to our app",
+  "app_name": "Rose App",
+  "welcome-message": "welcome to the app {name}",
+  "nice-to-have-you-here-name": "nice to have you here, {name}"
+}
