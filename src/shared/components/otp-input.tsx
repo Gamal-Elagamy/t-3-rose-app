@@ -1,13 +1,17 @@
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/shared/ui/input-otp';
 import { Field, FieldLabel } from '@/shared/ui/field';
-import { IInputsProps } from './text-input';
 
-export function OtpInput({ label, disabled }: IInputsProps) {
+interface IOtpProps {
+  label?: string;
+  disabled?: boolean;
+}
+
+export function OtpInput({ label, disabled }: IOtpProps) {
   return (
     <Field
       className="w-full max-w-xs"
       disabled={disabled}
-      // data-invalid
+      //  data-invalid
     >
       {/* Label */}
       <FieldLabel htmlFor={label}>{label}</FieldLabel>

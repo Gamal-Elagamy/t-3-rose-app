@@ -12,7 +12,7 @@ function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
   return (
     <SelectPrimitive.Group
       data-slot="select-group"
-      className={cn('scroll-my-1 p-1', className)}
+      className={cn('scroll-my-1', className)}
       {...props}
     />
   );
@@ -23,7 +23,14 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
     <SelectPrimitive.Value
       data-slot="select-value"
       className={cn(
-        'flex flex-1 text-left text-zinc-800 group-data-[disabled=true]/field:text-zinc-400',
+        // Default
+        'flex flex-1 text-left text-ds-text-plain',
+
+        // Placeholder
+        'data-placeholder:text-ds-text-muted',
+
+        // Disabled
+        'group-data-[disabled=true]/field:text-ds-text-muted',
         className
       )}
       {...props}
@@ -44,16 +51,39 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "flex w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent px-4 text-sm whitespace-nowrap transition-colors outline-none select-none focus:border-ring focus:ring-1 focus:ring-marron-600 focus:border-none hover:border-zinc-400 disabled:text-zinc-400 disabled:hover:border-transparent group-data-[disabled=true]/field:bg-zinc-100 group-data-[disabled=true]/field:border-transparent aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-red-600 data-placeholder:text-zinc-800 data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-[min(var(--radius-md),10px)] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:border-zinc-500 dark:text-zinc-400 dark:focus:ring-pink-400 dark:aria-invalid:ring-red-500 dark:group-data-[disabled=true]/field:bg-zinc-800 dark:group-data-[disabled=true]/field:border-zinc-700 dark:group-data-[disabled=true]/field:text-zinc-600 dark:hover:group-data-[disabled=true]/field:border-zinc-700 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        // Base
+        'flex w-fit items-center justify-between gap-1.5 rounded-lg border bg-ds-bg-plain px-4 text-sm whitespace-nowrap transition-colors outline-none select-none',
+        '[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4',
+        '*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5',
+
+        // Size
+        'data-[size=default]:h-12.25',
+        'data-[size=sm]:h-7 data-[size=sm]:rounded-[min(var(--radius-md),10px)]',
+
+        // Default
+        'border-ds-border-soft text-ds-text-plain placeholder:text-ds-text-muted',
+
+        // Hover
+        'hover:border-ds-border-default not-disabled:hover:[box-shadow:var(--ring-default)]',
+
+        // Focus
+        'focus:border-ds-border-primary focus:[box-shadow:var(--ring-default)]',
+
+        // Disabled
+        'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-ds-bg-muted disabled:text-ds-text-muted disabled:border-transparent',
+
+        // Invalid
+        'not-disabled:aria-invalid:border-destructive not-disabled:aria-invalid:ring-1 not-disabled:aria-invalid:ring-destructive/20',
+
+        // Placeholder
+        'data-placeholder:text-zinc-400',
         className
       )}
       {...props}
     >
       {children}
       <SelectPrimitive.Icon
-        render={
-          <ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />
-        }
+        render={<ChevronDownIcon className="pointer-events-none size-4 text-ds-text-muted" />}
       />
     </SelectPrimitive.Trigger>
   );
@@ -87,7 +117,28 @@ function SelectContent({
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
           className={cn(
-            'relative isolate p-4 z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+            // Base
+            'relative isolate z-50 overflow-x-hidden overflow-y-auto border rounded-lg',
+            'max-h-(--available-height) w-(--anchor-width) min-w-36',
+            'origin-(--transform-origin)',
+
+            // Default
+            'bg-ds-bg-plain border-ds-border-soft shadow-subtle',
+
+            // Animation
+            'duration-100',
+            'data-[align-trigger=true]:animate-none',
+            'data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95',
+            'data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+
+            // Side
+            'data-[side=bottom]:slide-in-from-top-2',
+            'data-[side=top]:slide-in-from-bottom-2',
+            'data-[side=left]:slide-in-from-right-2',
+            'data-[side=right]:slide-in-from-left-2',
+            'data-[side=inline-end]:slide-in-from-left-2',
+            'data-[side=inline-start]:slide-in-from-right-2',
+
             className
           )}
           {...props}
@@ -101,29 +152,46 @@ function SelectContent({
   );
 }
 
-function SelectLabel({
-  className,
-  ...props
-}: SelectPrimitive.GroupLabel.Props) {
+function SelectLabel({ className, ...props }: SelectPrimitive.GroupLabel.Props) {
   return (
     <SelectPrimitive.GroupLabel
       data-slot="select-label"
-      className={cn('px-1.5 py-1 text-sm text-zinc-500', className)}
+      className={cn(
+        // Default
+        'p-4 text-sm',
+        className
+      )}
       {...props}
     />
   );
 }
 
-function SelectItem({
-  className,
-  children,
-  ...props
-}: SelectPrimitive.Item.Props) {
+function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Props) {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm text-zinc-500 outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        // Base
+        'relative flex w-full cursor-default items-center gap-1.5 rounded-md outline-hidden select-none',
+        'p-4 pr-8 text-sm',
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        '*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2',
+
+        // Default
+        'text-ds-text-plain',
+
+        // Hover
+        'hover:bg-ds-bg-muted',
+
+        // Selected
+        'data-[selected]:bg-ds-bg-muted data-[selected]:font-medium data-[selected]:text-ds-text-primary',
+
+        // Focus
+        'focus:bg-accent focus:text-accent-foreground',
+        'not-data-[variant=destructive]:focus:**:text-accent-foreground',
+
+        // Disabled
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
         className
       )}
       {...props}
@@ -142,14 +210,15 @@ function SelectItem({
   );
 }
 
-function SelectSeparator({
-  className,
-  ...props
-}: SelectPrimitive.Separator.Props) {
+function SelectSeparator({ className, ...props }: SelectPrimitive.Separator.Props) {
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn('pointer-events-none -mx-1 my-1 h-px bg-border', className)}
+      className={cn(
+        // Default
+        'pointer-events-none -mx-1 my-1 h-px bg-border',
+        className
+      )}
       {...props}
     />
   );
@@ -163,7 +232,12 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpArrow
       data-slot="select-scroll-up-button"
       className={cn(
-        "top-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
+        // Base
+        'top-0 z-10 flex w-full cursor-default items-center justify-center py-1',
+        "[&_svg:not([class*='size-'])]:size-4",
+
+        // Default
+        'bg-popover',
         className
       )}
       {...props}
@@ -181,7 +255,12 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownArrow
       data-slot="select-scroll-down-button"
       className={cn(
-        "bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
+        // Base
+        'bottom-0 z-10 flex w-full cursor-default items-center justify-center py-1',
+        "[&_svg:not([class*='size-'])]:size-4",
+
+        // Default
+        'bg-popover',
         className
       )}
       {...props}

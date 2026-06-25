@@ -16,10 +16,7 @@ function InputOTP({
   return (
     <OTPInput
       data-slot="input-otp"
-      containerClassName={cn(
-        'cn-input-otp flex items-center',
-        containerClassName
-      )}
+      containerClassName={cn('cn-input-otp flex items-center', containerClassName)}
       spellCheck={false}
       className={cn('disabled:pointer-events-none', className)}
       {...props}
@@ -57,7 +54,30 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        'relative flex size-11.25 p-4 items-center justify-center border border-zinc-300 hover:border-zinc-400 font-normal text-base text-zinc-800 transition-all outline-none rounded-lg aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-marron-600 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-1 data-[active=true]:aria-invalid:ring-red-600 dark:text-zinc-50 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:border-zinc-500 dark:data-[active=true]:border-pink-600 dark:data-[active=true]:aria-invalid:ring-1 dark:data-[active=true]:aria-invalid:ring-red-500 group-data-[disabled=true]:bg-zinc-100 group-data-[disabled=true]:border-transparent group-data-[disabled=true]:text-zinc-400 dark:group-data-[disabled=true]:bg-zinc-800 dark:group-data-[disabled=true]:text-zinc-600 dark:group-data-[disabled=true]:border-zinc-700 dark:group-hover:border-zinc-500',
+        // Base
+        'relative flex size-11.25 items-center justify-center bg-ds-bg-plain rounded-lg border p-4 text-base font-normal outline-none transition-all',
+
+        // Default
+        'border-ds-border-soft text-ds-text-plain',
+
+        // Hover
+        'hover:border-ds-border-default not-disabled:hover:[box-shadow:var(--ring-default)]',
+
+        // Active
+        'data-[active=true]:z-10 data-[active=true]:border-ds-border-primary data-[active=true]:[box-shadow:var(--ring-default)]',
+
+        // Disabled
+        'group-data-[disabled=true]:border-transparent group-data-[disabled=true]:bg-ds-bg-muted group-data-[disabled=true]:text-ds-text-muted',
+
+        // Invalid from Field
+        'not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
+
+        // Active + Invalid from Field
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:ring-1',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:ring-ds-border-danger',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:[box-shadow:var(--ring-danger)]',
+
         className
       )}
       {...props}

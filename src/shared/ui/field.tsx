@@ -51,31 +51,27 @@ function FieldGroup({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-const fieldVariants = cva(
-  'group/field flex w-full gap-1.5 data-[invalid=true]:text-destructive',
-  {
-    variants: {
-      orientation: {
-        vertical: 'flex-col *:w-full [&>.sr-only]:w-auto',
-        horizontal:
-          'flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',
-        responsive:
-          'flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',
-      },
+const fieldVariants = cva('group/field flex w-full gap-1.5 data-[invalid=true]:text-destructive', {
+  variants: {
+    orientation: {
+      vertical: 'flex-col *:w-full [&>.sr-only]:w-auto',
+      horizontal:
+        'flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',
+      responsive:
+        'flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',
     },
-    defaultVariants: {
-      orientation: 'vertical',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    orientation: 'vertical',
+  },
+});
 
 function Field({
   className,
   disabled,
   orientation = 'vertical',
   ...props
-}: React.ComponentProps<'div'> &
-  VariantProps<typeof fieldVariants> & { disabled?: boolean }) {
+}: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants> & { disabled?: boolean }) {
   return (
     <div
       role="group"
@@ -92,25 +88,38 @@ function FieldContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="field-content"
-      className={cn(
-        'group/field-content flex flex-1 flex-col gap-0.5 leading-snug',
-        className
-      )}
+      className={cn('group/field-content flex flex-1 flex-col gap-0.5 leading-snug', className)}
       {...props}
     />
   );
 }
 
-function FieldLabel({
-  className,
-  ...props
-}: React.ComponentProps<typeof Label>) {
+function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
   return (
     <Label
       data-slot="field-label"
       className={cn(
-        'group/field-label peer/field-label flex w-fit gap-2 font-medium text-sm text-zinc-800 group-data-[invalid=true]/field:text-red-600 leading-snug group-data-[disabled=true]/field:text-zinc-400 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border *:data-[slot=field]:p-2.5  dark:group-data-[invalid=true]/field:text-red-500 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 dark:text-zinc-50 dark:group-data-[disabled=true]/field:text-zinc-600',
-        'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
+        // Base
+        'group/field-label peer/field-label flex w-fit gap-2 font-medium text-sm leading-snug',
+
+        // Default
+        'text-ds-text-default',
+
+        // Invalid
+        'group-data-[invalid=true]/field:not-group-data-[disabled=true]/field:text-ds-text-danger',
+
+        // Disabled
+        'group-data-[disabled=true]/field:text-ds-text-muted',
+
+        // Checked
+        'has-data-checked:border-primary/30 has-data-checked:bg-primary/5',
+
+        // Has Field Slot
+        'has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
+        '*:data-[slot=field]:p-2.5',
+
+        // Dark - Checked
+        'dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10',
         className
       )}
       {...props}
@@ -193,9 +202,7 @@ function FieldError({
       return null;
     }
 
-    const uniqueErrors = [
-      ...new Map(errors.map((error) => [error?.message, error])).values(),
-    ];
+    const uniqueErrors = [...new Map(errors.map((error) => [error?.message, error])).values()];
 
     if (uniqueErrors?.length == 1) {
       return uniqueErrors[0]?.message;
@@ -203,10 +210,7 @@ function FieldError({
 
     return (
       <ul className="ml-4 flex list-disc flex-col gap-1">
-        {uniqueErrors.map(
-          (error, index) =>
-            error?.message && <li key={index}>{error.message}</li>
-        )}
+        {uniqueErrors.map((error, index) => error?.message && <li key={index}>{error.message}</li>)}
       </ul>
     );
   }, [children, errors]);
