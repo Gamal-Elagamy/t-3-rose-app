@@ -14,18 +14,13 @@ const checkboxVariants = cva(
   {
     variants: {
       status: {
-        default: ['bg-white', 'border-primary'],
+        default: ['bg-ds-bg-plain', 'border-ds-border-primary'],
 
-        checked: ['bg-primary', 'border-primary', 'text-white'],
+        checked: ['bg-ds-bg-primary', 'border-ds-border-primary', ' text-ds-text-inverse'],
 
-        focused: [
-          'bg-white',
-          'border-primary',
-          'ring-[3px]',
-          'ring-primary/40',
-        ],
+        focused: ['bg-ds-bg-plain', 'border-ds-border-primary', 'ring-default', 'ring-default'],
 
-        error: ['bg-white', 'border-destructive'],
+        error: ['bg-ds-bg-plain', 'border-ds-border-danger'],
       },
     },
 
@@ -35,8 +30,7 @@ const checkboxVariants = cva(
   }
 );
 
-type CheckboxProps = CheckboxPrimitive.Root.Props &
-  VariantProps<typeof checkboxVariants>;
+type CheckboxProps = CheckboxPrimitive.Root.Props & VariantProps<typeof checkboxVariants>;
 
 function Checkbox({ className, status = 'default', ...props }: CheckboxProps) {
   return (
