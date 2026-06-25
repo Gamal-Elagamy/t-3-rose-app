@@ -2,130 +2,110 @@
 
 import * as React from 'react';
 
+import { cn } from '@/shared/lib/utils';
+
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxTrigger,
+  ComboboxValue,
+} from '@/shared/components/ui/combobox';
+
 interface ComboboxOption {
   value: string;
   label: string;
 }
-
 interface ComboboxProps {
   label?: string;
   placeholder?: string;
   value?: string;
   loading?: boolean;
+  disabled?: boolean;
+  error?: string;
   options: ComboboxOption[];
-
   onChange?: (value: string) => void;
 }
-
-const Combobox = ({
+export function MyCombobox({
   label,
   placeholder = 'Select an option',
   value,
-  options,
   loading = false,
+  disabled = false,
+  error,
+  options,
   onChange,
-}: ComboboxProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [query, setQuery] = React.useState('');
-  const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const filteredOptions = options.filter((opt) =>
-    opt.label.toLowerCase().includes(query.toLowerCase())
-  );
-
-  const handleSelect = (option: ComboboxOption) => {
-    onChange?.(option.value);
-    setQuery(option.label);
-    setIsOpen(false);
-  };
-  // OUTSIDE CLICK
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+}: ComboboxProps) {
   return (
-    <div ref={containerRef} className="flex flex-col gap-1 w-full">
+    <div className="flex flex-col gap-1 w-full">
       {label && (
-        <label className="text-sm font-medium text-foreground">{label}</label>
+        <label
+          className={`text-sm font-medium ${
+            error ? 'text-ds-text-danger' : 'text-ds-text-default'
+          }`}
+        >
+          {label}
+        </label>
       )}
 
-      <div className="relative">
-        <input
-          type="text"
+      <Combobox
+        items={options.map((opt) => opt.label)}
+        value={value}
+        onValueChange={(val) => {
+          const match = options.find((opt) => opt.label === val);
+          if (match) onChange?.(match.value);
+        }}
+        disabled={disabled}
+      >
+        <ComboboxInput
           placeholder={placeholder}
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setIsOpen(true);
-            setHighlightedIndex(-1);
-          }}
-          onKeyDown={(e) => {
-            if (!isOpen) return;
-
-            if (e.key === 'ArrowDown') {
-              e.preventDefault();
-              setHighlightedIndex((prev) =>
-                prev < filteredOptions.length - 1 ? prev + 1 : 0
-              );
-            }
-
-            if (e.key === 'ArrowUp') {
-              e.preventDefault();
-              setHighlightedIndex((prev) =>
-                prev > 0 ? prev - 1 : filteredOptions.length - 1
-              );
-            }
-
-            if (e.key === 'Enter' && highlightedIndex >= 0) {
-              handleSelect(filteredOptions[highlightedIndex]);
-            }
-
-            if (e.key === 'Escape') {
-              setIsOpen(false);
-            }
-          }}
-          className="w-full border border-border rounded-md px-3 py-2 text-sm bg-background text-foreground"
+          disabled={disabled}
+          showTrigger
+          showClear={!!value}
+          aria-invalid={!!error}
+          className={cn(
+            'bg-ds-bg-plain text-ds-text-default border border-ds-border-default',
+            'focus:ring-default',
+            error && 'border-ds-border-danger ring-danger'
+          )}
         />
+        <ComboboxTrigger className="w-full">
+          <ComboboxValue placeholder={placeholder} />
+        </ComboboxTrigger>
 
-        {isOpen && (
-          <ul className="absolute z-10 mt-1 w-full max-h-60 overflow-auto rounded-md border border-border bg-background shadow-md text-sm">
-            {loading ? (
-              <li className="px-3 py-2 text-muted-foreground">Loading...</li>
-            ) : filteredOptions.length === 0 ? (
-              <li className="px-3 py-2 text-muted-foreground">
-                No options found
-              </li>
-            ) : (
-              filteredOptions.map((opt, index) => (
-                <li
-                  key={opt.value}
-                  onClick={() => handleSelect(opt)}
-                  className={`px-3 py-2 cursor-pointer ${
-                    highlightedIndex === index
-                      ? 'bg-accent text-accent-foreground'
-                      : 'hover:bg-accent hover:text-accent-foreground'
-                  }`}
-                >
-                  {opt.label}
-                </li>
-              ))
-            )}
-          </ul>
-        )}
-      </div>
+        <ComboboxContent className="bg-ds-bg-plain border border-ds-border-subtle rounded-md shadow-soft-lg p-1">
+          <ComboboxInput
+            placeholder="Search..."
+            disabled={disabled}
+            showTrigger={false}
+            showClear={false}
+          />
+          {loading ? (
+            <div className="px-3 py-2 text-xs text-ds-text-muted">Loading...</div>
+          ) : (
+            <>
+              <ComboboxEmpty className="text-ds-text-muted">No options found.</ComboboxEmpty>
+              <ComboboxList>
+                {(item) => (
+                  <ComboboxItem
+                    key={item}
+                    value={item}
+                    className="cursor-pointer rounded-sm px-3 py-2 text-sm text-ds-text-plain hover:bg-ds-bg-subtle outline-none transition-colors"
+                  >
+                    {item}
+                  </ComboboxItem>
+                )}
+              </ComboboxList>
+            </>
+          )}
+        </ComboboxContent>
+      </Combobox>
+
+      {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   );
-};
-
-export default Combobox;
+}
+export default MyCombobox;

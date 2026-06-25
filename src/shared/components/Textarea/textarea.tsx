@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-
+import { Textarea } from '@/shared/components/ui/textarea';
 interface TextareaProps {
   label?: string;
   placeholder?: string;
@@ -12,7 +12,7 @@ interface TextareaProps {
   onChange?: (value: string) => void;
 }
 
-const Textarea = ({
+const TextAreaComponent = ({
   label,
   placeholder = 'Placeholder',
   value = '',
@@ -21,41 +21,34 @@ const Textarea = ({
   error,
   onChange,
 }: TextareaProps) => {
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const el = e.target;
-    el.style.height = 'auto';
-    el.style.height = `${el.scrollHeight}px`;
     onChange?.(e.target.value);
   };
+  const ErrorMsg =
+    error ||
+    (maxLength && value.length > maxLength ? `Max ${maxLength} characters exceeded` : undefined);
+  const isError = !!ErrorMsg;
 
   return (
-    <div className="flex flex-col gap-1 w-full">
+    <div className="flex flex-col gap-1 w-full max-w-sm ">
       {label && (
         <label
-          className={`text-sm font-medium ${
-            error ? 'text-destructive' : 'text-foreground'
-          }`}
+          className={`text-sm font-medium ${isError ? 'text-destructive' : 'text-foreground'}`}
         >
           {label}
         </label>
       )}
-      <textarea
-        ref={textareaRef}
+      <Textarea
         placeholder={placeholder}
         value={value}
         maxLength={maxLength}
         disabled={disabled}
         onChange={handleInput}
-        rows={3}
-        className={`w-full border rounded-md px-3 py-2 text-sm bg-background text-foreground resize-none
-          disabled:opacity-50 disabled:cursor-not-allowed
-          ${error ? 'border-destructive focus:ring-destructive' : 'border-border'}
-        `}
+        aria-invalid={isError}
+        className="resize-none border rounded"
       />
       <div className="flex justify-between items-center">
-        {error ? <p className="text-xs text-destructive">{error}</p> : <span />}
+        {ErrorMsg ? <p className="text-xs text-destructive">{ErrorMsg}</p> : <span />}
         {maxLength && (
           <span className="text-xs text-muted-foreground">
             {value.length}/{maxLength}
@@ -66,4 +59,4 @@ const Textarea = ({
   );
 };
 
-export default Textarea;
+export default TextAreaComponent;
