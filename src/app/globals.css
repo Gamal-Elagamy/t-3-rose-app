@@ -33,6 +33,7 @@
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
+   --color-secondary-100: var(--secondary-100);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
@@ -156,6 +157,7 @@
   --primary: var(--color-maroon-600);
   --primary-foreground: var(--color-maroon-700);
   --secondary: var(--color-maroon-50);
+  --secondary-100: var(--color-maroon-100);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
