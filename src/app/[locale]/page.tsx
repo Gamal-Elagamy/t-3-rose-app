@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme-toggle';
+import { Checkbox } from '@/shared/components/ui/checkbox';
 
 export default function Home() {
   // Translation

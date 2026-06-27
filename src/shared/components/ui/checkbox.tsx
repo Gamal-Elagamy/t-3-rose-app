@@ -44,6 +44,9 @@ function Checkbox({ className, status = 'default', ...props }: CheckboxProps) {
         'focus-visible:border-primary',
         'focus-visible:ring-[3px]',
         'focus-visible:ring-primary/40',
+        'focus:border-primary',
+        'focus:ring-[3px]',
+        'focus:ring-primary/40',
 
         'disabled:cursor-not-allowed',
         'disabled:opacity-50',
