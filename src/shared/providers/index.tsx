@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
-import ReactQueryProvider from './providers/react-query.provider';
+import ReactQueryProvider from './react-query.provider';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { ThemeProvider } from './providers/theme-provider';
+import { ThemeProvider } from './theme.provider';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (

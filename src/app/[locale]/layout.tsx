@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   const t = await getTranslations({ locale });
 
   return {
-    title: t('app_name'),
+    title: t('app-name'),
   };
 }
 

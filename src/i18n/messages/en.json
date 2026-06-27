@@ -1,15 +1,12 @@
 {
   "title": "Welcome to our app",
-  "app_name": "Rose App",
-  "welcome-message": "welcome to the app {name}",
-  "nice-to-have-you-here-name": "nice to have you here, {name}",
   "loading": "Loading...",
   "submit": "Submit",
   "cancel": "Cancel",
   "save": "Save",
   "delete": "Delete",
   "confirm": "Confirm",
-
+  "app-name": "Rose App",
   "theme": {
     "toggle": "Toggle theme",
     "light": "Light",
