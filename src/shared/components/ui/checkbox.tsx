@@ -20,8 +20,8 @@ const checkboxVariants = cva(
       status: {
         default: ['bg-ds-bg-plain', 'border-ds-border-primary'],
 
-        focused: ['bg-ds-bg-plain', 'border-ds-border-primary', 'ring-default', 'ring-default'],
-
+        // focused
+        focused: ['bg-ds-bg-plain', 'border-ds-border-primary'],
         error: ['bg-ds-bg-plain', 'border-ds-border-danger'],
       },
     },
@@ -40,14 +40,11 @@ function Checkbox({ className, status = 'default', ...props }: CheckboxProps) {
       data-slot="checkbox"
       className={cn(
         checkboxVariants({ status }),
-
-        'focus-visible:border-primary',
-        'focus-visible:ring-[3px]',
-        'focus-visible:ring-primary/40',
         'focus:border-primary',
-        'focus:ring-[3px]',
-        'focus:ring-primary/40',
+        'focus:ring-[1px]',
+        'focus:[box-shadow:var(--ring-default)]',
 
+        // disabled
         'disabled:cursor-not-allowed',
         'disabled:opacity-50',
         className
