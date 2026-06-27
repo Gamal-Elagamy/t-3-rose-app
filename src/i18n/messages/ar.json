@@ -1,7 +1,6 @@
 {
   "title": "مرحبا بكم في التطبيق لدينا",
-  "app_name": "تطبيق روز",
-  "welcome-message": "",
+  "app-name": "تطبيق روز",
   "theme": {
     "toggle": "تبديل المظهر",
     "light": "فاتح",
