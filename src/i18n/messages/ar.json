@@ -2,6 +2,12 @@
   "title": "مرحبا بكم في التطبيق لدينا",
   "app_name": "تطبيق روز",
   "welcome-message": "",
+  "loading": "جاري التحميل...",
+  "submit": "إرسال",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "delete": "حذف",
+  "confirm": "تأكيد",
   "theme": {
     "toggle": "تبديل المظهر",
     "light": "فاتح",

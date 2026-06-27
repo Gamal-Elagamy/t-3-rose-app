@@ -29,21 +29,24 @@ const buttonVariants = cva(
     },
   }
 );
+
 interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
+  loadingText?: string;
 }
+
 function Button({
+  isLoading = false,
+  loadingText = 'Loading...',
+  children,
   className,
   variant = 'default',
   size = 'default',
-  isLoading = false,
   disabled,
-  children,
   ...props
 }: ButtonProps) {
   return (
     <ButtonPrimitive
-      data-slot="button"
       disabled={disabled || isLoading}
       className={cn(
         buttonVariants({
@@ -54,8 +57,10 @@ function Button({
       )}
       {...props}
     >
-      {isLoading && <LoaderCircle className="animate-spin" />}
-      {!isLoading && children}
+      <span className="inline-flex items-center gap-2">
+        {isLoading && <LoaderCircle className="animate-spin" />}
+        {isLoading ? loadingText : children}
+      </span>
     </ButtonPrimitive>
   );
 }

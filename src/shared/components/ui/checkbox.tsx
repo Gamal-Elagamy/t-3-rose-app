@@ -1,7 +1,7 @@
 'use client';
 
 import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox';
-import { CheckIcon } from '@phosphor-icons/react';
+import { Check } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/utils';
@@ -10,13 +10,15 @@ const checkboxVariants = cva(
   [
     'peer relative flex size-5 shrink-0 items-center justify-center',
     'rounded-sm border transition-colors outline-none',
+
+    'data-[checked]:bg-ds-bg-primary',
+    'data-[checked]:border-ds-border-primary',
+    'data-[checked]:text-ds-text-inverse',
   ],
   {
     variants: {
       status: {
         default: ['bg-ds-bg-plain', 'border-ds-border-primary'],
-
-        checked: ['bg-ds-bg-primary', 'border-ds-border-primary', ' text-ds-text-inverse'],
 
         focused: ['bg-ds-bg-plain', 'border-ds-border-primary', 'ring-default', 'ring-default'],
 
@@ -36,7 +38,6 @@ function Checkbox({ className, status = 'default', ...props }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
-      checked={status === 'checked' ? true : props.checked}
       className={cn(
         checkboxVariants({ status }),
 
@@ -46,16 +47,15 @@ function Checkbox({ className, status = 'default', ...props }: CheckboxProps) {
 
         'disabled:cursor-not-allowed',
         'disabled:opacity-50',
-
         className
       )}
       {...props}
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="grid place-content-center [&>svg]:size-3"
+        className="grid place-content-center"
       >
-        <CheckIcon weight="bold" />
+        <Check className="size-3" strokeWidth={3} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );
