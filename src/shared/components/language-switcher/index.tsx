@@ -1,25 +1,26 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { usePathname, Link } from '@/i18n/navigation';
-import { startTransition, useEffect, useState } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+
 export default function LanguageSwitcher() {
   const pathname = usePathname();
   const locale = useLocale();
 
-  const [searchParams, setSearchParams] = useState('');
+  const searchParams = useSearchParams();
+  const queryString = searchParams.toString();
 
   const nextLocale = locale === 'ar' ? 'en' : 'ar';
   const language = locale === 'ar' ? 'English' : 'العربية';
 
-  useEffect(() => {
-    startTransition(() => setSearchParams(location.search));
-  }, [searchParams]);
-
   return (
-    //this bg just for testing
-    <div className="bg-blue-600 h-10">
-      <Link href={pathname + searchParams} locale={nextLocale} prefetch={false}>
+    <div>
+      <Link
+        href={`${pathname}${queryString ? `?${queryString}` : ''}`}
+        locale={nextLocale}
+        prefetch={false}
+      >
         {language}
       </Link>
     </div>
