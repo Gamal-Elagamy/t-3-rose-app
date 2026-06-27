@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import Providers from '@/shared/providers';
 import { hasLocale } from 'next-intl';
@@ -8,9 +7,20 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 
-const inter = Inter({
+import { Sarabun, Tajawal } from 'next/font/google';
+// Fonts
+const sarabun = Sarabun({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-en',
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
+  fallback: ['system-ui', 'sans-serif'],
+});
+
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  variable: '--font-ar',
+  weight: ['200', '300', '400', '500', '700', '800', '900'],
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 type LocaleLayoutProps = LayoutProps<{
@@ -48,9 +58,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn('h-full', 'antialiased', inter.variable)}
+      className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable)}
+      suppressHydrationWarning
     >
-      <body>
+      <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>{children}</Providers>
       </body>
     </html>
