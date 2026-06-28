@@ -4,7 +4,7 @@ import * as RPNInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
 import { CheckIcon, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 import {
   Command,
   CommandEmpty,

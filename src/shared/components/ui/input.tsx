@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState, useRef } from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Eye, EyeOff, Search, Upload } from 'lucide-react';
 
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {

@@ -2,11 +2,11 @@
 
 import { useSyncExternalStore } from 'react';
 import { Sun, Monitor, Moon } from 'lucide-react';
-import { cn } from '../lib/utils';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
 import { IThemeOptions } from '../lib/types/theme';
+import { cn } from '../lib/utils/tailwind-cn';
 
 export function ThemeToggle() {
   const mounted = useSyncExternalStore(

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { OTPInput, OTPInputContext } from 'input-otp';
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { MinusIcon } from 'lucide-react';
 
 function InputOTP({
