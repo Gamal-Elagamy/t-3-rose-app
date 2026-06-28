@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 
 import { cn } from '@/shared/lib/utils';
@@ -10,8 +10,10 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   // State to toggle password
   const [showPassword, setShowPassword] = useState(false);
 
-  // Get File Name
+  // File State
   const [fileName, setFileName] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Condition Password Input
   const isPassword = type === 'password';
@@ -23,14 +25,58 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   // Condition File Input
   const isFile = type === 'file';
 
+  const handleFile = (file: File | undefined) => {
+    if (!file) return;
+
+    const accepted = ['.pdf', '.png', '.jpg', '.jpeg'];
+    const valid = accepted.some((a) => file.name.endsWith(a));
+    if (!valid) return;
+
+    if (file.size > 5 * 1024 * 1024) return;
+
+    setFileName(file.name);
+  };
+
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onDragOver={
+        isFile
+          ? (e) => {
+              e.preventDefault();
+              setIsDragging(true);
+            }
+          : undefined
+      }
+      onDragLeave={isFile ? () => setIsDragging(false) : undefined}
+      onDrop={
+        isFile
+          ? (e) => {
+              e.preventDefault();
+              setIsDragging(false);
+              const file = e.dataTransfer.files?.[0];
+              if (file && inputRef.current) {
+                const dt = new DataTransfer();
+                dt.items.add(file);
+                inputRef.current.files = dt.files;
+                inputRef.current.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+              handleFile(file);
+            }
+          : undefined
+      }
+    >
       <InputPrimitive
+        ref={inputRef}
         type={inputType}
         data-slot="input"
         onChange={(e) => {
           if (isFile) {
-            setFileName(e.target.files?.[0]?.name ?? null);
+            if (e.target.files?.[0]) {
+              handleFile(e.target.files[0]);
+            } else {
+              setFileName(null);
+            }
           }
           props.onChange?.(e);
         }}
@@ -60,7 +106,8 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
           'disabled:[&::-webkit-inner-spin-button]:opacity-0 disabled:[&::-webkit-outer-spin-button]:opacity-0',
 
           // File
-          isFile && 'cursor-pointer file:hidden',
+          isFile && 'cursor-pointer file:hidden text-transparent',
+          isFile && isDragging && 'border-ds-border-primary [box-shadow:var(--ring-default)]',
 
           // Search - padding start
           isSearch && 'ps-10',
@@ -121,13 +168,12 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
           <span
             className={cn(
               'flex items-center gap-1.5 text-sm font-medium',
-              'text-ds-text-primary',
-              props.disabled && 'text-ds-text-muted',
-              props.disabled && 'dark:text-ds-text-muted'
+              fileName ? 'text-ds-text-plain' : 'text-ds-text-primary',
+              props.disabled && 'text-ds-text-muted'
             )}
           >
-            <Upload size={16} strokeWidth={1.5} />
-            Upload file
+            {!fileName && <Upload size={16} strokeWidth={1.5} />}
+            {fileName ?? 'Upload file'}
           </span>
         </div>
       )}

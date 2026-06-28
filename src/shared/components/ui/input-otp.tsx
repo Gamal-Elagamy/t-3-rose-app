@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { OTPInput, OTPInputContext } from 'input-otp';
 
-import { cn } from '@/shared/lib/utils/tailwind-cn';
+import { cn } from '@/shared/lib/utils';
 import { MinusIcon } from 'lucide-react';
 
 function InputOTP({
@@ -16,25 +16,24 @@ function InputOTP({
   return (
     <OTPInput
       data-slot="input-otp"
-      containerClassName={cn(
-        'cn-input-otp flex items-center has-disabled:opacity-50',
-        containerClassName
-      )}
+      containerClassName={cn('cn-input-otp flex items-center', containerClassName)}
       spellCheck={false}
-      className={cn('disabled:cursor-not-allowed', className)}
+      className={cn('disabled:pointer-events-none', className)}
       {...props}
     />
   );
 }
 
-function InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {
+function InputOTPGroup({
+  className,
+  disabled,
+  ...props
+}: React.ComponentProps<'div'> & { disabled?: boolean }) {
   return (
     <div
       data-slot="input-otp-group"
-      className={cn(
-        'flex items-center rounded-3xl has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40',
-        className
-      )}
+      data-disabled={disabled}
+      className={cn('group flex items-center gap-2.5', className)}
       {...props}
     />
   );
@@ -55,7 +54,30 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        'relative flex size-9 items-center justify-center border-y border-r border-input bg-input/50 text-sm transition-all outline-none first:rounded-l-3xl first:border-l last:rounded-r-3xl aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-3 data-[active=true]:ring-ring/30 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40',
+        // Base
+        'relative flex size-11.25 items-center justify-center bg-ds-bg-plain rounded-lg border p-4 text-base font-normal outline-none transition-all',
+
+        // Default
+        'border-ds-border-soft text-ds-text-plain',
+
+        // Hover
+        'hover:border-ds-border-default not-disabled:hover:[box-shadow:var(--ring-default)]',
+
+        // Active
+        'data-[active=true]:z-10 data-[active=true]:border-ds-border-primary data-[active=true]:[box-shadow:var(--ring-default)]',
+
+        // Disabled
+        'group-data-[disabled=true]:border-transparent group-data-[disabled=true]:bg-ds-bg-muted group-data-[disabled=true]:text-ds-text-muted',
+
+        // Invalid from Field
+        'not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
+
+        // Active + Invalid from Field
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:ring-1',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:ring-ds-border-danger',
+        'data-[active=true]:not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:[box-shadow:var(--ring-danger)]',
+
         className
       )}
       {...props}

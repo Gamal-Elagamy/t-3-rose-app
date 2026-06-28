@@ -1,5 +1,4 @@
 'use client';
-
 import * as React from 'react';
 import * as RPNInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
@@ -13,9 +12,9 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/shared/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { ScrollArea } from '@/shared/ui/scroll-area';
+} from '@/shared/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover';
+import { ScrollArea } from '@/shared/components/ui/scroll-area';
 
 // Phone Props Type
 type PhoneInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> &
@@ -30,7 +29,6 @@ const PhoneInput = React.forwardRef<React.ElementRef<typeof RPNInput.default>, P
       <div className="flex flex-col gap-1.5">
         {/* RPNInput */}
         <RPNInput.default
-          // aria-invalid={invalid}
           ref={ref}
           disabled={disabled}
           defaultCountry="EG"
@@ -51,10 +49,6 @@ const PhoneInput = React.forwardRef<React.ElementRef<typeof RPNInput.default>, P
 
             // Disabled
             'group-data-[disabled=true]/field:border-transparent group-data-[disabled=true]/field:bg-ds-bg-muted',
-
-            // Invalid
-            'not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
-            'not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:[box-shadow:var(--ring-danger)]',
 
             // Invalid
             'not-group-data-[disabled=true]/field:group-data-[invalid=true]/field:border-ds-border-danger',
@@ -83,7 +77,6 @@ const InputComponent = React.forwardRef<
   return (
     <input
       ref={ref}
-      id="phone-input"
       className={cn(
         // Base
         'h-full w-full bg-ds-bg-plain border-0 pe-4 text-sm font-normal',
