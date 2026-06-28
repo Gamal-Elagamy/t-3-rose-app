@@ -4,7 +4,7 @@ import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox';
 import { Check } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 const checkboxVariants = cva(
   [

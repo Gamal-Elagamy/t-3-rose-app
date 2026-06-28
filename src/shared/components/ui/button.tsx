@@ -21,6 +21,7 @@ const buttonVariants = cva(
       },
       size: {
         default: 'gap-[10px] px-4 py-[14px] rounded-[var(--radius-lg)]',
+        'icon-sm': 'size-7 rounded-[var(--radius-md)]',
       },
     },
     defaultVariants: {
