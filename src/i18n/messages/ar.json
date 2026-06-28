@@ -7,5 +7,22 @@
     "light": "فاتح",
     "system": "تلقائي",
     "dark": "داكن"
+  },
+  "textarea": {
+    "placeholder": "اكتب هنا...",
+    "charCount": "{count}/{max} حرف",
+    "required": "هذا الحقل مطلوب",
+    "maxLengthExceeded": "تم تجاوز الحد الأقصى {max} حرف"
+  },
+  "select": {
+    "placeholder": "اختر خياراً",
+    "required": "هذا الحقل مطلوب"
+  },
+  "combobox": {
+    "placeholder": "اختر خياراً",
+    "search": "بحث...",
+    "loading": "جاري التحميل...",
+    "noOptions": "لا توجد خيارات",
+    "required": "هذا الحقل مطلوب"
   }
 }

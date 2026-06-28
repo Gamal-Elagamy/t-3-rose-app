@@ -8,5 +8,22 @@
     "light": "Light",
     "system": "System",
     "dark": "Dark"
-  }
+  },
+   "textarea": {
+    "placeholder": "Type here...",
+    "charCount": "{count}/{max} characters",
+    "required": "This field is required",
+    "maxLengthExceeded": "Max {max} characters exceeded"
+  },
+  "select": {
+  "placeholder": "Select an option",
+  "required": "This field is required"
+},
+"combobox": {
+  "placeholder": "Select an option",
+  "search": "Search...",
+  "loading": "Loading...",
+  "noOptions": "No options found",
+  "required": "This field is required"
+}
 }

@@ -1,13 +1,15 @@
 'use client';
 import {
-  Select,
+  Select as SelectShadcn,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
   SelectGroup,
 } from '@/shared/components/ui/select';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+import { useTranslations } from 'next-intl';
+
 interface SelectProps {
   label?: string;
   placeholder?: string;
@@ -19,17 +21,18 @@ interface SelectProps {
   onChange?: (value: string) => void;
 }
 
-const SelectComponent = ({
+const Select = ({
   label,
-  placeholder = 'Select an option',
+  placeholder = '',
   options,
-  value = '',
+  value,
   required = false,
   disabled = false,
   error,
   onChange,
 }: SelectProps) => {
   const isError = error || (required && !value);
+  const t = useTranslations();
   return (
     <div className="flex flex-col gap-1 w-full">
       {label && (
@@ -40,8 +43,8 @@ const SelectComponent = ({
         </label>
       )}
 
-      <Select
-        value={value}
+      <SelectShadcn
+        value={value || undefined}
         onValueChange={(val) => {
           if (val !== null) onChange?.(val);
         }}
@@ -49,33 +52,40 @@ const SelectComponent = ({
       >
         <SelectTrigger
           className={cn(
-            'w-full bg-ds-bg-plain text-ds-text-default border border-ds-border-default',
-            'focus:ring-default',
+            'w-full h-12 px-4 bg-ds-bg-plain text-ds-text-plain border border-ds-border-soft text-start rounded-xl transition-all',
+            'focus:ring-default focus:border-ds-border-default',
             isError && 'border-ds-border-danger ring-danger'
           )}
           aria-invalid={isError ? true : undefined}
         >
-          <SelectValue placeholder={placeholder} />
+          <SelectValue placeholder={t('select.placeholder')} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent
+          className={cn(
+            'w-(--anchor-width) rounded-xl shadow-subtle overflow-hidden p-0 mt-1',
+            'bg-ds-bg-plain border-ds-border-soft'
+          )}
+        >
           <SelectGroup>
             {options.map((item) => (
               <SelectItem
                 key={item.value}
                 value={item.value}
-                className="cursor-pointer rounded-sm px-3 py-2 text-sm text-ds-text-plain hover:bg-ds-bg-subtle outline-none transition-colors"
+                className={cn(
+                  ' text-start cursor-pointer outline-none  rounded-sm px-3 py-2 text-sm text-ds-text-plain hover:bg-ds-bg-subtle  transition-colors',
+                  'focus:bg-ds-bg-subtle focus:text-ds-text-plain',
+                  'hover:bg-ds-bg-subtle'
+                )}
               >
                 {item.label}
               </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
-      </Select>
-      {isError && (
-        <p className="text-sm text-ds-text-danger">{error || 'This field is required'}</p>
-      )}
+      </SelectShadcn>
+      {isError && <p className="text-sm text-ds-text-danger">{error || t('select.required')}</p>}
     </div>
   );
 };
 
-export default SelectComponent;
+export default Select;

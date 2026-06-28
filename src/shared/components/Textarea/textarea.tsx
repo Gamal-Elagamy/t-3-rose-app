@@ -1,7 +1,9 @@
 'use client';
 
-import * as React from 'react';
-import { Textarea } from '@/shared/components/ui/textarea';
+// import * as React from 'react';
+import { Textarea as TextareaShadcn } from '@/shared/components/ui/textarea';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+import { useTranslations } from 'next-intl';
 interface TextareaProps {
   label?: string;
   placeholder?: string;
@@ -12,46 +14,59 @@ interface TextareaProps {
   onChange?: (value: string) => void;
 }
 
-const TextAreaComponent = ({
+const Textarea = ({
   label,
-  placeholder = 'Placeholder',
+  placeholder,
   value = '',
   maxLength,
   disabled = false,
   error,
   onChange,
 }: TextareaProps) => {
+  const t = useTranslations();
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange?.(e.target.value);
   };
-  const ErrorMsg =
+  const errorMessage =
     error ||
-    (maxLength && value.length > maxLength ? `Max ${maxLength} characters exceeded` : undefined);
-  const isError = !!ErrorMsg;
+    (maxLength && value.length > maxLength
+      ? t('textarea.maxLengthExceeded', { max: maxLength })
+      : undefined);
+  const isError = !!errorMessage;
 
   return (
     <div className="flex flex-col gap-1 w-full max-w-sm ">
       {label && (
         <label
-          className={`text-sm font-medium ${isError ? 'text-destructive' : 'text-foreground'}`}
+          className={`text-sm font-medium ${
+            isError ? 'text-ds-text-danger' : 'text-ds-text-default'
+          }`}
         >
           {label}
         </label>
       )}
-      <Textarea
-        placeholder={placeholder}
+      <TextareaShadcn
+        placeholder={placeholder || t('textarea.placeholder')}
         value={value}
         maxLength={maxLength}
         disabled={disabled}
         onChange={handleInput}
         aria-invalid={isError}
-        className="resize-none border rounded"
+        className={cn(
+          'resize-none bg-ds-bg-plain text-ds-text-default',
+          'border border-ds-border-default rounded-md',
+          'focus:ring-default',
+          isError && 'border-ds-border-danger ring-danger'
+        )}
       />
       <div className="flex justify-between items-center">
-        {ErrorMsg ? <p className="text-xs text-destructive">{ErrorMsg}</p> : <span />}
+        {errorMessage ? <p className="text-xs text-ds-text-danger">{errorMessage}</p> : <span />}
         {maxLength && (
-          <span className="text-xs text-muted-foreground">
-            {value.length}/{maxLength}
+          <span className="text-xs text-ds-text-muted">
+            {t('textarea.charCount', {
+              count: value.length,
+              max: maxLength,
+            })}
           </span>
         )}
       </div>
@@ -59,4 +74,4 @@ const TextAreaComponent = ({
   );
 };
 
-export default TextAreaComponent;
+export default Textarea;
