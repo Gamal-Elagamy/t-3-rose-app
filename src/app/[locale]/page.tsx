@@ -10,7 +10,6 @@ export default function Home() {
     <div>
       <LanguageSwitcher />
       <h1 className="text-center text-3xl font-bold text-ds-text-primary">{t('title')}</h1>
-
       <ThemeToggle />
     </div>
   );

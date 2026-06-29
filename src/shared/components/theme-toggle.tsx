@@ -2,7 +2,6 @@
 
 import { useSyncExternalStore } from 'react';
 import { Sun, Monitor, Moon } from 'lucide-react';
-
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
