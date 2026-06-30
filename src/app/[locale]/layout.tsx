@@ -7,16 +7,9 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 
-import { Sarabun, Tajawal, Zain } from 'next/font/google';
+import { Sarabun, Tajawal } from 'next/font/google';
 
 // Fonts
-const zain = Zain({
-  subsets: ['arabic'],
-  variable: '--font-zain',
-  weight: ['300', '400', '700', '800'],
-  fallback: ['system-ui', 'sans-serif'],
-});
-
 const sarabun = Sarabun({
   subsets: ['latin'],
   variable: '--font-en',
@@ -66,7 +59,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable, zain.variable)}
+      className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable)}
       suppressHydrationWarning
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>

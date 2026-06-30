@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { ThemeToggle } from '@/shared/components/theme-toggle';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import imageUrl from '@/assets/images/auth/separator-1.png';
 
@@ -22,11 +21,9 @@ export default function AuthHeader() {
 
   return (
     <>
-      <div className="flex justify-evenly gap-4 px-2 py-4">
-        <ThemeToggle />
-
+      <div className="flex justify-end gap-4 px-2 py-4">
         <LanguageSwitcher
-          className="font-zain text-[16px] font-normal leading-none text-ds-text-plain"
+          className="text-base font-normal leading-none text-ds-text-plain"
           ariaLabel={t('auth.langLabel')}
         />
       </div>
@@ -35,7 +32,7 @@ export default function AuthHeader() {
         <Image src={imageUrl} alt="Separator" priority className="max-h-11 max-w-60" />
 
         {title && (
-          <h1 className="text-[48px] font-normal leading-none text-ds-text-primary">{title}</h1>
+          <h1 className="text-5xl font-normal leading-none text-ds-text-primary">{title}</h1>
         )}
       </div>
     </>

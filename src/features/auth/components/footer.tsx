@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import imageUrl from '@/assets/images/auth/separator-1.png';
-import imageCover from '@/assets/images/auth/Rectangle-2.svg';
 
 export default function AuthFooter() {
   return (
