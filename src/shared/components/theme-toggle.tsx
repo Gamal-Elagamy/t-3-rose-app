@@ -42,12 +42,11 @@ export function ThemeToggle() {
         {options.map((opt) => (
           <Button
             key={opt.value}
+            variant="ghost"
             type="button"
             aria-label={opt.label}
             onClick={() => setTheme(opt.value)}
-            className={cn(
-              'flex items-center justify-center rounded-full text-black dark:text-white w-8.5 h-8.5'
-            )}
+            className={cn('flex items-center justify-center rounded-full w-8.5 h-8.5')}
           >
             {opt.icon}
           </Button>
@@ -67,11 +66,12 @@ export function ThemeToggle() {
         return (
           <Button
             key={opt.value}
+            variant="ghost"
             type="button"
             aria-label={opt.label}
             onClick={() => setTheme(opt.value)}
             className={cn(
-              'flex items-center justify-center rounded-full text-black dark:text-white w-8.5 h-8.5 cursor-pointer',
+              'flex items-center justify-center rounded-full w-8.5 h-8.5 cursor-pointer',
               isActive && 'bg-ds-bg-soft dark:bg-ds-bg-muted'
             )}
           >
