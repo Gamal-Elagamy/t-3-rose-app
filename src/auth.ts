@@ -3,16 +3,13 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { ILoginResponse } from './shared/lib/types/auth';
 
 export const authOptions: NextAuthOptions = {
-  // Provider configuration
   providers: [
-    // Credentials provider for username/password login
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      // Authorize function to validate credentials
       authorize: async (credentials) => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
           method: 'POST',
@@ -25,15 +22,12 @@ export const authOptions: NextAuthOptions = {
           }),
         });
 
-        // Parse the login response
         const data: IApiResponse<ILoginResponse> = await response.json();
 
-        // Check if login was successful
         if (!data.status) {
           throw new Error(data.message || 'Invalid credentials');
         }
 
-        // Extract login data
         const loginData = data.payload!;
 
         return {
@@ -45,7 +39,6 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  // Callbacks configuration
   callbacks: {
     jwt: ({ token, user, trigger }) => {
       if (user) {
@@ -53,7 +46,6 @@ export const authOptions: NextAuthOptions = {
         token.user = user.user;
       }
 
-      // Update token when user data changes
       if (trigger === 'update' && user) {
         token.token = user.token;
         token.user = user.user;
@@ -67,7 +59,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
 
-  // Pages configuration
   pages: {
     signIn: '/login',
     error: '/login',
@@ -75,9 +66,8 @@ export const authOptions: NextAuthOptions = {
 
   session: {
     strategy: 'jwt',
-    maxAge: 7 * 24 * 60 * 60, // 7 days
+    maxAge: Number(process.env.NEXTAUTH_SESSION_MAX_AGE) || 7 * 24 * 60 * 60,
   },
 
-  // Secret for JWT signing
   secret: process.env.NEXTAUTH_SECRET,
 };
