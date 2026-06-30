@@ -5,7 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import LanguageSwitcher from '@/shared/components/language-switcher';
-import imageUrl from '@/assets/images/auth/separator-1.png';
+import lightSeparator from '@/assets/images/auth/separator-light.png';
+import darkSeparator from '@/assets/images/auth/separator-dark.png';
 
 export default function AuthHeader() {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export default function AuthHeader() {
 
   return (
     <>
-      <div className="flex justify-end gap-4 px-2 py-4">
+      <div className="flex justify-end px-2 py-4">
         <LanguageSwitcher
           className="text-base font-normal leading-none text-ds-text-plain"
           ariaLabel={t('auth.langLabel')}
@@ -29,7 +30,18 @@ export default function AuthHeader() {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-4">
-        <Image src={imageUrl} alt="Separator" priority className="max-h-11 max-w-60" />
+        <Image
+          src={darkSeparator}
+          alt="Separator"
+          priority
+          className="max-h-11 max-w-60 rotate-180 hidden dark:block "
+        />
+        <Image
+          src={lightSeparator}
+          alt="Separator"
+          priority
+          className="max-h-11 max-w-60 rotate-180 block dark:hidden"
+        />
 
         {title && (
           <h1 className="text-5xl font-normal leading-none text-ds-text-primary">{title}</h1>
