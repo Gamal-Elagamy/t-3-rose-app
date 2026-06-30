@@ -13,21 +13,54 @@
     "system": "System",
     "dark": "Dark"
   },
-   "textarea": {
+  "textarea": {
     "placeholder": "Type here...",
     "charCount": "{count}/{max} characters",
     "required": "This field is required",
     "maxLengthExceeded": "Max {max} characters exceeded"
   },
   "select": {
-  "placeholder": "Select an option",
-  "required": "This field is required"
-},
-"combobox": {
-  "placeholder": "Select an option",
-  "search": "Search...",
-  "loading": "Loading...",
-  "noOptions": "No options found",
-  "required": "This field is required"
-}
+    "placeholder": "Select an option",
+    "required": "This field is required"
+  },
+  "combobox": {
+    "placeholder": "Select an option",
+    "search": "Search...",
+    "loading": "Loading...",
+    "noOptions": "No options found",
+    "required": "This field is required"
+  },
+  "register": {
+    "title": "Create Account",
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": "Select gender",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "firstName": "First Name is required",
+    "lastName": "Last Name is required",
+    "email": "Invalid email address",
+    "phone": "Phone is required",
+    "gender": "Gender is required",
+    "male": "Male",
+    "female": "Female",
+    "password": {
+      "minLength": "Password must be at least 8 characters",
+      "uppercase": "Must contain an uppercase letter",
+      "lowercase": "Must contain a lowercase letter",
+      "digit": "Must contain a number",
+      "special": "Must contain a special character"
+    },
+    "confirmPassword": {
+      "required": "Confirm Password is required",
+      "mismatch": "Passwords must match"
+    },
+    "button": "Create Account",
+    "emailInUse": "Email already in use",
+    "success": "Account created successfully"
+  }
 }
