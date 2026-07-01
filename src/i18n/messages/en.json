@@ -29,5 +29,24 @@
   "loading": "Loading...",
   "noOptions": "No options found",
   "required": "This field is required"
+}, 
+  "auth": {
+    "pageTitle": "Authentication",
+    "switchLang": "العربية",
+    "langLabel": "Switch to Arabic",
+    "validation": {
+    "passwordWeak": "Password must be at least 8 characters with uppercase, lowercase, number, and special character",
+    "passwordMatch": "Passwords do not match"
+  },
+
+  "error": {
+    "networkError": "Something went wrong. Please try again."
+  },
+    "login": {
+      "title": "Welcome Back!"
+    },
+    "register": {
+      "title": "Become part of our family!"
+    }
 }
 }
