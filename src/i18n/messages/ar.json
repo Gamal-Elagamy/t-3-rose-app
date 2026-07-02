@@ -29,5 +29,21 @@
     "loading": "جاري التحميل...",
     "noOptions": "لا توجد خيارات",
     "required": "هذا الحقل مطلوب"
+  },
+   "login": {
+    "title": "مرحباً بعودتك",
+    "subtitle": "سجّل الدخول إلى حسابك",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "rememberMe": "تذكرني",
+    "button": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "usernameRequired": "اسم المستخدم مطلوب",
+  
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "networkError": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
   }
 }

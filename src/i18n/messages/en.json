@@ -29,5 +29,21 @@
   "loading": "Loading...",
   "noOptions": "No options found",
   "required": "This field is required"
-}
+},
+"login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your account",
+    "username": "username",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "rememberMe": "Remember me",
+    "button": "Login",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "invalidCredentials": "Invalid email or password",
+    "usernameRequired": "username is required",
+   
+    "passwordRequired": "Password is required",
+    "networkError": "Something went wrong. Please try again."
+  }
 }
