@@ -2,7 +2,7 @@
 import { Button } from '@/shared/components/ui/button';
 Input;
 import Link from 'next/link';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema, ResetPasswordFormData } from '../../schema/reset-password.schema';
@@ -10,7 +10,7 @@ import { ResetPasswordPayload } from '@/features/auth/lib/type/reset-password';
 import { ResetPassword } from '../../lib/api/reset-password.api';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
+import { Field, FieldSet, FieldError, FieldLabel } from '@/shared/components/ui/field';
 
 type Props = {
   token?: string;
@@ -19,7 +19,7 @@ type Props = {
 export default function Resetpassword({ token }: Props) {
   const t = useTranslations();
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<ResetPasswordFormData>({
@@ -53,24 +53,50 @@ export default function Resetpassword({ token }: Props) {
 
         <form onSubmit={handleSubmit(onSubmit)} className=" border-y border-ds-bg-muted ">
           <div className="my-7 space-y-3">
-            <Label htmlFor="newPassword">{t('forgotPw.step3.newPassword')}</Label>
-            <Input
-              {...register('newPassword')}
-              id="newPassword"
-              type="password"
-              placeholder="********"
-              className="w-full  text-sm rounded-md border px-3 py-2"
+            <Controller
+              name="newPassword"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="newPassword">{t('forgotPw.step3.newPassword')}</FieldLabel>
+
+                  <Input
+                    {...field}
+                    aria-invalid={fieldState.invalid}
+                    id="newPassword"
+                    type="password"
+                    placeholder="********"
+                  />
+
+                  {fieldState.error?.message && (
+                    <FieldError>{t(fieldState.error.message as never)}</FieldError>
+                  )}
+                </Field>
+              )}
             />
-            {errors.newPassword?.message && <p>{t(errors.newPassword.message as never)}</p>}
-            <Label htmlFor="confirmPassword">{t('forgotPw.step3.confirmPassword')}</Label>
-            <Input
-              {...register('confirmPassword')}
-              id="confirmPassword"
-              type="password"
-              placeholder="********"
-              className="w-full  text-sm rounded-md border px-3 py-2"
+            <Controller
+              name="confirmPassword"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="confirmPassword">
+                    {t('forgotPw.step3.confirmPassword')}
+                  </FieldLabel>
+
+                  <Input
+                    {...field}
+                    aria-invalid={fieldState.invalid}
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="********"
+                  />
+
+                  {fieldState.error?.message && (
+                    <FieldError>{t(fieldState.error.message as never)}</FieldError>
+                  )}
+                </Field>
+              )}
             />
-            {errors.confirmPassword?.message && <p>{t(errors.confirmPassword.message as never)}</p>}
           </div>
           <Button
             isLoading={mutation.isPending}

@@ -1,14 +1,15 @@
 'use client';
 import { Button } from '@/shared/components/ui/button';
 import Link from 'next/link';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { emailSchema, EmailFormData } from '../../schema/forget-password.schema';
 import { ForgetPassword } from '../../lib/api/forget-password.api';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
+import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
+
 type Props = {
   setEmail: (val: string) => void;
   onSuccess: () => void;
@@ -18,8 +19,8 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
   const t = useTranslations();
 
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<EmailFormData>({
     defaultValues: {
@@ -46,19 +47,29 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
           <p className="font-normal ">{t('forgotPw.step1.subtitle')}</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=" border-y border-ds-bg-muted ">
+        <form
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+          className=" border-y border-ds-bg-muted "
+        >
           <div className="my-7">
-            <Label className="mb-2" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              {...register('email')}
-              id="email"
-              type="email"
-              placeholder="user@example.com"
-              className="w-full   rounded-md border px-3 py-2"
+            <Controller
+              name="email"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <Input
+                    {...field}
+                    id="email"
+                    aria-invalid={fieldState.invalid}
+                    type="email"
+                    placeholder="user@example.com"
+                  />
+                  {errors.email && <FieldError>{t(errors.email.message as never)}</FieldError>}
+                </Field>
+              )}
             />
-            {errors.email?.message && <p>{t(errors.email.message as never)}</p>}
           </div>
 
           <Button
