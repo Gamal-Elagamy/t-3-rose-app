@@ -7,46 +7,100 @@
   "delete": "Delete",
   "confirm": "Confirm",
   "app-name": "Rose App",
+
   "theme": {
     "toggle": "Toggle theme",
     "light": "Light",
     "system": "System",
     "dark": "Dark"
   },
-   "textarea": {
+
+  "textarea": {
     "placeholder": "Type here...",
     "charCount": "{count}/{max} characters",
     "required": "This field is required",
     "maxLengthExceeded": "Max {max} characters exceeded"
   },
+
   "select": {
-  "placeholder": "Select an option",
-  "required": "This field is required"
-},
-"combobox": {
-  "placeholder": "Select an option",
-  "search": "Search...",
-  "loading": "Loading...",
-  "noOptions": "No options found",
-  "required": "This field is required"
-}, 
+    "placeholder": "Select an option",
+    "required": "This field is required"
+  },
+
+  "combobox": {
+    "placeholder": "Select an option",
+    "search": "Search...",
+    "loading": "Loading...",
+    "noOptions": "No options found",
+    "required": "This field is required"
+  },
+
   "auth": {
     "pageTitle": "Authentication",
     "switchLang": "العربية",
     "langLabel": "Switch to Arabic",
-    "validation": {
-    "passwordWeak": "Password must be at least 8 characters with uppercase, lowercase, number, and special character",
-    "passwordMatch": "Passwords do not match"
-  },
 
-  "error": {
-    "networkError": "Something went wrong. Please try again."
-  },
+    "validation": {
+      "passwordWeak": "Password must be at least 8 characters with uppercase, lowercase, number, and special character",
+      "passwordMatch": "Passwords do not match"
+    },
+
+    "error": {
+      "networkError": "Something went wrong. Please try again."
+    },
+
     "login": {
       "title": "Welcome Back!"
     },
+
     "register": {
       "title": "Become part of our family!"
     }
-}
+  },
+
+  "forgotPw": {
+    "step1": {
+      "title": "Forgot Password?",
+      "subtitle": "Enter your email to receive a reset code",
+      "continue": "Continue",
+      "noAccount": "No account found with this email",
+      "noAccountPrompt": "Don't have an account yet?",
+      "createAccount": "Create one now!"
+    },
+    "step2": {
+      "title": "Reset link sent",
+      "subtitle": "Check your email and follow the instructions to reset your password",
+      "inbox": "Check your inbox",
+      "spam": "If you don’t see the email, check your spam or junk folder"
+    },
+    "step3": {
+      "title": "Create New Password",
+      "reset": "Reset Password",
+      "subtitle": "Set a strong password to secure your account.",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "success": "Password reset successfully"
+    },
+    "contact": "Need help?",
+      "contactLink":"Contact us"
+  },
+
+  "validation": {
+    "email": {
+      "required": "Email is required",
+      "invalid": "Please enter a valid email address"
+    },
+    "password": {
+      "required": "Password is required",
+      "minLength": "Password must be at least 8 characters",
+      "uppercase": "Password must contain at least one uppercase letter",
+      "lowercase": "Password must contain at least one lowercase letter",
+      "digit": "Password must contain at least one number",
+      "special": "Password must contain at least one special character"
+    },
+    "confirmPassword": {
+      "required": "Please confirm your password",
+      "mismatch": "Passwords do not match"
+    }
+  }
 }
