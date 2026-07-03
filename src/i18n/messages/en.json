@@ -30,21 +30,52 @@
     "noOptions": "No options found",
     "required": "This field is required"
   },
+  "auth": {
+    "pageTitle": "Authentication",
+    "switchLang": "العربية",
+    "langLabel": "Switch to Arabic",
+    "validation": {
+      "passwordWeak": "Password must be at least 8 characters with uppercase, lowercase, number, and special character",
+      "passwordMatch": "Passwords do not match"
+    },
+    "error": {
+      "networkError": "Something went wrong. Please try again."
+    },
+    "login": {
+      "title": "Welcome Back!"
+    },
+    "register": {
+      "title": "Become part of our family!"
+    }
+  },
   "register": {
-    "title": "Create Account",
+    "header": {
+      "title": "Create Account",
+      "title-description-step-2": "Enter the OTP Code",
+      "title-description-step-3": "Tell us more about you",
+      "title-description-step-4": "Create a strong password",
+      "description-step-2": "We have sent a 6-digit code to {email} <button> Edit </button>",
+      "description-step-3": "A few details to get started",
+      "description-step-4": "Choose a secure password to protect your account"
+    },
     "fields": {
       "firstName": "First Name",
       "lastName": "Last Name",
+      "username": "Username",
       "email": "Email",
       "phone": "Phone",
-      "gender": "Select gender",
+      "otp": "otp",
+      "gender": "Gender",
+      "placeholder-gender": "Select gender",
       "password": "Password",
       "confirmPassword": "Confirm Password"
     },
     "firstName": "First Name is required",
     "lastName": "Last Name is required",
+    "username": "User Name is required",
     "email": "Invalid email address",
     "phone": "Phone is required",
+    "otp": "OTP is required",
     "gender": "Gender is required",
     "male": "Male",
     "female": "Female",
@@ -59,8 +90,17 @@
       "required": "Confirm Password is required",
       "mismatch": "Passwords must match"
     },
-    "button": "Create Account",
+    "button": {
+      "step-1": "Next",
+      "step-2": "Verify Code"
+    },
     "emailInUse": "Email already in use",
-    "success": "Account created successfully"
+    "success": "Account created successfully",
+    "register-support": {
+      "step-1": "Already have an account? <a> Login </a>",
+      "step-2": "Need help? <a> Contact us </a>"
+    },
+    "send-new-code": "Send a new code",
+    "resend-code-countdown": "Resend code in {countdown}s"
   }
 }

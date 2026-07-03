@@ -8,6 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 
 import { Sarabun, Tajawal } from 'next/font/google';
+
 // Fonts
 const sarabun = Sarabun({
   subsets: ['latin'],
