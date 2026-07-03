@@ -24,7 +24,7 @@ export default function CheckEmailStep({ email, onBack }: Props) {
           {t('forgotPw.step2.subtitle')}
         </p>
 
-        <p className="mt-1 text-sm font-medium text-ds-bg-info break-all">{email}</p>
+        <p className="mt-1  font-medium text-ds-bg-info break-all">{email}</p>
 
         <p className="mt-1 text-ds-bg-primary">{t('forgotPw.step2.inbox')}</p>
 

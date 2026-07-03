@@ -7,5 +7,6 @@ interface Props {
 }
 export default async function page({ searchParams }: Props) {
   const { token } = await searchParams;
+
   return <Resetpassword token={token}></Resetpassword>;
 }
