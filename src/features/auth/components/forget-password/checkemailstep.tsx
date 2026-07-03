@@ -1,3 +1,4 @@
+import { Button } from '@/shared/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -9,34 +10,29 @@ type Props = {
 export default function CheckEmailStep({ email, onBack }: Props) {
   const t = useTranslations();
   return (
-    <div className="relative">
-      <button
-        onClick={onBack}
-        className="absolute left-0 top-0 p-2 rounded-md border border-ds-bg-inverse hover:bg-ds-text-primary-fade transition"
-      >
-        <ArrowLeft className="text-ds-bg-inverse " size={18} />
-      </button>
-
-      <div className="flex flex-col pt-10">
+    <section className="max-w-96">
+      <div className="flex items-center gap-2">
+        <Button onClick={onBack} className=" p-1">
+          <ArrowLeft className="text-ds-bg-plain " size={11} />
+        </Button>
         <h1 className="text-2xl font-semibold text-ds-bg-inverse">{t('forgotPw.step2.title')}</h1>
+      </div>
 
-        <p className="mt-2  text-ds-bg-inverse leading-relaxed max-w-sm">
-          {t('forgotPw.step2.subtitle')}
-        </p>
+      <div className="flex flex-col">
+        <p className="text-ds-bg-inverse  max-w-sm">{t('forgotPw.step2.subtitle')}</p>
+        <p className=" mb-2 text-sm font-normal text-ds-bg-info">{email}</p>
+        <div className=" border-y-2 border-ds-border-muted ">
+          <p className="mt-5 text-ds-bg-inverse">{t('forgotPw.step2.inbox')}</p>
+          <p className="mb-5 text-ds-bg-default">{t('forgotPw.step2.spam')}</p>
+        </div>
 
-        <p className="mt-1  font-medium text-ds-bg-info break-all">{email}</p>
-
-        <p className="mt-1 text-ds-bg-primary">{t('forgotPw.step2.inbox')}</p>
-
-        <p className="mt-1 text-ds-bg-primary">{t('forgotPw.step2.spam')}</p>
-
-        <p className="mt-6  text-ds-bg-inverse">
-          {t('forgotPw.step1.noAccountPrompt')}
+        <p className="mt-1 text-center  text-ds-bg-primary">
+          {t('forgotPw.contact')}
           <Link href="/register" className="text-ds-bg-primary ms-1">
-            {t('forgotPw.step1.createAccount')}
+            {t('forgotPw.contactLink')}
           </Link>
         </p>
       </div>
-    </div>
+    </section>
   );
 }
