@@ -12,9 +12,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main className="overflow-hidden grid h-full grid-cols-1 md:grid-cols-2">
       {/* Left Side */}
-      <section className="flex h-screen flex-col overflow-y-auto py-2 bg-ds-bg-plain">
+      <section className="flex h-screen flex-col overflow-y-auto bg-ds-bg-plain gap-10 min-w-96 max-h-min">
         <AuthHeader />
-        <div className="flex flex-1 items-center justify-center">{children}</div>
+        <div className="flex items-center justify-center">{children}</div>
         <AuthFooter />
       </section>
 

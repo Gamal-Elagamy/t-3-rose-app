@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import LanguageSwitcher from '@/shared/components/language-switcher';
+import { ThemeToggle } from '@/shared/components/theme-toggle';
 import lightSeparator from '@/assets/images/auth/separator-light.png';
 import darkSeparator from '@/assets/images/auth/separator-dark.png';
 
@@ -22,13 +23,14 @@ export default function AuthHeader() {
 
   return (
     <>
-      <div className="flex justify-end px-2 py-4">
+      <div className="flex items-center gap-3 justify-end px-2 py-4">
+        <ThemeToggle />
+
         <LanguageSwitcher
           className="text-base font-normal leading-none text-ds-text-plain"
           ariaLabel={t('auth.langLabel')}
         />
       </div>
-
       <div className="flex flex-col items-center justify-center gap-10">
         <Image
           src={darkSeparator}
@@ -44,7 +46,10 @@ export default function AuthHeader() {
         />
 
         {title && (
-          <h1 className="text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted">
+          <h1
+            style={{ fontFamily: 'var(--font-dancing)' }}
+            className="text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted dark:border-ds-border-soft"
+          >
             {title}
           </h1>
         )}

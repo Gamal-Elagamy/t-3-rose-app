@@ -4,7 +4,7 @@ import darkSeparator from '@/assets/images/auth/separator-dark.png';
 
 export default function AuthFooter() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center gap-4 py-4">
       <Image
         src={darkSeparator}
         alt="Separator"
