@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -26,11 +27,14 @@ export default function AuthHeader() {
       <div className="flex items-center gap-3 justify-end px-2 py-4">
         <ThemeToggle />
 
-        <LanguageSwitcher
-          className="text-base font-normal leading-none text-ds-text-plain"
-          ariaLabel={t('auth.langLabel')}
-        />
+        <Suspense fallback={null}>
+          <LanguageSwitcher
+            className="text-base font-normal leading-none text-ds-text-plain"
+            ariaLabel={t('auth.langLabel')}
+          />
+        </Suspense>
       </div>
+
       <div className="flex flex-col items-center justify-center gap-10">
         <Image
           src={darkSeparator}

@@ -10,16 +10,18 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <main className="overflow-hidden grid h-full grid-cols-1 md:grid-cols-2">
+    <main className="grid h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
       {/* Left Side */}
-      <section className="flex h-screen flex-col overflow-y-auto bg-ds-bg-plain gap-10 min-w-96 max-h-min">
+      <section className="flex flex-col overflow-y-auto bg-ds-bg-plain gap-10 min-w-96">
         <AuthHeader />
-        <div className="flex items-center justify-center">{children}</div>
+
+        <div className="flex flex-1 items-center justify-center">{children}</div>
+
         <AuthFooter />
       </section>
 
       {/* Right Side */}
-      <aside className="relative hidden h-full md:block">
+      <aside className="relative hidden h-screen md:block">
         <Image src={imageUrl} alt="Authentication" fill priority className="object-cover" />
       </aside>
     </main>
