@@ -1,26 +1,26 @@
 'use client';
 
 import { Suspense } from 'react';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme-toggle';
-import lightSeparator from '@/assets/images/auth/separator-light.png';
-import darkSeparator from '@/assets/images/auth/separator-dark.png';
+import AuthSeparator from './auth-separator';
 
 export default function AuthHeader() {
+  // Navigation
   const pathname = usePathname();
+
+  // Translation
   const t = useTranslations();
 
-  let title = '';
-
-  if (pathname.endsWith('/login')) {
-    title = t('auth.login.title');
-  } else if (pathname.endsWith('/register')) {
-    title = t('auth.register.title');
-  }
+  // Variables
+  const title = pathname.endsWith('/login')
+    ? t('auth.login.title')
+    : pathname.endsWith('/register')
+      ? t('auth.register.title')
+      : '';
 
   return (
     <>
@@ -36,18 +36,7 @@ export default function AuthHeader() {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-10">
-        <Image
-          src={darkSeparator}
-          alt="Separator"
-          priority
-          className="max-h-11 max-w-60 rotate-180 hidden dark:block "
-        />
-        <Image
-          src={lightSeparator}
-          alt="Separator"
-          priority
-          className="max-h-11 max-w-60 rotate-180 block dark:hidden"
-        />
+        <AuthSeparator className="rotate-180" />
 
         {title && (
           <h1

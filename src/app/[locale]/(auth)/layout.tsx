@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
 import imageUrl from '@/assets/images/auth/auth-image.png';
-import AuthFooter from '@/features/auth/components/footer';
-import AuthHeader from '@/features/auth/components/header';
+import AuthFooter from '@/features/auth/components/auth-footer';
+import AuthHeader from '@/features/auth/components/auth-header';
 
 type AuthLayoutProps = {
   children: React.ReactNode;
