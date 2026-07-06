@@ -6,17 +6,14 @@ import { Input } from '@/shared/components/ui/input';
 import { RegisterFormValues } from '@/features/auth/register/lib/types/register';
 import { getErrorMessage } from '@/features/auth/register/lib/utils/field-error';
 import { useTranslations } from 'next-intl';
+import { StepProps } from '@/features/auth/register/lib/types/step-props';
 
-export interface IRegisterStepOneProps {
-  apiError?: { message?: string } | null;
-}
-
-export default function RegisterStepOne({ apiError }: IRegisterStepOneProps) {
+export default function RegisterStepOne({ apiError }: StepProps) {
   // Form Context
   const { control } = useFormContext<RegisterFormValues>();
 
   // Translations
-  const t = useTranslations('register');
+  const t = useTranslations('auth.register');
 
   return (
     <>
@@ -38,18 +35,19 @@ export default function RegisterStepOne({ apiError }: IRegisterStepOneProps) {
               autoComplete="email"
               aria-invalid={fieldState.invalid || !!apiError}
             />
-            {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
-              // Error Message
-              <FieldError
-                errors={[
-                  {
-                    message: fieldState.error?.message
-                      ? getErrorMessage(t, fieldState.error.message)
-                      : apiError?.message,
-                  },
-                ]}
-              />
-            )}
+            {(fieldState.invalid || !!apiError) &&
+              (fieldState.error?.message || apiError?.message) && (
+                // Error Message
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : apiError?.message,
+                    },
+                  ]}
+                />
+              )}
           </Field>
         )}
       />

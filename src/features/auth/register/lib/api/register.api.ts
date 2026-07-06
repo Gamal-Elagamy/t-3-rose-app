@@ -2,8 +2,8 @@ import { IRegisterResponse } from '@/shared/lib/types/auth';
 import { IRegisterFields } from '../types/register';
 
 export default async function registerAPI(fields: IRegisterFields) {
-  // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch('https://rose-app.elevate-bootcamp.cloud/api/auth/register', {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${apiUrl}/auth/register`, {
     method: 'POST',
     body: JSON.stringify(fields),
     headers: {
@@ -16,6 +16,5 @@ export default async function registerAPI(fields: IRegisterFields) {
     throw new Error(data?.message);
   }
 
-  console.log(data);
   return data;
 }

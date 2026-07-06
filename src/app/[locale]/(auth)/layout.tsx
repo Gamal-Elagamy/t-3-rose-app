@@ -10,11 +10,11 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <main className="h-screen overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    <main className="overflow-hidden grid h-full grid-cols-1 md:grid-cols-2">
       {/* Left Side */}
       <section className="flex h-screen flex-col overflow-y-auto py-2 bg-ds-bg-plain">
         <AuthHeader />
-        <div className="flex flex-1 items-center justify-center">{children}</div>
+        <div className="flex items-center justify-center">{children}</div>
         <AuthFooter />
       </section>
 

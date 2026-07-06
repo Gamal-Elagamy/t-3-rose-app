@@ -45,61 +45,65 @@
       "title": " مرحبا بعودتك!"
     },
     "register": {
-      "title": " انضم إلى عائلتنا!"
+      "title": " انضم إلى عائلتنا!",
+      "header": {
+        "title": "إنشاء حساب",
+        "title-description-step-2": "أدخل رمز التحقق",
+        "title-description-step-3": "أخبرنا المزيد عنك",
+        "title-description-step-4": "أنشئ كلمة مرور قوية",
+        "description-step-2": "لقد أرسلنا رمزًا مكونًا من 6 أرقام إلى {email} <button> تعديل </button>",
+        "description-step-3": "بعض التفاصيل للبدء",
+        "description-step-4": "اختر كلمة مرور آمنة لحماية حسابك"
+      },
+      "fields": {
+        "firstName": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "username": "اسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "phone": "رقم الهاتف",
+        "otp": "رمز التحقق",
+        "gender": "الجنس",
+        "password": "كلمة المرور",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "placeholder-gender": "اختر الجنس",
+        "placeholder-firstName": "أدريان",
+        "placeholder-lastName": "أدريان",
+        "placeholder-username": "أدريان",
+        "placeholder-phone": "رقم الهاتف"
+      },
+      "firstName": "الاسم الأول مطلوب",
+      "lastName": "اسم العائلة مطلوب",
+      "username": "اسم المستخدم مطلوب",
+      "email": "بريد إلكتروني غير صحيح",
+      "phone": "رقم الهاتف مطلوب",
+      "phoneInvalid": "رقم الهاتف غير صحيح",
+      "otp": "رمز التحقق مطلوب",
+      "gender": "الجنس مطلوب",
+      "male": "ذكر",
+      "female": "أنثى",
+      "password": {
+        "minLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+        "uppercase": "يجب أن تحتوي على حرف كبير",
+        "lowercase": "يجب أن تحتوي على حرف صغير",
+        "digit": "يجب أن تحتوي على رقم",
+        "special": "يجب أن تحتوي على رمز خاص"
+      },
+      "confirmPassword": {
+        "required": "تأكيد كلمة المرور مطلوب",
+        "mismatch": "كلمتا المرور غير متطابقتين"
+      },
+      "button": {
+        "step-1": "التالى",
+        "step-2": "تحقق من الرمز"
+      },
+      "emailInUse": "البريد الإلكتروني مستخدم بالفعل",
+      "success": "تم إنشاء الحساب بنجاح",
+      "register-support": {
+        "step-1": "هل لديك حساب بالفعل؟ <a> تسجيل الدخول </a>",
+        "step-2": "هل تحتاج إلى مساعدة؟ <a> اتصل بنا </a>"
+      },
+      "send-new-code": "إرسال رمز جديد",
+      "resend-code-countdown": "إعادة إرسال الرمز خلال {countdown} ثانية"
     }
-  },
-  "register": {
-    "header": {
-      "title": "إنشاء حساب",
-      "title-description-step-2": "أدخل رمز التحقق",
-      "title-description-step-3": "أخبرنا المزيد عنك",
-      "title-description-step-4": "أنشئ كلمة مرور قوية",
-      "description-step-2": "لقد أرسلنا رمزًا مكونًا من 6 أرقام إلى {email} <button> تعديل </button>",
-      "description-step-3": "بعض التفاصيل للبدء",
-      "description-step-4": "اختر كلمة مرور آمنة لحماية حسابك"
-    },
-    "fields": {
-      "firstName": "الاسم الأول",
-      "lastName": "اسم العائلة",
-      "username": "اسم المستخدم",
-      "email": "البريد الإلكتروني",
-      "phone": "رقم الهاتف",
-      "gender": "الجنس",
-      "password": "كلمة المرور",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "placeholder-gender": "اختر الجنس"
-    },
-    "firstName": "الاسم الأول مطلوب",
-    "lastName": "اسم العائلة مطلوب",
-    "username": "اسم المستخدم مطلوب",
-    "email": "بريد إلكتروني غير صحيح",
-    "phone": "رقم الهاتف مطلوب",
-    "otp": "رمز التحقق مطلوب",
-    "gender": "الجنس مطلوب",
-    "male": "ذكر",
-    "female": "أنثى",
-    "password": {
-      "minLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
-      "uppercase": "يجب أن تحتوي على حرف كبير",
-      "lowercase": "يجب أن تحتوي على حرف صغير",
-      "digit": "يجب أن تحتوي على رقم",
-      "special": "يجب أن تحتوي على رمز خاص"
-    },
-    "confirmPassword": {
-      "required": "تأكيد كلمة المرور مطلوب",
-      "mismatch": "كلمتا المرور غير متطابقتين"
-    },
-    "button": {
-      "step-1": "التالى",
-      "step-2": "تحقق من الرمز"
-    },
-    "emailInUse": "البريد الإلكتروني مستخدم بالفعل",
-    "success": "تم إنشاء الحساب بنجاح",
-    "register-support": {
-      "step-1": "هل لديك حساب بالفعل؟ <a> تسجيل الدخول </a>",
-      "step-2": "هل تحتاج إلى مساعدة؟ <a> اتصل بنا </a>"
-    },
-    "send-new-code": "إرسال رمز جديد",
-    "resend-code-countdown": "إعادة إرسال الرمز خلال {countdown} ثانية"
   }
 }

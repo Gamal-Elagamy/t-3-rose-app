@@ -5,10 +5,10 @@ import { useTranslations } from 'next-intl';
 import { OtpInput } from '@/shared/components/otp-input';
 import { getErrorMessage } from '../../register/lib/utils/field-error';
 import { useState, useEffect } from 'react';
+import { StepProps } from '@/features/auth/register/lib/types/step-props';
 
 // InterFace
-interface RegisterStepTwoProps {
-  apiError?: { message?: string } | null;
+interface RegisterStepTwoProps extends StepProps {
   onResend: () => void;
 }
 
@@ -48,7 +48,7 @@ export default function RegisterStepTwo({ apiError, onResend }: RegisterStepTwoP
   const { control } = useFormContext<RegisterFormValues>();
 
   // Translations
-  const t = useTranslations('register');
+  const t = useTranslations('auth.register');
 
   // Countdown Effect
   useEffect(() => {

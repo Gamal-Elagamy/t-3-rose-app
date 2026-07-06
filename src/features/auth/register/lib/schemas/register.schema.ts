@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isValidPhoneNumber } from 'react-phone-number-input';
 
 export const registerSchema = z
   .object({
@@ -6,7 +7,7 @@ export const registerSchema = z
     lastName: z.string().min(1, 'lastName'),
     username: z.string().min(1, 'username'),
     email: z.string().email('email'),
-    phone: z.string().min(1, 'phone'),
+    phone: z.string().min(1, 'phone').refine(isValidPhoneNumber, { message: 'phoneInvalid' }),
     otp: z.string().length(6, 'otp'),
     gender: z.enum(['MALE', 'FEMALE'], { message: 'gender' }),
     password: z

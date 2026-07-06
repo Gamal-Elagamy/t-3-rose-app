@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
+import { Toaster } from '@/shared/components/ui/sonner';
 
 import { Sarabun, Tajawal } from 'next/font/google';
 
@@ -64,6 +65,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

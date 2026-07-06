@@ -3,15 +3,15 @@ import { RegisterFormValues } from '@/features/auth/register/lib/types/register'
 import { useTranslations } from 'next-intl';
 import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
-import { IRegisterStepOneProps } from './register-step-one';
 import { getErrorMessage } from '@/features/auth/register/lib/utils/field-error';
+import { StepProps } from '@/features/auth/register/lib/types/step-props';
 
-export default function RegisterStepFour({ apiError }: IRegisterStepOneProps) {
+export default function RegisterStepFour({ apiError }: StepProps) {
   // Form Context
   const { control } = useFormContext<RegisterFormValues>();
 
   // Translations
-  const t = useTranslations('register');
+  const t = useTranslations('auth.register');
   return (
     <>
       {/* Password */}
@@ -19,7 +19,7 @@ export default function RegisterStepFour({ apiError }: IRegisterStepOneProps) {
         name="password"
         control={control}
         render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid || !!apiError} className="pt-5">
+          <Field data-invalid={fieldState.invalid} className="pt-5">
             <FieldLabel htmlFor="password">{t('fields.password')}</FieldLabel>
             <Input
               {...field}
@@ -29,13 +29,11 @@ export default function RegisterStepFour({ apiError }: IRegisterStepOneProps) {
               autoComplete="new-password"
               aria-invalid={fieldState.invalid}
             />
-            {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+            {fieldState.invalid && fieldState.error?.message && (
               <FieldError
                 errors={[
                   {
-                    message: fieldState.error?.message
-                      ? getErrorMessage(t, fieldState.error.message)
-                      : apiError?.message,
+                    message: getErrorMessage(t, fieldState.error.message),
                   },
                 ]}
               />
@@ -59,13 +57,11 @@ export default function RegisterStepFour({ apiError }: IRegisterStepOneProps) {
               autoComplete="new-password"
               aria-invalid={fieldState.invalid}
             />
-            {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+            {fieldState.invalid && fieldState.error?.message && (
               <FieldError
                 errors={[
                   {
-                    message: fieldState.error?.message
-                      ? getErrorMessage(t, fieldState.error.message)
-                      : apiError?.message,
+                    message: getErrorMessage(t, fieldState.error.message),
                   },
                 ]}
               />
@@ -73,6 +69,11 @@ export default function RegisterStepFour({ apiError }: IRegisterStepOneProps) {
           </Field>
         )}
       />
+
+      {/* General Submit Error */}
+      {apiError?.message && (
+        <p className="text-ds-text-danger text-sm mt-2 text-center">{apiError.message}</p>
+      )}
     </>
   );
 }

@@ -1,12 +1,13 @@
 'use client';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button } from '@/shared/components/ui/button';
+import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import useRegister from '@/features/auth/register/hooks/use-register';
 import { RegisterFormValues } from '@/features/auth/register/lib/types/register';
 import { registerSchema } from '@/features/auth/register/lib/schemas/register.schema';
-import { Link } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import RegisterStepOne from '@/features/auth/components/register-steps/register-step-one';
 import { useState, useEffect } from 'react';
 import { MoveRight } from 'lucide-react';
@@ -21,38 +22,34 @@ import Stepper from '@/features/auth/components/register-steps/stepper';
 const STEP_KEY = 'register_step';
 const EMAIL_KEY = 'register_email';
 
-// Get Stored Step Data
-const getStoredStep = () => {
-  if (typeof window === 'undefined') return 1;
-  const savedStep = sessionStorage.getItem(STEP_KEY);
-  const savedEmail = sessionStorage.getItem(EMAIL_KEY);
-
-  const step = savedStep ? Number(savedStep) : 1;
-
-  if (step > 1 && !savedEmail) return 1;
-
-  if (step === 3 || step === 4) {
-    sessionStorage.removeItem(STEP_KEY);
-    sessionStorage.removeItem(EMAIL_KEY);
-    sessionStorage.removeItem('otp_countdown_end_time');
-    return 1;
-  }
-
-  return step;
-};
-
-// Get Stored Email Data
-const getStoredEmail = () => {
-  if (typeof window === 'undefined') return '';
-  return sessionStorage.getItem(EMAIL_KEY) || '';
-};
-
 export default function RegisterPage() {
   // State
-  const [step, setStep] = useState(getStoredStep);
-  const [emailValue, setEmailValue] = useState(getStoredEmail);
+  const [step, setStep] = useState(1);
+  const [emailValue, setEmailValue] = useState('');
+  // const [step, setStep] = useState(() => {
+  //   if (typeof window === 'undefined') return 1;
+  //   const savedStep = sessionStorage.getItem(STEP_KEY);
+  //   const savedEmail = sessionStorage.getItem(EMAIL_KEY);
+  //   const step = savedStep ? Number(savedStep) : 1;
 
-  const t = useTranslations('register');
+  //   if (step > 1 && !savedEmail) return 1;
+  //   if (step === 3 || step === 4) {
+  //     sessionStorage.removeItem(STEP_KEY);
+  //     sessionStorage.removeItem(EMAIL_KEY);
+  //     sessionStorage.removeItem('otp_countdown_end_time');
+  //     return 1;
+  //   }
+  //   return step;
+  // });
+
+  // const [emailValue, setEmailValue] = useState(() => {
+  //   if (typeof window === 'undefined') return '';
+  //   return sessionStorage.getItem(EMAIL_KEY) || '';
+  // });
+
+  const router = useRouter();
+
+  const t = useTranslations('auth.register');
 
   // Hooks
   // Submit All Fields
@@ -91,15 +88,29 @@ export default function RegisterPage() {
     },
   });
 
-  // Handel Submit All fields Fun
+  // Handle submit for all fields
   const onSubmit = (values: RegisterFormValues) => {
-    console.log(values);
-    const { email, password, confirmPassword, firstName, lastName, username, gender } = values;
+    const { email, password, confirmPassword, firstName, lastName, username, gender, phone } =
+      values;
+
+    const normalizedEmail = email.trim().toLowerCase();
+
     registerAPI(
-      { email, password, confirmPassword, firstName, lastName, username, gender },
       {
-        onSuccess: (data) => {
-          console.log(data);
+        email: normalizedEmail,
+        password,
+        confirmPassword,
+        firstName,
+        lastName,
+        username,
+        gender,
+        phone,
+      },
+      {
+        onSuccess: () => {
+          toast.success(t('success'), { position: 'bottom-right' });
+          router.push('/login');
+
           sessionStorage.removeItem(STEP_KEY);
           sessionStorage.removeItem(EMAIL_KEY);
           sessionStorage.removeItem('otp_countdown_end_time');
@@ -108,7 +119,7 @@ export default function RegisterPage() {
     );
   };
 
-  // Handel Click Next Button Fun
+  // Handle click on the Next button
   const handleClick = async (e: React.FormEvent) => {
     e.preventDefault();
     // Step One: Verify Email
@@ -128,7 +139,7 @@ export default function RegisterPage() {
       }
     }
 
-    // Step Two: Confim Email Verification
+    // Step Two: Confirm Email Verification
     if (step === 2) {
       const isValid = await form.trigger('otp');
       if (!isValid) return;
@@ -154,12 +165,32 @@ export default function RegisterPage() {
     }
   };
 
-  // Handel Edit Email Fun
+  // Handle edit email
   const handleEditEmail = () => {
     setStep(1);
   };
 
   // Effect State
+  useEffect(() => {
+    const savedStep = sessionStorage.getItem(STEP_KEY);
+    const savedEmail = sessionStorage.getItem(EMAIL_KEY);
+    let initialStep = savedStep ? Number(savedStep) : 1;
+
+    if (initialStep > 1 && !savedEmail) {
+      initialStep = 1;
+    } else if (initialStep === 3 || initialStep === 4) {
+      sessionStorage.removeItem(STEP_KEY);
+      sessionStorage.removeItem(EMAIL_KEY);
+      sessionStorage.removeItem('otp_countdown_end_time');
+      initialStep = 1;
+    }
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: hydrating state from sessionStorage, which is only available client-side after mount
+    setStep(initialStep);
+
+    if (savedEmail) setEmailValue(savedEmail);
+  }, []);
+
   useEffect(() => {
     sessionStorage.setItem(STEP_KEY, String(step));
   }, [step]);
@@ -169,7 +200,7 @@ export default function RegisterPage() {
   }, [emailValue]);
 
   return (
-    <div className="mx-auto w-full max-w-xl mt-6">
+    <div className="mx-auto w-3/4 my-6">
       <FormProvider {...form}>
         {/* Form */}
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -192,7 +223,7 @@ export default function RegisterPage() {
                 {step === 4 && t('header.title-description-step-4')}
               </h2>
 
-              {/* Des */}
+              {/* Descriptions */}
               <>
                 {step === 2 && (
                   <p className="font-normal text-base text-ds-text-plain m-0">
@@ -233,13 +264,10 @@ export default function RegisterPage() {
           )}
 
           {/* Step 3 */}
-          {step === 3 && <RegisterStepThree apiError={stepTwoError} />}
+          {step === 3 && <RegisterStepThree />}
 
           {/* Step 4 */}
           {step === 4 && <RegisterStepFour apiError={ApiError} />}
-
-          {/* Api Errors */}
-          {ApiError && <p className="text-ds-text-danger">{ApiError?.message}</p>}
 
           {/* Button Submit */}
           <Button
@@ -276,7 +304,7 @@ export default function RegisterPage() {
         <p className="text-center font-medium text-sm text-ds-text-plain mt-9 pt-5 border-t border-ds-border-muted">
           {t.rich('register-support.step-2', {
             a: (chunk) => (
-              <Link href={'/login'} className="font-bold text-ds-text-primary">
+              <Link href={''} className="font-bold text-ds-text-primary">
                 {chunk}
               </Link>
             ),

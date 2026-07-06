@@ -3,7 +3,6 @@ import { RegisterFormValues } from '@/features/auth/register/lib/types/register'
 import { useTranslations } from 'next-intl';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
-import { IRegisterStepOneProps } from './register-step-one';
 import { getErrorMessage } from '@/features/auth/register/lib/utils/field-error';
 import Select from '@/shared/components/Select/select';
 import { PhoneInput } from '@/shared/components/ui/phone';
@@ -14,12 +13,12 @@ const genderItems = [
   { label: 'Female', value: 'FEMALE' },
 ];
 
-export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
+export default function RegisterStepThree() {
   // Form Context
   const { control } = useFormContext<RegisterFormValues>();
 
   // Translations
-  const t = useTranslations('register');
+  const t = useTranslations('auth.register');
   return (
     <>
       <FieldGroup className="grid grid-cols-2 gap-5 pt-5">
@@ -28,22 +27,20 @@ export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
           name="firstName"
           control={control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid || !!apiError}>
+            <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="firstName">{t('fields.firstName')}</FieldLabel>
               <Input
                 {...field}
                 id="firstName"
-                placeholder="Jonathan"
+                placeholder={t('fields.placeholder-firstName')}
                 autoComplete="given-name"
                 aria-invalid={fieldState.invalid}
               />
-              {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+              {fieldState.invalid && fieldState.error?.message && (
                 <FieldError
                   errors={[
                     {
-                      message: fieldState.error?.message
-                        ? getErrorMessage(t, fieldState.error.message)
-                        : apiError?.message,
+                      message: getErrorMessage(t, fieldState.error.message),
                     },
                   ]}
                 />
@@ -62,17 +59,15 @@ export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
               <Input
                 {...field}
                 id="lastName"
-                placeholder="Adrian"
+                placeholder={t('fields.placeholder-lastName')}
                 autoComplete="family-name"
                 aria-invalid={fieldState.invalid}
               />
-              {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+              {fieldState.invalid && fieldState.error?.message && (
                 <FieldError
                   errors={[
                     {
-                      message: fieldState.error?.message
-                        ? getErrorMessage(t, fieldState.error.message)
-                        : apiError?.message,
+                      message: getErrorMessage(t, fieldState.error.message),
                     },
                   ]}
                 />
@@ -92,17 +87,15 @@ export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
             <Input
               {...field}
               id="username"
-              placeholder="Adrian"
-              autoComplete="user-name"
+              placeholder={t('fields.placeholder-username')}
+              autoComplete="username"
               aria-invalid={fieldState.invalid}
             />
-            {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+            {fieldState.invalid && fieldState.error?.message && (
               <FieldError
                 errors={[
                   {
-                    message: fieldState.error?.message
-                      ? getErrorMessage(t, fieldState.error.message)
-                      : apiError?.message,
+                    message: getErrorMessage(t, fieldState.error.message),
                   },
                 ]}
               />
@@ -124,20 +117,18 @@ export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
               type="tel"
               autoComplete="tel"
               defaultCountry="EG"
-              placeholder="Phone number"
+              placeholder={t('fields.placeholder-phone')}
               aria-invalid={fieldState.invalid}
               value={field.value}
               onChange={field.onChange}
               onBlur={field.onBlur}
               ref={field.ref}
             />
-            {fieldState.invalid && (fieldState.error?.message || apiError?.message) && (
+            {fieldState.invalid && fieldState.error?.message && (
               <FieldError
                 errors={[
                   {
-                    message: fieldState.error?.message
-                      ? getErrorMessage(t, fieldState.error.message)
-                      : apiError?.message,
+                    message: getErrorMessage(t, fieldState.error.message),
                   },
                 ]}
               />
@@ -160,7 +151,6 @@ export default function RegisterStepThree({ apiError }: IRegisterStepOneProps) {
             }))}
             value={field.value}
             onChange={field.onChange}
-            // error={fieldState.error?.message}
             error={
               fieldState.error?.message ? getErrorMessage(t, fieldState.error.message) : undefined
             }
