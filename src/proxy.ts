@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from 'next/server';
 const intlMiddleware = createMiddleware(routing);
 
 const authPages = ['/login', '/register', '/forgot-password'];
-
 const protectedRoutes = ['/profile'];
 
 export default async function proxy(req: NextRequest) {
@@ -14,7 +13,6 @@ export default async function proxy(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname;
 
-  // Remove locale prefix ("/en/profile" -> "/profile")
   const localeRegex = new RegExp(`^/(${routing.locales.join('|')})`);
   const normalizedPath = pathname.replace(localeRegex, '') || '/';
 
@@ -26,22 +24,32 @@ export default async function proxy(req: NextRequest) {
     (route) => normalizedPath === route || normalizedPath.startsWith(`${route}/`)
   );
 
-  // Logged in → don't allow auth pages
   if (token && isAuthPage) {
     const url = req.nextUrl.clone();
     url.pathname = '/';
     url.search = '';
-
     return NextResponse.redirect(url);
   }
 
-  // Guest → redirect to login
+  if (token && !token.rememberMe) {
+    const loginTime = token.loginTime as number;
+    const now = Math.floor(Date.now() / 1000);
+    const sessionAge = now - loginTime;
+    const maxSessionAge = 24 * 60 * 60;
+
+    if (sessionAge > maxSessionAge) {
+      const url = req.nextUrl.clone();
+      url.pathname = '/login';
+      const response = NextResponse.redirect(url);
+      response.cookies.delete('next-auth.session-token');
+      return response;
+    }
+  }
+
   if (!token && isProtectedRoute) {
     const url = req.nextUrl.clone();
-
     url.pathname = '/login';
     url.searchParams.set('returnUrl', pathname + req.nextUrl.search);
-
     return NextResponse.redirect(url);
   }
 

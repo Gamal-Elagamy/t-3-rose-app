@@ -9,6 +9,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
+        rememberMe: { label: 'Remember Me', type: 'boolean' },
       },
       authorize: async (credentials) => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
@@ -34,6 +35,7 @@ export const authOptions: NextAuthOptions = {
           id: loginData.user.id,
           token: loginData.token,
           user: loginData.user,
+          rememberMe: credentials?.rememberMe === 'true',
         };
       },
     }),
@@ -44,6 +46,8 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.token = user.token;
         token.user = user.user;
+        token.rememberMe = user.rememberMe;
+        token.loginTime = Math.floor(Date.now() / 1000);
       }
 
       if (trigger === 'update' && user) {
@@ -55,6 +59,7 @@ export const authOptions: NextAuthOptions = {
     },
     session: ({ session, token }) => {
       session.user = token.user;
+      session.rememberMe = token.rememberMe;
       return session;
     },
   },
