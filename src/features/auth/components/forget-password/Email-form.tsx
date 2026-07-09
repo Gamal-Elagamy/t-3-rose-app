@@ -5,7 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { emailSchema, EmailFormData } from '../../schema/forget-password.schema';
-import { ForgetPassword } from '../../lib/api/forget-password.api';
+import { forgotPasswordApi } from '../../api/forget-password.api';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/components/ui/input';
 import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
@@ -21,6 +21,7 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
   const {
     handleSubmit,
     control,
+    setError,
     formState: { errors },
   } = useForm<EmailFormData>({
     defaultValues: {
@@ -30,12 +31,12 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: EmailFormData) => ForgetPassword(data),
+    mutationFn: (data: EmailFormData) => forgotPasswordApi(data),
     onSuccess,
   });
 
   const onSubmit: SubmitHandler<EmailFormData> = (data: EmailFormData) => {
-    mutation.mutateAsync(data);
+    mutation.mutate(data);
     setEmail(data.email);
   };
 
@@ -43,14 +44,16 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
     <>
       <section>
         <div className="mb-1">
-          <h1 className="text-2xl font-semibold text-ds-bg-inverse">{t('forgotPw.step1.title')}</h1>
+          <h1 className="text-2xl font-semibold text-ds-text-inverse">
+            {t('forgotPw.step1.title')}
+          </h1>
           <p className="font-normal ">{t('forgotPw.step1.subtitle')}</p>
         </div>
 
         <form
           noValidate
           onSubmit={handleSubmit(onSubmit)}
-          className=" border-y border-ds-bg-muted "
+          className=" border-y border-ds-border-muted "
         >
           <div className="my-7">
             <Controller
@@ -82,10 +85,10 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
           </Button>
         </form>
         <div className="mt-2">
-          <p className="text-center text-sm  text-ds-bg-inverse">
+          <p className="text-center text-sm  text-ds-text-inverse">
             {t('forgotPw.step1.noAccountPrompt')}
             <Link href={'/register'}>
-              <span className="cuesor-pointer ms-1 text-sm font-medium text-ds-bg-primary">
+              <span className="cursor-pointer ms-1 text-sm font-medium text-ds-text-primary">
                 {t('forgotPw.step1.createAccount')}
               </span>
             </Link>

@@ -2,8 +2,8 @@
 import {
   IResetPassordTypeResponse,
   ResetPasswordPayload,
-} from '@/features/auth/lib/type/reset-password';
-export async function ResetPassword(data: ResetPasswordPayload) {
+} from '@/features/auth/type/reset-password';
+export async function resetPasswordApi(data: ResetPasswordPayload) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
     method: 'POST',
     headers: {
@@ -12,5 +12,6 @@ export async function ResetPassword(data: ResetPasswordPayload) {
     body: JSON.stringify(data),
   });
   const payload: IApiResponse<IResetPassordTypeResponse> = await response.json();
+
   return payload;
 }

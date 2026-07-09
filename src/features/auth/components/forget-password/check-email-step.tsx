@@ -13,22 +13,22 @@ export default function CheckEmailStep({ email, onBack }: Props) {
     <section className="max-w-96">
       <div className="flex items-center gap-2">
         <Button onClick={onBack} className=" p-1">
-          <ArrowLeft className="text-ds-bg-plain " size={11} />
+          <ArrowLeft className="text-ds-text-plain " size={11} />
         </Button>
-        <h1 className="text-2xl font-semibold text-ds-bg-inverse">{t('forgotPw.step2.title')}</h1>
+        <h1 className="text-2xl font-semibold text-ds-text-inverse">{t('forgotPw.step2.title')}</h1>
       </div>
 
       <div className="flex flex-col">
-        <p className="text-ds-bg-inverse  max-w-sm">{t('forgotPw.step2.subtitle')}</p>
-        <p className=" mb-2 text-sm font-normal text-ds-bg-info">{email}</p>
+        <p className="text-ds-text-inverse  max-w-sm">{t('forgotPw.step2.subtitle')}</p>
+        <p className=" mb-2 text-sm font-normal text-ds-text-info">{email}</p>
         <div className=" border-y-2 border-ds-border-muted ">
-          <p className="mt-5 text-ds-bg-inverse">{t('forgotPw.step2.inbox')}</p>
-          <p className="mb-5 text-ds-bg-default">{t('forgotPw.step2.spam')}</p>
+          <p className="mt-5 text-ds-text-inverse">{t('forgotPw.step2.inbox')}</p>
+          <p className="mb-5 text-ds-text-default">{t('forgotPw.step2.spam')}</p>
         </div>
 
-        <p className="mt-1 text-center  text-ds-bg-primary">
+        <p className="mt-1 text-center  text-ds-text-primary">
           {t('forgotPw.contact')}
-          <Link href="/register" className="text-ds-bg-primary ms-1">
+          <Link href="/register" className="text-ds-text-primary ms-1">
             {t('forgotPw.contactLink')}
           </Link>
         </p>

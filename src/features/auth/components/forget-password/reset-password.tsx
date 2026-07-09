@@ -6,17 +6,19 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema, ResetPasswordFormData } from '../../schema/reset-password.schema';
-import { ResetPasswordPayload } from '@/features/auth/lib/type/reset-password';
-import { ResetPassword } from '../../lib/api/reset-password.api';
+import { ResetPasswordPayload } from '@/features/auth/type/reset-password';
+import { resetPasswordApi } from '../../api/reset-password.api';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/components/ui/input';
-import { Field, FieldSet, FieldError, FieldLabel } from '@/shared/components/ui/field';
+import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   token?: string;
 };
 
 export default function Resetpassword({ token }: Props) {
+  const router = useRouter();
   const t = useTranslations();
   const {
     control,
@@ -31,7 +33,10 @@ export default function Resetpassword({ token }: Props) {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: ResetPasswordPayload) => ResetPassword(data),
+    mutationFn: (data: ResetPasswordPayload) => resetPasswordApi(data),
+    onSuccess() {
+      router.push('/login');
+    },
   });
 
   const onSubmit: SubmitHandler<ResetPasswordFormData> = (data) => {
@@ -47,11 +52,13 @@ export default function Resetpassword({ token }: Props) {
     <>
       <section>
         <div className="mb-1">
-          <h1 className="text-2xl font-semibold text-ds-bg-inverse">{t('forgotPw.step3.title')}</h1>
+          <h1 className="text-2xl font-semibold text-ds-text-inverse">
+            {t('forgotPw.step3.title')}
+          </h1>
           <p className="font-normal ">{t('forgotPw.step3.subtitle')}</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=" border-y border-ds-bg-muted ">
+        <form onSubmit={handleSubmit(onSubmit)} className=" border-y border-ds-border-muted ">
           <div className="my-7 space-y-3">
             <Controller
               name="newPassword"
@@ -108,10 +115,10 @@ export default function Resetpassword({ token }: Props) {
           </Button>
         </form>
         <div className="mt-2">
-          <p className="text-center text-sm  text-ds-bg-inverse">
+          <p className="text-center text-sm  text-ds-text-inverse">
             {t('forgotPw.contact')}
             <Link href={'/register'}>
-              <span className="cuesor-pointer ms-1 text-sm font-medium text-ds-bg-primary">
+              <span className="cursor-pointer ms-1 text-sm font-medium text-ds-text-primary">
                 {t('forgotPw.contactLink')}
               </span>
             </Link>
