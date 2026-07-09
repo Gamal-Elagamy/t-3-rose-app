@@ -22,7 +22,14 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
       {/* Right Side */}
       <aside className="relative hidden h-screen md:block">
-        <Image src={imageUrl} alt="Authentication" fill priority className="object-cover" />
+        <Image
+          src={imageUrl}
+          alt="Authentication"
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover"
+        />
       </aside>
     </main>
   );

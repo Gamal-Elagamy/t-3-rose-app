@@ -14,14 +14,12 @@ export default function AuthSeparator({ className }: AuthSeparatorProps) {
       <Image
         src={darkSeparator}
         alt="Separator"
-        priority
         className={cn('hidden dark:block max-w-68', className)}
       />
 
       <Image
         src={lightSeparator}
         alt="Separator"
-        priority
         className={cn('block dark:hidden max-w-60', className)}
       />
     </>

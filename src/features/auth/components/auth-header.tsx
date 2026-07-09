@@ -41,7 +41,7 @@ export default function AuthHeader() {
         {title && (
           <h1
             style={{ fontFamily: 'var(--font-dancing)' }}
-            className="text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted dark:border-ds-border-soft"
+            className="mx-auto w-3/4 border-b border-ds-border-muted pb-4 text-center text-5xl font-normal leading-none text-ds-text-primary dark:border-ds-border-soft"
           >
             {title}
           </h1>
