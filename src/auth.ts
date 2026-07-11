@@ -1,6 +1,6 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { ILoginResponse } from './shared/lib/types/auth';
+import { loginApi } from './features/auth/apis/auth.api';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -11,24 +11,14 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       authorize: async (credentials) => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password,
-          }),
-        });
-
-        const data: IApiResponse<ILoginResponse> = await response.json();
-
-        if (!data.status) {
-          throw new Error(data.message || 'Invalid credentials');
+        if (!credentials?.username || !credentials.password) {
+          throw new Error('Username and password are required');
         }
 
-        const loginData = data.payload!;
+        const loginData = await loginApi({
+          username: credentials.username,
+          password: credentials.password,
+        });
 
         return {
           id: loginData.user.id,
@@ -40,15 +30,14 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    jwt: ({ token, user, trigger }) => {
+    jwt: ({ token, user, trigger, session }) => {
       if (user) {
         token.token = user.token;
         token.user = user.user;
       }
 
-      if (trigger === 'update' && user) {
-        token.token = user.token;
-        token.user = user.user;
+      if (trigger === 'update' && session?.user) {
+        token.user = session.user;
       }
 
       return token;
