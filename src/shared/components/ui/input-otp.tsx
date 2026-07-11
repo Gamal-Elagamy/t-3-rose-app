@@ -16,7 +16,7 @@ function InputOTP({
   return (
     <OTPInput
       data-slot="input-otp"
-      containerClassName={cn('cn-input-otp flex items-center', containerClassName)}
+      containerClassName={cn('cn-input-otp flex items-center justify-center', containerClassName)}
       spellCheck={false}
       className={cn('disabled:pointer-events-none', className)}
       {...props}
