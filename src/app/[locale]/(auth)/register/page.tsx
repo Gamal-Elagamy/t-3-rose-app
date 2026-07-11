@@ -26,26 +26,6 @@ export default function RegisterPage() {
   // State
   const [step, setStep] = useState(1);
   const [emailValue, setEmailValue] = useState('');
-  // const [step, setStep] = useState(() => {
-  //   if (typeof window === 'undefined') return 1;
-  //   const savedStep = sessionStorage.getItem(STEP_KEY);
-  //   const savedEmail = sessionStorage.getItem(EMAIL_KEY);
-  //   const step = savedStep ? Number(savedStep) : 1;
-
-  //   if (step > 1 && !savedEmail) return 1;
-  //   if (step === 3 || step === 4) {
-  //     sessionStorage.removeItem(STEP_KEY);
-  //     sessionStorage.removeItem(EMAIL_KEY);
-  //     sessionStorage.removeItem('otp_countdown_end_time');
-  //     return 1;
-  //   }
-  //   return step;
-  // });
-
-  // const [emailValue, setEmailValue] = useState(() => {
-  //   if (typeof window === 'undefined') return '';
-  //   return sessionStorage.getItem(EMAIL_KEY) || '';
-  // });
 
   const router = useRouter();
 
