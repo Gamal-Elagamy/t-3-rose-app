@@ -1,22 +1,40 @@
 'use client';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/shared/components/ui/input-otp';
-import { Field, FieldLabel } from '@/shared/components/ui/field';
+import { Field, FieldError } from '@/shared/components/ui/field';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 
 interface IOtpProps {
   id: string;
   label?: string;
   disabled?: boolean;
+  value?: string;
+  onChange?: (value: string) => void;
+  onBlur?: () => void;
+  invalid?: boolean;
+  errorMessage?: string;
 }
 
-export function OtpInput({ id, label, disabled }: IOtpProps) {
+export function OtpInput({
+  id,
+  disabled,
+  value,
+  onChange,
+  onBlur,
+  invalid,
+  errorMessage,
+}: IOtpProps) {
   return (
-    <Field className="w-full max-w-xs" disabled={disabled}>
-      {/* Label */}
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
-
+    <Field data-invalid={invalid}>
       {/* Otp input */}
-      <InputOTP id={id} maxLength={6} disabled={disabled} pattern={REGEXP_ONLY_DIGITS}>
+      <InputOTP
+        id={id}
+        maxLength={6}
+        disabled={disabled}
+        pattern={REGEXP_ONLY_DIGITS}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      >
         <InputOTPGroup disabled={disabled}>
           <InputOTPSlot index={0} />
           <InputOTPSlot index={1} />
@@ -26,6 +44,7 @@ export function OtpInput({ id, label, disabled }: IOtpProps) {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
+      {invalid && errorMessage && <FieldError errors={[{ message: errorMessage }]} />}
     </Field>
   );
 }

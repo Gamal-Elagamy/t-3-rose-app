@@ -58,7 +58,7 @@ const Select = ({
           )}
           aria-invalid={isError ? true : undefined}
         >
-          <SelectValue placeholder={t('select.placeholder')} />
+          <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent
           className={cn(

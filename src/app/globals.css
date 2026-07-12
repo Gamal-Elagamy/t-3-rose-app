@@ -8,7 +8,7 @@
   /* ---- Fonts ---- */
   --font-sarabun: var(--font-en), system-ui, sans-serif;
   --font-tajawal: var(--font-ar), system-ui, sans-serif;
-
+  --font-dancing: var(--font-dancing), system-ui, sans-serif;
   /* ---- Radius ---- */
   --radius-sm: var(--radius-sm);
   --radius-base: var(--radius-base);
