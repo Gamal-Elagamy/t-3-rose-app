@@ -15,7 +15,7 @@ export default async function proxy(req: NextRequest) {
 
   const localeRegex = new RegExp(`^/(${routing.locales.join('|')})`);
   const normalizedPath = pathname.replace(localeRegex, '') || '/';
-
+  const NON_REMEMBERED_SESSION_MAX_AGE = 24 * 60 * 60;
   const isAuthPage = authPages.some(
     (route) => normalizedPath === route || normalizedPath.startsWith(`${route}/`)
   );
@@ -35,7 +35,7 @@ export default async function proxy(req: NextRequest) {
     const loginTime = token.loginTime as number;
     const now = Math.floor(Date.now() / 1000);
     const sessionAge = now - loginTime;
-    const maxSessionAge = 24 * 60 * 60;
+    const maxSessionAge = NON_REMEMBERED_SESSION_MAX_AGE;
 
     if (sessionAge > maxSessionAge) {
       const url = req.nextUrl.clone();

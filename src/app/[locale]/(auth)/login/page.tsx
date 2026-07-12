@@ -2,23 +2,26 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
 const loginSchema = z.object({
-  username: z.string().min(1, 'usernameRequired'),
-  password: z.string().min(1, 'passwordRequired'),
+  username: z.string().min(1, 'login.usernameRequired'),
+  password: z.string().min(1, 'login.passwordRequired'),
 });
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
   const t = useTranslations();
+  const searchParams = useSearchParams();
+  const returnUrl = searchParams.get('returnUrl') || '/';
 
   const [rememberMe, setRememberMe] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
@@ -45,7 +48,7 @@ export default function LoginPage() {
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
-        router.push('/');
+        router.push(returnUrl);
       }
     } catch (err) {
       setGeneralError(t('login.networkError'));
@@ -56,6 +59,10 @@ export default function LoginPage() {
     <div className="flex min-h-screen">
       <div className="flex w-full flex-col justify-center px-8 lg:w-1/2 lg:px-16">
         <div className="mx-auto w-full max-w-sm">
+          <h1 className="text-center text-2xl font-bold text-ds-text-primary">
+            {t('login.title')}
+          </h1>
+          <p className="text-center text-sm text-ds-text-muted">{t('login.subtitle')}</p>
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
             {/* username */}
             <div className="flex flex-col gap-1.5">
@@ -63,7 +70,9 @@ export default function LoginPage() {
 
               <Input id="username" type="text" placeholder="johndoe" {...register('username')} />
               {errors.username && (
-                <p className="text-xs text-ds-text-danger">{t(`login.usernameRequired`)}</p>
+                <p className="text-xs text-ds-text-danger">
+                  {t(errors.username?.message as Parameters<typeof t>[0])}
+                </p>
               )}
             </div>
 
@@ -72,7 +81,7 @@ export default function LoginPage() {
               <label htmlFor="password" className="text-sm font-medium text-ds-text-default">
                 {t('login.password')}
               </label>
-              {/* Eye icon toggle */}
+
               <Input
                 id="password"
                 type="password"

@@ -33,7 +33,7 @@
 "login": {
     "title": "Welcome Back",
     "subtitle": "Sign in to your account",
-    "username": "username",
+    "username": "Username",
     "password": "Password",
     "forgotPassword": "Forgot password?",
     "rememberMe": "Remember me",
@@ -41,7 +41,7 @@
     "noAccount": "Don't have an account?",
     "register": "Register",
     "invalidCredentials": "Invalid email or password",
-    "usernameRequired": "username is required",
+    "usernameRequired": "Username is required",
    
     "passwordRequired": "Password is required",
     "networkError": "Something went wrong. Please try again."

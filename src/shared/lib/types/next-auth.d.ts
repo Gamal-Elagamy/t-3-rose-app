@@ -24,6 +24,6 @@ declare module 'next-auth/jwt' {
     user: IUser;
     token: string;
 
-    loginTime?: number; // ADD THIS
+    loginTime?: number;
   }
 }
