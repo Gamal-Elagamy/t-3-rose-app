@@ -9,6 +9,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
+        rememberMe: { label: 'Remember Me', type: 'boolean' },
       },
       authorize: async (credentials) => {
         if (!credentials?.username || !credentials.password) {
@@ -24,6 +25,7 @@ export const authOptions: NextAuthOptions = {
           id: loginData.user.id,
           token: loginData.token,
           user: loginData.user,
+          rememberMe: credentials?.rememberMe === 'true',
         };
       },
     }),
@@ -34,6 +36,8 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.token = user.token;
         token.user = user.user;
+        token.rememberMe = user.rememberMe;
+        token.loginTime = Math.floor(Date.now() / 1000);
       }
 
       if (trigger === 'update' && session?.user) {
@@ -44,6 +48,7 @@ export const authOptions: NextAuthOptions = {
     },
     session: ({ session, token }) => {
       session.user = token.user;
+      session.rememberMe = token.rememberMe;
       return session;
     },
   },
