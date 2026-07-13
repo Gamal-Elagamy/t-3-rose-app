@@ -30,8 +30,7 @@
     "noOptions": "لا توجد خيارات",
     "required": "هذا الحقل مطلوب"
   },
-
-   "login": {
+  "login": {
     "title": "مرحباً بعودتك",
     "subtitle": "سجّل الدخول إلى حسابك",
     "username": "اسم المستخدم",
@@ -43,10 +42,11 @@
     "register": "إنشاء حساب",
     "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
     "usernameRequired": "اسم المستخدم مطلوب",
-  
     "passwordRequired": "كلمة المرور مطلوبة",
-    "networkError": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-
+    "networkError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "placeholder": "اختر خياراً",
+    "required": "هذا الحقل مطلوب"
+  },
   "auth": {
     "pageTitle": "المصادقة",
     "switchLang": "English",
@@ -122,6 +122,5 @@
       "send-new-code": "إرسال رمز جديد",
       "resend-code-countdown": "إعادة إرسال الرمز خلال {countdown} ثانية"
     }
-
   }
 }
