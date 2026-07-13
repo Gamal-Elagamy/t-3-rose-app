@@ -7,7 +7,7 @@ import CheckEmailStep from './check-email-step';
 
 type Step = 'email' | 'check-email';
 
-export default function ForgotPassword() {
+export default function ForgetPassword() {
   const [step, setStep] = useState<Step>('email');
   const [email, setEmail] = useState('');
 

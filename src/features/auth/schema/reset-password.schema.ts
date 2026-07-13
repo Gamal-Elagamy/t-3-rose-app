@@ -3,17 +3,17 @@ export const resetPasswordSchema = z
   .object({
     newPassword: z
       .string()
-      .min(1, 'validation.password.required')
-      .min(8, 'validation.password.minLength')
-      .regex(/[A-Z]/, 'validation.password.uppercase')
-      .regex(/[a-z]/, 'validation.password.lowercase')
-      .regex(/[0-9]/, 'validation.password.digit')
-      .regex(/[^A-Za-z0-9]/, 'validation.password.special'),
+      .min(1, 'forgotPw.validation.password.required')
+      .min(8, 'forgotPw.validation.password.minLength')
+      .regex(/[A-Z]/, 'forgotPw.validation.password.uppercase')
+      .regex(/[a-z]/, 'forgotPw.validation.password.lowercase')
+      .regex(/[0-9]/, 'forgotPw.validation.password.digit')
+      .regex(/[^A-Za-z0-9]/, 'forgotPw.validation.password.special'),
 
-    confirmPassword: z.string().min(1, 'validation.confirmPassword.required'),
+    confirmPassword: z.string().min(1, 'forgotPw.validation.confirmPassword.required'),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: 'validation.confirmPassword.mismatch',
+    message: 'forgotPw.validation.confirmPassword.mismatch',
     path: ['confirmPassword'],
   });
 

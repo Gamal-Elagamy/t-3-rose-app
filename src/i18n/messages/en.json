@@ -82,25 +82,26 @@
       "success": "Password reset successfully"
     },
     "contact": "Need help?",
-      "contactLink":"Contact us"
-  },
-
-  "validation": {
-    "email": {
-      "required": "Email is required",
-      "invalid": "Please enter a valid email address"
-    },
-    "password": {
-      "required": "Password is required",
-      "minLength": "Password must be at least 8 characters",
-      "uppercase": "Password must contain at least one uppercase letter",
-      "lowercase": "Password must contain at least one lowercase letter",
-      "digit": "Password must contain at least one number",
-      "special": "Password must contain at least one special character"
-    },
-    "confirmPassword": {
-      "required": "Please confirm your password",
-      "mismatch": "Passwords do not match"
+    "contactLink": "Contact us",
+    "validation": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 8 characters",
+        "uppercase": "Password must contain at least one uppercase letter",
+        "lowercase": "Password must contain at least one lowercase letter",
+        "digit": "Password must contain at least one number",
+        "special": "Password must contain at least one special character"
+      },
+      "confirmPassword": {
+        "required": "Please confirm your password",
+        "mismatch": "Passwords do not match"
+      }
     }
   }
+
+  
 }
