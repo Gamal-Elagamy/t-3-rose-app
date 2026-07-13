@@ -20,18 +20,17 @@
     "maxLengthExceeded": "Max {max} characters exceeded"
   },
   "select": {
-
-  "placeholder": "Select an option",
-  "required": "This field is required"
-},
-"combobox": {
-  "placeholder": "Select an option",
-  "search": "Search...",
-  "loading": "Loading...",
-  "noOptions": "No options found",
-  "required": "This field is required"
-},
-"login": {
+    "placeholder": "Select an option",
+    "required": "This field is required"
+  },
+  "combobox": {
+    "placeholder": "Select an option",
+    "search": "Search...",
+    "loading": "Loading...",
+    "noOptions": "No options found",
+    "required": "This field is required"
+  },
+  "login": {
     "title": "Welcome Back",
     "subtitle": "Sign in to your account",
     "username": "Username",
@@ -43,18 +42,9 @@
     "register": "Register",
     "invalidCredentials": "Invalid email or password",
     "usernameRequired": "Username is required",
-   
     "passwordRequired": "Password is required",
-    "networkError": "Something went wrong. Please try again."
-
+    "networkError": "Something went wrong. Please try again.",
     "placeholder": "Select an option",
-    "required": "This field is required"
-  },
-  "combobox": {
-    "placeholder": "Select an option",
-    "search": "Search...",
-    "loading": "Loading...",
-    "noOptions": "No options found",
     "required": "This field is required"
   },
   "auth": {
@@ -132,6 +122,5 @@
       "send-new-code": "Send a new code",
       "resend-code-countdown": "Resend code in {countdown}s"
     }
-
   }
 }
