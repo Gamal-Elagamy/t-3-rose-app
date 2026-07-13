@@ -121,6 +121,50 @@
       },
       "send-new-code": "Send a new code",
       "resend-code-countdown": "Resend code in {countdown}s"
+    },
+    "forgotPw": {
+      "step1": {
+        "title": "Forgot Password?",
+        "subtitle": "Enter your email to receive a reset code",
+        "continue": "Continue",
+        "noAccount": "No account found with this email",
+        "noAccountPrompt": "Don't have an account yet?",
+        "createAccount": "Create one now!"
+      },
+      "step2": {
+        "title": "Password Reset Sent",
+        "subtitle": "We have sent a password reset link to:",
+        "inbox": " Please check your inbox and follow the instructions to reset your password. ",
+        "spam": "If you don’t see the email within a few minutes, check your spam or junk folder."
+      },
+      "step3": {
+        "title": "Create New Password",
+        "reset": "Reset Password",
+        "subtitle": "Set a strong password to secure your account.",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "success": "Password reset successfully"
+      },
+      "contact": "Need help?",
+      "contactLink": "Contact us",
+      "validation": {
+        "email": {
+          "required": "Email is required",
+          "invalid": "Please enter a valid email address"
+        },
+        "password": {
+          "required": "Password is required",
+          "minLength": "Password must be at least 8 characters",
+          "uppercase": "Password must contain at least one uppercase letter",
+          "lowercase": "Password must contain at least one lowercase letter",
+          "digit": "Password must contain at least one number",
+          "special": "Password must contain at least one special character"
+        },
+        "confirmPassword": {
+          "required": "Please confirm your password",
+          "mismatch": "Passwords do not match"
+        }
+      }
     }
   }
 }
