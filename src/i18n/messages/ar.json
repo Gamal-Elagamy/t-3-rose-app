@@ -1,4 +1,3 @@
-
 {
   "title": "مرحبا بكم في التطبيق لدينا",
   "loading": "جاري التحميل...",
@@ -8,26 +7,22 @@
   "delete": "حذف",
   "confirm": "تأكيد",
   "app-name": "تطبيق روز",
-
   "theme": {
     "toggle": "تبديل المظهر",
     "light": "فاتح",
     "system": "تلقائي",
     "dark": "داكن"
   },
-
   "textarea": {
     "placeholder": "اكتب هنا...",
     "charCount": "{count}/{max} حرف",
     "required": "هذا الحقل مطلوب",
     "maxLengthExceeded": "تم تجاوز الحد الأقصى {max} حرف"
   },
-
   "select": {
     "placeholder": "اختر خياراً",
     "required": "هذا الحقل مطلوب"
   },
-
   "combobox": {
     "placeholder": "اختر خياراً",
     "search": "بحث...",
@@ -35,40 +30,37 @@
     "noOptions": "لا توجد خيارات",
     "required": "هذا الحقل مطلوب"
   },
-
-  
+  "login": {
+    "title": "مرحباً بعودتك",
+    "subtitle": "سجّل الدخول إلى حسابك",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "rememberMe": "تذكرني",
+    "button": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "usernameRequired": "اسم المستخدم مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "networkError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "placeholder": "اختر خياراً",
+    "required": "هذا الحقل مطلوب"
+  },
   "auth": {
     "pageTitle": "المصادقة",
     "switchLang": "English",
     "langLabel": "التحويل إلى الإنجليزية",
-
     "validation": {
       "passwordWeak": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل وتشمل: حرفًا كبيرًا وحرفًا صغيرًا ورقمًا ورمزًا خاصًا",
       "passwordMatch": "كلمتا المرور غير متطابقتين"
     },
     "login": {
-      "title": "مرحباً بعودتك",
-      "subtitle": "سجّل الدخول إلى حسابك",
-      "username": "اسم المستخدم",
-      "password": "كلمة المرور",
-      "forgotPassword": "نسيت كلمة المرور؟",
-      "rememberMe": "تذكرني",
-      "button": "تسجيل الدخول",
-      "noAccount": "ليس لديك حساب؟",
-      "register": "إنشاء حساب",
-      "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-      "usernameRequired": "اسم المستخدم مطلوب",
-
-      "passwordRequired": "كلمة المرور مطلوبة",
-      "networkError": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+      "title": "مرحباً بعودتك"
     },
-
-   
-
     "error": {
       "networkError": "حدث خطأ ما. يرجى المحاولة مجددًا."
     },
-
     "register": {
       "title": " انضم إلى عائلتنا!",
       "header": {
@@ -175,10 +167,4 @@
       }
     }
   }
-
- 
- 
 }
-     
-
- 
