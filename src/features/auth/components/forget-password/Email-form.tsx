@@ -21,7 +21,6 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
   const {
     handleSubmit,
     control,
-    setError,
     formState: { errors },
   } = useForm<EmailFormData>({
     defaultValues: {

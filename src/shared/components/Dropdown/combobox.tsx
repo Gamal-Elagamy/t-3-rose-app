@@ -1,7 +1,4 @@
 'use client';
-
-import { cn } from '@/shared/lib/utils/tailwind-cn';
-
 import {
   Combobox as ComboboxShadcn,
   ComboboxContent,
@@ -10,7 +7,6 @@ import {
   ComboboxItem,
   ComboboxList,
   ComboboxTrigger,
-  ComboboxValue,
 } from '@/shared/components/ui/combobox';
 import { useTranslations } from 'next-intl';
 interface ComboboxOption {
@@ -29,7 +25,6 @@ interface ComboboxProps {
 }
 export function Combobox({
   label,
-  placeholder,
   value,
   loading = false,
   disabled = false,
@@ -66,7 +61,7 @@ export function Combobox({
             </span>
           </ComboboxTrigger>
         </div>
-        <ComboboxContent className=" w-(--anchor-width) min-w-0 shadow-subtle bg-ds-bg-plain border border-ds-border-subtle rounded-md p-2 shadow-soft-lg p-1 ">
+        <ComboboxContent className=" w-(--anchor-width) min-w-0 shadow-subtle bg-ds-bg-plain border border-ds-border-subtle rounded-md p-2 shadow-soft-lg">
           <ComboboxInput
             placeholder={t('combobox.search')}
             disabled={disabled}

@@ -1,6 +1,5 @@
 'use client';
 import { Button } from '@/shared/components/ui/button';
-Input;
 import Link from 'next/link';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
@@ -20,11 +19,7 @@ type Props = {
 export default function Resetpassword({ token }: Props) {
   const router = useRouter();
   const t = useTranslations();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ResetPasswordFormData>({
+  const { control, handleSubmit } = useForm<ResetPasswordFormData>({
     defaultValues: {
       newPassword: '',
       confirmPassword: '',

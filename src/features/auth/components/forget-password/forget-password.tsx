@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import Emailform from './email-form';
 import CheckEmailStep from './check-email-step';
+import Emailform from './Email-form';
 
 type Step = 'email' | 'check-email';
 
