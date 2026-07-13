@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { getErrorMessage } from '@/features/auth/register/lib/utils/field-error';
-import Select from '@/shared/components/select/select';
+import Select from '@/shared/components/Select/select';
 import { PhoneInput } from '@/shared/components/ui/phone';
 
 // Select Array Items
