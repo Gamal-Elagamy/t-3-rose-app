@@ -15,6 +15,7 @@ import {
 } from '@/shared/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover';
 import { ScrollArea } from '@/shared/components/ui/scroll-area';
+import { useLocale } from 'next-intl';
 
 // Phone Props Type
 type PhoneInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> &
@@ -25,10 +26,12 @@ type PhoneInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChan
 // Phone Input Fun
 const PhoneInput = React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
   ({ className, onChange, disabled, ...props }, ref) => {
+    const locale = useLocale();
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1.5" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         {/* RPNInput */}
         <RPNInput.default
+          dir={locale === 'ar' ? 'rtl' : 'ltr'}
           ref={ref}
           disabled={disabled}
           defaultCountry="EG"
@@ -38,7 +41,7 @@ const PhoneInput = React.forwardRef<React.ElementRef<typeof RPNInput.default>, P
           inputComponent={InputComponent}
           className={cn(
             // Base
-            'flex h-14 max-w-xs overflow-hidden border rounded-lg bg-ds-bg-plain text-sm',
+            'flex h-14 w-full overflow-hidden border rounded-lg bg-ds-bg-plain text-sm',
 
             // Default
             'border-ds-border-soft text-ds-text-plain placeholder:text-ds-text-muted',
