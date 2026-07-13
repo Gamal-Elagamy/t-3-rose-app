@@ -53,9 +53,9 @@ export default function Resetpassword({ token }: Props) {
       <section>
         <div className="mb-1">
           <h1 className="text-2xl font-semibold text-ds-text-inverse">
-            {t('forgotPw.step3.title')}
+            {t('auth.forgotPw.step3.title')}
           </h1>
-          <p className="font-normal ">{t('forgotPw.step3.subtitle')}</p>
+          <p className="font-normal ">{t('auth.forgotPw.step3.subtitle')}</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className=" border-y border-ds-border-muted ">
@@ -65,7 +65,9 @@ export default function Resetpassword({ token }: Props) {
               control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="newPassword">{t('forgotPw.step3.newPassword')}</FieldLabel>
+                  <FieldLabel htmlFor="newPassword">
+                    {t('auth.forgotPw.step3.newPassword')}
+                  </FieldLabel>
 
                   <Input
                     {...field}
@@ -87,7 +89,7 @@ export default function Resetpassword({ token }: Props) {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="confirmPassword">
-                    {t('forgotPw.step3.confirmPassword')}
+                    {t('auth.forgotPw.step3.confirmPassword')}
                   </FieldLabel>
 
                   <Input
@@ -111,15 +113,15 @@ export default function Resetpassword({ token }: Props) {
             type="submit"
             className="w-full  mb-7"
           >
-            {t('forgotPw.step3.reset')}
+            {t('auth.forgotPw.step3.reset')}
           </Button>
         </form>
         <div className="mt-2">
           <p className="text-center text-sm  text-ds-text-inverse">
-            {t('forgotPw.contact')}
+            {t('auth.forgotPw.contact')}
             <Link href={'/register'}>
               <span className="cursor-pointer ms-1 text-sm font-medium text-ds-text-primary">
-                {t('forgotPw.contactLink')}
+                {t('auth.forgotPw.contactLink')}
               </span>
             </Link>
           </p>

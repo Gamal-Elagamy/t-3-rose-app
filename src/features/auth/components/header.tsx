@@ -29,7 +29,7 @@ export default function AuthHeader() {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-4">
+      <div className="flex flex-col items-center justify-center gap-10">
         <Image
           src={darkSeparator}
           alt="Separator"
@@ -43,8 +43,11 @@ export default function AuthHeader() {
           className="max-h-11 max-w-60 rotate-180 block dark:hidden"
         />
 
+        {/* Add  w-3/4 text-center*/}
         {title && (
-          <h1 className="text-5xl font-normal leading-none text-ds-text-primary">{title}</h1>
+          <h1 className="text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted w-3/4 text-center">
+            {title}
+          </h1>
         )}
       </div>
     </>

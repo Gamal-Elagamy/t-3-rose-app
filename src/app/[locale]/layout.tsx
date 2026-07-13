@@ -6,10 +6,18 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
+import { Toaster } from '@/shared/components/ui/sonner';
 
-import { Sarabun, Tajawal } from 'next/font/google';
+import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
 
 // Fonts
+const dancing = Dancing_Script({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-dancing',
+  fallback: ['system-ui', 'sans-serif'],
+});
+
 const sarabun = Sarabun({
   subsets: ['latin'],
   variable: '--font-en',
@@ -59,11 +67,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable)}
+      className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable, dancing.variable)}
       suppressHydrationWarning
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

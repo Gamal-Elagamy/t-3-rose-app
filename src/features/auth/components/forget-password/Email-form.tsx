@@ -45,9 +45,9 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
       <section>
         <div className="mb-1">
           <h1 className="text-2xl font-semibold text-ds-text-inverse">
-            {t('forgotPw.step1.title')}
+            {t('auth.forgotPw.step1.title')}
           </h1>
-          <p className="font-normal ">{t('forgotPw.step1.subtitle')}</p>
+          <p className="font-normal ">{t('auth.forgotPw.step1.subtitle')}</p>
         </div>
 
         <form
@@ -81,15 +81,15 @@ export default function Emailform({ setEmail, onSuccess }: Props) {
             disabled={mutation.isPending}
             className="w-full  mb-7"
           >
-            {t('forgotPw.step1.continue')}
+            {t('auth.forgotPw.step1.continue')}
           </Button>
         </form>
         <div className="mt-2">
           <p className="text-center text-sm  text-ds-text-inverse">
-            {t('forgotPw.step1.noAccountPrompt')}
+            {t('auth.forgotPw.step1.noAccountPrompt')}
             <Link href={'/register'}>
               <span className="cursor-pointer ms-1 text-sm font-medium text-ds-text-primary">
-                {t('forgotPw.step1.createAccount')}
+                {t('auth.forgotPw.step1.createAccount')}
               </span>
             </Link>
           </p>
