@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
-import { signIn, signOut } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 
 const loginSchema = z.object({
@@ -17,7 +17,7 @@ const loginSchema = z.object({
 });
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const t = useTranslations();
   const searchParams = useSearchParams();
@@ -51,22 +51,21 @@ export default function LoginPage() {
         router.push(returnUrl);
       }
     } catch (err) {
+      void err;
       setGeneralError(t('login.networkError'));
     }
   };
 
   return (
-    <div className="flex min-h-screen">
-      <div className="flex w-full flex-col justify-center px-8 lg:w-1/2 lg:px-16">
-        <div className="mx-auto w-full max-w-sm">
-          <h1 className="text-center text-2xl font-bold text-ds-text-primary">
-            {t('login.title')}
-          </h1>
-          <p className="text-center text-sm text-ds-text-muted">{t('login.subtitle')}</p>
+    <div className="flex w-full flex-1 items-center justify-center">
+      <div className="flex w-full flex-col justify-center px-8 lg:px-16">
+        <div className="mx-auto w-full">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
             {/* username */}
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="username">{t('login.username')}</label>
+              <label htmlFor="password" className="text-sm font-medium text-ds-text-default">
+                {t('login.username')}
+              </label>
 
               <Input id="username" type="text" placeholder="johndoe" {...register('username')} />
               {errors.username && (
@@ -147,5 +146,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }
