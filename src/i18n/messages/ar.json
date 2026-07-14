@@ -166,5 +166,52 @@
         }
       }
     }
+  },
+  "home-page": {
+    "hero-section": {
+      "banner": {
+        "card-title": "بدء من 10.99 ج.م",
+        "card-description": "هدايا خاصة للأشخاص الذين تحبهم",
+        "card-button": "تسوق الأن",
+
+        "carousel-title": "قولها بالزهور",
+        "carousel-description": "هدايا أنيقة لكل لحظة خاصة.",
+        "carousel-button": "أشترى الآن!"
+      },
+
+      "occasions": {
+        "wedding": {
+          "title": "الزفاف",
+          "description": "احتفلي بها للأبد بهدية لن تنساها أبدًا"
+        },
+        "engagement": {
+          "title": "الخطوبة",
+          "description": "احتفلي ببداية رحلة جميلة معًا"
+        },
+        "anniversary": {
+          "title": "الذكرى السنوية",
+          "description": "احتفلي بكل عام من الحب بمفاجأة ذات معنى"
+        }
+      },
+
+      "features": {
+        "free-delivery": {
+          "title": "توصيل مجاني",
+          "description": "للطلبات فوق 120 جنيه"
+        },
+        "get-refund": {
+          "title": "استرجاع الفلوس",
+          "description": "استرجاع خلال 30 يوم"
+        },
+        "safe-payment": {
+          "title": "دفع آمن",
+          "description": "دفع آمن 100%"
+        },
+        "support": {
+          "title": "دعم على مدار الساعة",
+          "description": "تواصل معانا في أي وقت"
+        }
+      }
+    }
   }
 }
