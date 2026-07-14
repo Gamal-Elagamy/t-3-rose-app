@@ -166,5 +166,26 @@
         }
       }
     }
+  },
+  "home": {
+    "about": {
+      "label": "About",
+      "title": "Delivering the Finest Gift Boxes for Your Special Moments",
+      "discover": "Discover",
+      "description": "..."
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Check Out our Wonderful Gallery"
+    },
+    "testimonials": {
+      "label": "Testimonials",
+      "title": "Real Words from Happy Customers",
+      "pause": "Pause",
+      "play": "Play"
+    },
+    "partners": {
+      "title": "Trusted by over <highlight>+4.5k</highlight> companies"
+    }
   }
 }
