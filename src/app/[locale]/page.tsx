@@ -4,6 +4,7 @@ import { ThemeToggle } from '@/shared/components/theme-toggle';
 import Partners from '@/features/home/components/partners';
 import Gallery from '@/features/home/components/gallery';
 import About from '@/features/home/components/about';
+import Testimonials from '@/features/home/components/testimonial';
 
 export default function Home() {
   // Translation
@@ -17,6 +18,7 @@ export default function Home() {
         <ThemeToggle />
       </div>
       <div>
+        <Testimonials />
         <About />
         <Gallery />
         <Partners />
