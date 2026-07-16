@@ -170,9 +170,23 @@
   "home": {
     "bestSeller": {
       "bestSelling": "Best Selling",
-      "description": "Check Out What Everyone's Buying Right Now",
-      "subDescription": "Not sure what to choose? Start with our best sellers, these are the gifts our customers keep coming back for. Whether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
+      "description": "Check Out <highlight>What Everyone's</highlight> Buying <highlight>Right Now</highlight>",
+      "subDescription": "Not sure what to choose? <br/> Start with our best sellers, these are the gifts our customers keep coming back for. Whether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
-    }
+    },
+    "viewAll": "View All",
+    "mostPopular": "Most Popular",
+    "viewMore": "View More",
+    "noProductsFound": "No products found",
+    "noProductsForOccasion": "No products found for this occasion.",
+    "failedToLoadProducts": "Failed to load products. Try again."
+  },
+  "product": {
+    "outOfStock": "Out of stock",
+    "new": "New",
+    "hot": "Hot",
+    "addToCart": "Add to cart",
+    "addToWishlist": "Add to wishlist",
+    "removeFromWishlist": "Remove from wishlist"
   }
 }

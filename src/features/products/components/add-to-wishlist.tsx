@@ -2,9 +2,11 @@
 import { Button } from '@/shared/components/ui/button';
 import { HeartMinus, HeartPlus } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function AddToWishlist() {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const t = useTranslations('product');
   return (
     <>
       {isWishlisted ? (
@@ -13,7 +15,7 @@ export default function AddToWishlist() {
           onClick={() => setIsWishlisted(false)}
         >
           <HeartMinus className="w-4.5 h-4.5" />
-          <p>Remove from wishlist</p>
+          <p>{t('removeFromWishlist')}</p>
         </Button>
       ) : (
         <Button
