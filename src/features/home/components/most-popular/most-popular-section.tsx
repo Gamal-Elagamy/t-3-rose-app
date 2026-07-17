@@ -12,30 +12,25 @@ import { getMostPopularOccasionProducts } from '../../lib/utils/most-popular-dat
 
 export default async function MostPopularSection() {
   const t = await getTranslations('home');
-  const occasionProducts = await getMostPopularOccasionProducts();
-  const defaultActiveId = occasionProducts[1]?.occasion.id || '';
+  const occasionProductsPromise = getMostPopularOccasionProducts();
 
   return (
-    <MostPopularSharedTabsProvider defaultActiveId={defaultActiveId}>
+    <MostPopularSharedTabsProvider>
       <div className="mx-auto max-w-10/12 my-34">
         <div className="flex items-center justify-between">
-          {/* most popular section title */}
           <SectionTitle title={t('mostPopular')} />
 
-          {/* occasion tabs */}
           <Suspense fallback={<OccasionTabsSkeleton />}>
-            <MostPopularTabListSlot />
+            <MostPopularTabListSlot occasionProductsPromise={occasionProductsPromise} />
           </Suspense>
         </div>
 
-        {/* most popular products grid */}
         <ProductsErrorBoundary>
           <Suspense fallback={<MostPopularProductsGridSkeleton />}>
-            <MostPopularProductPanelsSlot />
+            <MostPopularProductPanelsSlot occasionProductsPromise={occasionProductsPromise} />
           </Suspense>
         </ProductsErrorBoundary>
 
-        {/* view more link */}
         <ViewMoreLink />
       </div>
     </MostPopularSharedTabsProvider>

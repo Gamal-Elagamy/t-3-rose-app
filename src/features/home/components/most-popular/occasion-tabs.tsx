@@ -48,9 +48,7 @@ export function OccasionTabList({ occasions }: OccasionTabListProps) {
           onClick={() => setActiveId(occasion.id)}
           className={cn(
             'cursor-pointer text-base font-medium transition-colors',
-            activeId === occasion.id
-              ? 'text-ds-text-primary'
-              : 'text-ds-text-muted hover:text-ds-text-primary'
+            activeId === occasion.id ? 'text-maroon-600' : 'text-zinc-700 hover:text-maroon-600'
           )}
         >
           {occasion.title}

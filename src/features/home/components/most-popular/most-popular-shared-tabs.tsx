@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { IOccasion } from '@/features/occasions/types/occasions';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { MoveRight, MoveLeft } from 'lucide-react';
 
 interface MostPopularSharedTabsContextValue {
-  activeId: string;
+  activeId: string | null;
   setActiveId: (id: string) => void;
 }
 
@@ -22,20 +22,26 @@ function useMostPopularSharedTabs() {
   return context;
 }
 
-export function MostPopularSharedTabsProvider({
-  children,
-  defaultActiveId,
-}: {
-  children: React.ReactNode;
-  defaultActiveId?: string;
-}) {
-  const [activeId, setActiveId] = useState(defaultActiveId || '__initial__');
+export function MostPopularSharedTabsProvider({ children }: { children: React.ReactNode }) {
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
     <MostPopularSharedTabsContext.Provider value={{ activeId, setActiveId }}>
       {children}
     </MostPopularSharedTabsContext.Provider>
   );
+}
+
+export function DefaultActiveTabSync({ defaultActiveId }: { defaultActiveId: string }) {
+  const { activeId, setActiveId } = useMostPopularSharedTabs();
+
+  useEffect(() => {
+    if (activeId === null && defaultActiveId) {
+      setActiveId(defaultActiveId);
+    }
+  }, [activeId, defaultActiveId, setActiveId]);
+
+  return null;
 }
 
 interface MostPopularTabListProps {
@@ -87,8 +93,7 @@ export function ViewMoreLink() {
   const locale = useLocale();
   const isRTL = locale === 'ar';
 
-  const href =
-    activeId && activeId !== '__initial__' ? `/products?occasion=${activeId}` : '/products';
+  const href = activeId ? `/products?occasion=${activeId}` : '/products';
 
   return (
     <div className="flex justify-end mt-6">

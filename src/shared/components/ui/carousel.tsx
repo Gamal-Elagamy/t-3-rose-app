@@ -167,7 +167,7 @@ function CarouselPrevious({
   size = 'icon-sm',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { orientation, scrollPrev } = useCarousel();
 
   return (
     <Button
@@ -175,17 +175,17 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute touch-manipulation rounded-full w-8.5 h-8.5 cursor-pointer bg-ds-bg-primary text-white border-0',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-maroon-500 hover:bg-maroon-600 text-white border-0',
         orientation === 'horizontal'
           ? 'inset-y-0 -left-4 my-auto'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
-      disabled={!canScrollPrev}
+      // disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronLeftIcon className="w-4 h-4" />
+      <ChevronLeftIcon className="w-5 h-5" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -197,7 +197,7 @@ function CarouselNext({
   size = 'icon-sm',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { orientation, scrollNext } = useCarousel();
 
   return (
     <Button
@@ -205,13 +205,13 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute touch-manipulation rounded-full w-8.5 h-8.5 cursor-pointer bg-ds-bg-primary text-white border-0',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-maroon-500 hover:bg-maroon-600 text-white border-0',
         orientation === 'horizontal'
           ? 'inset-y-0 -right-4 my-auto'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
-      disabled={!canScrollNext}
+      // disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >

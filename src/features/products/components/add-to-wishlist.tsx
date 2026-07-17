@@ -11,7 +11,7 @@ export default function AddToWishlist() {
     <>
       {isWishlisted ? (
         <Button
-          className="absolute top-2 left-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zink-800"
+          className="absolute top-2 left-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zinc-800"
           onClick={() => setIsWishlisted(false)}
         >
           <HeartMinus className="w-4.5 h-4.5" />

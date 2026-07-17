@@ -1,4 +1,4 @@
-'use server';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IProduct } from '../types/products';
 
 interface GetProductsParams {
@@ -12,27 +12,17 @@ interface GetProductsParams {
   minRating?: number;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// Get products action
-export async function getProductsAction({ ...params }: GetProductsParams) {
+export async function getProducts({ ...params }: GetProductsParams): Promise<IProduct[]> {
   const response = await fetch(
-    `${API_BASE_URL}/products?${new URLSearchParams(params as Record<string, string>).toString()}`
+    `${getApiBaseUrl()}/products?${new URLSearchParams(params as Record<string, string>).toString()}`
   );
   const data: IApiResponse<{
     data: IProduct[];
     metadata: { page: string; limit: string; total: string; totalPages: string };
   }> = await response.json();
 
-  if (!data.status || !data.payload) {
-    return {
-      status: data.status,
-      code: data.code,
-      message: data.message,
-      payload: {
-        data: [],
-      },
-    };
+  if (!response.ok || !data.status || !data.payload) {
+    throw new Error(data.message || 'Failed to fetch products');
   }
 
   return data.payload.data;

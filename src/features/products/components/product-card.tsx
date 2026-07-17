@@ -21,9 +21,10 @@ export default function ProductCard({
 }: IProduct) {
   const t = useTranslations('product');
   const totalStars = 5;
-  const filledStars = Math.round((rating / 5) * totalStars);
+  const filledStars = Math.round(rating);
 
   const currentPrice = Number(price);
+  // Calculate original price
   const originalPrice = calculateOriginalPrice(
     currentPrice,
     discountType as 'PERCENT' | 'FIXED',
@@ -31,54 +32,44 @@ export default function ProductCard({
   );
 
   // Check if product is new (created within last week)
-  const isNew = () => {
-    if (!createdAt) return false;
-    const createdDate = new Date(createdAt);
-    const now = new Date();
-    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    return createdDate >= weekAgo;
-  };
+  const now = new Date();
+  const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const isNew = !!createdAt && new Date(createdAt) >= weekAgo;
 
-  // Check if product is hot (discount > 25%)
-  const isHot = () => {
-    if (discountType === 'PERCENT' && discountValue) {
-      return Number(discountValue) > 25;
-    }
-    return false;
-  };
+  // Check if product is hot (discount is greater than 25%)
+  const isHot = discountType === 'PERCENT' && discountValue ? Number(discountValue) > 25 : false;
 
   return (
-    <Link href={`/products/${id}`}>
+    <div>
       <div className="relative h-[300px] w-full rounded-2xl overflow-hidden">
-        {/* product image */}
-        <Image
-          src={cover}
-          alt={title}
-          fill
-          loading="eager"
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        <Link href={`/products/${id}`} className="block h-full relative">
+          <Image
+            src={cover}
+            alt={title}
+            fill
+            loading="eager"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
 
-        {/* badges */}
-        <div className="absolute top-2 right-2 flex gap-1.5">
-          {stock === 0 && <Badge>{t('outOfStock')}</Badge>}
-          {isNew() && <Badge className="bg-white text-zinc-700 hover:bg-white">{t('new')}</Badge>}
-          {isHot() && (
-            <Badge className="bg-maroon-50 text-maroon-600 hover:bg-maroon-50">{t('hot')}</Badge>
-          )}
-        </div>
+          <div className="absolute top-2 right-2 flex gap-1.5">
+            {stock === 0 && <Badge>{t('outOfStock')}</Badge>}
+            {isNew && <Badge className="bg-white text-zinc-700 hover:bg-white">{t('new')}</Badge>}
+            {isHot && (
+              <Badge className="bg-maroon-50 text-maroon-600 hover:bg-maroon-50">{t('hot')}</Badge>
+            )}
+          </div>
+        </Link>
 
-        {/* add to wishlist */}
         <AddToWishlist />
       </div>
 
-      {/* title */}
-      <h4 className="line-clamp-1 text-lg font-semibold text-ds-text-primary my-3">{title}</h4>
+      <Link href={`/products/${id}`}>
+        <h4 className="line-clamp-1 text-lg font-semibold text-ds-text-primary mt-3">{title}</h4>
+      </Link>
 
       <div className="flex justify-between items-end">
         <div>
-          {/* rating */}
           <div className="flex items-center gap-1">
             {Array.from({ length: totalStars }).map((_, index) => (
               <Star
@@ -93,8 +84,7 @@ export default function ProductCard({
             ))}
           </div>
 
-          {/* price */}
-          <div className="flex items-center gap-2.5 mt-3">
+          <div className="flex items-center gap-2.5 mt-2">
             <span className="text-base text-ds-text-primary">{formatPrice(currentPrice)}</span>
 
             <span className="text-base text-zinc-400 line-through">
@@ -103,9 +93,8 @@ export default function ProductCard({
           </div>
         </div>
 
-        {/* add to cart */}
         <AddToCart />
       </div>
-    </Link>
+    </div>
   );
 }

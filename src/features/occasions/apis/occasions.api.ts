@@ -1,5 +1,4 @@
-'use server';
-
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IOccasion } from '../types/occasions';
 
 interface GetOccasionsParams {
@@ -7,19 +6,17 @@ interface GetOccasionsParams {
   limit?: number;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-export async function getOccasionsAction({ ...params }: GetOccasionsParams) {
+export async function getOccasions({ ...params }: GetOccasionsParams): Promise<IOccasion[]> {
   const response = await fetch(
-    `${API_BASE_URL}/occasions?${new URLSearchParams(params as Record<string, string>).toString()}`
+    `${getApiBaseUrl()}/occasions?${new URLSearchParams(params as Record<string, string>).toString()}`
   );
   const data: IApiResponse<{
     data: IOccasion[];
     metadata: { page: string; limit: string; total: string; totalPages: string };
   }> = await response.json();
 
-  if (!data.status || !data.payload) {
-    return [];
+  if (!response.ok || !data.status || !data.payload) {
+    throw new Error(data.message || 'Failed to fetch occasions');
   }
 
   return data.payload.data;

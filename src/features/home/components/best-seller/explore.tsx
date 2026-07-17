@@ -7,6 +7,7 @@ export default function Explore() {
   const t = useTranslations('home.bestSeller');
   const locale = useLocale();
   const isRTL = locale === 'ar';
+
   return (
     <div className="flex justify-between flex-col h-full">
       <div>
@@ -20,16 +21,10 @@ export default function Explore() {
           })}
         </p>
 
-        {/* description */}
-        <p className="text-ds-text-muted text-base">
-          {t('subDescription')
-            .split('<br/>')
-            .map((part, index) => (
-              <span key={index}>
-                {part}
-                {index < t('subDescription').split('<br/>').length - 1 && <br />}
-              </span>
-            ))}
+        <p className="text-zinc-500 dark:text-zinc-400 text-base">
+          {t.rich('subDescription', {
+            br: () => <br />,
+          })}
         </p>
       </div>
 
@@ -37,7 +32,7 @@ export default function Explore() {
         {/* explore button */}
         <Link
           href="/products"
-          className="text-ds-text-inverse bg-ds-bg-primary font-semibold flex items-center gap-2.5 w-fit py-2.5 px-4 rounded-xl"
+          className="text-ds-text-inverse w-45 bg-maroon-600 dark:bg-soft-pink-200 font-semibold flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl"
         >
           {t('exploreButton')}{' '}
           {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

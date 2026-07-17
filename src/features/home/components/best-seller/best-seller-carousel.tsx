@@ -19,7 +19,7 @@ export default function BestSellerCarousel({ products }: BestSellerCarouselProps
     <Carousel>
       <CarouselContent>
         {products.map((product) => (
-          <CarouselItem key={product.id} className="basis-2/3 md:basis-1/3">
+          <CarouselItem key={product.id} className="basis-1/1 md:basis-1/3">
             <ProductCard {...product} />
           </CarouselItem>
         ))}
