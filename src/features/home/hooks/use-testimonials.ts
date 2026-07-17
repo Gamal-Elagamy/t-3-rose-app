@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getTestimonials } from '../api/testimonials';
+import { getTestimonials } from '../apis/testimonials';
 
 export function useTestimonials() {
   return useQuery({

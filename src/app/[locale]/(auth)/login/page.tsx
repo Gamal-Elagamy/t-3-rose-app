@@ -95,7 +95,7 @@ function LoginForm() {
 
               {/* Forgot password  */}
               <Link
-                href="/forgot-password"
+                href="/forget-password"
                 className="text-end text-xs text-ds-text-primary hover:underline"
               >
                 {t('login.forgotPassword')}

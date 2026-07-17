@@ -1,3 +1,4 @@
+'use server';
 import { IApiResponse, TestimonialsPayload } from '../types/testimonials';
 
 export async function getTestimonials() {

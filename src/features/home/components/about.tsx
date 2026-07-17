@@ -24,8 +24,8 @@ export default function About() {
       {/* Images */}
       <div className="flex h-auto w-1/2 gap-4">
         {/* Left Image */}
-        <div className="relative mr-4 h-[344px] w-[302px]">
-          <div className="absolute rotate-[4deg] inset-0 rounded-[50px_120px_120px_120px] border-[4px] border-ds-border-primary" />
+        <div className="relative mr-4 h-80 w-72">
+          <div className="absolute rotate-[4deg] inset-0 rounded-[50px_120px_120px_120px] border-4 border-ds-border-primary" />
 
           <div className="absolute inset-0 translate-x-6 translate-y-2 overflow-hidden rounded-[50px_120px_120px_120px]">
             <Image src={gift1} alt="Gift Box" fill className="object-cover" />
@@ -37,7 +37,7 @@ export default function About() {
           <div className="overflow-hidden max-w-48 max-h-48 rounded-full">
             <Image src={gift2} alt="Gift box" />
           </div>
-          <div className="mt-1 h-[144px] w-[193px] overflow-hidden rounded-[50px_100px_100px_50px]">
+          <div className="mt-1 h-36 w-48 overflow-hidden rounded-[50px_100px_100px_50px]">
             <Image src={gift3} alt="Gift box" className="h-full w-full object-cover" />
           </div>
         </div>
