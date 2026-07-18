@@ -166,5 +166,29 @@
         }
       }
     }
+  },
+  "header": {
+    "userDropdown": {
+      "greeting": "مرحبًا بعودتك،",
+      "account": "الحساب",
+      "addresses": "العناوين",
+      "orders": "الطلبات",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "noNotifications": "لا توجد إشعارات",
+      "titleWithCount": "الإشعارات ({count})",
+      "markAllAsRead": "تحديد الكل كمقروء",
+      "markAsRead": "تحديد كمقروء",
+      "unread": "غير مقروءة",
+      "read": "مقروءة",
+      "viewAll": "عرض كل الإشعارات",
+      "new": "جديد",
+      "loading": "جاري تحميل الإشعارات...",
+      "error": "حدث خطأ ما",
+      "empty": "لا يوجد لديك إشعارات حالياً"
+    }
   }
 }
