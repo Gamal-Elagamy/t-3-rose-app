@@ -12,6 +12,15 @@ export interface NotificationItem {
   description: string;
   isRead: boolean;
 }
+interface PaginatedNotifications {
+  data: NotificationItem[];
+  metadata: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
 
 const NOTIFICATIONS_QUERY_KEY = ['notifications'];
 
@@ -28,7 +37,10 @@ async function fetchApi<T>(path: string, options: RequestInit = {}): Promise<T> 
 export function useNotifications() {
   return useQuery({
     queryKey: NOTIFICATIONS_QUERY_KEY,
-    queryFn: () => fetchApi<NotificationItem[]>('/notifications'),
+    queryFn: async () => {
+      const result = await fetchApi<PaginatedNotifications>('/notifications');
+      return result.data;
+    },
   });
 }
 

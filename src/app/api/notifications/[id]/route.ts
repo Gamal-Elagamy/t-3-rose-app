@@ -10,7 +10,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
   const body = await req.json();
 
-  const response = await fetch(`${process.env.API_URL}/notifications/${params.id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notifications/${params.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
