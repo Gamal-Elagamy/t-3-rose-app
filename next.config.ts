@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.dribbble.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'rose-app.elevate-bootcamp.cloud',
+      },
     ],
   },
 };
