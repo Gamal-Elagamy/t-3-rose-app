@@ -26,7 +26,7 @@ export const getMostPopularOccasionProducts = cache(async (): Promise<OccasionPr
 
   const productsByOccasion = await Promise.all(
     occasions.map((occasion) =>
-      getProducts({ occasionId: occasion.id, limit: PRODUCTS_PER_OCCASION })
+      getProducts({ occasionId: occasion.id, limit: PRODUCTS_PER_OCCASION, sortBy: 'mostPopular' })
     )
   );
 

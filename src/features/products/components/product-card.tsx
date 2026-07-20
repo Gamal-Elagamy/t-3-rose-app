@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { Badge } from '@/shared/components/ui/badge';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
@@ -7,6 +7,11 @@ import AddToCart from './add-to-cart';
 import AddToWishlist from './add-to-wishlist';
 import { calculateOriginalPrice, formatPrice } from '@/shared/lib/utils/price.utils';
 import { useTranslations } from 'next-intl';
+
+// Translation
+// State
+// Variables
+// Functions
 
 export default function ProductCard({
   id,
@@ -19,7 +24,9 @@ export default function ProductCard({
   stock,
   createdAt,
 }: IProduct) {
+  // Translation
   const t = useTranslations('product');
+  // Variables
   const totalStars = 5;
   const filledStars = Math.round(rating);
 
@@ -52,7 +59,7 @@ export default function ProductCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
 
-          <div className="absolute top-2 right-2 flex gap-1.5">
+          <div className="absolute top-2 inset-e-2 flex gap-1.5">
             {stock === 0 && <Badge>{t('outOfStock')}</Badge>}
             {isNew && <Badge className="bg-white text-zinc-700 hover:bg-white">{t('new')}</Badge>}
             {isHot && (

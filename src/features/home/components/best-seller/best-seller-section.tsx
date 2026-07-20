@@ -24,7 +24,7 @@ async function BestSellerCarouselSlot({
 
 export default async function BestSellerSection() {
   const productsPromise = getProducts({
-    minRating: 3.5,
+    sortBy: 'bestSelling',
   });
 
   return (

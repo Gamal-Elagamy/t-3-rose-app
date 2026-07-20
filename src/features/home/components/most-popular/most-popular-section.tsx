@@ -11,6 +11,7 @@ import { MostPopularSharedTabsProvider, ViewMoreLink } from './most-popular-shar
 import { getMostPopularOccasionProducts } from '../../lib/utils/most-popular-data';
 
 export default async function MostPopularSection() {
+  // Translation
   const t = await getTranslations('home');
   const occasionProductsPromise = getMostPopularOccasionProducts();
 
@@ -20,9 +21,11 @@ export default async function MostPopularSection() {
         <div className="flex items-center justify-between">
           <SectionTitle title={t('mostPopular')} />
 
-          <Suspense fallback={<OccasionTabsSkeleton />}>
-            <MostPopularTabListSlot occasionProductsPromise={occasionProductsPromise} />
-          </Suspense>
+          <ProductsErrorBoundary>
+            <Suspense fallback={<OccasionTabsSkeleton />}>
+              <MostPopularTabListSlot occasionProductsPromise={occasionProductsPromise} />
+            </Suspense>
+          </ProductsErrorBoundary>
         </div>
 
         <ProductsErrorBoundary>

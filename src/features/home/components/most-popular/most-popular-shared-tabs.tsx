@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { IOccasion } from '@/features/occasions/types/occasions';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
@@ -23,6 +23,7 @@ function useMostPopularSharedTabs() {
 }
 
 export function MostPopularSharedTabsProvider({ children }: { children: React.ReactNode }) {
+  // State
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
@@ -33,6 +34,7 @@ export function MostPopularSharedTabsProvider({ children }: { children: React.Re
 }
 
 export function DefaultActiveTabSync({ defaultActiveId }: { defaultActiveId: string }) {
+  // State
   const { activeId, setActiveId } = useMostPopularSharedTabs();
 
   useEffect(() => {
@@ -49,6 +51,7 @@ interface MostPopularTabListProps {
 }
 
 export function MostPopularTabList({ occasions }: MostPopularTabListProps) {
+  // State
   const { activeId, setActiveId } = useMostPopularSharedTabs();
 
   return (
@@ -78,6 +81,7 @@ interface MostPopularTabPanelProps {
 }
 
 export function MostPopularTabPanel({ occasionId, children }: MostPopularTabPanelProps) {
+  // State
   const { activeId } = useMostPopularSharedTabs();
 
   if (activeId !== occasionId) {
@@ -88,11 +92,14 @@ export function MostPopularTabPanel({ occasionId, children }: MostPopularTabPane
 }
 
 export function ViewMoreLink() {
+  // State
   const { activeId } = useMostPopularSharedTabs();
+  // Translation
   const t = useTranslations('home');
+  // Variables
   const locale = useLocale();
   const isRTL = locale === 'ar';
-
+  // Functions
   const href = activeId ? `/products?occasion=${activeId}` : '/products';
 
   return (

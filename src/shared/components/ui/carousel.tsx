@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import { useLocale } from 'next-intl';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Button } from '@/shared/components/ui/button';
@@ -49,10 +50,12 @@ function Carousel({
   children,
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
+  const locale = useLocale();
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
       axis: orientation === 'horizontal' ? 'x' : 'y',
+      direction: locale === 'ar' ? 'rtl' : 'ltr',
     },
     plugins
   );
@@ -175,7 +178,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-maroon-500 hover:bg-maroon-600 text-white border-0',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary border-0',
         orientation === 'horizontal'
           ? 'inset-y-0 -left-4 my-auto'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -205,7 +208,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-maroon-500 hover:bg-maroon-600 text-white border-0',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary border-0',
         orientation === 'horizontal'
           ? 'inset-y-0 -right-4 my-auto'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',

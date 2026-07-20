@@ -5,13 +5,15 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function AddToWishlist() {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  // Translation
   const t = useTranslations('product');
+  // State
+  const [isWishlisted, setIsWishlisted] = useState(false);
   return (
     <>
       {isWishlisted ? (
         <Button
-          className="absolute top-2 left-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zinc-800"
+          className="absolute top-2 inset-s-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zinc-800"
           onClick={() => setIsWishlisted(false)}
         >
           <HeartMinus className="w-4.5 h-4.5" />
@@ -19,7 +21,7 @@ export default function AddToWishlist() {
         </Button>
       ) : (
         <Button
-          className="absolute top-2 left-2 w-7.5 h-7.5 rounded-full bg-white text-maroon-600 hover:bg-white cursor-pointer flex items-center justify-center"
+          className="absolute top-2 inset-s-2 w-7.5 h-7.5 rounded-full bg-white text-maroon-600 hover:bg-white cursor-pointer flex items-center justify-center"
           onClick={() => setIsWishlisted(true)}
         >
           <HeartPlus className="w-4.5 h-4.5" />

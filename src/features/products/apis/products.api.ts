@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IProduct } from '../types/products';
+import { SortBy, SortOrder } from '../constants/sort.constants';
 
 interface GetProductsParams {
   page?: number;
@@ -10,6 +11,8 @@ interface GetProductsParams {
   minPrice?: number;
   maxPrice?: number;
   minRating?: number;
+  sortBy?: SortBy;
+  sortOrder?: SortOrder;
 }
 
 export async function getProducts({ ...params }: GetProductsParams): Promise<IProduct[]> {
