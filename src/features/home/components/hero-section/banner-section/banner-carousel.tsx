@@ -58,9 +58,9 @@ const CarouselCustomDots = () => {
         </CarouselContent>
 
         {/* Carousel Arrow Icons */}
-        <div className="arrow-actions absolute bottom-8 inset-e-8 z-20 flex items-center gap-3.5 rounded-full bg-ds-bg-primary-fade backdrop-blur-sm p-1 shadow-sm">
-          <CarouselPrevious className="cursor-pointer" />
-          <CarouselNext className="cursor-pointer" />
+        <div className="absolute inset-e-8 bottom-12 translate-y-1/2 z-40 flex items-center justify-between gap-2 rounded-full bg-maroon-50 h-8.5">
+          <CarouselPrevious className="cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5" />
+          <CarouselNext className="cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5" />
         </div>
       </Carousel>
 
