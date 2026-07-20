@@ -70,7 +70,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable, dancing.variable)}
       suppressHydrationWarning
     >
-      <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
+      <body className={cn(locale === 'ar' ? 'font-tajawal' : 'font-sarabun', 'bg-ds-bg-subtle')}>
         <Providers>{children}</Providers>
         <Toaster />
       </body>
