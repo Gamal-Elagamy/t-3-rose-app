@@ -28,7 +28,7 @@ export default async function BestSellerSection() {
   });
 
   return (
-    <div className="grid grid-cols-12 gap-9 max-w-10/12 mx-auto mt-27">
+    <div className="grid grid-cols-12 gap-9 max-w-11/12 mx-auto mt-27">
       <div className="col-span-3">
         <Explore />
       </div>

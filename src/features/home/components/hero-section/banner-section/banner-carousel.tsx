@@ -5,6 +5,7 @@ import Image4 from '@/assets/images/banner-home-page/Hero-Section-Banner (4).png
 import Image5 from '@/assets/images/banner-home-page/Hero-Section-Banner (5).png';
 
 import { useState, useEffect } from 'react';
+import { useLocale } from 'next-intl';
 import {
   Carousel,
   CarouselContent,
@@ -19,8 +20,10 @@ import Image from 'next/image';
 const images = [Image2, Image3, Image4, Image5];
 
 const CarouselCustomDots = () => {
+  const locale = useLocale();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const isRTL = locale === 'ar';
 
   useEffect(() => {
     if (!api) {
@@ -59,8 +62,18 @@ const CarouselCustomDots = () => {
 
         {/* Carousel Arrow Icons */}
         <div className="absolute inset-e-8 bottom-12 translate-y-1/2 z-40 flex items-center justify-between gap-2 rounded-full bg-maroon-50 h-8.5">
-          <CarouselPrevious className="cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5" />
-          <CarouselNext className="cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5" />
+          <CarouselPrevious
+            className={cn(
+              'cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5',
+              isRTL && 'rotate-180'
+            )}
+          />
+          <CarouselNext
+            className={cn(
+              'cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5',
+              isRTL && 'rotate-180'
+            )}
+          />
         </div>
       </Carousel>
 

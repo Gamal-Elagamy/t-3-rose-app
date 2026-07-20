@@ -23,7 +23,7 @@ export default function Explore() {
           })}
         </p>
 
-        <p className="text-zinc-500 dark:text-zinc-400 text-base">
+        <p className="text-zinc-500 dark:text-zinc-400 text-base w-11/12">
           {t.rich('subDescription', {
             br: () => <br />,
           })}

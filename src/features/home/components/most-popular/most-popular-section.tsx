@@ -17,7 +17,7 @@ export default async function MostPopularSection() {
 
   return (
     <MostPopularSharedTabsProvider>
-      <div className="mx-auto max-w-10/12 my-34">
+      <div className="mx-auto max-w-11/12 my-34">
         <div className="flex items-center justify-between">
           <SectionTitle title={t('mostPopular')} />
 
