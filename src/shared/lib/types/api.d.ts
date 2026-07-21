@@ -1,5 +1,5 @@
 // API Response type
-declare type IApiResponse<T> = IApiSuccess<T> | IApiError;
+export declare type IApiResponse<T> = IApiSuccess<T> | IApiError;
 
 // API Error interface
 declare type IApiError = {

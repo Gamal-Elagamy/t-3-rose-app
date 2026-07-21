@@ -1,10 +1,3 @@
-export interface IApiResponse<T> {
-  status: boolean;
-  code: number;
-  message: string;
-  payload: T;
-}
-
 export interface Testimonial {
   id: string;
   name: string;

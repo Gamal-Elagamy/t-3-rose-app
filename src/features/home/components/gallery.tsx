@@ -36,51 +36,81 @@ export default function Gallery() {
 
         <div className="grid grid-cols-3 gap-2">
           <div className="flex flex-col gap-2">
-            <Image
-              src={frame74}
-              alt="Frame74"
+            <button
+              type="button"
               onClick={() => openImage(frame74)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame74}
+                alt="Frame74"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
 
-            <Image
-              src={frame79}
-              alt="Frame79"
+            <button
+              type="button"
               onClick={() => openImage(frame79)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame79}
+                alt="Frame79"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
           </div>
 
           <div className="flex flex-col gap-2">
-            <Image
-              src={frame75}
-              alt="Frame75"
+            <button
+              type="button"
               onClick={() => openImage(frame75)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame75}
+                alt="Frame75"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
 
-            <Image
-              src={frame78}
-              alt="Frame78"
+            <button
+              type="button"
               onClick={() => openImage(frame78)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame78}
+                alt="Frame78"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
           </div>
 
           <div className="flex flex-col gap-2">
-            <Image
-              src={frame76}
-              alt="Frame76"
+            <button
+              type="button"
               onClick={() => openImage(frame76)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame76}
+                alt="Frame76"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
 
-            <Image
-              src={frame80}
-              alt="Frame80"
+            <button
+              type="button"
               onClick={() => openImage(frame80)}
-              className="cursor-pointer object-cover transition duration-300 hover:scale-[1.01]"
-            />
+              className="block overflow-hidden"
+            >
+              <Image
+                src={frame80}
+                alt="Frame80"
+                className="object-cover transition duration-300 hover:scale-[1.01]"
+              />
+            </button>
           </div>
         </div>
       </section>

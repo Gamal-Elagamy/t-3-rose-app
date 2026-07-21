@@ -20,7 +20,7 @@ export default function About() {
   ];
 
   return (
-    <section className="mx-auto h my-20 flex w-11/12 items-center gap-16 ">
+    <section className="mx-auto my-20 flex w-11/12 items-center gap-16 ">
       {/* Images */}
       <div className="flex h-auto w-1/2 gap-4">
         {/* Left Image */}

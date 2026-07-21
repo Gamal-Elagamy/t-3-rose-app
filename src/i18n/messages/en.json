@@ -188,7 +188,8 @@
       "label": "Testimonials",
       "title": "Real Words from Happy Customers",
       "pause": "Pause",
-      "play": "Play"
+      "play": "Play",
+      "error": "Failed to load testimonials."
     },
     "partners": {
       "title": "Trusted by over <highlight>+4.5k</highlight> companies"

@@ -1,12 +1,12 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import coconut from '@/assets/images/home/partners/coconut..png';
+import coconut from '@/assets/images/home/partners/coconut.png';
 import ginyard from '@/assets/images/home/partners/ginyard.png';
 import habus from '@/assets/images/home/partners/habus.png';
 import ingoude from '@/assets/images/home/partners/ingoude.png';
 import ingoude2 from '@/assets/images/home/partners/ingoude2.png';
-import velvet from '@/assets/images/home/partners/velvet..png';
+import velvet from '@/assets/images/home/partners/velvet.png';
 
 export default function Partners() {
   const t = useTranslations('home.partners');
