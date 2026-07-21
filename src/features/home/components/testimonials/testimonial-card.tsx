@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Star, User } from 'lucide-react';
 
-import { Testimonial } from '../types/testimonials';
+import { Testimonial } from '../../types/testimonials';
 import { useState } from 'react';
 
 interface TestimonialCardProps {

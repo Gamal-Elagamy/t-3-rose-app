@@ -215,6 +215,14 @@
     }
   },
   "home": {
+    "product": {
+      "outOfStock": "نفدت الكمية",
+      "new": "جديد",
+      "hot": "شائع",
+      "addToCart": "أضف إلى السلة",
+      "addToWishlist": "أضف إلى المفضلة",
+      "removeFromWishlist": "إزالة من المفضلة"
+    },
     "bestSeller": {
       "bestSelling": "الأكثر مبيعا",
       "description": "شاهد <highlight>ما يشتريه</highlight> الجميع <highlight>الآن</highlight>",
@@ -227,14 +235,6 @@
     "noProductsFound": "لا توجد منتجات",
     "noProductsForOccasion": "لا توجد منتجات لهذه المناسبة.",
     "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
-    "product": {
-      "outOfStock": "نفدت الكمية",
-      "new": "جديد",
-      "hot": "شائع",
-      "addToCart": "أضف إلى السلة",
-      "addToWishlist": "أضف إلى المفضلة",
-      "removeFromWishlist": "إزالة من المفضلة"
-    },
     "about": {
       "label": "عن الموقع",
       "title": "نقدم <finest>أفضل</finest> صناديق الهدايا لمناسباتك <special>الخاصة</special>",

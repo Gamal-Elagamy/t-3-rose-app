@@ -497,4 +497,8 @@ html[data-theme='dark'] {
   .animate-marquee:hover {
     animation-play-state: paused;
   }
+
+  .animate-marquee.is-paused {
+    animation-play-state: paused;
+  }
 }

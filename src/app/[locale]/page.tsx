@@ -9,7 +9,7 @@ import About from '@/features/home/components/about';
 import Gallery from '@/features/home/components/gallery';
 import { Suspense } from 'react';
 import TestimonialsSectionSkeleton from '@/features/home/components/skeletons/testimonials-section-skeleton';
-import TestimonialsSection from '@/features/home/components/testimonials-section';
+import TestimonialsSection from '@/features/home/components/testimonials/testimonials-section';
 import Partners from '@/features/home/components/partners';
 
 export default function Home() {
@@ -25,16 +25,14 @@ export default function Home() {
       </div>
       <BestSellerSection />
       <MostPopularSection />
-      <section>
-        <About />
-        <Gallery />
+      <About />
+      <Gallery />
 
-        <Suspense fallback={<TestimonialsSectionSkeleton />}>
-          <TestimonialsSection />
-        </Suspense>
+      <Suspense fallback={<TestimonialsSectionSkeleton />}>
+        <TestimonialsSection />
+      </Suspense>
 
-        <Partners />
-      </section>
+      <Partners />
     </div>
   );
 }

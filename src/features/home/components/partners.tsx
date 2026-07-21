@@ -19,7 +19,7 @@ export default function Partners() {
         })}
       </h2>
 
-      <div className="mt-10 gap-4 flex justify-center">
+      <div className="mt-10 gap-4 flex justify-center overflow-hidden">
         <Image src={coconut} alt="Coconut" className="object-cover" />
         <Image src={ginyard} alt="Ginyard" className="object-cover" />
         <Image src={habus} alt="Habus" className="object-cover" />

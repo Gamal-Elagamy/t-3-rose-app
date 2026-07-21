@@ -215,6 +215,14 @@
     }
   },
   "home": {
+    "product": {
+      "outOfStock": "Out of stock",
+      "new": "New",
+      "hot": "Hot",
+      "addToCart": "Add to cart",
+      "addToWishlist": "Add to wishlist",
+      "removeFromWishlist": "Remove from wishlist"
+    },
     "bestSeller": {
       "bestSelling": "Best Selling",
       "description": "Check Out <highlight>What Everyone's</highlight> Buying <highlight>Right Now</highlight>",
@@ -253,13 +261,5 @@
     "partners": {
       "title": "Trusted by over <highlight>+4.5k</highlight> companies"
     }
-  },
-  "product": {
-    "outOfStock": "Out of stock",
-    "new": "New",
-    "hot": "Hot",
-    "addToCart": "Add to cart",
-    "addToWishlist": "Add to wishlist",
-    "removeFromWishlist": "Remove from wishlist"
   }
 }
