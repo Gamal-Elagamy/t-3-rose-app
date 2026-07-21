@@ -18,8 +18,10 @@ import Image from 'next/image';
 
 const images = [Image2, Image3, Image4, Image5];
 
-const CarouselCustomDots = () => {
+export default function CarouselCustomDots() {
+  // State to store the carousel API instance
   const [api, setApi] = useState<CarouselApi>();
+  // State to track the current active slide index
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -27,10 +29,12 @@ const CarouselCustomDots = () => {
       return;
     }
 
+    // Set initial slide index on mount
     setTimeout(() => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
 
+    // Update current slide index on slide change
     api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
@@ -41,6 +45,7 @@ const CarouselCustomDots = () => {
       {/* Carousel */}
       <Carousel setApi={setApi} className="w-full h-full">
         <CarouselContent>
+          {/* Render each image as a carousel slide */}
           {images.map((src, index) => (
             <CarouselItem key={index}>
               <figure className="w-full h-full">
@@ -80,6 +85,4 @@ const CarouselCustomDots = () => {
       </div>
     </div>
   );
-};
-
-export default CarouselCustomDots;
+}
