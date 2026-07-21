@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-
 import { useLocale } from 'next-intl';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
@@ -52,13 +51,11 @@ function Carousel({
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
   const locale = useLocale();
-  const dir = locale === 'ar' ? 'rtl' : 'ltr';
-
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
       axis: orientation === 'horizontal' ? 'x' : 'y',
-      direction: dir,
+      direction: locale === 'ar' ? 'rtl' : 'ltr',
     },
     plugins
   );
@@ -99,15 +96,13 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return;
-    setTimeout(() => {
-      onSelect(api);
-    });
-
-    api.on('reInit', onSelect);
-    api.on('select', onSelect);
+    const updateScrollState = () => onSelect(api);
+    updateScrollState();
+    api.on('reInit', updateScrollState);
+    api.on('select', updateScrollState);
 
     return () => {
-      api?.off('select', onSelect);
+      api?.off('select', updateScrollState);
     };
   }, [api, onSelect]);
 
@@ -127,7 +122,6 @@ function Carousel({
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}
-        dir={dir}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -143,13 +137,9 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="h-full overflow-hidden" data-slot="carousel-content">
+    <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
       <div
-        className={cn(
-          'flex h-full',
-          orientation === 'horizontal' ? '-ms-4' : '-mt-4 flex-col',
-          className
-        )}
+        className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}
         {...props}
       />
     </div>
@@ -166,7 +156,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="carousel-item"
       className={cn(
         'min-w-0 shrink-0 grow-0 basis-full',
-        orientation === 'horizontal' ? 'ps-4' : 'pt-4',
+        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
         className
       )}
       {...props}
@@ -176,14 +166,11 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
 
 function CarouselPrevious({
   className,
-  variant = 'ghost',
+  variant = 'outline',
   size = 'icon-sm',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { scrollPrev, canScrollPrev } = useCarousel();
-
-  const locale = useLocale();
-  const Icon = locale === 'ar' ? ChevronRightIcon : ChevronLeftIcon;
+  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
@@ -191,19 +178,17 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'rounded-full cursor-pointer bg-transparent hover:bg-ds-bg-primary-faint shadow-none',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary border-0',
+        orientation === 'horizontal'
+          ? 'inset-y-0 -left-4 my-auto'
+          : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <Icon
-        className={cn(
-          'size-7.5 transition-colors',
-          canScrollPrev ? 'text-ds-text-primary' : 'text-ds-text-muted'
-        )}
-      />
+      <ChevronLeftIcon className="w-5 h-5" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -211,33 +196,29 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  variant = 'ghost',
+  variant = 'outline',
   size = 'icon-sm',
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { scrollNext, canScrollNext } = useCarousel();
+  const { orientation, scrollNext, canScrollNext } = useCarousel();
 
-  const locale = useLocale();
-  const Icon = locale === 'ar' ? ChevronLeftIcon : ChevronRightIcon;
   return (
     <Button
       data-slot="carousel-next"
       variant={variant}
       size={size}
       className={cn(
-        'rounded-full cursor-pointer bg-transparent hover:bg-ds-bg-primary-faint shadow-none',
+        'absolute touch-manipulation rounded-full w-9.5 h-9.5 cursor-pointer bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary border-0',
+        orientation === 'horizontal'
+          ? 'inset-y-0 -right-4 my-auto'
+          : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <Icon
-        className={cn(
-          'size-7.5 transition-colors',
-          canScrollNext ? 'text-ds-text-primary' : 'text-ds-text-muted'
-        )}
-      />
+      <ChevronRightIcon className="w-4 h-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
