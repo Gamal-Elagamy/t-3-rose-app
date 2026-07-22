@@ -2,32 +2,32 @@
 
 //just for testing the add to cart functionality
 
-// import { useAddToCart } from '@/features/cart/hooks/use-add-to-cart';
+import { useAddToCart } from '@/features/cart/hooks/use-add-to-cart';
 
-// export default function TestCart() {
-//   const { mutate, data, error, isPending } = useAddToCart();
+export default function TestCart() {
+  const { mutate, data, error, isPending } = useAddToCart();
 
-//   return (
-//     <div>
-//       <button
-//         onClick={() =>
-//           mutate({
-//             productId: 'ba64d196-4ac3-40bd-be26-b24fbceb6db0',
-//             quantity: 1,
-//           })
-//         }
-//       >
-//         Add To Cart
-//       </button>
+  return (
+    <div>
+      <button
+        onClick={() =>
+          mutate({
+            productId: '6cfab107-138e-43a9-b02d-3f5ee9b1f3b8',
+            quantity: 1,
+          })
+        }
+      >
+        Add To Cart
+      </button>
 
-//       {isPending && <p>Loading...</p>}
+      {isPending && <p>Loading...</p>}
 
-//       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
 
-//       {error && <pre>{String(error)}</pre>}
-//     </div>
-//   );
-// }
+      {error && <pre>{String(error)}</pre>}
+    </div>
+  );
+}
 
 //just for testing the add to wishlist functionality
 
@@ -59,28 +59,28 @@
 
 // just for testing the remove from wishlist functionality
 
-import { useRemoveFromWishlist } from '../wish-list/hooks/use-remove-from-wishlist';
+// import { useRemoveFromWishlist } from '../wish-list/hooks/use-remove-from-wishlist';
 
-export default function TestRemoveWishlist() {
-  const { mutate, data, error, isPending } = useRemoveFromWishlist();
+// export default function TestRemoveWishlist() {
+//   const { mutate, data, error, isPending } = useRemoveFromWishlist();
 
-  return (
-    <div>
-      <button
-        onClick={() =>
-          mutate({
-            id: 'bb9e660d-9480-434e-bfd8-24282540a845',
-          })
-        }
-      >
-        Remove From Wishlist
-      </button>
+//   return (
+//     <div>
+//       <button
+//         onClick={() =>
+//           mutate({
+//             id: 'bb9e660d-9480-434e-bfd8-24282540a845',
+//           })
+//         }
+//       >
+//         Remove From Wishlist
+//       </button>
 
-      {isPending && <p>Loading...</p>}
+//       {isPending && <p>Loading...</p>}
 
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+//       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
 
-      {error && <pre>{String(error)}</pre>}
-    </div>
-  );
-}
+//       {error && <pre>{String(error)}</pre>}
+//     </div>
+//   );
+// }

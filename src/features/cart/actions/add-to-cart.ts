@@ -8,7 +8,6 @@ import { AddToCartPayload, CartItemRequest } from '../types/cart';
 export async function addToCart(body: CartItemRequest) {
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
-
   if (!token) {
     throw new Error('Unauthorized');
   }

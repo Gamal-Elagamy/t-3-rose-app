@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
+import { useSyncGuestCart } from '@/features/cart/hooks/use-sync-guest-cart';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'login.usernameRequired'),
@@ -22,6 +23,7 @@ function LoginForm() {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get('returnUrl') || '/';
+  const { mutateAsync: syncGuestCart } = useSyncGuestCart();
 
   const [rememberMe, setRememberMe] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
@@ -44,10 +46,11 @@ function LoginForm() {
         rememberMe: rememberMe.toString(),
         redirect: false,
       });
-
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
+        await syncGuestCart();
+
         router.push(returnUrl);
       }
     } catch (err) {

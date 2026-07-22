@@ -22,3 +22,8 @@ export interface AddToCartPayload {
 export interface GetCartPayload {
   cartItems: CartItem[];
 }
+
+export interface GuestCartItem {
+  productId: string;
+  quantity: number;
+}
