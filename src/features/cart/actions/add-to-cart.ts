@@ -2,7 +2,6 @@
 
 import { IApiResponse } from '@/shared/lib/types/api';
 
-// import { AddToCartPayload, CartItemRequest } from '../types/cart';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { AddToCartPayload, CartItemRequest } from '../types/cart';
 
