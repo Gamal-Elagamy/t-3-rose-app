@@ -235,5 +235,13 @@
     "addToCart": "Add to cart",
     "addToWishlist": "Add to wishlist",
     "removeFromWishlist": "Remove from wishlist"
+  },
+  
+  "filters": {
+    "category": "Category",
+    "reset": "Reset",
+    "occasion" :"Occasion"
   }
+
 }
+
