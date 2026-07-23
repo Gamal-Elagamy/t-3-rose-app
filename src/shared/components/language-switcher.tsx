@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
@@ -10,7 +11,7 @@ type LanguageSwitcherProps = {
   ariaLabel?: string;
 };
 
-export default function LanguageSwitcher({ className, ariaLabel }: LanguageSwitcherProps) {
+function LanguageSwitcherInner({ className, ariaLabel }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations();
@@ -30,5 +31,13 @@ export default function LanguageSwitcher({ className, ariaLabel }: LanguageSwitc
     >
       {t('auth.switchLang')}
     </Link>
+  );
+}
+
+export default function LanguageSwitcher(props: LanguageSwitcherProps) {
+  return (
+    <Suspense fallback={null}>
+      <LanguageSwitcherInner {...props} />
+    </Suspense>
   );
 }

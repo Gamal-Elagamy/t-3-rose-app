@@ -35,7 +35,7 @@ const Textarea = ({
   const isError = !!errorMessage;
 
   return (
-    <div className="flex flex-col gap-1 w-full max-w-sm ">
+    <div className="flex flex-col gap-1 w-full min-w-sm ">
       {label && (
         <label
           className={`text-sm font-medium ${

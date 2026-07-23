@@ -6,7 +6,7 @@ import FeaturesSection from '@/features/home/components/features-section/feature
 import BestSellerSection from '@/features/home/components/best-seller/best-seller-section';
 import MostPopularSection from '@/features/home/components/most-popular/most-popular-section';
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <LanguageSwitcher />

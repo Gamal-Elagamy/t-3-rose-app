@@ -235,5 +235,28 @@
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
     "removeFromWishlist": "إزالة من المفضلة"
-  }
+  },
+  "product-reviews": {
+    "title": "مراجعات المنتجات",
+    "general-rating": "التقييم العام:",
+    "ratings": "تقييمات",
+    "no-ratings": "لا توجد تقييمات بعد.",
+    "no-reviews": "لا توجد مراجعات بعد.",
+    "loading": "جارى التحميل ...",
+
+    "form-review-validation": {
+      "required": "هذا الحقل مطلوب",
+      "rating-required": "برجاء اختيار تقييم",
+
+      "form-rating": "تقييمك:",
+      "form-title": "العنوان",
+      "form-title-placeholder": "أدخل عنوان المراجعة",
+      "form-review": "المراجعة",
+      "form-review-placeholder": "ما رأيك في هذا المنتج؟",
+      "form-button": "إضافة مراجعة",
+
+      "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
+    }
+  },
+  "related-product": "المنتجات ذات الصلة"
 }
