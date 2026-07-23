@@ -68,7 +68,7 @@ export default function ProductCard({
           </div>
         </Link>
 
-        <AddToWishlist />
+        <AddToWishlist variant="card" />
       </div>
 
       <Link href={`/products/${id}`}>
@@ -100,7 +100,7 @@ export default function ProductCard({
           </div>
         </div>
 
-        <AddToCart />
+        <AddToCart variant="card" />
       </div>
     </div>
   );

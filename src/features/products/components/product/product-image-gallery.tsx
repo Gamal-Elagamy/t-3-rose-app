@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import { IProduct } from '../types/products';
+import { IProduct } from '../../types/products';
 
 interface ProductImageGalleryProps {
   product: IProduct;
@@ -9,7 +9,16 @@ interface ProductImageGalleryProps {
 
 export default function ProductImageGallery({ product }: ProductImageGalleryProps) {
   const [selectedImage, setSelectedImage] = useState(product.cover);
-  const images = [product.cover, ...JSON.parse(product.gallery || '[]')];
+  const images = [
+    product.cover,
+    ...(() => {
+      try {
+        return JSON.parse(product.gallery || '[]');
+      } catch {
+        return [];
+      }
+    })(),
+  ];
 
   return (
     <div className="space-y-2.5">
@@ -27,7 +36,7 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto w-full pb-2">
+        <div className="flex gap-2 overflow-x-auto w-full">
           {images.map((image, index) => (
             <button
               key={index}
