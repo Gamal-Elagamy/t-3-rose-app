@@ -19,3 +19,7 @@ export interface AddToWishlistPayload {
 export interface RemoveWishlistItemRequest {
   id: string;
 }
+
+export interface GuestWishlistItem {
+  productId: string;
+}
