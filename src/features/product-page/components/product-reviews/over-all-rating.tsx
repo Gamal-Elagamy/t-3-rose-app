@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import MostPopularSection from '@/features/home/components/most-popular/most-popular-section';
 import { ReviewCard } from './review-card';
 
 type Review = {
@@ -10,22 +10,16 @@ type Review = {
 };
 
 type Props = {
-  averageRating: number;
-  totalReviews: number;
+  averageRating?: number;
+  totalReviews?: number;
   reviews: Review[];
 };
 
 export function Reviews({ averageRating, totalReviews, reviews }: Props) {
-
-
-
-
   return (
     <section className="space-y-6">
       <div>
-       <h2 className="relative inline-block text-[42px] font-extrabold leading-none text-[#7A1F26] after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-[#7A1F26] after:content-['']">
-  Product Reviews
-</h2>
+        <MostPopularSection />
 
         <p className="mt-4 text-lg font-medium">General rating:</p>
 
