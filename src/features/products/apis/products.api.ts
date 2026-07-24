@@ -30,3 +30,14 @@ export async function getProducts({ ...params }: GetProductsParams): Promise<IPr
 
   return data.payload.data;
 }
+
+export async function getProduct(id: string): Promise<IProduct> {
+  const response = await fetch(`${getApiBaseUrl()}/products/${id}`);
+  const data: IApiResponse<{ product: IProduct }> = await response.json();
+
+  if (!response.ok || !data.status || !data.payload) {
+    throw new Error(data.message || 'Failed to fetch product');
+  }
+
+  return data.payload.product;
+}

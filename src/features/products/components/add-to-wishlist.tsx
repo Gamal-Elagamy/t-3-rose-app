@@ -1,14 +1,37 @@
 'use client';
+
 import { Button } from '@/shared/components/ui/button';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { HeartMinus, HeartPlus } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-export default function AddToWishlist() {
-  // Translation
+type AddToWishlistVariant = 'card' | 'details';
+
+interface AddToWishlistProps {
+  variant?: AddToWishlistVariant;
+}
+
+export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) {
   const t = useTranslations('product');
-  // State
   const [isWishlisted, setIsWishlisted] = useState(false);
+
+  if (variant === 'details') {
+    return (
+      <Button
+        className={cn(
+          'shrink-0 size-12 rounded-xl bg-ds-bg-muted dark:bg-ds-bg-subtle text-ds-text-plain hover:bg-ds-bg-muted dark:hover:bg-zinc-700 cursor-pointer flex items-center justify-center border border-ds-border-soft',
+          isWishlisted &&
+            'bg-ds-bg-inverse hover:bg-ds-bg-inverse dark:bg-zinc-700 text-ds-text-inverse dark:text-soft-pink-300 hover:text-ds-text-inverse dark:hover:text-soft-pink-300'
+        )}
+        onClick={() => setIsWishlisted((prev) => !prev)}
+        aria-label={isWishlisted ? t('removeFromWishlist') : t('addToWishlist')}
+      >
+        {isWishlisted ? <HeartMinus className="size-5" /> : <HeartPlus className="size-5" />}
+      </Button>
+    );
+  }
+
   return (
     <>
       {isWishlisted ? (
@@ -21,10 +44,13 @@ export default function AddToWishlist() {
         </Button>
       ) : (
         <Button
-          className="absolute top-2 inset-s-2 w-7.5 h-7.5 rounded-full bg-white text-maroon-600 hover:bg-white cursor-pointer flex items-center justify-center"
+          className="absolute top-2 inset-s-2 h-7.5 w-7.5 rounded-full bg-white p-0 text-maroon-600 hover:bg-white cursor-pointer overflow-hidden transition-all duration-200 hover:w-auto hover:px-2.5 [&>span]:gap-0 hover:[&>span]:gap-1.5 hover:[&_p]:max-w-40 hover:[&_p]:opacity-100"
           onClick={() => setIsWishlisted(true)}
         >
-          <HeartPlus className="w-4.5 h-4.5" />
+          <HeartPlus className="size-4.5 shrink-0" />
+          <p className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium text-maroon-600 opacity-0 transition-all duration-200">
+            {t('addToWishlist')}
+          </p>
         </Button>
       )}
     </>

@@ -1,4 +1,4 @@
-import ProductCardSkeleton from './product-card-skeleton';
+import ProductCardSkeleton from './product-card.skeleton';
 
 export default function BestSellerCarouselSkeleton() {
   return (
