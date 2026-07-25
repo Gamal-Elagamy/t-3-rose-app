@@ -19,13 +19,13 @@ export default function Partners() {
         })}
       </h2>
 
-      <div className="mt-10 gap-4 flex justify-center overflow-hidden">
-        <Image src={coconut} alt="Coconut" className="object-cover" />
-        <Image src={ginyard} alt="Ginyard" className="object-cover" />
-        <Image src={habus} alt="Habus" className="object-cover" />
-        <Image src={ingoude} alt="Ingoude" className="object-cover" />
-        <Image src={ingoude2} alt="Ingoude" className="object-cover" />
-        <Image src={velvet} alt="Velvet" className="object-cover" />
+      <div className="mt-10 grid grid-cols-2 place-items-center gap-6 sm:grid-cols-3 lg:grid-cols-6">
+        <Image src={coconut} alt="Coconut" className="object-contain" />
+        <Image src={ginyard} alt="Ginyard" className="object-contain" />
+        <Image src={habus} alt="Habus" className="object-contain" />
+        <Image src={ingoude} alt="Ingoude" className="object-contain" />
+        <Image src={ingoude2} alt="Ingoude" className="object-contain" />
+        <Image src={velvet} alt="Velvet" className="object-contain" />
       </div>
     </section>
   );
