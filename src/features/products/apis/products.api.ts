@@ -1,6 +1,7 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IProduct } from '../types/products';
 import { SortBy, SortOrder } from '../constants/sort.constants';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 interface GetProductsParams {
   page?: number;
