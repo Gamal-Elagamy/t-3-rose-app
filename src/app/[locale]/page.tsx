@@ -17,20 +17,31 @@ export default function Home() {
     <div>
       <LanguageSwitcher />
       <ThemeToggle />
+      {/* Hero Section */}
 
       <div className="max-w-11/12 mx-auto">
         <BannerHomePage />
         <OccasionsSection />
         <FeaturesSection />
       </div>
+      {/* Best Seller Section */}
+
       <BestSellerSection />
+      {/* Most Popular Section */}
+
       <MostPopularSection />
+      {/* About Section */}
+
       <About />
+      {/* Gallery Section */}
+
       <Gallery />
+      {/* Testimonials Section */}
 
       <Suspense fallback={<TestimonialsSectionSkeleton />}>
         <TestimonialsSection />
       </Suspense>
+      {/* Partners Section */}
 
       <Partners />
     </div>

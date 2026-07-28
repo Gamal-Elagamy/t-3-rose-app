@@ -1,18 +1,30 @@
 'use client';
+
+import { useState } from 'react';
+
 import Image from 'next/image';
 import { Star, User } from 'lucide-react';
 
 import { Testimonial } from '../../types/testimonials';
-import { useState } from 'react';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
 }
+
 export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
+  // State
   const [imageError, setImageError] = useState(false);
+
+  // Variables
+  const formattedDate = new Date(testimonial.createdAt).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
   return (
     <div className="relative mt-14">
+      {/* Avatar */}
       <div className="absolute -top-14 left-1/2 z-10 -translate-x-1/2">
         {testimonial.image && !imageError ? (
           <Image
@@ -31,9 +43,12 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
         )}
       </div>
 
-      <div className="flex h-64 w-80 flex-col items-center rounded-3xl gap-3 bg-white px-6 pt-16 pb-6 shadow-md dark:bg-white">
+      {/* Card */}
+      <div className="flex h-64 w-80 flex-col items-center gap-3 rounded-3xl bg-white px-6 pt-16 pb-6 shadow-md dark:bg-white">
+        {/* Name */}
         <h3 className="text-md font-semibold text-black">{testimonial.name}</h3>
 
+        {/* Rating */}
         <div className="mt-4 flex items-center gap-1">
           {Array.from({ length: 5 }).map((_, index) => (
             <Star
@@ -46,15 +61,11 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
           ))}
         </div>
 
+        {/* Content */}
         <p className="text-center text-sm text-black">{testimonial.content}</p>
 
-        <span className="mt-auto text-xs text-ds-text-subtle">
-          {new Date(testimonial.createdAt).toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-          })}
-        </span>
+        {/* Date */}
+        <span className="mt-auto text-xs text-ds-text-subtle">{formattedDate}</span>
       </div>
     </div>
   );

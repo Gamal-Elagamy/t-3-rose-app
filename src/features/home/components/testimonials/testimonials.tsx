@@ -8,22 +8,31 @@ import SectionTitle from '@/shared/components/section-title';
 
 import { Testimonial } from '../../types/testimonials';
 import TestimonialCard from './testimonial-card';
+import SectionSmallTitle from '@/shared/components/section-small-title';
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
 }
 
 export default function Testimonials({ testimonials }: TestimonialsProps) {
+  // Translation
   const t = useTranslations('home.testimonials');
 
+  // State
   const [isPaused, setIsPaused] = useState(false);
+
+  // Variables
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+
+  // Functions
+  const handleToggleAnimation = () => {
+    setIsPaused((prev) => !prev);
+  };
 
   return (
     <section className="py-12 md:py-16 lg:py-20">
       <div className="mb-10 flex flex-col items-center md:mb-16">
-        <p className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.2em] text-ds-text-secondary">
-          {t('label')}
-        </p>
+        <SectionSmallTitle title={t('label')} />
 
         <SectionTitle title={t('title')} />
       </div>
@@ -33,7 +42,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           <div className="mb-4 flex justify-center md:justify-end">
             <button
               type="button"
-              onClick={() => setIsPaused((prev) => !prev)}
+              onClick={handleToggleAnimation}
               aria-pressed={isPaused}
               aria-label={isPaused ? t('play') : t('pause')}
               title={isPaused ? t('play') : t('pause')}
@@ -46,9 +55,11 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
           <div className="overflow-hidden">
             <div
-              className={`animate-marquee flex gap-6 md:gap-8 lg:gap-10 ${isPaused ? 'is-paused' : ''}`}
+              className={`animate-marquee flex gap-6 md:gap-8 lg:gap-10 ${
+                isPaused ? 'is-paused' : ''
+              }`}
             >
-              {testimonials.map((testimonial, index) => (
+              {duplicatedTestimonials.map((testimonial, index) => (
                 <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
               ))}
             </div>
