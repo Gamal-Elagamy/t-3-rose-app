@@ -7,10 +7,11 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 import { Bell, BellOff, Check } from 'lucide-react';
-import { useNotifications, useMarkAsRead, useMarkAllAsRead } from './hooks/useNotifications';
+import { useNotifications, useMarkAsRead, useMarkAllAsRead } from './hooks/use-notifications';
+import { NotificationsSkeleton } from './notifications-skeleton';
 
 export function Notifications() {
-  const t = useTranslations();
+  const t = useTranslations('header.notifications');
   const { data: notifications = [], isLoading } = useNotifications();
   const markAsRead = useMarkAsRead();
   const markAllAsRead = useMarkAllAsRead();
@@ -23,7 +24,7 @@ export function Notifications() {
         <Bell className="size-5" />
         {unreadCount > 0 && (
           <span className="absolute -end-1.5 -top-1.5 flex size-4 items-center justify-center rounded-full bg-ds-bg-primary text-[10px] font-semibold text-ds-text-inverse">
-            {unreadCount}
+            {unreadCount > 99 ? '99+' : unreadCount}
           </span>
         )}
       </DropdownMenuTrigger>
@@ -35,8 +36,8 @@ export function Notifications() {
         <div className="flex items-center justify-between bg-ds-bg-primary px-4 py-3">
           <h2 className="text-sm font-semibold text-ds-text-inverse">
             {notifications.length > 0
-              ? t('header.notifications.titleWithCount', { count: notifications.length })
-              : t('header.notifications.title')}
+              ? t('titleWithCount', { count: notifications.length })
+              : t('title')}
           </h2>
         </div>
 
@@ -47,19 +48,17 @@ export function Notifications() {
             className="flex items-center gap-1 hover:text-ds-text-default disabled:opacity-40"
           >
             <Check className="size-3.5" />
-            {t('header.notifications.markAllAsRead')}
+            {t('markAllAsRead')}
           </button>
         </div>
 
         <div className="max-h-96 overflow-y-auto">
           {isLoading ? (
-            <div className="px-4 py-10 text-center text-sm text-ds-text-muted">
-              {t('header.notifications.loading')}
-            </div>
+            <NotificationsSkeleton />
           ) : notifications.length === 0 ? (
             <div className="flex flex-col items-center gap-2 px-6 py-10 text-center">
               <BellOff className="size-8 text-ds-text-muted" />
-              <p className="text-sm text-ds-text-muted">{t('header.notifications.empty')}</p>
+              <p className="text-sm text-ds-text-muted">{t('empty')}</p>
             </div>
           ) : (
             notifications.map((notification) => (

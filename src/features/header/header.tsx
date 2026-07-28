@@ -1,11 +1,9 @@
-// features/header/Header.tsx
 'use client';
 
 import { useSession } from 'next-auth/react';
 
-import { UserDropdown } from './components/authenticated-state/user-dropdown/UserDropdown';
+import { UserDropdown } from './components/authenticated-state/user-dropdown/user-dropdown';
 import { Notifications } from './components/authenticated-state/notifications/Notifications';
-// import { SecondaryNavigation } from './components/unauthenticated-state/secondary-navigation/SecondaryNavigation';
 
 export function Header() {
   const { data: session, status } = useSession();
@@ -19,9 +17,7 @@ export function Header() {
             <UserDropdown />
             <Notifications />
           </div>
-        ) : null
-        //   <SecondaryNavigation />
-        }
+        ) : null}
       </div>
     </header>
   );

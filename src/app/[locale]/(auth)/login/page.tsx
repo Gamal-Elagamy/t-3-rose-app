@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
-import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/usePushNotifications'; // ADD THIS
+import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/use-push-notifications';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'login.usernameRequired'),

@@ -1,25 +1,10 @@
+import { PaginatedNotifications, NotificationItem } from '@/shared/lib/types/notifications';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface ApiResponse<T> {
   status: boolean;
   message?: string;
   payload?: T;
-}
-
-export interface NotificationItem {
-  id: string;
-  title: string;
-  description: string;
-  isRead: boolean;
-}
-interface PaginatedNotifications {
-  data: NotificationItem[];
-  metadata: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
 }
 
 const NOTIFICATIONS_QUERY_KEY = ['notifications'];

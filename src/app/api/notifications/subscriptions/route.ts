@@ -30,7 +30,7 @@ export async function DELETE(req: NextRequest) {
 
   const body = await req.json();
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notifications/subscriptions`, {
+  const response = await fetch(`${process.env.API_URL}/notifications/subscriptions`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

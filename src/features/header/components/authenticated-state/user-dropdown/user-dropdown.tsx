@@ -26,7 +26,11 @@ export function UserDropdown() {
   const { data: session } = useSession();
 
   const userName = session?.user?.firstName ?? '';
+  const role = session?.user?.role;
 
+  const items = menuItems.filter(
+    (item) => item.key !== 'dashboard' || role === 'ADMIN' || role === 'SUPER_ADMIN'
+  );
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-1.5 text-ds-text-default outline-none">
@@ -50,7 +54,7 @@ export function UserDropdown() {
 
         <DropdownMenuSeparator className="my-2 bg-white/10" />
 
-        {menuItems.map(({ key, href, icon: Icon }) => (
+        {items.map(({ key, href, icon: Icon }) => (
           <DropdownMenuItem
             key={key}
             render={<Link href={href} />}
@@ -62,7 +66,7 @@ export function UserDropdown() {
         ))}
 
         <DropdownMenuItem
-          onClick={() => signOut()}
+          onClick={() => signOut({ callbackUrl: '/' })}
           className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-white/90 outline-none transition-colors hover:bg-white/10 focus:bg-white/10"
         >
           <LogOut className="size-4" />
