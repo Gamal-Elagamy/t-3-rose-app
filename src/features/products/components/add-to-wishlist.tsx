@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 
 export default function AddToWishlist() {
   // Translation
-  const t = useTranslations('product');
+  const t = useTranslations('home.product');
   // State
   const [isWishlisted, setIsWishlisted] = useState(false);
   return (
