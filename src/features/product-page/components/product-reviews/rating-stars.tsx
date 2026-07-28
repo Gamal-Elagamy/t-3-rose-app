@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star } from 'lucide-react';
 
 type Props = {
   rating: number;
@@ -10,10 +10,8 @@ export function RatingStars({ rating }: Props) {
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
-          className={`h-4 w-4 ${
-            index < Math.round(rating)
-              ? "fill-yellow-400 text-yellow-400"
-              : "text-gray-300"
+          className={`h-5 w-5 ${
+            index < rating ? 'fill-orange-400 text-orange-400' : 'text-orange-400'
           }`}
         />
       ))}
