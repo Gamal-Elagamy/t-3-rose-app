@@ -1,4 +1,4 @@
-import TestimonialSkeleton from './testimonial-skeleton';
+import TestimonialSkeleton from './testimonial.skeleton';
 
 export default function TestimonialsSectionSkeleton() {
   return (

@@ -8,7 +8,7 @@ import MostPopularSection from '@/features/home/components/most-popular/most-pop
 import About from '@/features/home/components/about';
 import Gallery from '@/features/home/components/gallery';
 import { Suspense } from 'react';
-import TestimonialsSectionSkeleton from '@/features/home/components/skeletons/testimonials-section-skeleton';
+import TestimonialsSectionSkeleton from '@/features/home/components/skeletons/testimonials-section.skeleton';
 import TestimonialsSection from '@/features/home/components/testimonials/testimonials-section';
 import Partners from '@/features/home/components/partners';
 
