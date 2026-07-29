@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
+import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/use-push-notifications';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'login.usernameRequired'),
@@ -22,6 +23,7 @@ function LoginForm() {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get('returnUrl') || '/';
+  const { subscribeToPush } = usePushNotifications();
 
   const [rememberMe, setRememberMe] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
@@ -48,6 +50,7 @@ function LoginForm() {
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
+        subscribeToPush();
         router.push(returnUrl);
       }
     } catch (err) {
