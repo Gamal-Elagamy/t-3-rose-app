@@ -1,5 +1,3 @@
-'use client';
-
 import { Package, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { IProduct } from '../../types/products';
@@ -12,10 +10,10 @@ interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  // Translate
+  // Translations
   const t = useTranslations('product');
 
-  // Functions
+  // Variables
   const currentPrice = Number(product.price);
 
   const isValidDiscountType =
@@ -65,7 +63,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <div className="flex items-center gap-2 border-y border-ds-border-soft py-4">
           <Star className="size-5 fill-yellow-500 text-yellow-500" />
           <span className="text-sm text-ds-text-plain">
-            {t('rating', { rating: product.rating.toFixed(1) })}
+            {t('rating', { rating: (product.rating ?? 0).toFixed(1) })}
           </span>
           <span className="text-sm text-ds-text-info cursor-pointer">
             {t('ratingsCount', { count: product._count.reviews })}

@@ -13,7 +13,10 @@ interface AddToWishlistProps {
 }
 
 export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) {
+  // Translations
   const t = useTranslations('product');
+
+  // State
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   if (variant === 'details') {

@@ -1,7 +1,4 @@
-'use client';
-
 import { Button } from '@/shared/components/ui/button';
-import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Package, ShoppingCart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -35,11 +32,7 @@ export default function AddToCart({ variant = 'card', stock }: AddToCartProps) {
   }
 
   return (
-    <Button
-      className={cn(
-        'w-10.5 h-10.5 rounded-full bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary cursor-pointer flex items-center justify-center'
-      )}
-    >
+    <Button className="w-10.5 h-10.5 rounded-full bg-ds-bg-primary text-ds-bg-subtle hover:bg-ds-bg-primary cursor-pointer flex items-center justify-center">
       <ShoppingCart className="w-6 h-6" />
     </Button>
   );

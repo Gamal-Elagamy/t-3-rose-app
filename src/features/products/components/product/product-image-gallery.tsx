@@ -23,7 +23,7 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
   return (
     <div className="space-y-2.5">
       {/* Main Image */}
-      <div className="relative w-152 h-100 rounded-lg overflow-hidden bg-zinc-100">
+      <div className="relative w-full max-w-152 aspect-3/2 rounded-lg overflow-hidden bg-zinc-100">
         <Image
           src={selectedImage}
           alt={product.title}
