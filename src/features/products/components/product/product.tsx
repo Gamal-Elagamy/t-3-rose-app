@@ -1,6 +1,8 @@
 import ProductImageGallery from './product-image-gallery';
 import ProductInfo from './product-info';
 import { IProduct } from '../../types/products';
+import ProductReviews from '@/features/products/components/product/product-reviews/product-reviews';
+import RelatedProducts from '@/features/products/components/product/related-products/related-products';
 
 interface ProductProps {
   product: IProduct;
@@ -14,6 +16,12 @@ export default function Product({ product }: ProductProps) {
         <ProductImageGallery product={product} />
         <ProductInfo product={product} />
       </div>
+
+      {/* Product Reviews */}
+      <ProductReviews product={product} />
+
+      {/* Related Product */}
+      <RelatedProducts product={product} />
     </div>
   );
 }

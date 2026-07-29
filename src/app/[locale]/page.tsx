@@ -14,7 +14,7 @@ import TestimonialsSectionSkeleton from '@/features/home/components/skeletons/te
 import TestimonialsSection from '@/features/home/components/testimonials/testimonials-section';
 import Partners from '@/features/home/components/partners';
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <LanguageSwitcher />

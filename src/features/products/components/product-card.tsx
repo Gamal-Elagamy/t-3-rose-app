@@ -84,8 +84,8 @@ export default function ProductCard({
                 size={18}
                 className={
                   index < filledStars
-                    ? 'fill-yellow-500 text-yellow-500'
-                    : 'fill-transparent text-yellow-500'
+                    ? 'fill-orange-500 text-orange-500'
+                    : 'fill-transparent text-orange-500'
                 }
               />
             ))}

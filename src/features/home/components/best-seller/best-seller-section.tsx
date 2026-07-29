@@ -7,9 +7,12 @@ import ProductsErrorBoundary from '@/shared/components/error-boundary';
 import { getProducts } from '@/features/products/apis/products.api';
 import { IProduct } from '@/features/products/types/products';
 
-async function BestSellerCarouselSlot({
+export async function BestSellerCarouselSlot({
   productsPromise,
+  variant = 'default',
 }: {
+  productsPromise: Promise<IProduct[]>;
+  variant?: 'default' | 'related';
   productsPromise: Promise<{ data: IProduct[] }>;
 }) {
   const t = await getTranslations('home');
@@ -19,7 +22,7 @@ async function BestSellerCarouselSlot({
     return <div>{t('noProductsFound')}</div>;
   }
 
-  return <BestSellerCarousel products={products} />;
+  return <BestSellerCarousel products={products} variant={variant} />;
 }
 
 export default async function BestSellerSection() {
