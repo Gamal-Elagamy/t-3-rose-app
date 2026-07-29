@@ -1,6 +1,7 @@
 import { GUEST_WISHLIST_KEY } from '../constants/wishlist';
 import { GuestWishlistItem } from '../types/wishlist';
 
+// Get guest wishlist from localStorage
 export function getGuestWishlist(): GuestWishlistItem[] {
   if (typeof window === 'undefined') {
     return [];
@@ -12,13 +13,20 @@ export function getGuestWishlist(): GuestWishlistItem[] {
     return [];
   }
 
-  return JSON.parse(wishlist);
+  try {
+    return JSON.parse(wishlist);
+  } catch {
+    localStorage.removeItem(GUEST_WISHLIST_KEY);
+    return [];
+  }
 }
 
+// Save guest wishlist to localStorage
 export function setGuestWishlist(wishlist: GuestWishlistItem[]) {
   localStorage.setItem(GUEST_WISHLIST_KEY, JSON.stringify(wishlist));
 }
 
+// Add item to guest wishlist
 export function addGuestWishlistItem(item: GuestWishlistItem) {
   const wishlist = getGuestWishlist();
 
@@ -33,6 +41,7 @@ export function addGuestWishlistItem(item: GuestWishlistItem) {
   setGuestWishlist(wishlist);
 }
 
+// Remove item from guest wishlist
 export function removeGuestWishlistItem(productId: string) {
   const wishlist = getGuestWishlist();
 
@@ -41,6 +50,7 @@ export function removeGuestWishlistItem(productId: string) {
   setGuestWishlist(updatedWishlist);
 }
 
+// Toggle guest wishlist item
 export function toggleGuestWishlistItem(productId: string) {
   const wishlist = getGuestWishlist();
 
@@ -55,6 +65,7 @@ export function toggleGuestWishlistItem(productId: string) {
   return true;
 }
 
+// Clear guest wishlist
 export function clearGuestWishlist() {
   localStorage.removeItem(GUEST_WISHLIST_KEY);
 }

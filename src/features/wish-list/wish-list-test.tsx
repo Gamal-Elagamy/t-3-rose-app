@@ -1,5 +1,5 @@
 'use client';
-// just for testing the add, remove from wishlist functionality
+// Just for testing the add/remove wishlist flow
 
 import { useState } from 'react';
 
@@ -7,14 +7,18 @@ import { useAddToWishlist } from './hooks/use-add-to-wishlist';
 import { useRemoveFromWishlist } from './hooks/use-remove-from-wishlist';
 
 export default function TestWishlistToggle() {
+  // State
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [wishlistItemId, setWishlistItemId] = useState('');
 
+  // Hooks
   const addMutation = useAddToWishlist();
   const removeMutation = useRemoveFromWishlist();
 
-  const productId = '66cd8b24-45a2-45db-91d7-824624d94c75';
+  // Variables
+  const productId = 'd622e229-cb46-4ce7-a86a-2a825046aa9e';
 
+  // Functions
   const handleToggle = () => {
     if (isWishlisted) {
       removeMutation.mutate(
@@ -38,10 +42,13 @@ export default function TestWishlistToggle() {
       },
       {
         onSuccess: (data) => {
-          if (!data) return;
+          // Guest Flow
+          if (!data) {
+            setIsWishlisted(true);
+            return;
+          }
 
-          console.log(data);
-
+          // Logged User Flow
           setWishlistItemId(data.wishlistItem.id);
           setIsWishlisted(true);
         },
@@ -73,7 +80,6 @@ export default function TestWishlistToggle() {
       {removeMutation.isPending && <p>Removing...</p>}
 
       {addMutation.error && <p>{String(addMutation.error)}</p>}
-
       {removeMutation.error && <p>{String(removeMutation.error)}</p>}
     </div>
   );

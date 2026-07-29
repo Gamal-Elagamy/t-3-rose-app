@@ -4,6 +4,7 @@ import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IApiResponse } from '@/shared/lib/types/api';
 
 import { AddToWishlistPayload, WishlistItemRequest } from '../types/wishlist';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 
 export async function addToWishlist(body: WishlistItemRequest) {
   const jwt = await getNextAuthToken();
@@ -13,7 +14,7 @@ export async function addToWishlist(body: WishlistItemRequest) {
     throw new Error('User is not authenticated');
   }
 
-  const response = await fetch(`${process.env.API_URL}/wishlist`, {
+  const response = await fetch(`${getApiBaseUrl()}/wishlist`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,

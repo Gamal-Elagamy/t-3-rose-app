@@ -4,6 +4,7 @@ import { IApiResponse } from '@/shared/lib/types/api';
 
 import { RemoveWishlistItemRequest } from '../types/wishlist';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 
 interface RemoveWishlistPayload {
   message: string;
@@ -19,7 +20,7 @@ export async function removeFromWishlist({ id }: RemoveWishlistItemRequest) {
     throw new Error('User is not authenticated');
   }
 
-  const response = await fetch(`${process.env.API_URL}/wishlist/${id}`, {
+  const response = await fetch(`${getApiBaseUrl()}/wishlist/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
