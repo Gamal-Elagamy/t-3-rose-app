@@ -15,7 +15,7 @@ export async function BestSellerCarouselSlot({
   variant?: 'default' | 'related';
 }) {
   const t = await getTranslations('home');
-  const products = await productsPromise;
+  const { data: products } = await productsPromise;
 
   if (products.length === 0) {
     return <div>{t('noProductsFound')}</div>;
