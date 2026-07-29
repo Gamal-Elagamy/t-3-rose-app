@@ -246,7 +246,7 @@
     "rating": "التقييم: {rating}/5",
     "ratingsCount": "({count} تقييم)",
     "leftInStock": "متبقي {count} في المخزون",
-    "currency": "ج.م"
+    "currency": "ج.م",
     "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
     "about": {
       "label": "عن الموقع",

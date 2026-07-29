@@ -246,7 +246,7 @@
     "rating": "Rating: {rating}/5",
     "ratingsCount": "({count} ratings)",
     "leftInStock": "{count} left in stock",
-    "currency": "EGP"
+    "currency": "EGP",
     "failedToLoadProducts": "Failed to load products. Try again.",
     "about": {
       "label": "About",
