@@ -234,19 +234,6 @@
     "viewMore": "عرض المزيد",
     "noProductsFound": "لا توجد منتجات",
     "noProductsForOccasion": "لا توجد منتجات لهذه المناسبة.",
-    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
-  },
-  "product": {
-    "outOfStock": "نفدت الكمية",
-    "new": "جديد",
-    "hot": "شائع",
-    "addToCart": "أضف إلى السلة",
-    "addToWishlist": "أضف إلى المفضلة",
-    "removeFromWishlist": "إزالة من المفضلة",
-    "rating": "التقييم: {rating}/5",
-    "ratingsCount": "({count} تقييم)",
-    "leftInStock": "متبقي {count} في المخزون",
-    "currency": "ج.م",
     "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
     "about": {
       "label": "عن الموقع",
@@ -274,5 +261,18 @@
     "partners": {
       "title": "موثوق من قبل أكثر من <highlight>+4.5ألف</highlight> شركة"
     }
+  },
+  "product": {
+    "outOfStock": "نفدت الكمية",
+    "new": "جديد",
+    "hot": "شائع",
+    "addToCart": "أضف إلى السلة",
+    "addToWishlist": "أضف إلى المفضلة",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "rating": "التقييم: {rating}/5",
+    "ratingsCount": "({count} تقييم)",
+    "leftInStock": "متبقي {count} في المخزون",
+    "currency": "ج.م",
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
   }
 }

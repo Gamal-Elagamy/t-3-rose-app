@@ -234,19 +234,6 @@
     "viewMore": "View More",
     "noProductsFound": "No products found",
     "noProductsForOccasion": "No products found for this occasion.",
-    "failedToLoadProducts": "Failed to load products. Try again."
-  },
-  "product": {
-    "outOfStock": "Out of stock",
-    "new": "New",
-    "hot": "Hot",
-    "addToCart": "Add to cart",
-    "addToWishlist": "Add to wishlist",
-    "removeFromWishlist": "Remove from wishlist",
-    "rating": "Rating: {rating}/5",
-    "ratingsCount": "({count} ratings)",
-    "leftInStock": "{count} left in stock",
-    "currency": "EGP",
     "failedToLoadProducts": "Failed to load products. Try again.",
     "about": {
       "label": "About",
@@ -274,5 +261,18 @@
     "partners": {
       "title": "Trusted by over <highlight>+4.5k</highlight> companies"
     }
+  },
+  "product": {
+    "outOfStock": "Out of stock",
+    "new": "New",
+    "hot": "Hot",
+    "addToCart": "Add to cart",
+    "addToWishlist": "Add to wishlist",
+    "removeFromWishlist": "Remove from wishlist",
+    "rating": "Rating: {rating}/5",
+    "ratingsCount": "({count} ratings)",
+    "leftInStock": "{count} left in stock",
+    "currency": "EGP",
+    "failedToLoadProducts": "Failed to load products. Try again."
   }
 }
