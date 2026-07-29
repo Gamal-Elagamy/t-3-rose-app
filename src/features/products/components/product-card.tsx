@@ -25,7 +25,7 @@ export default function ProductCard({
   createdAt,
 }: IProduct) {
   // Translation
-  const t = useTranslations('product');
+  const t = useTranslations('home.product');
   // Variables
   const totalStars = 5;
   const filledStars = Math.round(rating);

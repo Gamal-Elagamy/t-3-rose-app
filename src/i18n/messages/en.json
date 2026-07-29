@@ -215,6 +215,14 @@
     }
   },
   "home": {
+    "product": {
+      "outOfStock": "Out of stock",
+      "new": "New",
+      "hot": "Hot",
+      "addToCart": "Add to cart",
+      "addToWishlist": "Add to wishlist",
+      "removeFromWishlist": "Remove from wishlist"
+    },
     "bestSeller": {
       "bestSelling": "Best Selling",
       "description": "Check Out <highlight>What Everyone's</highlight> Buying <highlight>Right Now</highlight>",
@@ -239,5 +247,32 @@
     "ratingsCount": "({count} ratings)",
     "leftInStock": "{count} left in stock",
     "currency": "EGP"
+    "failedToLoadProducts": "Failed to load products. Try again.",
+    "about": {
+      "label": "About",
+      "title": "Delivering the <finest>Finest</finest> Gift Boxes for Your <special>Special</special> Moments",
+      "description": "Make every moment memorable with our premium gift boxes. Carefully curated and beautifully packaged, each box is filled with handpicked items designed to impress. Whether it's for a birthday, wedding, or a simple 'thank you,' our gift boxes are crafted to leave a lasting impression — because thoughtful gifting starts here.",
+      "discover": "Discover",
+      "features": {
+        "first": "Competitive Prices & Easy Shopping",
+        "second": "Premium Quality & Elegant Packaging",
+        "third": "Perfect for Every Occasion",
+        "fourth": "Fast & Reliable Delivery"
+      }
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Check Out our Wonderful Gallery"
+    },
+    "testimonials": {
+      "label": "Testimonials",
+      "title": "Real Words from Happy Customers",
+      "pause": "Pause",
+      "play": "Play",
+      "error": "Failed to load testimonials."
+    },
+    "partners": {
+      "title": "Trusted by over <highlight>+4.5k</highlight> companies"
+    }
   }
 }
