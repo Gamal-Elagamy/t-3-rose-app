@@ -1,29 +1,13 @@
-import { PaginatedNotifications, NotificationItem } from '@/shared/lib/types/notifications';
+import { fetchNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '../api';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-interface ApiResponse<T> {
-  status: boolean;
-  message?: string;
-  payload?: T;
-}
-
 const NOTIFICATIONS_QUERY_KEY = ['notifications'];
-
-async function fetchApi<T>(path: string, options: RequestInit = {}): Promise<T> {
-  const response = await fetch(`/api${path}`, {
-    ...options,
-    headers: { 'Content-Type': 'application/json', ...options.headers },
-  });
-  const data: ApiResponse<T> = await response.json();
-  if (!data.status) throw new Error(data.message || 'Request failed');
-  return data.payload as T;
-}
 
 export function useNotifications() {
   return useQuery({
     queryKey: NOTIFICATIONS_QUERY_KEY,
     queryFn: async () => {
-      const result = await fetchApi<PaginatedNotifications>('/notifications');
+      const result = await fetchNotifications();
       return result.data;
     },
   });
@@ -32,8 +16,7 @@ export function useNotifications() {
 export function useMarkAsRead() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id: string) =>
-      fetchApi(`/notifications/${id}`, { method: 'PATCH', body: JSON.stringify({ isRead: true }) }),
+    mutationFn: markNotificationAsRead,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: NOTIFICATIONS_QUERY_KEY }),
   });
 }
@@ -41,7 +24,7 @@ export function useMarkAsRead() {
 export function useMarkAllAsRead() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => fetchApi('/notifications/mark-all-read', { method: 'PATCH' }),
+    mutationFn: markAllNotificationsAsRead,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: NOTIFICATIONS_QUERY_KEY }),
   });
 }
