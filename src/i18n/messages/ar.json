@@ -234,29 +234,34 @@
     "hot": "شائع",
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
-    "removeFromWishlist": "إزالة من المفضلة"
-  },
-  "product-reviews": {
-    "title": "مراجعات المنتجات",
-    "general-rating": "التقييم العام:",
-    "ratings": "تقييمات",
-    "no-ratings": "لا توجد تقييمات بعد.",
-    "no-reviews": "لا توجد مراجعات بعد.",
-    "loading": "جارى التحميل ...",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "rating": "التقييم: {rating}/5",
+    "ratingsCount": "({count} تقييم)",
+    "leftInStock": "متبقي {count} في المخزون",
+    "currency": "ج.م",
 
-    "form-review-validation": {
-      "required": "هذا الحقل مطلوب",
-      "rating-required": "برجاء اختيار تقييم",
+    "product-reviews": {
+      "title": "مراجعات المنتجات",
+      "general-rating": "التقييم العام:",
+      "ratings": "تقييمات",
+      "no-ratings": "لا توجد تقييمات بعد.",
+      "no-reviews": "لا توجد مراجعات بعد.",
+      "loading": "جارى التحميل ...",
 
-      "form-rating": "تقييمك:",
-      "form-title": "العنوان",
-      "form-title-placeholder": "أدخل عنوان المراجعة",
-      "form-review": "المراجعة",
-      "form-review-placeholder": "ما رأيك في هذا المنتج؟",
-      "form-button": "إضافة مراجعة",
+      "form-review-validation": {
+        "required": "هذا الحقل مطلوب",
+        "rating-required": "برجاء اختيار تقييم",
 
-      "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
-    }
-  },
-  "related-product": "المنتجات ذات الصلة"
+        "form-rating": "تقييمك:",
+        "form-title": "العنوان",
+        "form-title-placeholder": "أدخل عنوان المراجعة",
+        "form-review": "المراجعة",
+        "form-review-placeholder": "ما رأيك في هذا المنتج؟",
+        "form-button": "إضافة مراجعة",
+
+        "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
+      }
+    },
+    "related-product": "المنتجات ذات الصلة"
+  }
 }

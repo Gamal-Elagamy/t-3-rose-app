@@ -1,9 +1,9 @@
-import IProductReviews from '../../types/product-reviews';
+import IProductReviews from '../../../types/product-reviews';
 import FormReview from './form-review';
 import { ReviewsList } from './reviews-list';
 
 export interface IReviewsListProps {
-  reviews: IProductReviews[];
+  reviews: IProductReviews[] | undefined;
   productId: string;
 }
 

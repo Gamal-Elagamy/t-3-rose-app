@@ -2,42 +2,36 @@ import { Star } from 'lucide-react';
 import ReviewsItem from './reviews';
 import SectionTitle from '@/shared/components/section-title';
 import { getTranslations } from 'next-intl/server';
-import getProductReviews from '../../api/get-product-reviews.api';
-import getProductDetails from '../../api/get-single-product.api';
+import getProductReviews from '../../../apis/get-product-reviews.api';
+import { IProduct } from '@/features/products/types/products';
 
 export interface IProductId {
-  productId: string;
+  product: IProduct;
 }
 
-export default async function ProductReviews({ productId }: IProductId) {
+export default async function ProductReviews({ product }: IProductId) {
   // Translations
-  const t = await getTranslations('product-reviews');
-
-  // Get Product Details Function
-  const productDetails = await getProductDetails(productId);
+  const t = await getTranslations('product.product-reviews');
 
   // Get Reviews Data
-  const reviewsData = await getProductReviews(productId);
+  const reviewsData = await getProductReviews(product?.id);
 
   return (
-    <div className="max-w-11/12 mx-auto mt-2.5 mb-12.5 flex flex-col gap-4">
+    <div className="pt-2.5 my-12.5 flex flex-col gap-4">
       {/* Section Title */}
       <SectionTitle title={t('title')} />
 
       {/* General Rating */}
-      <div className="general-rating flex flex-col gap-1 pb-4 border-b border-ds-border-muted">
+      <div className="general-rating flex flex-col gap-1 pb-4 border-b border-b-ds-border-muted dark:border-b-ds-border-subtle">
         {/* Header */}
         <h1 className="font-semibold text-xl text-ds-text-plain">{t('general-rating')}</h1>
 
         {/* Rate */}
         <h2 className="font-bold text-2xl text-ds-text-plain">
           {/* Product Rating Number */}
-          {productDetails?.rating.toFixed(1)} {/* Product Rating Icon */}
+          {product?.rating.toFixed(1)} {/* Product Rating Icon */}
           <span className="font-medium text-sm text-ds-text-soft">
-            (
-            {(productDetails?.ratings ?? 0) > 0
-              ? `${productDetails?.ratings} ${t('ratings')}`
-              : t('no-ratings')}
+            ({(product?.ratings ?? 0) > 0 ? `${product?.ratings} ${t('ratings')}` : t('no-ratings')}
             )
           </span>
         </h2>
@@ -49,9 +43,7 @@ export default async function ProductReviews({ productId }: IProductId) {
               key={i}
               size={20}
               className={
-                i < (productDetails?.rating ?? 0)
-                  ? 'fill-orange-500 text-orange-500'
-                  : 'text-orange-500'
+                i < (product?.rating ?? 0) ? 'fill-orange-500 text-orange-500' : 'text-orange-500'
               }
             />
           ))}
@@ -59,7 +51,7 @@ export default async function ProductReviews({ productId }: IProductId) {
       </div>
 
       {/* Reviews */}
-      <ReviewsItem productId={productId} reviews={reviewsData?.data} />
+      <ReviewsItem productId={product.id} reviews={reviewsData?.data} />
     </div>
   );
 }

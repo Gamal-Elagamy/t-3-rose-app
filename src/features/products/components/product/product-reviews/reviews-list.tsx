@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { IReviewsListProps } from './reviews';
 
 export function ReviewsList({ reviews }: IReviewsListProps) {
-  const t = useTranslations('product-reviews');
+  const t = useTranslations('product.product-reviews');
 
   // When no reviews
   if ((reviews?.length ?? 0) === 0) return <p>{t('no-reviews')}</p>;
@@ -15,7 +15,7 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
       {reviews?.map((review) => (
         <div
           key={review.id}
-          className="review-item flex flex-col gap-2.5 pb-4 border-b border-b-ds-border-muted"
+          className="review-item flex flex-col gap-2.5 pb-4 border-b border-b-ds-border-muted dark:border-b-ds-border-subtle"
         >
           {/* User Review */}
           <div className="user-review flex items-center gap-2.5">

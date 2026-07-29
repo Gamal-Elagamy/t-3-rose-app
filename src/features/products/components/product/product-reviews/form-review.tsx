@@ -9,17 +9,16 @@ import { Star } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { formReviewSchema, FormReviewValue } from '../../schemas/form-review.schema';
+import { formReviewSchema, FormReviewValue } from '../../../schemas/form-review.schema';
 import { useTranslations } from 'next-intl';
-import useAddReview from '../../hooks/use-add-review';
+import useAddReview from '../../../hooks/use-add-review';
 import { toast } from 'sonner';
 import { Link } from '@/i18n/navigation';
-import { IProductId } from './product-reviews';
 import { useRouter } from 'next/navigation';
 
-export default function FormReview({ productId }: IProductId) {
+export default function FormReview({ productId }: { productId: string }) {
   //   Translations
-  const t = useTranslations('product-reviews.form-review-validation');
+  const t = useTranslations('product.product-reviews.form-review-validation');
 
   // Navigation
   const router = useRouter();
@@ -67,7 +66,7 @@ export default function FormReview({ productId }: IProductId) {
   };
 
   return (
-    <div className="form-review relative w-full lg:w-2/5 flex flex-col gap-2.75 pt-5 lg:pt-0 border-t lg:border-t-0 lg:p-5 lg:border-s border-ds-border-muted rounded-xl overflow-hidden">
+    <div className="form-review relative w-full lg:w-2/5 flex flex-col gap-2.75 pt-5 lg:pt-0 border-t lg:border-t-0 lg:p-5 lg:border-s border-ds-border-muted dark:border-ds-border-subtle rounded-xl overflow-hidden">
       {/* Overlay Form when not Authenticated */}
       {!isAuthenticated && (
         <div className="absolute w-full h-full flex items-center justify-center top-0 bottom-0 inset-s-0 inset-e-0 bg-white/20 backdrop-blur-[2px] z-20">
