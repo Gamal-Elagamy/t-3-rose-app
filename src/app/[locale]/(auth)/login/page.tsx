@@ -12,6 +12,7 @@ import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import { useSyncGuestCart } from '@/features/cart/hooks/use-sync-guest-cart';
 import { useSyncGuestWishlist } from '@/features/wish-list/hooks/use-sync-guest-wishlist';
+import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/use-push-notifications';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'login.usernameRequired'),
@@ -24,6 +25,7 @@ function LoginForm() {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get('returnUrl') || '/';
+  const { subscribeToPush } = usePushNotifications();
 
   const { mutateAsync: syncGuestCart } = useSyncGuestCart();
   const { mutateAsync: syncGuestWishlist } = useSyncGuestWishlist();
@@ -54,6 +56,7 @@ function LoginForm() {
       } else {
         await syncGuestCart();
         await syncGuestWishlist();
+        subscribeToPush();
         router.push(returnUrl);
       }
     } catch (err) {
