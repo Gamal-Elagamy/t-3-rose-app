@@ -55,14 +55,14 @@ export function MostPopularTabList({ occasions }: MostPopularTabListProps) {
   const { activeId, setActiveId } = useMostPopularSharedTabs();
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-4 md:gap-6 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
       {occasions.map((occasion) => (
         <button
           key={occasion.id}
           type="button"
           onClick={() => setActiveId(occasion.id)}
           className={cn(
-            'cursor-pointer text-base font-medium transition-colors',
+            'cursor-pointer text-sm md:text-base font-medium transition-colors whitespace-nowrap',
             activeId === occasion.id
               ? 'text-ds-text-primary'
               : 'text-ds-text-muted hover:text-ds-text-primary'

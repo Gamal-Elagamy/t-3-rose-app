@@ -4,7 +4,7 @@ export default function ImagesInfoSkeleton() {
       {/* Image Gallery Skeleton */}
       <div className="space-y-2.5">
         {/* Main Image */}
-        <div className="w-full max-w-152 aspect-[3/2] rounded-lg bg-ds-bg-soft animate-pulse" />
+        <div className="w-full max-w-152 aspect-3/2 rounded-lg bg-ds-bg-soft animate-pulse" />
         {/* Thumbnails */}
         <div className="flex gap-2">
           <div className="w-1/6 h-28 rounded-md bg-ds-bg-soft animate-pulse" />
