@@ -234,6 +234,10 @@
     "hot": "شائع",
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
-    "removeFromWishlist": "إزالة من المفضلة"
+    "removeFromWishlist": "إزالة من المفضلة",
+    "rating": "التقييم: {rating}/5",
+    "ratingsCount": "({count} تقييم)",
+    "leftInStock": "متبقي {count} في المخزون",
+    "currency": "ج.م"
   }
 }

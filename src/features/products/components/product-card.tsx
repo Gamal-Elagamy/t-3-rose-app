@@ -48,7 +48,7 @@ export default function ProductCard({
 
   return (
     <div>
-      <div className="relative h-[300px] w-full rounded-2xl overflow-hidden">
+      <div className="relative h-75 w-full rounded-2xl overflow-hidden">
         <Link href={`/products/${id}`} className="block h-full relative">
           <Image
             src={cover}
@@ -68,7 +68,7 @@ export default function ProductCard({
           </div>
         </Link>
 
-        <AddToWishlist />
+        <AddToWishlist variant="card" />
       </div>
 
       <Link href={`/products/${id}`}>
@@ -100,7 +100,7 @@ export default function ProductCard({
           </div>
         </div>
 
-        <AddToCart />
+        <AddToCart variant="card" />
       </div>
     </div>
   );

@@ -234,6 +234,10 @@
     "hot": "Hot",
     "addToCart": "Add to cart",
     "addToWishlist": "Add to wishlist",
-    "removeFromWishlist": "Remove from wishlist"
+    "removeFromWishlist": "Remove from wishlist",
+    "rating": "Rating: {rating}/5",
+    "ratingsCount": "({count} ratings)",
+    "leftInStock": "{count} left in stock",
+    "currency": "EGP"
   }
 }
