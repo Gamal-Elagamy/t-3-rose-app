@@ -263,6 +263,7 @@
     }
   },
   "product": {
+    "errorPage":"Failed When Fetch Products",
     "outOfStock": "Out of stock",
     "new": "New",
     "hot": "Hot",
