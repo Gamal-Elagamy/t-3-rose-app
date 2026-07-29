@@ -1,13 +1,8 @@
-import { useLocale } from 'next-intl';
-
 interface SectionTitleProps {
   title: string;
 }
 
 export default function SectionTitle({ title }: SectionTitleProps) {
-  const locale = useLocale();
-  const isRTL = locale === 'ar';
-
   return (
     <div className="relative w-fit">
       <h2 className="relative z-10 text-4xl font-bold text-ds-text-primary">{title}</h2>
