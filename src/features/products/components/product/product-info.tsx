@@ -32,18 +32,20 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     <div className="flex flex-col justify-between h-full">
       <div className="flex flex-col h-full">
         {/* Title */}
-        <h1 className="text-3xl font-semibold text-ds-text-plain">{product.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-semibold text-ds-text-plain">{product.title}</h1>
 
         {/* Price and Stock */}
         <div className="flex flex-wrap items-center gap-1.5 mb-4">
           {originalPrice > currentPrice && (
-            <span className="text-3xl font-bold text-ds-text-subtle line-through">
+            <span className="text-2xl md:text-3xl font-bold text-ds-text-subtle line-through">
               {Math.round(originalPrice)}
             </span>
           )}
-          <span className="text-3xl font-bold text-ds-text-plain">
+          <span className="text-2xl md:text-3xl font-bold text-ds-text-plain">
             {currentPrice}
-            <span className="text-xl text-ds-text-plain font-semibold mx-1">{t('currency')}</span>
+            <span className="text-lg md:text-xl text-ds-text-plain font-semibold mx-1">
+              {t('currency')}
+            </span>
           </span>
           {!isOutOfStock && (
             <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-ds-bg-soft px-3 py-1 text-sm font-medium text-ds-text-plain">
@@ -79,7 +81,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       </div>
 
       {/* Add to cart and wishlist */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 mt-4 md:mt-0">
         <AddToWishlist variant="details" />
         <AddToCart variant="details" stock={product.stock} />
       </div>

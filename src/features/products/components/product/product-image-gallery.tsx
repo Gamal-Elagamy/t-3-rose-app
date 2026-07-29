@@ -23,7 +23,7 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
   return (
     <div className="space-y-2.5">
       {/* Main Image */}
-      <div className="relative w-full max-w-152 aspect-3/2 rounded-lg overflow-hidden bg-zinc-100">
+      <div className="relative w-full max-w-full md:max-w-152 aspect-3/2 rounded-lg overflow-hidden bg-zinc-100">
         <Image
           src={selectedImage}
           alt={product.title}
@@ -36,12 +36,12 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto w-full">
+        <div className="flex gap-2 overflow-x-auto w-full pb-2">
           {images.map((image, index) => (
             <button
               key={index}
               onClick={() => setSelectedImage(image)}
-              className={`relative shrink-0 w-1/6 h-28 cursor-pointer rounded-md overflow-hidden border-2 transition-all ${
+              className={`relative shrink-0 w-1/3 md:w-1/6 h-16 md:h-28 cursor-pointer rounded-md overflow-hidden border-2 transition-all ${
                 selectedImage === image ? 'border-maroon-600 border-2' : 'border-transparent'
               }`}
             >

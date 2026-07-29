@@ -4,13 +4,13 @@ export default function ImagesInfoSkeleton() {
       {/* Image Gallery Skeleton */}
       <div className="space-y-2.5">
         {/* Main Image */}
-        <div className="w-full max-w-152 aspect-3/2 rounded-lg bg-ds-bg-soft animate-pulse" />
+        <div className="w-full max-w-full md:max-w-152 aspect-3/2 rounded-lg bg-ds-bg-soft animate-pulse" />
         {/* Thumbnails */}
-        <div className="flex gap-2">
-          <div className="w-1/6 h-28 rounded-md bg-ds-bg-soft animate-pulse" />
-          <div className="w-1/6 h-28 rounded-md bg-ds-bg-soft animate-pulse" />
-          <div className="w-1/6 h-28 rounded-md bg-ds-bg-soft animate-pulse" />
-          <div className="w-1/6 h-28 rounded-md bg-ds-bg-soft animate-pulse" />
+        <div className="flex gap-2 overflow-x-auto w-full pb-2">
+          <div className="w-1/6 h-20 md:h-28 rounded-md bg-ds-bg-soft animate-pulse" />
+          <div className="w-1/6 h-20 md:h-28 rounded-md bg-ds-bg-soft animate-pulse" />
+          <div className="w-1/6 h-20 md:h-28 rounded-md bg-ds-bg-soft animate-pulse" />
+          <div className="w-1/6 h-20 md:h-28 rounded-md bg-ds-bg-soft animate-pulse" />
         </div>
       </div>
 
@@ -18,12 +18,12 @@ export default function ImagesInfoSkeleton() {
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col h-full">
           {/* Title */}
-          <div className="h-10 w-3/4 bg-ds-bg-soft rounded animate-pulse mb-4" />
+          <div className="h-8 md:h-10 w-3/4 bg-ds-bg-soft rounded animate-pulse mb-4" />
 
           {/* Price and Stock */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <div className="h-9 w-24 bg-ds-bg-soft rounded animate-pulse" />
-            <div className="h-9 w-20 bg-ds-bg-soft rounded animate-pulse" />
+            <div className="h-8 md:h-9 w-24 bg-ds-bg-soft rounded animate-pulse" />
+            <div className="h-8 md:h-9 w-20 bg-ds-bg-soft rounded animate-pulse" />
             <div className="h-8 w-32 bg-ds-bg-soft rounded-full animate-pulse" />
           </div>
 
@@ -44,7 +44,7 @@ export default function ImagesInfoSkeleton() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3 mt-6">
+        <div className="flex items-center gap-3 mt-4 md:mt-6">
           <div className="h-12 w-12 bg-ds-bg-soft rounded animate-pulse" />
           <div className="h-12 flex-1 bg-ds-bg-soft rounded animate-pulse" />
         </div>
