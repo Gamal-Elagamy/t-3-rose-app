@@ -15,14 +15,17 @@ import useAddReview from '../../hooks/use-add-review';
 import { toast } from 'sonner';
 import { Link } from '@/i18n/navigation';
 import { IProductId } from './product-reviews';
-import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 export default function FormReview({ productId }: IProductId) {
+  //   Translations
+  const t = useTranslations('product-reviews.form-review-validation');
+
+  // Navigation
+  const router = useRouter();
+
   // State
   const [rating, setRating] = useState(0);
-
-  // React Query
-  const queryClient = useQueryClient();
 
   // Get Session
   const { data: session } = useSession();
@@ -30,9 +33,6 @@ export default function FormReview({ productId }: IProductId) {
 
   //   Add Review Hook
   const { error, addProductReview, isPending } = useAddReview();
-
-  //   Translations
-  const t = useTranslations('product-reviews.form-review-validation');
 
   //   Form
   const form = useForm<FormReviewValue>({
@@ -44,7 +44,7 @@ export default function FormReview({ productId }: IProductId) {
     },
   });
 
-  //   Handel submit
+  //   Handle submit
   const onSubmit = (data: FormReviewValue) => {
     if (rating === 0) {
       return;
@@ -61,13 +61,13 @@ export default function FormReview({ productId }: IProductId) {
         toast.success('Review added successfully');
         form.reset();
         setRating(0);
-        queryClient.invalidateQueries({ queryKey: ['reviews', productId] });
+        router.refresh();
       },
     });
   };
 
   return (
-    <div className="form-review relative w-full lg:w-2/5 flex flex-col gap-2.75 pt-5 lg:pt-0 border-t lg:border-t-0 lg:ps-5 lg:border-s border-ds-border-muted">
+    <div className="form-review relative w-full lg:w-2/5 flex flex-col gap-2.75 pt-5 lg:pt-0 border-t lg:border-t-0 lg:p-5 lg:border-s border-ds-border-muted rounded-xl overflow-hidden">
       {/* Overlay Form when not Authenticated */}
       {!isAuthenticated && (
         <div className="absolute w-full h-full flex items-center justify-center top-0 bottom-0 inset-s-0 inset-e-0 bg-white/20 backdrop-blur-[2px] z-20">

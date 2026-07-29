@@ -3,7 +3,7 @@ import ReviewsItem from './reviews';
 import SectionTitle from '@/shared/components/section-title';
 import { getTranslations } from 'next-intl/server';
 import getProductReviews from '../../api/get-product-reviews.api';
-import getProductDetails from '../../api/get-singel-product.api';
+import getProductDetails from '../../api/get-single-product.api';
 
 export interface IProductId {
   productId: string;
@@ -15,6 +15,9 @@ export default async function ProductReviews({ productId }: IProductId) {
 
   // Get Product Details Function
   const productDetails = await getProductDetails(productId);
+
+  // Get Reviews Data
+  const reviewsData = await getProductReviews(productId);
 
   return (
     <div className="max-w-11/12 mx-auto mt-2.5 mb-12.5 flex flex-col gap-4">
@@ -56,7 +59,7 @@ export default async function ProductReviews({ productId }: IProductId) {
       </div>
 
       {/* Reviews */}
-      <ReviewsItem productId={productId} />
+      <ReviewsItem productId={productId} reviews={reviewsData?.data} />
     </div>
   );
 }

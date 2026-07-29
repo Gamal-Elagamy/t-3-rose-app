@@ -9,10 +9,10 @@ import { IProduct } from '@/features/products/types/products';
 
 export async function BestSellerCarouselSlot({
   productsPromise,
-  itemsPerView,
+  variant = 'default',
 }: {
   productsPromise: Promise<IProduct[]>;
-  itemsPerView?: number;
+  variant?: 'default' | 'related';
 }) {
   const t = await getTranslations('home');
   const products = await productsPromise;
@@ -21,7 +21,7 @@ export async function BestSellerCarouselSlot({
     return <div>{t('noProductsFound')}</div>;
   }
 
-  return <BestSellerCarousel products={products} itemsPerView={itemsPerView} />;
+  return <BestSellerCarousel products={products} variant={variant} />;
 }
 
 export default async function BestSellerSection() {

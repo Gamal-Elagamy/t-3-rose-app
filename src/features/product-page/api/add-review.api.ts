@@ -1,4 +1,5 @@
 'use server';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 
 interface IReviewData {
@@ -12,8 +13,8 @@ export default async function addProductReview(reviewData: IReviewData) {
   // Get Token
   const jwt = await getNextAuthToken();
 
-  // Get reviews Data
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`, {
+  // Submit new review
+  const response = await fetch(`${getApiBaseUrl()}/reviews`, {
     body: JSON.stringify(reviewData),
     method: 'POST',
     headers: {
@@ -25,7 +26,7 @@ export default async function addProductReview(reviewData: IReviewData) {
   const data = await response.json();
 
   if (!response.ok || !data.status) {
-    throw new Error(data.message ?? 'Failed to fetch Product reviews');
+    throw new Error(data.message ?? 'Failed to submit product review');
   }
 
   return data;

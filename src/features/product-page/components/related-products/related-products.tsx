@@ -1,5 +1,5 @@
 import SectionTitle from '@/shared/components/section-title';
-import getProductDetails from '../../api/get-singel-product.api';
+import getProductDetails from '../../api/get-single-product.api';
 import { getProducts } from '@/features/products/apis/products.api';
 import ProductsErrorBoundary from '@/shared/components/error-boundary';
 import { Suspense } from 'react';
@@ -22,7 +22,8 @@ export default async function RelatedProducts({ productId }: IProductId) {
   const relatedProduct = getProducts({
     categoryId: productCategoryId,
     minRating: 0,
-  });
+    limit: 20,
+  }).then((products) => products.filter((p) => p.id !== productId));
 
   return (
     <div className="max-w-11/12 mx-auto p-2.5 flex flex-col gap-4">
@@ -33,7 +34,7 @@ export default async function RelatedProducts({ productId }: IProductId) {
       <div className="related p-2.5">
         <ProductsErrorBoundary>
           <Suspense fallback={<BestSellerCarouselSkeleton />}>
-            <BestSellerCarouselSlot productsPromise={relatedProduct} itemsPerView={4} />
+            <BestSellerCarouselSlot productsPromise={relatedProduct} variant={'related'} />
           </Suspense>
         </ProductsErrorBoundary>
       </div>

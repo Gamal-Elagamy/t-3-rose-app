@@ -1,30 +1,20 @@
-'use client';
 import { Star } from 'lucide-react';
-import getProductReviews from '../../api/get-product-reviews.api';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { IProductId } from './product-reviews';
 import { useTranslations } from 'next-intl';
-import { useQuery } from '@tanstack/react-query';
-export function ReviewsList({ productId }: IProductId) {
+import { IReviewsListProps } from './reviews';
+
+export function ReviewsList({ reviews }: IReviewsListProps) {
   const t = useTranslations('product-reviews');
 
-  // Get Product Reviews Function
-  const { data: pReviews, isLoading } = useQuery({
-    queryKey: ['reviews', productId],
-    queryFn: () => getProductReviews(productId),
-  });
-
-  if (isLoading) return <div>{t('loading')}</div>;
-
   // When no reviews
-  if (pReviews?.data.length === 0) return <h1>{t('no-reviews')}</h1>;
+  if ((reviews?.length ?? 0) === 0) return <p>{t('no-reviews')}</p>;
 
   return (
     <>
       {/* Review Item */}
-      {pReviews?.data.map((review) => (
+      {reviews?.map((review) => (
         <div
-          key={review.user.id}
+          key={review.id}
           className="review-item flex flex-col gap-2.5 pb-4 border-b border-b-ds-border-muted"
         >
           {/* User Review */}
@@ -36,9 +26,9 @@ export function ReviewsList({ productId }: IProductId) {
 
             {/* User Details */}
             <div className="details">
-              <h1 className="text-ds-text-plain font-semibold text-base">
+              <h3 className="text-ds-text-plain font-semibold text-base">
                 {review.user.firstName}
-              </h1>
+              </h3>
               <p className="font-medium text-sm text-ds-text-muted">
                 {new Date(review.createdAt).toLocaleDateString('en-US', {
                   month: 'short',
