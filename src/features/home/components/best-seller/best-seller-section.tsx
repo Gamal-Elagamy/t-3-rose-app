@@ -11,7 +11,6 @@ export async function BestSellerCarouselSlot({
   productsPromise,
   variant = 'default',
 }: {
-  productsPromise: Promise<IProduct[]>;
   variant?: 'default' | 'related';
   productsPromise: Promise<{ data: IProduct[] }>;
 }) {
