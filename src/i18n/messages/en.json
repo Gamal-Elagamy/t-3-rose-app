@@ -167,6 +167,28 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "Welcome back,",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Log out"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "noNotifications": "No notifications",
+      "markAllAsRead": "Mark all as read",
+      "titleWithCount": "Notifications ({count})",
+      "markAsRead": "Mark as read",
+      "unread": "Unread",
+      "read": "Read",
+      "viewAll": "View all notifications",
+      "new": "New",
+      "loading": "Loading notifications...",
+      "error": "Something went wrong",
+      "empty": "You're all caught up!"
   "home-page": {
     "hero-section": {
       "banner": {
