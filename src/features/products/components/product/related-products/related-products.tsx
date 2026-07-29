@@ -12,7 +12,6 @@ export default async function RelatedProducts({ product }: IProductId) {
   const t = await getTranslations('product');
 
   const productCategoryId = product?.categoryId;
-  const productrating = product?.rating;
 
   // Get Related Products by Filter
   const relatedProduct = getProducts({
