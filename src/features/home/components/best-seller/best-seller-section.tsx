@@ -13,9 +13,10 @@ export async function BestSellerCarouselSlot({
 }: {
   productsPromise: Promise<IProduct[]>;
   variant?: 'default' | 'related';
+  productsPromise: Promise<{ data: IProduct[] }>;
 }) {
   const t = await getTranslations('home');
-  const products = await productsPromise;
+  const { data: products } = await productsPromise;
 
   if (products.length === 0) {
     return <div>{t('noProductsFound')}</div>;
