@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { Occasion, PaginatedOccasions, OccasionOption } from '@/features/products/types/occasions';
+import { PaginatedOccasions, OccasionOption } from '@/features/products/types/occasions';
 import { ApiResponse } from '@/features/shared/types/api';
 
 async function fetchPublicApi<T>(path: string): Promise<T> {

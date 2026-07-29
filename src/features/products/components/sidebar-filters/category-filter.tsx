@@ -1,12 +1,14 @@
 import { useTranslations } from 'next-intl';
 import { useProductFilters } from './hooks/use-product-filters';
 
-import { CategoryFilterProps, CategoryOption } from '@/features/products/types/category';
+import { CategoryFilterProps } from '@/features/products/types/category';
 
 export function CategoryFilter({ categories }: CategoryFilterProps) {
+  // Translation
   const t = useTranslations();
+  // Hooks
   const { filters, setFilter, resetFilter } = useProductFilters();
-
+  // Render
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">

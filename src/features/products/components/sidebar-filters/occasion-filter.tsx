@@ -6,9 +6,11 @@ import { useProductFilters } from './hooks/use-product-filters';
 import { OccasionFilterProps } from '@/features/products/types/occasions';
 
 export function OccasionFilter({ occasions }: OccasionFilterProps) {
+  // Translation
   const t = useTranslations();
+  // Hooks
   const { filters, setFilter, resetFilter } = useProductFilters();
-
+  // Render
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
@@ -32,7 +34,13 @@ export function OccasionFilter({ occasions }: OccasionFilterProps) {
               filters.occasion === occ.value ? 'ring-2 ring-ds-bg-primary' : ''
             }`}
           >
-            <Image src={occ.imageUrl} alt={occ.label} fill className="object-cover" />
+            <Image
+              src={occ.imageUrl}
+              alt={occ.label}
+              fill
+              sizes="(max-width: 768px) 50vw, 140px"
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-black/40" />
             <span className="absolute inset-0 flex items-center justify-center px-1 text-center text-sm font-semibold text-white">
               {occ.label}

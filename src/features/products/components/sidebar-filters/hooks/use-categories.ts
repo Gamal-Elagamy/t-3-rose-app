@@ -1,11 +1,10 @@
-// features/products/components/sidebar-filters/hooks/useCategories.ts
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
 
 import { ApiResponse } from '@/features/shared/types/api';
 
-import { Category, PaginatedCategories, CategoryOption } from '@/features/products/types/category';
+import { PaginatedCategories, CategoryOption } from '@/features/products/types/category';
 
 async function fetchPublicApi<T>(path: string): Promise<T> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`);
