@@ -1,3 +1,4 @@
+import { IApiResponse } from '@/shared/lib/types/api';
 import { IEmailVerificationResponse } from '@/shared/lib/types/auth';
 
 interface IConfirmEmail {

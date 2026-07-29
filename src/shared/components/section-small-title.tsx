@@ -6,7 +6,7 @@ interface SectionSmallTitleProps {
 
 export default function SectionSmallTitle({ title }: SectionSmallTitleProps) {
   return (
-    <h3 className="text-base font-bold text-ds-text-secondary font-sarabun tracking-[25%] uppercase text-center">
+    <h3 className="text-base font-bold text-ds-text-secondary font-sarabun tracking-[25%] uppercase mb-2.5">
       {title}
     </h3>
   );
