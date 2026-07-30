@@ -82,8 +82,8 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Add to cart and wishlist */}
       <div className="flex items-center gap-3 mt-4 md:mt-0">
-        <AddToWishlist variant="details" />
-        <AddToCart variant="details" stock={product.stock} />
+        <AddToWishlist variant="details" productId={product.id} />
+        <AddToCart variant="details" stock={product.stock} productId={product.id} />
       </div>
     </div>
   );
