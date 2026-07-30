@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import IProductReviews, { IMetadata } from '../types/product-reviews';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 export default async function getProductReviews(productId?: string) {
   // Get reviews Data

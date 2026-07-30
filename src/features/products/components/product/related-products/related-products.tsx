@@ -18,7 +18,7 @@ export default async function RelatedProducts({ product }: IProductId) {
     categoryId: productCategoryId,
     minRating: 3,
     limit: 20,
-  }).then((products) => products.filter((p) => p.id !== product?.id));
+  }).then((products) => ({ data: products.data.filter((p) => p.id !== product?.id) }));
 
   return (
     <div className="p-2.5 flex flex-col gap-4">
