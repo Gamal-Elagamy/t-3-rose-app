@@ -235,5 +235,15 @@
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
     "removeFromWishlist": "إزالة من المفضلة"
-  }
+  },
+  "filters": {
+  "category": "الفئة",
+  "occasion": "المناسبة",
+  "rating": "التقييم",
+  "price": "السعر",
+  "from": "من",
+  "to": "إلى",
+  "reset": "× إعادة",
+  "resetAll": "إعادة الكل"
+}
 }

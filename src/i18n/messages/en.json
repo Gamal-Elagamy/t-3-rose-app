@@ -240,7 +240,13 @@
   "filters": {
     "category": "Category",
     "reset": "Reset",
-    "occasion" :"Occasion"
+    "occasion" :"Occasion",
+    "rating": "rating",
+    "price": "Price",
+  "from": "from",
+  "to": "to",
+  "reset": "× Reset",
+  "resetAll": "Reset All"
   }
 
 }

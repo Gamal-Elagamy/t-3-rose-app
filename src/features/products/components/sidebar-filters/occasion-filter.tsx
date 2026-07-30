@@ -25,12 +25,12 @@ export function OccasionFilter({ occasions }: OccasionFilterProps) {
         )}
       </div>
 
-      <div className="grid max-h-[280px] grid-cols-2 gap-2 overflow-y-auto pe-1">
+      <div className="grid grid-cols-2 gap-2 h-[240px] overflow-y-auto pr-1 pt-1 scrollbar-none">
         {occasions.map((occ) => (
           <button
             key={occ.value}
             onClick={() => setFilter('occasion', filters.occasion === occ.value ? null : occ.value)}
-            className={`relative aspect-[4/3] shrink-0 overflow-hidden rounded-lg ${
+            className={`relative aspect-square shrink-0 h-[75px] w-full overflow-hidden rounded-xl  transition-transform duration-00 hover:scale-105 ${
               filters.occasion === occ.value ? 'ring-2 ring-ds-bg-primary' : ''
             }`}
           >
@@ -38,11 +38,11 @@ export function OccasionFilter({ occasions }: OccasionFilterProps) {
               src={occ.imageUrl}
               alt={occ.label}
               fill
-              sizes="(max-width: 768px) 50vw, 140px"
-              className="object-cover"
+              sizes="(max-width: 768px) 50vw, 140px "
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-black/40" />
-            <span className="absolute inset-0 flex items-center justify-center px-1 text-center text-sm font-semibold text-white">
+            <span className="absolute inset-0 flex items-center justify-center px-1 text-center text-sm font-semibold text-white drop-shadow-md">
               {occ.label}
             </span>
           </button>

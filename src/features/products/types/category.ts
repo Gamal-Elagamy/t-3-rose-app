@@ -18,6 +18,7 @@ export interface PaginatedCategories {
 export interface CategoryOption {
   value: string;
   label: string;
+  image: string;
 }
 export interface CategoryFilterProps {
   categories: CategoryOption[];
