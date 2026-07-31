@@ -167,6 +167,30 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "مرحبًا بعودتك،",
+      "account": "الحساب",
+      "addresses": "العناوين",
+      "orders": "الطلبات",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "noNotifications": "لا توجد إشعارات",
+      "titleWithCount": "الإشعارات ({count})",
+      "markAllAsRead": "تحديد الكل كمقروء",
+      "markAsRead": "تحديد كمقروء",
+      "unread": "غير مقروءة",
+      "read": "مقروءة",
+      "viewAll": "عرض كل الإشعارات",
+      "new": "جديد",
+      "loading": "جاري تحميل الإشعارات...",
+      "error": "حدث خطأ ما",
+      "empty": "لا يوجد لديك إشعارات حالياً"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
@@ -269,11 +293,10 @@
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
     "removeFromWishlist": "إزالة من المفضلة",
+    "currency": "ج.م",
+    "leftInStock": "متبقي {count} في المخزون",
     "rating": "التقييم: {rating}/5",
     "ratingsCount": "({count} تقييم)",
-    "leftInStock": "متبقي {count} في المخزون",
-    "currency": "ج.م",
-
     "product-reviews": {
       "title": "مراجعات المنتجات",
       "general-rating": "التقييم العام:",
@@ -281,22 +304,29 @@
       "no-ratings": "لا توجد تقييمات بعد.",
       "no-reviews": "لا توجد مراجعات بعد.",
       "loading": "جارى التحميل ...",
-
       "form-review-validation": {
         "required": "هذا الحقل مطلوب",
         "rating-required": "برجاء اختيار تقييم",
-
         "form-rating": "تقييمك:",
         "form-title": "العنوان",
         "form-title-placeholder": "أدخل عنوان المراجعة",
         "form-review": "المراجعة",
         "form-review-placeholder": "ما رأيك في هذا المنتج؟",
         "form-button": "إضافة مراجعة",
-
         "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
       }
     },
-    "related-product": "المنتجات ذات الصلة",
-    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
-  }
+    "related-product": "المنتجات ذات الصلة"
+  },
+  "filters": {
+    "category": "الفئة",
+    "occasion": "المناسبة",
+    "rating": "التقييم",
+    "price": "السعر",
+    "from": "من",
+    "to": "إلى",
+    "reset": "× إعادة",
+    "resetAll": "إعادة الكل"
+  },
+  "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
 }

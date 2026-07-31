@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { Input } from '@/shared/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
+import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/use-push-notifications';
 import { useSyncGuestCart } from '@/features/cart/hooks/use-sync-guest-cart';
 import { useSyncGuestWishlist } from '@/features/wish-list/hooks/use-sync-guest-wishlist';
 
@@ -24,6 +25,7 @@ function LoginForm() {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get('returnUrl') || '/';
+  const { subscribeToPush } = usePushNotifications();
 
   const { mutateAsync: syncGuestCart } = useSyncGuestCart();
   const { mutateAsync: syncGuestWishlist } = useSyncGuestWishlist();
@@ -52,6 +54,7 @@ function LoginForm() {
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
+        subscribeToPush();
         await syncGuestCart();
         await syncGuestWishlist();
         router.push(returnUrl);
