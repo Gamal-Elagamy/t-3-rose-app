@@ -167,18 +167,40 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "Welcome back,",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Log out"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "noNotifications": "No notifications",
+      "markAllAsRead": "Mark all as read",
+      "titleWithCount": "Notifications ({count})",
+      "markAsRead": "Mark as read",
+      "unread": "Unread",
+      "read": "Read",
+      "viewAll": "View all notifications",
+      "new": "New",
+      "loading": "Loading notifications...",
+      "error": "Something went wrong",
+      "empty": "You're all caught up!"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
         "card-title": "Staring from 10.99 EGP",
         "card-description": "Special Gifts For The People You Love",
         "card-button": "Shop Now",
-
         "carousel-title": "Say It with Flowers",
         "carousel-description": "Elegant gifts for every special moment.",
         "carousel-button": "I’m buying!"
       },
-
       "occasions": {
         "wedding": {
           "title": "Wedding",
@@ -193,7 +215,6 @@
           "description": "Mark Every Year of Love with a Meaningful Surprise"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "Free Delivery",
