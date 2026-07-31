@@ -31,7 +31,7 @@ export function Notifications() {
 
       <DropdownMenuContent
         align="end"
-        className="w-80 overflow-hidden rounded-xl border-none bg-white p-0 shadow-soft-lg"
+        className="w-80 overflow-hidden rounded-xl border-none bg-ds-bg-plain p-0 shadow-soft-lg"
       >
         <div className="flex items-center justify-between bg-ds-bg-primary px-4 py-3">
           <h2 className="text-sm font-semibold text-ds-text-inverse">
@@ -66,7 +66,7 @@ export function Notifications() {
                 key={notification.id}
                 onClick={() => !notification.isRead && markAsRead.mutate(notification.id)}
                 className={`flex w-full flex-col items-start gap-0.5 border-b border-ds-border-subtle px-4 py-3 text-start ${
-                  notification.isRead ? 'bg-white' : 'bg-ds-bg-subtle'
+                  notification.isRead ? 'bg-ds-bg-plain' : 'bg-ds-bg-subtle'
                 }`}
               >
                 <p className="text-sm font-semibold text-ds-text-default">{notification.title}</p>

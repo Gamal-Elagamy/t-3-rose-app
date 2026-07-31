@@ -189,6 +189,18 @@
       "loading": "جاري تحميل الإشعارات...",
       "error": "حدث خطأ ما",
       "empty": "لا يوجد لديك إشعارات حالياً"
+    },
+    "nav": {
+      "searchPlaceholder": "ما هي الهدية الرائعة التي تبحث عنها؟",
+      "deliverTo": " التسليم إلى"
+    },
+    "navItems": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "occasions": "المناسبات",
+      "contact": "اتصل بنا",
+      "about": "من نحن"
     }
   },
   "home-page": {
@@ -197,12 +209,10 @@
         "card-title": "بدء من 10.99 ج.م",
         "card-description": "هدايا خاصة للأشخاص الذين تحبهم",
         "card-button": "تسوق الأن",
-
         "carousel-title": "قولها بالزهور",
         "carousel-description": "هدايا أنيقة لكل لحظة خاصة.",
         "carousel-button": "أشترى الآن!"
       },
-
       "occasions": {
         "wedding": {
           "title": "الزفاف",
@@ -217,7 +227,6 @@
           "description": "احتفلي بكل عام من الحب بمفاجأة ذات معنى"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "توصيل مجاني",

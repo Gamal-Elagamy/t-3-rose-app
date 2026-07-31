@@ -44,7 +44,7 @@ export function UserDropdown() {
 
       <DropdownMenuContent
         align="end"
-        className="w-56 rounded-xl border-none bg-neutral-900 p-3 shadow-soft-lg"
+        className="w-56 rounded-xl border-none bg-ds-bg-plain p-3 shadow-soft-lg"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel className="px-2 py-1 text-sm font-semibold text-ds-bg-primary">
@@ -52,13 +52,13 @@ export function UserDropdown() {
           </DropdownMenuLabel>
         </DropdownMenuGroup>
 
-        <DropdownMenuSeparator className="my-2 bg-white/10" />
+        <DropdownMenuSeparator className="my-2 bg-ds-border-subtle" />
 
         {items.map(({ key, href, icon: Icon }) => (
           <DropdownMenuItem
             key={key}
             render={<Link href={href} />}
-            className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-white/90 outline-none transition-colors hover:bg-white/10 focus:bg-white/10"
+            className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle"
           >
             <Icon className="size-4" />
             {t(key)}
@@ -67,7 +67,7 @@ export function UserDropdown() {
 
         <DropdownMenuItem
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-white/90 outline-none transition-colors hover:bg-white/10 focus:bg-white/10"
+          className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle"
         >
           <LogOut className="size-4" />
           {t('logout')}

@@ -189,6 +189,19 @@
       "loading": "Loading notifications...",
       "error": "Something went wrong",
       "empty": "You're all caught up!"
+      
+    },
+   "nav":{
+    "searchPlaceholder": "what awesome gift are you looking for",
+    "deliverTo":" deliver to"
+   },
+    "navItems": {
+      "home": "Home",
+      "products": "Products",
+      "categories": "Categories",
+      "occasions": "Occasions",
+      "contact": "Contact",
+      "about": "About"
     }
   },
   "home-page": {
