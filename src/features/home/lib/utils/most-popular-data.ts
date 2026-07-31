@@ -32,6 +32,6 @@ export const getMostPopularOccasionProducts = cache(async (): Promise<OccasionPr
 
   return occasions.map((occasion, index) => ({
     occasion,
-    products: productsByOccasion[index],
+    products: productsByOccasion[index].data,
   }));
 });

@@ -25,7 +25,7 @@ export default function ProductCard({
   createdAt,
 }: IProduct) {
   // Translation
-  const t = useTranslations('product');
+  const t = useTranslations('home.product');
   // Variables
   const totalStars = 5;
   const filledStars = Math.round(rating);
@@ -48,7 +48,7 @@ export default function ProductCard({
 
   return (
     <div>
-      <div className="relative h-[300px] w-full rounded-2xl overflow-hidden">
+      <div className="relative h-75 w-full rounded-2xl overflow-hidden">
         <Link href={`/products/${id}`} className="block h-full relative">
           <Image
             src={cover}
@@ -68,7 +68,7 @@ export default function ProductCard({
           </div>
         </Link>
 
-        <AddToWishlist />
+        <AddToWishlist variant="card" productId={id} />
       </div>
 
       <Link href={`/products/${id}`}>
@@ -84,8 +84,8 @@ export default function ProductCard({
                 size={18}
                 className={
                   index < filledStars
-                    ? 'fill-yellow-500 text-yellow-500'
-                    : 'fill-transparent text-yellow-500'
+                    ? 'fill-orange-500 text-orange-500'
+                    : 'fill-transparent text-orange-500'
                 }
               />
             ))}
@@ -100,7 +100,7 @@ export default function ProductCard({
           </div>
         </div>
 
-        <AddToCart />
+        <AddToCart variant="card" productId={id} />
       </div>
     </div>
   );

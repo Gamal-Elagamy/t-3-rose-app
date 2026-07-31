@@ -7,7 +7,23 @@ function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
     <textarea
       data-slot="textarea"
       className={cn(
-        'flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40',
+        // Base
+        'flex field-sizing-content h-37.5 w-full rounded-lg border p-4 outline-none',
+
+        // Default
+        'border-ds-border-soft bg-ds-bg-plain text-sm font-normal text-ds-text-plain placeholder:text-ds-text-muted resize-none overflow-y-auto',
+
+        // Hover
+        'hover:border-ds-border-default not-disabled:hover:[box-shadow:var(--ring-default)]',
+
+        // Focus
+        'focus-visible:border-ds-border-primary focus-visible:[box-shadow:var(--ring-default)]',
+
+        // Disabled
+        'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-ds-bg-muted disabled:text-ds-text-muted disabled:border-transparent',
+
+        // Invalid
+        'aria-invalid:not-disabled:border-ds-border-danger aria-invalid:not-disabled:[box-shadow:var(--ring-danger)]',
         className
       )}
       {...props}

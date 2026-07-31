@@ -43,16 +43,14 @@ const CarouselCustomDots = () => {
     <div className="relative w-full h-full">
       {/* Carousel */}
       <Carousel setApi={setApi} className="w-full h-full">
-        <CarouselContent>
+        <CarouselContent className="h-full">
           {images.map((src, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="h-full">
               <figure className="w-full h-full">
                 <Image
                   src={src}
                   alt={`img ${index + 1}`}
                   placeholder="blur"
-                  width={300}
-                  height={439}
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </figure>

@@ -1,3 +1,4 @@
+import { IApiResponse } from '@/shared/lib/types/api';
 import { IEmailVerificationResponse } from '@/shared/lib/types/auth';
 
 export default async function emailVerificationApi(email: string) {

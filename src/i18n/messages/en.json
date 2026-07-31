@@ -167,18 +167,40 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "Welcome back,",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Log out"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "noNotifications": "No notifications",
+      "markAllAsRead": "Mark all as read",
+      "titleWithCount": "Notifications ({count})",
+      "markAsRead": "Mark as read",
+      "unread": "Unread",
+      "read": "Read",
+      "viewAll": "View all notifications",
+      "new": "New",
+      "loading": "Loading notifications...",
+      "error": "Something went wrong",
+      "empty": "You're all caught up!"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
         "card-title": "Staring from 10.99 EGP",
         "card-description": "Special Gifts For The People You Love",
         "card-button": "Shop Now",
-
         "carousel-title": "Say It with Flowers",
         "carousel-description": "Elegant gifts for every special moment.",
         "carousel-button": "I’m buying!"
       },
-
       "occasions": {
         "wedding": {
           "title": "Wedding",
@@ -193,7 +215,6 @@
           "description": "Mark Every Year of Love with a Meaningful Surprise"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "Free Delivery",
@@ -215,6 +236,14 @@
     }
   },
   "home": {
+    "product": {
+      "outOfStock": "Out of stock",
+      "new": "New",
+      "hot": "Hot",
+      "addToCart": "Add to cart",
+      "addToWishlist": "Add to wishlist",
+      "removeFromWishlist": "Remove from wishlist"
+    },
     "bestSeller": {
       "bestSelling": "Best Selling",
       "description": "Check Out <highlight>What Everyone's</highlight> Buying <highlight>Right Now</highlight>",
@@ -226,7 +255,33 @@
     "viewMore": "View More",
     "noProductsFound": "No products found",
     "noProductsForOccasion": "No products found for this occasion.",
-    "failedToLoadProducts": "Failed to load products. Try again."
+    "failedToLoadProducts": "Failed to load products. Try again.",
+    "about": {
+      "label": "About",
+      "title": "Delivering the <finest>Finest</finest> Gift Boxes for Your <special>Special</special> Moments",
+      "description": "Make every moment memorable with our premium gift boxes. Carefully curated and beautifully packaged, each box is filled with handpicked items designed to impress. Whether it's for a birthday, wedding, or a simple 'thank you,' our gift boxes are crafted to leave a lasting impression — because thoughtful gifting starts here.",
+      "discover": "Discover",
+      "features": {
+        "first": "Competitive Prices & Easy Shopping",
+        "second": "Premium Quality & Elegant Packaging",
+        "third": "Perfect for Every Occasion",
+        "fourth": "Fast & Reliable Delivery"
+      }
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Check Out our Wonderful Gallery"
+    },
+    "testimonials": {
+      "label": "Testimonials",
+      "title": "Real Words from Happy Customers",
+      "pause": "Pause",
+      "play": "Play",
+      "error": "Failed to load testimonials."
+    },
+    "partners": {
+      "title": "Trusted by over <highlight>+4.5k</highlight> companies"
+    }
   },
   "product": {
     "outOfStock": "Out of stock",
@@ -251,3 +306,35 @@
 
 }
 
+    "removeFromWishlist": "Remove from wishlist",
+    "rating": "Rating: {rating}/5",
+    "ratingsCount": "({count} ratings)",
+    "leftInStock": "{count} left in stock",
+    "currency": "EGP",
+
+    "product-reviews": {
+      "title": "Product Reviews",
+      "general-rating": "General rating:",
+      "ratings": "ratings",
+      "no-ratings": "No ratings yet.",
+      "no-reviews": "No Reviews yet.",
+      "loading": "Loading...",
+
+      "form-review-validation": {
+        "required": "This field is required",
+        "rating-required": "Please select a rating",
+
+        "form-rating": "Your rating:",
+        "form-title": "Title",
+        "form-title-placeholder": "Enter review title",
+        "form-review": "Review",
+        "form-review-placeholder": "What do you think of this product?",
+        "form-button": "Add Review",
+
+        "form-login-link": "Please login to be able to review the product"
+      }
+    },
+    "related-product": "Related Products",
+    "failedToLoadProducts": "Failed to load products. Try again."
+  }
+}

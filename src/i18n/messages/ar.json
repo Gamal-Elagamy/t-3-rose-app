@@ -167,6 +167,30 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "مرحبًا بعودتك،",
+      "account": "الحساب",
+      "addresses": "العناوين",
+      "orders": "الطلبات",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "noNotifications": "لا توجد إشعارات",
+      "titleWithCount": "الإشعارات ({count})",
+      "markAllAsRead": "تحديد الكل كمقروء",
+      "markAsRead": "تحديد كمقروء",
+      "unread": "غير مقروءة",
+      "read": "مقروءة",
+      "viewAll": "عرض كل الإشعارات",
+      "new": "جديد",
+      "loading": "جاري تحميل الإشعارات...",
+      "error": "حدث خطأ ما",
+      "empty": "لا يوجد لديك إشعارات حالياً"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
@@ -215,6 +239,14 @@
     }
   },
   "home": {
+    "product": {
+      "outOfStock": "نفدت الكمية",
+      "new": "جديد",
+      "hot": "شائع",
+      "addToCart": "أضف إلى السلة",
+      "addToWishlist": "أضف إلى المفضلة",
+      "removeFromWishlist": "إزالة من المفضلة"
+    },
     "bestSeller": {
       "bestSelling": "الأكثر مبيعا",
       "description": "شاهد <highlight>ما يشتريه</highlight> الجميع <highlight>الآن</highlight>",
@@ -226,7 +258,33 @@
     "viewMore": "عرض المزيد",
     "noProductsFound": "لا توجد منتجات",
     "noProductsForOccasion": "لا توجد منتجات لهذه المناسبة.",
-    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "about": {
+      "label": "عن الموقع",
+      "title": "نقدم <finest>أفضل</finest> صناديق الهدايا لمناسباتك <special>الخاصة</special>",
+      "description": "اجعل كل مناسبة أكثر تميزًا مع صناديق الهدايا الفاخرة لدينا. يتم تنسيق كل صندوق بعناية وتغليفه بأناقة، ويحتوي على منتجات مختارة بعناية لتترك انطباعًا رائعًا. سواء كانت هدية لعيد ميلاد، أو زفاف، أو مجرد رسالة شكر، فإن صناديقنا مصممة لتجعل كل لحظة لا تُنسى.",
+      "discover": "اكتشف",
+      "features": {
+        "first": "أسعار تنافسية وتسوق سهل",
+        "second": "جودة عالية وتغليف أنيق",
+        "third": "مثالي لجميع المناسبات",
+        "fourth": "توصيل سريع وموثوق"
+      }
+    },
+    "gallery": {
+      "label": "المعرض",
+      "title": "تصفح معرض صورنا الرائع"
+    },
+    "testimonials": {
+      "label": "آراء العملاء",
+      "title": "كلمات حقيقية من عملاء سعداء",
+      "pause": "إيقاف",
+      "play": "تشغيل",
+      "error": "فشل في تحميل آراء العملاء."
+    },
+    "partners": {
+      "title": "موثوق من قبل أكثر من <highlight>+4.5ألف</highlight> شركة"
+    }
   },
   "product": {
     "outOfStock": "نفدت الكمية",
@@ -246,4 +304,35 @@
   "reset": "× إعادة",
   "resetAll": "إعادة الكل"
 }
+    "removeFromWishlist": "إزالة من المفضلة",
+    "rating": "التقييم: {rating}/5",
+    "ratingsCount": "({count} تقييم)",
+    "leftInStock": "متبقي {count} في المخزون",
+    "currency": "ج.م",
+
+    "product-reviews": {
+      "title": "مراجعات المنتجات",
+      "general-rating": "التقييم العام:",
+      "ratings": "تقييمات",
+      "no-ratings": "لا توجد تقييمات بعد.",
+      "no-reviews": "لا توجد مراجعات بعد.",
+      "loading": "جارى التحميل ...",
+
+      "form-review-validation": {
+        "required": "هذا الحقل مطلوب",
+        "rating-required": "برجاء اختيار تقييم",
+
+        "form-rating": "تقييمك:",
+        "form-title": "العنوان",
+        "form-title-placeholder": "أدخل عنوان المراجعة",
+        "form-review": "المراجعة",
+        "form-review-placeholder": "ما رأيك في هذا المنتج؟",
+        "form-button": "إضافة مراجعة",
+
+        "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
+      }
+    },
+    "related-product": "المنتجات ذات الصلة",
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
+  }
 }

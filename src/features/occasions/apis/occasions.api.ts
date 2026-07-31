@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IOccasion } from '../types/occasions';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 interface GetOccasionsParams {
   page?: number;

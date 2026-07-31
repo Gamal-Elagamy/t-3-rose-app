@@ -1,5 +1,6 @@
 import { IRegisterResponse } from '@/shared/lib/types/auth';
 import { IRegisterFields } from '../types/register';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 export default async function registerAPI(fields: IRegisterFields) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
