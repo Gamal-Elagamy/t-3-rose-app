@@ -1,3 +1,4 @@
+import { IApiResponse } from '@/shared/lib/types/api';
 import { PaginatedNotifications } from '@/shared/lib/types/notifications';
 
 async function fetchApi<T>(path: string, options: RequestInit = {}): Promise<T> {
