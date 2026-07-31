@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { ICategory } from '../types/categories';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 interface GetCategoriesParams {
   page?: number;
