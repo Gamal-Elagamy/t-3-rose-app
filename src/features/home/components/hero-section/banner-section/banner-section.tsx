@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import CarouselCustomDots from './banner-carousel';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 export default function BannerHomePage() {
   // Translations
@@ -12,11 +13,10 @@ export default function BannerHomePage() {
 
   return (
     <>
-      {/* grid grid-cols-[300px_minmax(500px,1fr)] gap-6.25 */}
       {/* Banner Section */}
-      <div className="banner h-110.25 w-full flex items-center justify-between gap-6.25 mt-10">
+      <div className="banner h-auto sm:h-110.25 w-full flex items-center justify-between gap-6.25 mt-10">
         {/* Banner Card */}
-        <div className="card min-w-75 h-full relative rounded-2xl overflow-hidden">
+        <div className="card hidden lg:block lg:min-w-75 h-full relative rounded-2xl overflow-hidden">
           {/* Overlay */}
           <div className="overlay absolute top-0 bottom-0 left-0 right-0 bg-black/10"></div>
 
@@ -40,23 +40,25 @@ export default function BannerHomePage() {
             </h1>
 
             {/* Button */}
-            <Button
-              className={cn(
-                // Default
-                'py-2.5 cursor-pointer',
+            <Link href={'/products'}>
+              <Button
+                className={cn(
+                  // Default
+                  'py-2.5 cursor-pointer',
 
-                // Dark
-                'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
-              )}
-              variant={'secondary'}
-            >
-              {t('card-button')} <ArrowRight className="rtl:rotate-180" />
-            </Button>
+                  // Dark
+                  'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
+                )}
+                variant={'secondary'}
+              >
+                {t('card-button')} <ArrowRight className="rtl:rotate-180" />
+              </Button>
+            </Link>
           </div>
         </div>
 
         {/* Banner Carousel */}
-        <div className="banner-carousel relative flex-1 min-w-125 h-full rounded-2xl overflow-hidden">
+        <div className="banner-carousel relative flex-1 w-full md:min-w-125 h-auto md:h-full rounded-2xl overflow-hidden">
           {/* Overlay */}
           <div className="overlay absolute inset-0 z-10 bg-linear-to-r rtl:bg-linear-to-l from-black/80 to-black/0"></div>
 
@@ -72,18 +74,20 @@ export default function BannerHomePage() {
             </h3>
 
             {/* Button */}
-            <Button
-              className={cn(
-                // Default
-                'py-2.5 w-fit cursor-pointer',
+            <Link href={'/products'}>
+              <Button
+                className={cn(
+                  // Default
+                  'py-2.5 w-fit cursor-pointer',
 
-                // Dark
-                'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
-              )}
-              variant={'secondary'}
-            >
-              {t('carousel-button')}
-            </Button>
+                  // Dark
+                  'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
+                )}
+                variant={'secondary'}
+              >
+                {t('carousel-button')}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,8 @@ import { Input } from '@/shared/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import { usePushNotifications } from '@/features/header/components/authenticated-state/notifications/hooks/use-push-notifications';
+import { useSyncGuestCart } from '@/features/cart/hooks/use-sync-guest-cart';
+import { useSyncGuestWishlist } from '@/features/wish-list/hooks/use-sync-guest-wishlist';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'login.usernameRequired'),
@@ -24,6 +26,9 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const returnUrl = searchParams.get('returnUrl') || '/';
   const { subscribeToPush } = usePushNotifications();
+
+  const { mutateAsync: syncGuestCart } = useSyncGuestCart();
+  const { mutateAsync: syncGuestWishlist } = useSyncGuestWishlist();
 
   const [rememberMe, setRememberMe] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
@@ -46,11 +51,12 @@ function LoginForm() {
         rememberMe: rememberMe.toString(),
         redirect: false,
       });
-
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
         subscribeToPush();
+        await syncGuestCart();
+        await syncGuestWishlist();
         router.push(returnUrl);
       }
     } catch (err) {
