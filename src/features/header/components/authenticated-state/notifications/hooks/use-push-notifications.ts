@@ -18,6 +18,11 @@ export function usePushNotifications() {
 
     const vapidRes = await fetch('/api/notifications/vapid-public-key');
     const vapidData = await vapidRes.json();
+    if (!vapidData.status || !vapidData.payload?.publicKey) {
+      console.warn('Push notifications unavailable: VAPID key not configured on server');
+      return;
+    }
+
     const vapidPublicKey = vapidData.payload?.publicKey ?? vapidData.publicKey;
 
     const subscription = await registration.pushManager.subscribe({

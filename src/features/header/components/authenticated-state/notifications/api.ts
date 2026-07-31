@@ -1,4 +1,4 @@
-import { PaginatedNotifications, NotificationItem } from '@/shared/lib/types/notifications';
+import { PaginatedNotifications } from '@/shared/lib/types/notifications';
 
 async function fetchApi<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`/api${path}`, {

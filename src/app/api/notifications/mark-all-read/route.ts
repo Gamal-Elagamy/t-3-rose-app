@@ -8,7 +8,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ status: false, message: 'Unauthorized' }, { status: 401 });
   }
 
-  const response = await fetch(`${process.env.API_URLL}/notifications/mark-all-read`, {
+  const response = await fetch(`${process.env.API_URL}/notifications/mark-all-read`, {
     method: 'PATCH',
     headers: { Authorization: `Bearer ${token.token}` },
   });
