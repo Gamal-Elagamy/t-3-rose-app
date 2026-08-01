@@ -20,7 +20,7 @@ export function Header() {
   // Translation
   const t = useTranslations();
   // Hooks
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
 
   return (
@@ -60,7 +60,6 @@ export function Header() {
 
         <SearchBar />
       </div>
-      \
       <div className="hidden lg:block">
         <MainNav />
       </div>
