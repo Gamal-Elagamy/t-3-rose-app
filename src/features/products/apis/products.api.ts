@@ -14,14 +14,15 @@ export interface GetProductsParams {
   minRating?: number;
   sortBy?: SortBy;
   sortOrder?: SortOrder;
+  search?: string;
 }
 
-interface GetProductsResponse {
-  data: IProduct[];
+export interface GetProductsResponse {
+  payload: IProduct[];
   metadata: { page: string; limit: string; total: string; totalPages: string };
 }
 
-export async function getProducts({ ...params }: GetProductsParams): Promise<GetProductsResponse> {
+export async function getProducts({ ...params }: GetProductsParams) {
   const searchParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
@@ -30,13 +31,21 @@ export async function getProducts({ ...params }: GetProductsParams): Promise<Get
     }
   });
   const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
-  const data: IApiResponse<GetProductsResponse> = await response.json();
+  const data: IApiResponse<{
+    data: IProduct[];
+    metadata: {
+      page: string;
+      limit: string;
+      total: string;
+      totalPages: string;
+    }
+  }> = await response.json();
 
   if (!response.ok || !data.status || !data.payload) {
     throw new Error(data.message || 'Failed to fetch products');
   }
 
-  return data.payload;
+  return data.payload
 }
 
 export async function getProduct(id: string): Promise<IProduct> {
