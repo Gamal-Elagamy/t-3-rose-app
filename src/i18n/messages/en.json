@@ -189,12 +189,11 @@
       "loading": "Loading notifications...",
       "error": "Something went wrong",
       "empty": "You're all caught up!"
-      
     },
-   "nav":{
-    "searchPlaceholder": "what awesome gift are you looking for",
-    "deliverTo":" deliver to"
-   },
+    "nav": {
+      "searchPlaceholder": "what awesome gift are you looking for",
+      "deliverTo": " deliver to"
+    },
     "navItems": {
       "home": "Home",
       "products": "Products",
@@ -297,6 +296,7 @@
     }
   },
   "product": {
+    "errorPage": "Failed When Fetch Products",
     "outOfStock": "Out of stock",
     "new": "New",
     "hot": "Hot",
@@ -307,6 +307,14 @@
     "leftInStock": "{count} left in stock",
     "rating": "Rating: {rating}/5",
     "ratingsCount": "({count} ratings)",
+    "noProductsFound": "No products found.",
+    "failedToLoadProducts": "Failed to load products. Try again.",
+    "error": {
+      "errorPageTitle": "Something went wrong",
+      "errorPageDescription": "We couldn't load the products. Please try again.",
+      "tryAgain": "Try Again",
+      "noProductsFound": "No products found."
+    },
     "product-reviews": {
       "title": "Product Reviews",
       "general-rating": "General rating:",

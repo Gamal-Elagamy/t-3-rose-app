@@ -13,7 +13,7 @@ import { MainNav } from './components/shared/main-nav';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 
 export function Header() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
 
   return (
