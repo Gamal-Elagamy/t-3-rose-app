@@ -85,7 +85,7 @@ export const SearchBox = () => {
                     {isLoading && <SearchResultSkeleton />}
                     <div className="flex flex-col gap-4 z-100">
                         {data?.map((product) => (
-                            <Link href={`/products/${product.id}`} className="flex items-start gap-4">
+                            <Link href={`/products/${product.id}`} key={product.id} className="flex items-start gap-4">
                                 <div className="size-20 rounded-lg">
                                     <Image
                                         src={product.cover}

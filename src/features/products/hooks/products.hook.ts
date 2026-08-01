@@ -1,9 +1,8 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query";
-import { GetProductsParams, GetProductsResponse } from "../apis/products.api";
+import { GetProductsParams } from "../apis/products.api";
 import { IProduct } from "../types/products";
-import { IApiResponse } from "@/shared/lib/types/api";
 
 interface IProductsResponse {
   data: IProduct[];

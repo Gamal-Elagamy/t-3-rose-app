@@ -195,7 +195,10 @@
       "deliverTo": " التسليم إلى",
       "locating": "جارِ تحديد الموقع...",
       "selectLocation": "اختر الموقع",
-      "login": "تسجيل الدخول"
+      "login": "تسجيل الدخول",
+      "searchDefault": "منتجات قد تعجبك",
+      "Rating": "تقيم",
+      "ratings": "تقييمات"
     },
     "navItems": {
       "home": "الرئيسية",

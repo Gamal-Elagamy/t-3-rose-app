@@ -1,4 +1,5 @@
 import { getProducts } from "@/features/products/apis/products.api";
+import { SortBy, SortOrder } from "@/features/products/constants/sort.constants";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -20,13 +21,12 @@ export async function GET(req: NextRequest) {
             minRating: searchParams.get("minRating")
                 ? Number(searchParams.get("minRating"))
                 : undefined,
-            sortBy: searchParams.get("sortBy") as any,
-            sortOrder: searchParams.get("sortOrder") as any,
+            sortBy: searchParams.get("sortBy") as SortBy ,
+            sortOrder: searchParams.get("sortOrder") as SortOrder,
         });
 
-        console.log("Route" , data.data)
         return NextResponse.json(data);
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { status: false, message: "Failed to fetch products" },
             { status: 500 }
