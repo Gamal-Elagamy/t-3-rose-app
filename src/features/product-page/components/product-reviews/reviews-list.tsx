@@ -24,7 +24,7 @@ export function ReviewsList({ productId }: IProductId) {
       {/* Review Item */}
       {pReviews?.data.map((review) => (
         <div
-          key={review.user.id}
+          key={review.id}
           className="review-item flex flex-col gap-2.5 pb-4 border-b border-b-ds-border-muted"
         >
           {/* User Review */}
@@ -70,7 +70,7 @@ export function ReviewsList({ productId }: IProductId) {
 
           {/* Review Description */}
           <div className="review-description font-semibold text-base text-black dark:text-white">
-            {review.headline ?? 'Awesome Bouquet!'}
+            {review.headline ?? ''}
             <p className="mt-1.5 font-normal text-ds-text-default leading-tight">
               {review.content ?? ''}
             </p>

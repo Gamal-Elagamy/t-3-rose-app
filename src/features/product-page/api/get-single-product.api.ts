@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { ProductResponse } from '../types/product-details';
+import { IApiResponse } from '@/shared/lib/types/api';
 
 export default async function getProductDetails(productId?: string) {
   // Get Product Data

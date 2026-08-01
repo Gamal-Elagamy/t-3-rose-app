@@ -1,8 +1,10 @@
+import { IApiResponse } from '@/shared/lib/types/api';
 import IProductReviews, { IMetadata } from '../types/product-reviews';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 
 export default async function getProductReviews(productId?: string) {
   // Get reviews Data
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews?productId=${productId}`);
+  const response = await fetch(`${getApiBaseUrl()}/reviews?productId=${productId}`);
 
   const data: IApiResponse<{ data: IProductReviews[]; metadata: IMetadata }> =
     await response.json();

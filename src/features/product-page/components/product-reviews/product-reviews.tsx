@@ -3,7 +3,7 @@ import ReviewsItem from './reviews';
 import SectionTitle from '@/shared/components/section-title';
 import { getTranslations } from 'next-intl/server';
 import getProductReviews from '../../api/get-product-reviews.api';
-import getProductDetails from '../../api/get-singel-product.api';
+import getProductDetails from '../../api/get-single-product.api';
 
 export interface IProductId {
   productId: string;

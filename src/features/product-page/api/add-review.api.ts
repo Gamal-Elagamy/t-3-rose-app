@@ -1,4 +1,4 @@
-'use server';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 
 interface IReviewData {
@@ -13,7 +13,7 @@ export default async function addProductReview(reviewData: IReviewData) {
   const jwt = await getNextAuthToken();
 
   // Get reviews Data
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`, {
+  const response = await fetch(`${getApiBaseUrl()}/reviews`, {
     body: JSON.stringify(reviewData),
     method: 'POST',
     headers: {

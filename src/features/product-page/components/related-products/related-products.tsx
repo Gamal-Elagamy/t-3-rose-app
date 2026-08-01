@@ -1,5 +1,5 @@
 import SectionTitle from '@/shared/components/section-title';
-import getProductDetails from '../../api/get-singel-product.api';
+import getProductDetails from '../../api/get-single-product.api';
 import { getProducts } from '@/features/products/apis/products.api';
 import ProductsErrorBoundary from '@/shared/components/error-boundary';
 import { Suspense } from 'react';
