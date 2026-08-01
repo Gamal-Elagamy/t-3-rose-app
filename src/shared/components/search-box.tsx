@@ -8,13 +8,14 @@ import Link from "next/link";
 import { useGetProductsQuery } from "@/features/products/hooks/products.hook";
 import { cn } from "../lib/utils/tailwind-cn";
 import { SearchResultSkeleton } from "./search-skeleton";
+import { useDebounce } from "../lib/utils/use-debounced";
 
 export const SearchBox = () => {
     const t = useTranslations("header.nav");
 
     const [searchOpen, setSearchOpen] = useState(false);
     const [query, setQuery] = useState("");
-    const [debouncedQuery, setDebouncedQuery] = useState("");
+    const debouncedQuery = useDebounce(query, 500);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const { data, isLoading } = useGetProductsQuery(
@@ -23,14 +24,7 @@ export const SearchBox = () => {
             limit: 5,
         },
     );
-    console.log("Componetr" , data)
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setDebouncedQuery(query);
-        }, 500);
 
-        return () => clearTimeout(timer);
-    }, [query]);
 
 
     useEffect(() => {
@@ -55,7 +49,7 @@ export const SearchBox = () => {
 
     return (
         <div ref={containerRef}
-            className="relative flex-1">
+            className="relative flex-1 z-99">
             <div className="flex items-center gap-2 rounded-xl border px-3.5 py-2 dark:bg-zinc-700 border-zinc-600">
                 <Search size={16} className={cn(query ? "dark:text-zinc-50" : "dark:text-zinc-400")} />
 
@@ -75,7 +69,7 @@ export const SearchBox = () => {
             </div>
 
             {searchOpen && (
-                <div className="absolute inset-x-0 top-full mt-2 bg-white dark:bg-zinc-800 max-h-105 overflow-y-auto rounded-xl  py-2 px-4 shadow-2xl ">
+                <div className="absolute z-99 inset-x-0 top-full mt-2 bg-white dark:bg-zinc-800 max-h-105 overflow-y-auto rounded-xl  py-2 px-4 shadow-2xl ">
 
                     {!query && (
                         <div className="mb-2.5 text-base  font-semibold text-maroon-700">
@@ -95,7 +89,7 @@ export const SearchBox = () => {
                                         className="size-full rounded-md"
                                     />
                                 </div>
-                                <div className="flex-1 flex justify-between items-start text-black dark:text-background">
+                                <div className="flex-1 flex justify-between items-start text-black dark:text-zinc-50">
                                     <div className="space-y-1">
                                         <div className="text-base font-semibold ">
                                             {product.title}
