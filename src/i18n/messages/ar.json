@@ -296,6 +296,7 @@
     }
   },
   "product": {
+    "errorPage": "حدث خطأ اثناء جلب البيانات",
     "outOfStock": "نفدت الكمية",
     "new": "جديد",
     "hot": "شائع",
@@ -306,27 +307,37 @@
     "leftInStock": "متبقي {count} في المخزون",
     "rating": "التقييم: {rating}/5",
     "ratingsCount": "({count} تقييم)",
-    "product-reviews": {
-      "title": "مراجعات المنتجات",
-      "general-rating": "التقييم العام:",
-      "ratings": "تقييمات",
-      "no-ratings": "لا توجد تقييمات بعد.",
-      "no-reviews": "لا توجد مراجعات بعد.",
-      "loading": "جارى التحميل ...",
-      "form-review-validation": {
-        "required": "هذا الحقل مطلوب",
-        "rating-required": "برجاء اختيار تقييم",
-        "form-rating": "تقييمك:",
-        "form-title": "العنوان",
-        "form-title-placeholder": "أدخل عنوان المراجعة",
-        "form-review": "المراجعة",
-        "form-review-placeholder": "ما رأيك في هذا المنتج؟",
-        "form-button": "إضافة مراجعة",
-        "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
-      }
+    "leftInStock": "متبقي {count} في المخزون",
+    "currency": "ج.م",
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "error": {
+      "errorPageTitle": "حدث خطأ غير متوقع",
+      "errorPageDescription": "تعذر تحميل المنتجات. يرجى المحاولة مرة أخرى.",
+      "tryAgain": "إعادة المحاولة",
+      "noProductsFound": "لم يتم العثور على منتجات."
     },
-    "related-product": "المنتجات ذات الصلة"
+    "noProductsFound": "لم يتم العثور على المنتجات"
   },
+  "product-reviews": {
+    "title": "مراجعات المنتجات",
+    "general-rating": "التقييم العام:",
+    "ratings": "تقييمات",
+    "no-ratings": "لا توجد تقييمات بعد.",
+    "no-reviews": "لا توجد مراجعات بعد.",
+    "loading": "جارى التحميل ...",
+    "form-review-validation": {
+      "required": "هذا الحقل مطلوب",
+      "rating-required": "برجاء اختيار تقييم",
+      "form-rating": "تقييمك:",
+      "form-title": "العنوان",
+      "form-title-placeholder": "أدخل عنوان المراجعة",
+      "form-review": "المراجعة",
+      "form-review-placeholder": "ما رأيك في هذا المنتج؟",
+      "form-button": "إضافة مراجعة",
+      "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
+    }
+  },
+  "related-product": "المنتجات ذات الصلة",
   "filters": {
     "category": "الفئة",
     "occasion": "المناسبة",
