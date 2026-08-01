@@ -192,7 +192,10 @@
     },
     "nav": {
       "searchPlaceholder": "ما هي الهدية الرائعة التي تبحث عنها؟",
-      "deliverTo": " التسليم إلى"
+      "deliverTo": " التسليم إلى",
+      "locating": "جارِ تحديد الموقع...",
+      "selectLocation": "اختر الموقع",
+      "login": "تسجيل الدخول"
     },
     "navItems": {
       "home": "الرئيسية",
@@ -201,6 +204,11 @@
       "occasions": "المناسبات",
       "contact": "اتصل بنا",
       "about": "من نحن"
+    },
+    "mobile": {
+      "menu": "القائمة",
+      "openMenu": "فتح القائمة",
+      "closeMenu": "إغلاق القائمة"
     }
   },
   "home-page": {
