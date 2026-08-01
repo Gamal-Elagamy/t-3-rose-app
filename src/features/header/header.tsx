@@ -26,7 +26,7 @@ export function Header() {
   return (
     <header>
       {/* desktop */}
-      <div className="flex items-center gap-6 px-6 py-4">
+      <div className="hidden  items-center gap-6 px-6 py-4 lg:flex">
         <Logo />
         <DeliverTo />
         <SearchBar />
@@ -60,7 +60,10 @@ export function Header() {
 
         <SearchBar />
       </div>
-      <MainNav />
+      \
+      <div className="hidden lg:block">
+        <MainNav />
+      </div>
     </header>
   );
 }
