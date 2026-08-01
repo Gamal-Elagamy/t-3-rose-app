@@ -304,6 +304,7 @@
     }
   },
   "product": {
+    "errorPage": "حدث خطأ اثناء جلب البيانات",
     "outOfStock": "نفدت الكمية",
     "new": "جديد",
     "hot": "شائع",
@@ -314,6 +315,14 @@
     "leftInStock": "متبقي {count} في المخزون",
     "rating": "التقييم: {rating}/5",
     "ratingsCount": "({count} تقييم)",
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "error": {
+      "errorPageTitle": "حدث خطأ غير متوقع",
+      "errorPageDescription": "تعذر تحميل المنتجات. يرجى المحاولة مرة أخرى.",
+      "tryAgain": "إعادة المحاولة",
+      "noProductsFound": "لم يتم العثور على منتجات."
+    },
+    "noProductsFound": "لم يتم العثور على المنتجات",
     "product-reviews": {
       "title": "مراجعات المنتجات",
       "general-rating": "التقييم العام:",
