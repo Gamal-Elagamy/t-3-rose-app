@@ -12,18 +12,23 @@ export function PriceFilter() {
   const { filters, setFilter, resetFilter } = useProductFilters();
 
   // Variables
-  const priceFrom = filters.priceFrom ?? '0';
-  const priceTo = filters.priceTo ?? '1000000';
+  const minPrice = filters.minPrice ?? '0';
+  const maxPrice = filters.maxPrice ?? '1000000';
 
-  const [localPriceFrom, setLocalPriceFrom] = useState(priceFrom);
-  const [localPriceTo, setLocalPriceTo] = useState(priceTo);
+  const [localPriceFrom, setLocalPriceFrom] = useState(minPrice);
+  const [localPriceTo, setLocalPriceTo] = useState(maxPrice);
 
-  const hasFilter = filters.priceFrom || filters.priceTo;
+  const hasFilter = filters.minPrice || filters.maxPrice;
 
   // Functions
-  const handleBlur = () => {
-    setFilter('priceFrom', localPriceFrom === '0' ? null : localPriceFrom);
-    setFilter('priceTo', localPriceTo === '1000000' ? null : localPriceTo);
+  const handlePriceFromChange = (value: string) => {
+    setLocalPriceFrom(value);
+    setFilter('minPrice', value === '0' ? null : value);
+  };
+
+  const handlePriceToChange = (value: string) => {
+    setLocalPriceTo(value);
+    setFilter('maxPrice', value === '1000000' ? null : value);
   };
 
   return (
@@ -34,8 +39,8 @@ export function PriceFilter() {
         {hasFilter && (
           <button
             onClick={() => {
-              resetFilter('priceFrom');
-              resetFilter('priceTo');
+              resetFilter('minPrice');
+              resetFilter('maxPrice');
               setLocalPriceFrom('0');
               setLocalPriceTo('1000000');
             }}
@@ -53,8 +58,7 @@ export function PriceFilter() {
           <input
             type="number"
             value={localPriceFrom}
-            onChange={(e) => setLocalPriceFrom(e.target.value)}
-            onBlur={handleBlur}
+            onChange={(e) => handlePriceFromChange(e.target.value)}
             min={0}
             className="w-full rounded-lg border border-ds-border-soft bg-ds-bg-plain px-3 py-2 text-sm text-ds-text-plain outline-none focus:border-ds-border-primary"
           />
@@ -65,8 +69,7 @@ export function PriceFilter() {
           <input
             type="number"
             value={localPriceTo}
-            onChange={(e) => setLocalPriceTo(e.target.value)}
-            onBlur={handleBlur}
+            onChange={(e) => handlePriceToChange(e.target.value)}
             min={0}
             className="w-full rounded-lg border border-ds-border-soft bg-ds-bg-plain px-3 py-2 text-sm text-ds-text-plain outline-none focus:border-ds-border-primary"
           />

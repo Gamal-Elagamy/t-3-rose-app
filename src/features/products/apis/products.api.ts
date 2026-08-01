@@ -3,7 +3,7 @@ import { IProduct } from '../types/products';
 import { SortBy, SortOrder } from '../constants/sort.constants';
 import { IApiResponse } from '@/shared/lib/types/api';
 
-interface GetProductsParams {
+export interface GetProductsParams {
   page?: number;
   limit?: number;
   categoryId?: string;
@@ -22,9 +22,14 @@ interface GetProductsResponse {
 }
 
 export async function getProducts({ ...params }: GetProductsParams): Promise<GetProductsResponse> {
-  const response = await fetch(
-    `${getApiBaseUrl()}/products?${new URLSearchParams(params as Record<string, string>).toString()}`
-  );
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      searchParams.append(key, String(value));
+    }
+  });
+  const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
   const data: IApiResponse<GetProductsResponse> = await response.json();
 
   if (!response.ok || !data.status || !data.payload) {
