@@ -10,6 +10,9 @@ export default async function ProductsPage({
 }) {
   const { page, categoryId, occasionId, minPrice, maxPrice, minRating } = await searchParams;
   const currentPage = Number(page) || 1;
+import { SidebarFilters } from '@/features/products/components/sidebar-filters/sidebar-filters';
+
+export default async function ProductsPage() {
   return (
     <section className="py-12">
       <div className="max-w-7xl mx-auto px-4">
@@ -24,6 +27,8 @@ export default async function ProductsPage({
               maxPrice={maxPrice}
               minRating={minRating}
             />
+          <Suspense fallback={<div className="w-72">Loading filters...</div>}>
+            <SidebarFilters />
           </Suspense>
         </div>
       </div>

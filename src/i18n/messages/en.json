@@ -167,6 +167,43 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "Welcome back,",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Log out"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "noNotifications": "No notifications",
+      "markAllAsRead": "Mark all as read",
+      "titleWithCount": "Notifications ({count})",
+      "markAsRead": "Mark as read",
+      "unread": "Unread",
+      "read": "Read",
+      "viewAll": "View all notifications",
+      "new": "New",
+      "loading": "Loading notifications...",
+      "error": "Something went wrong",
+      "empty": "You're all caught up!"
+      
+    },
+   "nav":{
+    "searchPlaceholder": "what awesome gift are you looking for",
+    "deliverTo":" deliver to"
+   },
+    "navItems": {
+      "home": "Home",
+      "products": "Products",
+      "categories": "Categories",
+      "occasions": "Occasions",
+      "contact": "Contact",
+      "about": "About"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
@@ -267,6 +304,8 @@
     "addToCart": "Add to cart",
     "addToWishlist": "Add to wishlist",
     "removeFromWishlist": "Remove from wishlist",
+    "currency": "EGP",
+    "leftInStock": "{count} left in stock",
     "rating": "Rating: {rating}/5",
     "ratingsCount": "({count} ratings)",
     "leftInStock": "{count} left in stock",
@@ -280,4 +319,36 @@
       "noProductsFound": "No products found."
     }
   }
+    "product-reviews": {
+      "title": "Product Reviews",
+      "general-rating": "General rating:",
+      "ratings": "ratings",
+      "no-ratings": "No ratings yet.",
+      "no-reviews": "No Reviews yet.",
+      "loading": "Loading...",
+      "form-review-validation": {
+        "required": "This field is required",
+        "rating-required": "Please select a rating",
+        "form-rating": "Your rating:",
+        "form-title": "Title",
+        "form-title-placeholder": "Enter review title",
+        "form-review": "Review",
+        "form-review-placeholder": "What do you think of this product?",
+        "form-button": "Add Review",
+        "form-login-link": "Please login to be able to review the product"
+      }
+    },
+    "related-product": "Related Products"
+  },
+  "filters": {
+    "category": "Category",
+    "occasion": "Occasion",
+    "rating": "Rating",
+    "price": "Price",
+    "from": "from",
+    "to": "to",
+    "reset": "× Reset",
+    "resetAll": "Reset All"
+  },
+  "failedToLoadProducts": "Failed to load products. Try again."
 }

@@ -68,7 +68,7 @@ export default function ProductCard({
           </div>
         </Link>
 
-        <AddToWishlist variant="card" />
+        <AddToWishlist variant="card" productId={id} />
       </div>
 
       <Link href={`/products/${id}`}>
@@ -84,8 +84,8 @@ export default function ProductCard({
                 size={18}
                 className={
                   index < filledStars
-                    ? 'fill-yellow-500 text-yellow-500'
-                    : 'fill-transparent text-yellow-500'
+                    ? 'fill-orange-500 text-orange-500'
+                    : 'fill-transparent text-orange-500'
                 }
               />
             ))}
@@ -100,7 +100,7 @@ export default function ProductCard({
           </div>
         </div>
 
-        <AddToCart variant="card" />
+        <AddToCart variant="card" productId={id} />
       </div>
     </div>
   );
