@@ -9,11 +9,14 @@ export function useProductFilters() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const category = searchParams.get('category');
-  const occasion = searchParams.get('occasion');
-  const rating = searchParams.get('rating');
-  const priceFrom = searchParams.get('priceFrom');
-  const priceTo = searchParams.get('priceTo');
+  const categoryId = searchParams.get('categoryId');
+  const occasionId = searchParams.get('occasionId');
+  const minRating = searchParams.get('minRating');
+  const minPrice = searchParams.get('minPrice');
+  const maxPrice = searchParams.get('maxPrice');
+
+  console.log('minPrice', minPrice);
+  console.log('maxPrice', maxPrice);
 
   const setFilter = useCallback(
     (key: string, value: string | null) => {
@@ -42,7 +45,7 @@ export function useProductFilters() {
   }, [router, pathname]);
 
   return {
-    filters: { category, occasion, rating, priceFrom, priceTo },
+    filters: { categoryId, occasionId, minRating, minPrice, maxPrice },
     setFilter,
     resetFilter,
     resetAll,
