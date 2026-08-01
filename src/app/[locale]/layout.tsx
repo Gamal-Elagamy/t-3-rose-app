@@ -7,9 +7,9 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 import { Toaster } from '@/shared/components/ui/sonner';
-import { Header } from '@/features/header/header';
 
 import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
+import { ConditionalHeader } from '@/features/header/components/shared/conditional-header';
 
 // Fonts
 const dancing = Dancing_Script({
@@ -73,7 +73,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>
-          <Header />
+          <ConditionalHeader />
           {children}
         </Providers>
         <Toaster />
