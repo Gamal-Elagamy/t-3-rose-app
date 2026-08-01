@@ -1,13 +1,14 @@
 import { Suspense } from 'react';
 import { ProductsGrid } from '@/features/products/components/products-grid';
-import { ProductsGridSkeleton } from '@/features/products/skeletons/products-grid-skeleton';
+import { ProductsGridSkeleton } from '@/features/products/skeletons/products-grid.skeleton';
+import { GetProductsParams } from '@/features/products/apis/products.api';
 
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<GetProductsParams>;
 }) {
-  const { page } = await searchParams;
+  const { page, categoryId, occasionId, minPrice, maxPrice, minRating } = await searchParams;
   const currentPage = Number(page) || 1;
   return (
     <section className="py-12">
@@ -15,7 +16,14 @@ export default async function ProductsPage({
         <div className="grid grid-cols-[300px_1fr] gap-6">
           <div></div>
           <Suspense key={currentPage} fallback={<ProductsGridSkeleton />}>
-            <ProductsGrid page={currentPage} />
+            <ProductsGrid
+              page={currentPage}
+              categoryId={categoryId}
+              occasionId={occasionId}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              minRating={minRating}
+            />
           </Suspense>
         </div>
       </div>

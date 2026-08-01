@@ -173,12 +173,10 @@
         "card-title": "بدء من 10.99 ج.م",
         "card-description": "هدايا خاصة للأشخاص الذين تحبهم",
         "card-button": "تسوق الأن",
-
         "carousel-title": "قولها بالزهور",
         "carousel-description": "هدايا أنيقة لكل لحظة خاصة.",
         "carousel-button": "أشترى الآن!"
       },
-
       "occasions": {
         "wedding": {
           "title": "الزفاف",
@@ -193,7 +191,6 @@
           "description": "احتفلي بكل عام من الحب بمفاجأة ذات معنى"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "توصيل مجاني",
@@ -263,7 +260,7 @@
     }
   },
   "product": {
-        "errorPage":"حدث خطأ اثناء جلب البيانات",
+    "errorPage": "حدث خطأ اثناء جلب البيانات",
     "outOfStock": "نفدت الكمية",
     "new": "جديد",
     "hot": "شائع",
@@ -274,6 +271,13 @@
     "ratingsCount": "({count} تقييم)",
     "leftInStock": "متبقي {count} في المخزون",
     "currency": "ج.م",
-    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "error": {
+      "errorPageTitle": "حدث خطأ غير متوقع",
+      "errorPageDescription": "تعذر تحميل المنتجات. يرجى المحاولة مرة أخرى.",
+      "tryAgain": "إعادة المحاولة",
+      "noProductsFound": "لم يتم العثور على منتجات."
+    },
+    "noProductsFound": "لم يتم العثور على المنتجات"
   }
 }

@@ -173,12 +173,10 @@
         "card-title": "Staring from 10.99 EGP",
         "card-description": "Special Gifts For The People You Love",
         "card-button": "Shop Now",
-
         "carousel-title": "Say It with Flowers",
         "carousel-description": "Elegant gifts for every special moment.",
         "carousel-button": "I’m buying!"
       },
-
       "occasions": {
         "wedding": {
           "title": "Wedding",
@@ -193,7 +191,6 @@
           "description": "Mark Every Year of Love with a Meaningful Surprise"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "Free Delivery",
@@ -263,7 +260,7 @@
     }
   },
   "product": {
-    "errorPage":"Failed When Fetch Products",
+    "errorPage": "Failed When Fetch Products",
     "outOfStock": "Out of stock",
     "new": "New",
     "hot": "Hot",
@@ -274,6 +271,13 @@
     "ratingsCount": "({count} ratings)",
     "leftInStock": "{count} left in stock",
     "currency": "EGP",
-    "failedToLoadProducts": "Failed to load products. Try again."
+    "noProductsFound": "No products found.",
+    "failedToLoadProducts": "Failed to load products. Try again.",
+    "error": {
+      "errorPageTitle": "Something went wrong",
+      "errorPageDescription": "We couldn't load the products. Please try again.",
+      "tryAgain": "Try Again",
+      "noProductsFound": "No products found."
+    }
   }
 }

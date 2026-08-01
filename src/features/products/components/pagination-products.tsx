@@ -1,8 +1,9 @@
 'use client';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ReactNode } from 'react';
-import { getPageNumbers } from '../../../shared/lib/utils/pagaination.utils';
+import { ReactNode, useCallback, useMemo } from 'react';
+import { getPageNumbers } from '../../../shared/lib/utils/pagination.utils';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 type PageButtonProps = {
   children: ReactNode;
@@ -25,15 +26,15 @@ function PageButton({
       disabled={disabled}
       aria-label={ariaLabel}
       aria-current={active ? 'page' : undefined}
-      className={[
+      className={cn(
         'inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2  border dark:border-none',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 border dark:border-none',
         disabled
-          ? 'cursor-not-allowed opacity-40 border-ds-muted dark:bg-ds-plain  text-gray-400'
+          ? 'cursor-not-allowed border-ds-muted text-gray-400 opacity-40 dark:bg-ds-plain'
           : active
             ? 'bg-ds-bg-primary text-white shadow-sm'
-            : 'border-ds-bg-muted dark:border-none text-gray-700 dark:text-white dark:bg-ds-bg-plain ',
-      ].join(' ')}
+            : 'border-ds-bg-muted text-gray-700 dark:border-none dark:bg-ds-bg-plain dark:text-white'
+      )}
     >
       {children}
     </button>
@@ -43,27 +44,34 @@ function PageButton({
 type PaginationProps = {
   page: number;
   totalPages?: number;
-  onPageChange?: (page: number) => void;
 };
 
-export default function PaginationProducts({
-  page,
-  totalPages = 10,
-  onPageChange,
-}: PaginationProps) {
+export default function PaginationProducts({ page, totalPages = 10 }: PaginationProps) {
+  // Hooks
   const router = useRouter();
   const searchParams = useSearchParams();
-  const goTo = (p: number) => {
-    const clamped = Math.min(Math.max(p, 1), totalPages);
 
-    const params = new URLSearchParams(searchParams.toString());
+  // Memoized Handlers
+  const goTo = useCallback(
+    (page: number) => {
+      const clamped = Math.min(Math.max(page, 1), totalPages);
 
-    params.set('page', clamped.toString());
+      const params = new URLSearchParams(searchParams.toString());
 
-    router.push(`?${params.toString()}`);
-  };
+      params.set('page', clamped.toString());
 
-  const pages = getPageNumbers({ current: page, total: totalPages });
+      router.push(`?${params.toString()}`);
+    },
+    [router, searchParams, totalPages]
+  );
+  const pages = useMemo(
+    () =>
+      getPageNumbers({
+        current: page,
+        total: totalPages,
+      }),
+    [page, totalPages]
+  );
 
   return (
     <div dir="ltr" className="flex items-center justify-center gap-1.5 p-6">
