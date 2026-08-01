@@ -192,7 +192,10 @@
     },
     "nav": {
       "searchPlaceholder": "what awesome gift are you looking for",
-      "deliverTo": " deliver to"
+      "deliverTo": " deliver to",
+      "locating": "Locating...",
+      "selectLocation": "Select location",
+      "login": "login"
     },
     "navItems": {
       "home": "Home",
@@ -201,6 +204,11 @@
       "occasions": "Occasions",
       "contact": "Contact",
       "about": "About"
+    },
+    "mobile": {
+      "menu": "Menu",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
     }
   },
   "home-page": {
