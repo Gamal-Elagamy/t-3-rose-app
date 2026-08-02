@@ -195,7 +195,10 @@
       "deliverTo": " deliver to",
       "locating": "Locating...",
       "selectLocation": "Select location",
-      "login": "login"
+      "login": "login",
+      "searchDefault": "Products you may like",
+       "Rating": "Rating",
+    "ratings": "ratings"
     },
     "navItems": {
       "home": "Home",

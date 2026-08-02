@@ -28,7 +28,7 @@ function PageButton({
       aria-current={active ? 'page' : undefined}
       className={cn(
         'inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 border dark:border-none',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 border dark:border-none cursor-pointer',
         disabled
           ? 'cursor-not-allowed border-ds-muted text-gray-400 opacity-40 dark:bg-ds-plain'
           : active

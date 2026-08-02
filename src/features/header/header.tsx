@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import { UserDropdown } from './components/authenticated-state/user-dropdown/user-dropdown';
 import { Notifications } from './components/authenticated-state/notifications/Notifications';
 import { Logo } from './components/shared/logo';
-import { DeliverTo } from './components/shared/deliver-to/deliver-to';
 import { SearchBar } from './components/shared/search-bar';
 import { WishlistButton } from './components/shared/wishlist';
 import { CartButton } from './components/shared/cart-button';
@@ -15,6 +14,7 @@ import { ThemeToggle } from '@/shared/components/theme-toggle';
 import { MobileMenu } from './components/shared/mobile-menu';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { SearchBox } from '@/shared/components/search-box';
 
 export function Header() {
   // Translation
@@ -28,8 +28,8 @@ export function Header() {
       {/* desktop */}
       <div className="hidden  items-center gap-6 px-6 py-4 lg:flex">
         <Logo />
-        <DeliverTo />
-        <SearchBar />
+        {/* <DeliverTo /> */}
+        <SearchBox />
         <div className="flex shrink-0 items-center gap-4">
           {isAuthenticated ? (
             <div className="flex items-center gap-4">
@@ -60,7 +60,6 @@ export function Header() {
 
         <SearchBar />
       </div>
-      \
       <div className="hidden lg:block">
         <MainNav />
       </div>
