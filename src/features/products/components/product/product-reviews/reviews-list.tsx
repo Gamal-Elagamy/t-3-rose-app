@@ -60,7 +60,7 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
 
           {/* Review Description */}
           <div className="review-description font-semibold text-base text-black dark:text-white">
-            {review.headline ?? 'Awesome Bouquet!'}
+            {review.headline ?? ''}
             <p className="mt-1.5 font-normal text-ds-text-default leading-tight">
               {review.content ?? ''}
             </p>
