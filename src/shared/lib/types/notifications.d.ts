@@ -5,7 +5,6 @@ export interface NotificationItem {
   isRead: boolean;
 }
 
-
 export interface PaginatedNotifications {
   data: NotificationItem[];
   metadata: {
