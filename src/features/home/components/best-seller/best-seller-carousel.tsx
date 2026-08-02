@@ -12,12 +12,12 @@ import {
 
 interface BestSellerCarouselProps {
   products: IProduct[];
-  itemsPerView?: number;
+  variant: 'default' | 'related';
 }
 
-export default function BestSellerCarousel({ products, itemsPerView }: BestSellerCarouselProps) {
+export default function BestSellerCarousel({ products, variant }: BestSellerCarouselProps) {
   // Related Condition
-  const isRelated = itemsPerView === 4;
+  const isRelated = variant === 'related';
   return (
     <Carousel>
       <CarouselContent>

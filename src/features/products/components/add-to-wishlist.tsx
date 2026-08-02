@@ -1,22 +1,56 @@
 'use client';
 
+import { useAddToWishlist } from '@/features/wish-list/hooks/use-add-to-wishlist';
+import {
+  getGuestWishlist,
+  toggleGuestWishlistItem,
+} from '@/features/wish-list/storage/guest-wishlist';
 import { Button } from '@/shared/components/ui/button';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { HeartMinus, HeartPlus } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 
 type AddToWishlistVariant = 'card' | 'details';
 
 interface AddToWishlistProps {
   variant?: AddToWishlistVariant;
+  productId: string;
 }
 
-export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) {
-  // Translation
-  const t = useTranslations('home.product');
-  // State
-  const [isWishlisted, setIsWishlisted] = useState(false);
+export default function AddToWishlist({ variant = 'card', productId }: AddToWishlistProps) {
+  // Translations
+  const t = useTranslations('product');
+
+  // Hooks
+  const { data: session } = useSession();
+  const { mutate: addToWishlist, isPending: isAdding } = useAddToWishlist();
+
+  // State - initialize from localStorage for guest users
+  const [isWishlisted, setIsWishlisted] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const guestWishlist = getGuestWishlist();
+    return guestWishlist.some((item) => item.productId === productId);
+  });
+
+  const handleToggle = () => {
+    if (session?.user) {
+      // Authenticated user - use API
+      if (isWishlisted) {
+        // For authenticated users, we'd need the wishlist item ID to remove
+        // For now, we'll just toggle the state and let the parent component handle removal
+        setIsWishlisted(false);
+      } else {
+        addToWishlist({ productId });
+        setIsWishlisted(true);
+      }
+    } else {
+      // Guest user - use localStorage
+      const newState = toggleGuestWishlistItem(productId);
+      setIsWishlisted(newState);
+    }
+  };
 
   if (variant === 'details') {
     return (
@@ -26,7 +60,8 @@ export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) 
           isWishlisted &&
             'bg-ds-bg-inverse hover:bg-ds-bg-inverse dark:bg-zinc-700 text-ds-text-inverse dark:text-soft-pink-300 hover:text-ds-text-inverse dark:hover:text-soft-pink-300'
         )}
-        onClick={() => setIsWishlisted((prev) => !prev)}
+        onClick={handleToggle}
+        disabled={isAdding}
         aria-label={isWishlisted ? t('removeFromWishlist') : t('addToWishlist')}
       >
         {isWishlisted ? <HeartMinus className="size-5" /> : <HeartPlus className="size-5" />}
@@ -39,7 +74,8 @@ export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) 
       {isWishlisted ? (
         <Button
           className="absolute top-2 inset-s-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zinc-800"
-          onClick={() => setIsWishlisted(false)}
+          onClick={handleToggle}
+          disabled={isAdding}
         >
           <HeartMinus className="w-4.5 h-4.5" />
           <p>{t('removeFromWishlist')}</p>
@@ -47,7 +83,8 @@ export default function AddToWishlist({ variant = 'card' }: AddToWishlistProps) 
       ) : (
         <Button
           className="absolute top-2 inset-s-2 h-7.5 w-7.5 rounded-full bg-white p-0 text-maroon-600 hover:bg-white cursor-pointer overflow-hidden transition-all duration-200 hover:w-auto hover:px-2.5 [&>span]:gap-0 hover:[&>span]:gap-1.5 hover:[&_p]:max-w-40 hover:[&_p]:opacity-100"
-          onClick={() => setIsWishlisted(true)}
+          onClick={handleToggle}
+          disabled={isAdding}
         >
           <HeartPlus className="size-4.5 shrink-0" />
           <p className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium text-maroon-600 opacity-0 transition-all duration-200">

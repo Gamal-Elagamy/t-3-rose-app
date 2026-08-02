@@ -167,18 +167,60 @@
       }
     }
   },
+  "header": {
+    "userDropdown": {
+      "greeting": "مرحبًا بعودتك،",
+      "account": "الحساب",
+      "addresses": "العناوين",
+      "orders": "الطلبات",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "noNotifications": "لا توجد إشعارات",
+      "titleWithCount": "الإشعارات ({count})",
+      "markAllAsRead": "تحديد الكل كمقروء",
+      "markAsRead": "تحديد كمقروء",
+      "unread": "غير مقروءة",
+      "read": "مقروءة",
+      "viewAll": "عرض كل الإشعارات",
+      "new": "جديد",
+      "loading": "جاري تحميل الإشعارات...",
+      "error": "حدث خطأ ما",
+      "empty": "لا يوجد لديك إشعارات حالياً"
+    },
+    "nav": {
+      "searchPlaceholder": "ما هي الهدية الرائعة التي تبحث عنها؟",
+      "deliverTo": " التسليم إلى",
+      "locating": "جارِ تحديد الموقع...",
+      "selectLocation": "اختر الموقع",
+      "login": "تسجيل الدخول"
+    },
+    "navItems": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "occasions": "المناسبات",
+      "contact": "اتصل بنا",
+      "about": "من نحن"
+    },
+    "mobile": {
+      "menu": "القائمة",
+      "openMenu": "فتح القائمة",
+      "closeMenu": "إغلاق القائمة"
+    }
+  },
   "home-page": {
     "hero-section": {
       "banner": {
         "card-title": "بدء من 10.99 ج.م",
         "card-description": "هدايا خاصة للأشخاص الذين تحبهم",
         "card-button": "تسوق الأن",
-
         "carousel-title": "قولها بالزهور",
         "carousel-description": "هدايا أنيقة لكل لحظة خاصة.",
         "carousel-button": "أشترى الآن!"
       },
-
       "occasions": {
         "wedding": {
           "title": "الزفاف",
@@ -193,7 +235,6 @@
           "description": "احتفلي بكل عام من الحب بمفاجأة ذات معنى"
         }
       },
-
       "features": {
         "free-delivery": {
           "title": "توصيل مجاني",
@@ -234,39 +275,84 @@
     "viewMore": "عرض المزيد",
     "noProductsFound": "لا توجد منتجات",
     "noProductsForOccasion": "لا توجد منتجات لهذه المناسبة.",
-
-    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "about": {
+      "label": "عن الموقع",
+      "title": "نقدم <finest>أفضل</finest> صناديق الهدايا لمناسباتك <special>الخاصة</special>",
+      "description": "اجعل كل مناسبة أكثر تميزًا مع صناديق الهدايا الفاخرة لدينا. يتم تنسيق كل صندوق بعناية وتغليفه بأناقة، ويحتوي على منتجات مختارة بعناية لتترك انطباعًا رائعًا. سواء كانت هدية لعيد ميلاد، أو زفاف، أو مجرد رسالة شكر، فإن صناديقنا مصممة لتجعل كل لحظة لا تُنسى.",
+      "discover": "اكتشف",
+      "features": {
+        "first": "أسعار تنافسية وتسوق سهل",
+        "second": "جودة عالية وتغليف أنيق",
+        "third": "مثالي لجميع المناسبات",
+        "fourth": "توصيل سريع وموثوق"
+      }
+    },
+    "gallery": {
+      "label": "المعرض",
+      "title": "تصفح معرض صورنا الرائع"
+    },
+    "testimonials": {
+      "label": "آراء العملاء",
+      "title": "كلمات حقيقية من عملاء سعداء",
+      "pause": "إيقاف",
+      "play": "تشغيل",
+      "error": "فشل في تحميل آراء العملاء."
+    },
+    "partners": {
+      "title": "موثوق من قبل أكثر من <highlight>+4.5ألف</highlight> شركة"
+    }
   },
   "product": {
+    "errorPage": "حدث خطأ اثناء جلب البيانات",
     "outOfStock": "نفدت الكمية",
     "new": "جديد",
     "hot": "شائع",
     "addToCart": "أضف إلى السلة",
     "addToWishlist": "أضف إلى المفضلة",
-    "removeFromWishlist": "إزالة من المفضلة"
+    "removeFromWishlist": "إزالة من المفضلة",
+    "currency": "ج.م",
+    "leftInStock": "متبقي {count} في المخزون",
+    "rating": "التقييم: {rating}/5",
+    "ratingsCount": "({count} تقييم)",
+    "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+    "error": {
+      "errorPageTitle": "حدث خطأ غير متوقع",
+      "errorPageDescription": "تعذر تحميل المنتجات. يرجى المحاولة مرة أخرى.",
+      "tryAgain": "إعادة المحاولة",
+      "noProductsFound": "لم يتم العثور على منتجات."
+    },
+    "noProductsFound": "لم يتم العثور على المنتجات",
+    "product-reviews": {
+      "title": "مراجعات المنتجات",
+      "general-rating": "التقييم العام:",
+      "ratings": "تقييمات",
+      "no-ratings": "لا توجد تقييمات بعد.",
+      "no-reviews": "لا توجد مراجعات بعد.",
+      "loading": "جارى التحميل ...",
+      "form-review-validation": {
+        "required": "هذا الحقل مطلوب",
+        "rating-required": "برجاء اختيار تقييم",
+        "form-rating": "تقييمك:",
+        "form-title": "العنوان",
+        "form-title-placeholder": "أدخل عنوان المراجعة",
+        "form-review": "المراجعة",
+        "form-review-placeholder": "ما رأيك في هذا المنتج؟",
+        "form-button": "إضافة مراجعة",
+        "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
+      }
+    },
+    "related-product": "المنتجات ذات الصلة"
   },
-  "product-reviews": {
-    "title": "مراجعات المنتجات",
-    "general-rating": "التقييم العام:",
-    "ratings": "تقييمات",
-    "no-ratings": "لا توجد تقييمات بعد.",
-    "no-reviews": "لا توجد مراجعات بعد.",
-    "loading": "جارى التحميل ...",
-
-    "form-review-validation": {
-      "required": "هذا الحقل مطلوب",
-      "rating-required": "برجاء اختيار تقييم",
-
-      "form-rating": "تقييمك:",
-      "form-title": "العنوان",
-      "form-title-placeholder": "أدخل عنوان المراجعة",
-      "form-review": "المراجعة",
-      "form-review-placeholder": "ما رأيك في هذا المنتج؟",
-      "form-button": "إضافة مراجعة",
-
-      "form-login-link": "يرجى تسجيل الدخول لتتمكن من مراجعة المنتج"
-    }
+  "filters": {
+    "category": "الفئة",
+    "occasion": "المناسبة",
+    "rating": "التقييم",
+    "price": "السعر",
+    "from": "من",
+    "to": "إلى",
+    "reset": "× إعادة",
+    "resetAll": "إعادة الكل"
   },
-  "related-product": "المنتجات ذات الصلة"
-
+  "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
 }

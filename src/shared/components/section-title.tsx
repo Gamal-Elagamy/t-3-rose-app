@@ -1,5 +1,3 @@
-import { useLocale } from 'next-intl';
-
 interface SectionTitleProps {
   title: string;
 }

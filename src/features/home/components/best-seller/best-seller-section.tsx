@@ -9,19 +9,19 @@ import { IProduct } from '@/features/products/types/products';
 
 export async function BestSellerCarouselSlot({
   productsPromise,
-  itemsPerView,
+  variant = 'default',
 }: {
-  productsPromise: Promise<IProduct[]>;
-  itemsPerView?: number;
+  variant?: 'default' | 'related';
+  productsPromise: Promise<{ data: IProduct[] }>;
 }) {
   const t = await getTranslations('home');
-  const products = await productsPromise;
+  const { data: products } = await productsPromise;
 
   if (products.length === 0) {
     return <div>{t('noProductsFound')}</div>;
   }
 
-  return <BestSellerCarousel products={products} itemsPerView={itemsPerView} />;
+  return <BestSellerCarousel products={products} variant={variant} />;
 }
 
 export default async function BestSellerSection() {
@@ -30,12 +30,12 @@ export default async function BestSellerSection() {
   });
 
   return (
-    <div className="grid grid-cols-12 gap-9 max-w-11/12 mx-auto mt-27">
-      <div className="col-span-3">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-9 max-w-11/12 mx-auto mt-27">
+      <div className="lg:col-span-3">
         <Explore />
       </div>
 
-      <div className="col-span-9">
+      <div className="lg:col-span-9">
         <ProductsErrorBoundary>
           <Suspense fallback={<BestSellerCarouselSkeleton />}>
             <BestSellerCarouselSlot productsPromise={productsPromise} />

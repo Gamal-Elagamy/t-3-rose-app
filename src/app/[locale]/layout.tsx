@@ -9,6 +9,7 @@ import { LayoutProps } from '@/shared/lib/types/locale';
 import { Toaster } from '@/shared/components/ui/sonner';
 
 import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
+import { ConditionalHeader } from '@/features/header/components/shared/conditional-header';
 
 // Fonts
 const dancing = Dancing_Script({
@@ -70,8 +71,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       className={cn('h-full', 'antialiased', sarabun.variable, tajawal.variable, dancing.variable)}
       suppressHydrationWarning
     >
-      <body className={cn(locale === 'ar' ? 'font-tajawal' : 'font-sarabun', 'bg-ds-bg-subtle')}>
-        <Providers>{children}</Providers>
+      <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
+        <Providers>
+          <ConditionalHeader />
+          {children}
+        </Providers>
         <Toaster />
       </body>
     </html>

@@ -1,5 +1,3 @@
-'use client';
-
 import { Package, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { IProduct } from '../../types/products';
@@ -12,10 +10,10 @@ interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  // Translate
+  // Translations
   const t = useTranslations('product');
 
-  // Functions
+  // Variables
   const currentPrice = Number(product.price);
 
   const isValidDiscountType =
@@ -34,18 +32,20 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     <div className="flex flex-col justify-between h-full">
       <div className="flex flex-col h-full">
         {/* Title */}
-        <h1 className="text-3xl font-semibold text-ds-text-plain">{product.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-semibold text-ds-text-plain">{product.title}</h1>
 
         {/* Price and Stock */}
         <div className="flex flex-wrap items-center gap-1.5 mb-4">
           {originalPrice > currentPrice && (
-            <span className="text-3xl font-bold text-ds-text-subtle line-through">
+            <span className="text-2xl md:text-3xl font-bold text-ds-text-subtle line-through">
               {Math.round(originalPrice)}
             </span>
           )}
-          <span className="text-3xl font-bold text-ds-text-plain">
+          <span className="text-2xl md:text-3xl font-bold text-ds-text-plain">
             {currentPrice}
-            <span className="text-xl text-ds-text-plain font-semibold mx-1">{t('currency')}</span>
+            <span className="text-lg md:text-xl text-ds-text-plain font-semibold mx-1">
+              {t('currency')}
+            </span>
           </span>
           {!isOutOfStock && (
             <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-ds-bg-soft px-3 py-1 text-sm font-medium text-ds-text-plain">
@@ -65,7 +65,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <div className="flex items-center gap-2 border-y border-ds-border-soft py-4">
           <Star className="size-5 fill-yellow-500 text-yellow-500" />
           <span className="text-sm text-ds-text-plain">
-            {t('rating', { rating: product.rating.toFixed(1) })}
+            {t('rating', { rating: (product.rating ?? 0).toFixed(1) })}
           </span>
           <span className="text-sm text-ds-text-info cursor-pointer">
             {t('ratingsCount', { count: product._count.reviews })}
@@ -81,9 +81,9 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       </div>
 
       {/* Add to cart and wishlist */}
-      <div className="flex items-center gap-3">
-        <AddToWishlist variant="details" />
-        <AddToCart variant="details" stock={product.stock} />
+      <div className="flex items-center gap-3 mt-4 md:mt-0">
+        <AddToWishlist variant="details" productId={product.id} />
+        <AddToCart variant="details" stock={product.stock} productId={product.id} />
       </div>
     </div>
   );

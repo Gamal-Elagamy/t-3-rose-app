@@ -3,7 +3,7 @@ import { IProduct } from '../types/products';
 import { SortBy, SortOrder } from '../constants/sort.constants';
 import { IApiResponse } from '@/shared/lib/types/api';
 
-interface GetProductsParams {
+export interface GetProductsParams {
   page?: number;
   limit?: number;
   categoryId?: string;
@@ -16,20 +16,27 @@ interface GetProductsParams {
   sortOrder?: SortOrder;
 }
 
-export async function getProducts({ ...params }: GetProductsParams): Promise<IProduct[]> {
-  const response = await fetch(
-    `${getApiBaseUrl()}/products?${new URLSearchParams(params as Record<string, string>).toString()}`
-  );
-  const data: IApiResponse<{
-    data: IProduct[];
-    metadata: { page: string; limit: string; total: string; totalPages: string };
-  }> = await response.json();
+interface GetProductsResponse {
+  data: IProduct[];
+  metadata: { page: string; limit: string; total: string; totalPages: string };
+}
+
+export async function getProducts({ ...params }: GetProductsParams): Promise<GetProductsResponse> {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      searchParams.append(key, String(value));
+    }
+  });
+  const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
+  const data: IApiResponse<GetProductsResponse> = await response.json();
 
   if (!response.ok || !data.status || !data.payload) {
     throw new Error(data.message || 'Failed to fetch products');
   }
 
-  return data.payload.data;
+  return data.payload;
 }
 
 export async function getProduct(id: string): Promise<IProduct> {
