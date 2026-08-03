@@ -1,9 +1,7 @@
-import React from 'react'
-
-export default function page() {
+export default function CartPage() {
   return (
     <div>
-        <h4 className="text-5xl text-white">CART</h4>
+      <h4 className="text-5xl text-white">CART</h4>
     </div>
-  )
+  );
 }
