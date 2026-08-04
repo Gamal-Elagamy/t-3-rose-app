@@ -357,5 +357,18 @@
     "reset": "× إعادة",
     "resetAll": "إعادة الكل"
   },
-  "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً."
+  "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+  "checkout": {
+    "shipping": {
+      "title": "عنوان الشحن",
+      "addNewAddress": "إضافة عنوان جديد",
+      "next": "التالي"
+    }
+  },
+  "address": {
+    "list": {
+      "noAddresses": "لم يتم العثور على عناوين، يرجى إضافة عنوان جديد.",
+      "or": "أو"
+    }
+  }
 }

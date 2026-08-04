@@ -1,7 +1,8 @@
 'use client';
 import { Button } from '@/shared/components/ui/button';
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
-import { MoveRight } from 'lucide-react';
+import { MoveRight, MoveLeft } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function AddressNextStepButton({
   selectedAddressId,
@@ -9,6 +10,9 @@ export default function AddressNextStepButton({
   selectedAddressId: string | undefined;
 }) {
   const { goToNextStep } = useCheckoutStepper();
+  const t = useTranslations('checkout.shipping');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
 
   return (
     <div className="flex justify-end">
@@ -17,7 +21,8 @@ export default function AddressNextStepButton({
         disabled={!selectedAddressId}
         className="bg-ds-bg-primary text-ds-text-inverse hover:bg-ds-bg-primary-saturated"
       >
-        Next <MoveRight className="ml-2 h-4 w-4" />
+        {t('next')}{' '}
+        {isRTL ? <MoveLeft className="ml-2 h-4 w-4" /> : <MoveRight className="ml-2 h-4 w-4" />}
       </Button>
     </div>
   );

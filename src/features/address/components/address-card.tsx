@@ -42,7 +42,7 @@ export function AddressCard({ address, isSelected = false, onSelect }: AddressCa
           >
             <Phone className="w-5 h-5" />
           </span>
-          {address.phone}
+          <span dir="ltr">{address.phone}</span>
         </p>
       </div>
       <p
