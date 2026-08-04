@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const intlMiddleware = createMiddleware(routing);
 
 const authPages = ['/login', '/register', '/forgot-password'];
-const protectedRoutes = ['/profile'];
+const protectedRoutes = ['/profile', '/cart/checkout'];
 
 export default async function proxy(req: NextRequest) {
   const token = await getToken({ req });

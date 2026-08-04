@@ -4,20 +4,20 @@ import {
   ShippingStep,
   PaymentStep,
   type StepConfig,
-} from '@/features/cart/components';
+} from '@/features/checkout/components';
 
-export default function CheckoutPage() {
-  const steps: StepConfig[] = [
-    {
-      step: 1,
-      title: 'Shipping',
-    },
-    {
-      step: 2,
-      title: 'Payment',
-    },
-  ];
+const steps: StepConfig[] = [
+  {
+    step: 1,
+    title: 'Shipping',
+  },
+  {
+    step: 2,
+    title: 'Payment',
+  },
+];
 
+export default async function CheckoutPage() {
   return (
     <div className="px-20 py-15">
       <CheckoutStepper steps={steps} defaultValue={1}>

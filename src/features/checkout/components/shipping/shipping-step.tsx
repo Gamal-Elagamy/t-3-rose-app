@@ -1,19 +1,18 @@
-'use client';
+import { Suspense } from 'react';
+import { AddressList } from '@/features/address/components/address-list';
+import AddressStepSkeleton from '@/features/address/skeletons/address-step.skeleton';
+import { getAddresses } from '@/features/address/apis/address.api';
 
-import { MoveRight } from 'lucide-react';
-import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
-import { Button } from '@/shared/components/ui/button';
-
-export function ShippingStep() {
-  const { goToNextStep } = useCheckoutStepper();
+export async function ShippingStep() {
+  const addresses = await getAddresses();
 
   return (
     <div className="py-6">
-      <h2 className="text-2xl font-bold mb-4">Shipping Address</h2>
-      <p>Enter your shipping details here.</p>
-      <Button onClick={goToNextStep}>
-        Next <MoveRight />
-      </Button>
+      <h2 className="text-2xl font-bold mb-4 text-ds-text-plain">Shipping Address</h2>
+
+      <Suspense fallback={<AddressStepSkeleton />}>
+        <AddressList addresses={addresses} />
+      </Suspense>
     </div>
   );
 }
