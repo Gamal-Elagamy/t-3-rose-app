@@ -29,7 +29,6 @@ export function useGetProductsQuery(params: GetProductsParams) {
             const res = await fetch(`/api/products?${searchParams.toString()}`);
 
             const data: IProductsResponse = await res.json()
-            console.log("Hooks", data)
 
             return data.data
         },
