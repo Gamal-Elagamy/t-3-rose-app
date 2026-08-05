@@ -18,26 +18,31 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
     setSelectedAddressId(address.id);
   };
 
-  if (addresses.length === 0) {
-    return (
-      <div className="text-center py-8 text-ds-text-muted" dir={isRTL ? 'rtl' : 'ltr'}>
-        {t('noAddresses')}
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className="space-y-3 max-h-88 overflow-y-auto" dir={isRTL ? 'rtl' : 'ltr'}>
-        {addresses.map((address) => (
-          <AddressCard
-            key={address.id}
-            address={address}
-            isSelected={address.id === selectedAddressId}
-            onSelect={onSelectAddress}
-          />
-        ))}
-      </div>
+      {addresses.length === 0 ? (
+        <>
+          <div
+            className="text-center max-h-88 flex items-center justify-center text-ds-text-muted"
+            dir={isRTL ? 'rtl' : 'ltr'}
+          >
+            {t('noAddresses')}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="space-y-3 max-h-88 overflow-y-auto" dir={isRTL ? 'rtl' : 'ltr'}>
+            {addresses.map((address) => (
+              <AddressCard
+                key={address.id}
+                address={address}
+                isSelected={address.id === selectedAddressId}
+                onSelect={onSelectAddress}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <div className="flex items-center my-3" dir={isRTL ? 'rtl' : 'ltr'}>
         <div className="flex-1 border-t border-ds-border-muted"></div>
