@@ -363,6 +363,16 @@
       "title": "عنوان الشحن",
       "addNewAddress": "إضافة عنوان جديد",
       "next": "التالي"
+    },
+    "paymentMethod": {
+      "title": "طريقة الدفع",
+      "description": "اختر طريقة الدفع المناسبة لك.",
+      "cashOnDelivery": "الدفع عند الاستلام",
+      "cashOnDeliveryDescription": "ادفع نقدًا عند استلام طلبك.",
+      "creditCard": "بطاقة ائتمانية",
+      "creditCardDescription": "سيتم تحويلك إلى Stripe لإتمام عملية الدفع.",
+      "back": "رجوع",
+      "checkout": "إتمام الطلب"
     }
   },
   "address": {

@@ -6,12 +6,12 @@ import {
     useState,
     type ReactNode,
 } from 'react';
+import { PaymentMethod } from '../types/checkout';
 
-export type PaymentMethod = 'cash' | 'card';
 
 export interface CheckoutState {
-    addressId?: string;
-    paymentMethod?: PaymentMethod;
+    addressId: string;
+    paymentMethod: PaymentMethod;
     couponCode?: string;
 }
 
@@ -28,7 +28,11 @@ export function CheckoutProvider({
 }: {
     children: ReactNode;
 }) {
-    const [checkout, setCheckout] = useState<CheckoutState>({});
+    const [checkout, setCheckout] = useState<CheckoutState>({
+        addressId: '',
+        paymentMethod: "CASH_ON_DELIVERY",
+        couponCode: undefined,
+    });
 
     const updateCheckout = (data: Partial<CheckoutState>) => {
         setCheckout((prev) => ({
@@ -38,7 +42,11 @@ export function CheckoutProvider({
     };
 
     const resetCheckout = () => {
-        setCheckout({});
+        setCheckout({
+            addressId: '',
+            paymentMethod: "CASH_ON_DELIVERY",
+            couponCode: undefined,
+        });
     };
 
     const value = useMemo(

@@ -3,7 +3,7 @@ import { CheckoutProvider } from "@/features/checkout/providers/checkout-provide
 export default function CartLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="grid grid-cols-3 gap-4 h-screen">
+      <div className="grid grid-cols-3 gap-4 h-screen bg-background">
         {/* Cart - Checkout */}
         <section className="col-span-2">
           <CheckoutProvider>
