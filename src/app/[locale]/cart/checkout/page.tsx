@@ -29,7 +29,7 @@ export default async function CheckoutPage() {
 
   return (
     <div className="px-20 py-15">
-      <CheckoutStepper steps={steps} defaultValue={1}>
+      <CheckoutStepper steps={steps} defaultValue={2}>
         {/* Address */}
         <CheckoutStep value={1}>
           <ShippingStep />
