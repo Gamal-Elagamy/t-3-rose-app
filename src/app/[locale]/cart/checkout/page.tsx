@@ -17,14 +17,15 @@ const steps: StepConfig[] = [
   },
 ];
 
-export default async function CheckoutPage() {
+export default async function CheckoutPage({ params }: { params: { locale: 'en' | 'ar' } }) {
+  const locale = params.locale;
 
   return (
     <div className="px-20 py-15">
       <CheckoutStepper steps={steps} defaultValue={1}>
         {/* Address */}
         <CheckoutStep value={1}>
-          <ShippingStep />
+          <ShippingStep locale={locale} />
         </CheckoutStep>
 
         {/* Payment */}
