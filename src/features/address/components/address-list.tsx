@@ -30,6 +30,7 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
         </>
       ) : (
         <>
+        {/* Display addresses */}
           <div className="space-y-3 max-h-88 overflow-y-auto">
             {addresses.map((address) => (
               <AddressCard
@@ -49,6 +50,7 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
 
       <AddressFormModalButton />
 
+      {/* Show next step button only if addresses exist */}
       {addresses.length !== 0 && <AddressNextStepButton selectedAddressId={selectedAddressId} />}
     </>
   );
