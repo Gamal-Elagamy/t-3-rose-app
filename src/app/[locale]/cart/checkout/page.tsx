@@ -1,4 +1,3 @@
-import { authOptions } from '@/auth';
 import {
   CheckoutStepper,
   CheckoutStep,
@@ -6,8 +5,6 @@ import {
   PaymentStep,
   type StepConfig,
 } from '@/features/checkout/components';
-import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
 
 const steps: StepConfig[] = [
   {
@@ -21,11 +18,6 @@ const steps: StepConfig[] = [
 ];
 
 export default async function CheckoutPage() {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect('/login');
-  }
 
   return (
     <div className="px-20 py-15">

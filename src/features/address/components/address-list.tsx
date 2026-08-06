@@ -49,7 +49,7 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
 
       <AddressFormModalButton />
 
-      <AddressNextStepButton selectedAddressId={selectedAddressId} />
+      {addresses.length !== 0 && <AddressNextStepButton selectedAddressId={selectedAddressId} />}
     </>
   );
 }
