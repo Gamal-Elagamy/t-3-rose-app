@@ -1,23 +1,14 @@
 import { Badge } from '@/shared/components/ui/badge';
 import { X } from 'lucide-react';
+import { ICoupon } from '../types/copons';
 
-interface Coupon {
-  id: string;
 
-  code: string;
-}
 
-interface Props {
-  coupons: any;
 
-  onRemove?: (id: string) => void;
-}
 
-export function CouponList({
-  coupons,
+export function CouponList({ coupons, onRemove }: { coupons: ICoupon[]; onRemove?: (id: string) => void }) {
 
-  onRemove,
-}: Props) {
+
  if (!coupons) {
   return (
     <p className="flex h-65 w-full items-center justify-center rounded-md border border-zinc-300 px-4 text-center text-sm text-muted-foreground">
@@ -28,7 +19,7 @@ export function CouponList({
 
 return (
   <div className="w-full space-y-2">
-    {coupons.map((coupon: Coupon) => (
+    {coupons.map((coupon: ICoupon) => (
       <Badge
         key={coupon.id}
         variant="secondary"
