@@ -15,9 +15,6 @@ export function useProductFilters() {
   const minPrice = searchParams.get('minPrice');
   const maxPrice = searchParams.get('maxPrice');
 
-  console.log('minPrice', minPrice);
-  console.log('maxPrice', maxPrice);
-
   const setFilter = useCallback(
     (key: string, value: string | null) => {
       const params = new URLSearchParams(searchParams.toString());

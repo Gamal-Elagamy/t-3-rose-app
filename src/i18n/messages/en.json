@@ -197,8 +197,8 @@
       "selectLocation": "Select location",
       "login": "login",
       "searchDefault": "Products you may like",
-       "Rating": "Rating",
-    "ratings": "ratings"
+      "Rating": "Rating",
+      "ratings": "ratings"
     },
     "navItems": {
       "home": "Home",
@@ -357,5 +357,18 @@
     "reset": "× Reset",
     "resetAll": "Reset All"
   },
-  "failedToLoadProducts": "Failed to load products. Try again."
+  "failedToLoadProducts": "Failed to load products. Try again.",
+  "checkout": {
+    "shipping": {
+      "title": "Shipping Address",
+      "addNewAddress": "Add New Address",
+      "next": "Next"
+    }
+  },
+  "address": {
+    "list": {
+      "noAddresses": "No addresses found, please add a new address.",
+      "or": "OR"
+    }
+  }
 }
