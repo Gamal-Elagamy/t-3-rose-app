@@ -10,9 +10,10 @@ import { cn } from '@/shared/lib/utils/tailwind-cn';
 import cashIcon from '@/assets/icons/cash.svg';
 import creditIcon from '@/assets/icons/credit.svg';
 import Image from 'next/image';
-import { useCheckoutMutation } from '../../hooks/checkout.hook';
+import { useCheckoutMutation, usePostPaymentIntentMutation } from '../../hooks/checkout.hook';
 import { useTransition } from 'react';
 import { PaymentMethod } from '../../types/checkout';
+import { toast } from 'sonner';
 
 
 
@@ -35,6 +36,7 @@ export function PaymentStep() {
 
   // Mutation
   const { mutateAsync: checkout } = useCheckoutMutation();
+  const { mutateAsync: postPaymentIntent } = usePostPaymentIntentMutation();
 
   // Checkout stepper
   const { goToPreviousStep, isLastStep } = useCheckoutStepper();
@@ -45,16 +47,33 @@ export function PaymentStep() {
     updateCheckout,
   } = useCheckout();
 
+  console.log({paymentMethod})
   // Handle checkout
   function handleCheckout() {
     startTransition(async() => {
-
-      await checkout({
+      const dataCheckout = await checkout({
         addressId,
         couponCode,
         paymentMethod
       })
+
+      if (!dataCheckout.status) {
+        toast.error(dataCheckout.message || "Payment intent failed")
+        return
+      }
+      if (dataCheckout.payload?.order.paymentMethod === "CREDIT_CARD") {
+        const dataPostPaymentIntent = await postPaymentIntent(
+          dataCheckout.payload?.order.id 
+        )
+        if (!dataPostPaymentIntent.status) {
+          toast.error(dataPostPaymentIntent.message || "Payment intent failed")
+          return
+        }
+        toast.success("Payment intent created successfully")
+        // goToPreviousStep()
+      }
     })
+
   }
 
   return (
@@ -93,7 +112,7 @@ export function PaymentStep() {
             >
               <Image src={imageSrc} height={250} width={200} alt={method.id} />
               <h3 className={cn('text-2xl font-semibold', isSelected && 'text-maroon-600 dark:text-ds-bg-primary')}>
-                {method.id === 'CREDIT_CARD'
+                {method.id === 'CASH_ON_DELIVERY'
                   ? t('cashOnDelivery')
                   : t('creditCard')}
               </h3>

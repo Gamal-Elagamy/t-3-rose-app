@@ -2,8 +2,8 @@ import { IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IAddress } from '../types/address';
-import { HEADERS } from '@/shared/constant/api-header.constants';
 import { redirect } from '@/i18n/navigation';
+import { HEADERS } from '@/shared/constant/api.constant';
 
 export async function getAddresses(locale: 'en' | 'ar'): Promise<IAddress[]> {
   const jwt = await getNextAuthToken();
@@ -12,11 +12,12 @@ export async function getAddresses(locale: 'en' | 'ar'): Promise<IAddress[]> {
   if (!token) {
     redirect({ href: '/login', locale });
   }
+ console.log(token) 
 
   const response = await fetch(`${getApiBaseUrl()}/addresses`, {
     headers: {
-      ...HEADERS.JSON,
-      ...HEADERS.AUTH(token!),
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token!),
     },
   });
 
