@@ -9,10 +9,13 @@ export default function AddressNextStepButton({
 }: {
   selectedAddressId: string | undefined;
 }) {
-  const { goToNextStep } = useCheckoutStepper();
+  // Translation
   const t = useTranslations('checkout.shipping');
   const locale = useLocale();
   const isRTL = locale === 'ar';
+
+  // Functions
+  const { goToNextStep } = useCheckoutStepper();
 
   return (
     <div className="flex justify-end">
