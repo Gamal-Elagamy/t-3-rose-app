@@ -1,10 +1,8 @@
-import { WishlistPage } from '@/features/wishlist/components/wishlist-page'
+
+import { WishlistPage } from "@/features/wish-list/components/wishlist-page";
 
 
-export default function page() {
-  return (
-   <>
-   <WishlistPage/>
-   </>
-  )
+export default function Page() {
+  return <WishlistPage/>;
+  
 }

@@ -9,7 +9,8 @@ import { LayoutProps } from '@/shared/lib/types/locale';
 import { Toaster } from '@/shared/components/ui/sonner';
 import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
 import { ConditionalHeader } from '@/features/header/components/shared/conditional-header';
-
+import { getWishlist } from '@/features/wish-list/apis/get-wishlist'
+import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 // Fonts
 const dancing = Dancing_Script({
   subsets: ['latin'],
@@ -62,7 +63,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   setRequestLocale(locale);
-
+const jwt = await getNextAuthToken();
+  const wishlistCount = jwt?.token ? (await getWishlist()).length : 0;
   return (
     <html
       lang={locale}
@@ -72,7 +74,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>
-          <ConditionalHeader />
+          <ConditionalHeader wishlistCount={wishlistCount} />
           {children}
         </Providers>
         <Toaster />

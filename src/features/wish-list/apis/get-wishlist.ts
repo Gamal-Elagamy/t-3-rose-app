@@ -1,11 +1,12 @@
 import 'server-only';
+import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
-import { getServerToken } from '@/shared/lib/auth/get-server-token';
-import { IWishlistItem } from '../types/wishlist';
 import { IApiResponse } from '@/shared/lib/types/api';
+import { WishlistItem } from '../types/wishlist';
 
-export async function getWishlist(): Promise<IWishlistItem[]> {
-  const token = await getServerToken();
+export async function getWishlist(): Promise<WishlistItem[]> {
+  const jwt = await getNextAuthToken();
+  const token = jwt?.token;
 
   if (!token) return [];
 
@@ -14,9 +15,9 @@ export async function getWishlist(): Promise<IWishlistItem[]> {
     next: { tags: ['wishlist'] },
   });
 
-  const data: IApiResponse<{ wishlistItems: IWishlistItem[] }> = await response.json();
+  const data: IApiResponse<{ wishlistItems: WishlistItem[] }> = await response.json();
 
-  if (!data.status || !data.payload) {
+  if (!response.ok || !data.status || !data.payload) {
     throw new Error(data.message || 'Failed to fetch wishlist');
   }
 

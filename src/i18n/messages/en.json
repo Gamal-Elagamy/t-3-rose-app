@@ -370,7 +370,8 @@
     "continueShopping": "Continue Shopping",
     "empty": "Your wishlist is empty",
     "loading": "Loading your wishlist...",
-    "loadError": "Couldn't load your wishlist. Please try again."
+    "loadError": "Couldn't load your wishlist. Please try again.",
+    "retry": "Try again"
   },
   "failedToLoadProducts": "Failed to load products. Try again."
 }
