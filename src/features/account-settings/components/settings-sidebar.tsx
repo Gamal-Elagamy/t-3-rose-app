@@ -4,25 +4,26 @@ import { UserRoundPen, Lock, LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-const userSettinsNavLinks = [
-  {
-    id: 1,
-    name: 'Profile',
-    href: '/account-settings',
-    icon: <UserRoundPen className="w-6 h-6" />,
-  },
-  {
-    id: 2,
-    name: 'Change Password',
-    href: '/account-settings/change-password',
-    icon: <Lock className="w-6 h-6" />,
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function AccountSettingsSidebar() {
   const pathname = usePathname();
-  console.log(pathname);
+  const t = useTranslations('accountSettings.sidebar');
+
+  const userSettinsNavLinks = [
+    {
+      id: 1,
+      name: t('profile'),
+      href: '/account-settings',
+      icon: <UserRoundPen className="w-6 h-6" />,
+    },
+    {
+      id: 2,
+      name: t('changePassword'),
+      href: '/account-settings/change-password',
+      icon: <Lock className="w-6 h-6" />,
+    },
+  ];
   return (
     <div className="w-75 p-4 bg-ds-bg-subtle shrink-0 flex flex-col border border-ds-border-subtle rounded-lg">
       <ul>
@@ -48,7 +49,7 @@ export default function AccountSettingsSidebar() {
         className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-4 py-3 cursor-pointer mt-auto text-md font-normal justify-start"
       >
         <LogOut className="w-6 h-6 text-ds-text-danger rotate-180" />
-        Logout
+        {t('logout')}
       </Button>
     </div>
   );

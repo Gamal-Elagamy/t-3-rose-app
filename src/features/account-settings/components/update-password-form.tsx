@@ -11,10 +11,21 @@ import { toast } from 'sonner';
 import { signOut } from 'next-auth/react';
 import { UpdatePasswordFormData } from '../types/account';
 import useUpdatePassword from '../hooks/use-update-password';
+import { useTranslations } from 'next-intl';
+
+function getErrorMessage(t: ReturnType<typeof useTranslations>, key: string): string {
+  try {
+    const parts = key.split('.');
+    const relativeKey = parts.slice(parts.indexOf('validation')).join('.');
+    return t(relativeKey as never);
+  } catch {
+    return key;
+  }
+}
 
 export default function UpdatePasswordForm() {
-  const { mutate: updatePassword, isPending, error } = useUpdatePassword();
-  console.log(error);
+  const { mutate: updatePassword, isPending } = useUpdatePassword();
+  const t = useTranslations('accountSettings.updatePassword');
   const [backendErrors, setBackendErrors] = useState<Array<{ path: string; message: string }>>([]);
 
   const form = useForm<UpdatePasswordFormData>({
@@ -30,7 +41,7 @@ export default function UpdatePasswordForm() {
     setBackendErrors([]);
     updatePassword(data, {
       onSuccess: () => {
-        toast.success('Your password has been updated. Please login again.');
+        toast.success(t('success'));
         form.reset();
         signOut({ callbackUrl: '/login' });
       },
@@ -54,18 +65,26 @@ export default function UpdatePasswordForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="currentPassword">Old Password</FieldLabel>
+                <FieldLabel htmlFor="currentPassword">{t('oldPassword')}</FieldLabel>
                 <div className="relative">
                   <Input
                     {...field}
                     id="currentPassword"
                     type="password"
-                    placeholder="********"
+                    placeholder={t('placeholder')}
                     aria-invalid={fieldState.invalid}
                     className={fieldState.invalid ? 'border-destructive pr-10' : 'pr-10'}
                   />
                 </div>
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError
+                    errors={[
+                      {
+                        message: getErrorMessage(t, fieldState.error?.message || ''),
+                      },
+                    ]}
+                  />
+                )}
               </Field>
             )}
           />
@@ -80,18 +99,26 @@ export default function UpdatePasswordForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="newPassword">New Password</FieldLabel>
+                <FieldLabel htmlFor="newPassword">{t('newPassword')}</FieldLabel>
                 <div className="relative">
                   <Input
                     {...field}
                     id="newPassword"
                     type="password"
-                    placeholder="********"
+                    placeholder={t('placeholder')}
                     aria-invalid={fieldState.invalid}
                     className={fieldState.invalid ? 'border-destructive pr-10' : 'pr-10'}
                   />
                 </div>
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError
+                    errors={[
+                      {
+                        message: getErrorMessage(t, fieldState.error?.message || ''),
+                      },
+                    ]}
+                  />
+                )}
               </Field>
             )}
           />
@@ -104,16 +131,24 @@ export default function UpdatePasswordForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="confirmPassword">Confirm New Password</FieldLabel>
+                <FieldLabel htmlFor="confirmPassword">{t('confirmPassword')}</FieldLabel>
                 <Input
                   {...field}
                   id="confirmPassword"
                   type="password"
-                  placeholder="********"
+                  placeholder={t('placeholder')}
                   aria-invalid={fieldState.invalid}
                   className={fieldState.invalid ? 'border-destructive pr-10' : 'pr-10'}
                 />
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError
+                    errors={[
+                      {
+                        message: getErrorMessage(t, fieldState.error?.message || ''),
+                      },
+                    ]}
+                  />
+                )}
               </Field>
             )}
           />
@@ -135,9 +170,9 @@ export default function UpdatePasswordForm() {
           type="submit"
           variant="default"
           className="mt-19 ml-auto w-57 py-3.5 px-4 rounded-xl"
-          disabled={isPending}
+          disabled={isPending || form.formState.isSubmitting || !form.formState.isValid}
         >
-          {isPending ? <Loader2 className="w-5 h-5 animate-spin text-white" /> : 'Change Password'}
+          {isPending ? <Loader2 className="w-5 h-5 animate-spin text-white" /> : t('submit')}
         </Button>
       </form>
     </div>
