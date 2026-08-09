@@ -57,7 +57,10 @@ export default function UpdatePasswordForm() {
 
   return (
     <div className="w-full">
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col font-geist-mono gap-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col font-geist-mono gap-3 md:gap-4"
+      >
         {/* Current Password */}
         <FieldGroup>
           <Controller
@@ -156,7 +159,7 @@ export default function UpdatePasswordForm() {
 
         {/* Backend Validation Errors */}
         {backendErrors.length > 0 && (
-          <div className="mt-6 bg-ds-bg-danger/10 border border-ds-border-danger/20 rounded-lg p-3">
+          <div className="mt-4 md:mt-6 bg-ds-bg-danger/10 border border-ds-border-danger/20 rounded-lg p-2 md:p-3">
             {backendErrors.map((err, index) => (
               <p key={index} className="text-sm text-ds-text-danger">
                 {err.message}
@@ -169,7 +172,7 @@ export default function UpdatePasswordForm() {
         <Button
           type="submit"
           variant="default"
-          className="mt-19 ml-auto w-57 py-3.5 px-4 rounded-xl"
+          className="mt-16 md:mt-19 ml-auto w-full md:w-57 py-3.5 px-4 rounded-xl"
           disabled={isPending || form.formState.isSubmitting || !form.formState.isValid}
         >
           {isPending ? <Loader2 className="w-5 h-5 animate-spin text-white" /> : t('submit')}

@@ -25,19 +25,19 @@ export default function AccountSettingsSidebar() {
     },
   ];
   return (
-    <div className="w-75 p-4 bg-ds-bg-subtle shrink-0 flex flex-col border border-ds-border-subtle rounded-lg">
+    <div className="w-full md:w-75 p-3 md:p-4 bg-ds-bg-subtle shrink-0 flex flex-col border border-ds-border-subtle rounded-lg">
       <ul>
         {userSettinsNavLinks.map((link) => (
           <li key={link.id}>
             <Link
               href={link.href}
-              className={`flex items-center gap-3 rounded-lg px-4 py-2.5 mb-2.5 font-medium text-base ${
+              className={`flex items-center gap-2 md:gap-3 rounded-lg px-3 md:px-4 py-2 md:py-2.5 mb-2 md:mb-2.5 font-medium text-sm md:text-base ${
                 pathname.endsWith(link.href)
                   ? 'text-ds-text-inverse bg-ds-bg-inverse'
                   : 'text-ds-text-plain'
               }`}
             >
-              {link.icon}
+              <span className="w-5 h-5 md:w-6 md:h-6">{link.icon}</span>
               {link.name}
             </Link>
           </li>
@@ -46,9 +46,9 @@ export default function AccountSettingsSidebar() {
 
       <Button
         onClick={() => signOut({ callbackUrl: '/' })}
-        className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-4 py-3 cursor-pointer mt-auto text-md font-normal justify-start"
+        className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-3 md:px-4 py-2.5 md:py-3 cursor-pointer mt-auto text-sm md:text-md font-normal justify-start"
       >
-        <LogOut className="w-6 h-6 text-ds-text-danger rotate-180" />
+        <LogOut className="w-5 h-5 md:w-6 md:h-6 text-ds-text-danger rotate-180" />
         {t('logout')}
       </Button>
     </div>

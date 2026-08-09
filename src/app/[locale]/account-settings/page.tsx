@@ -1,3 +1,3 @@
 export default function UpdateProfilePage() {
-  return <div>UpdateProfilePage</div>;
+  return <div className="w-full">UpdateProfilePage</div>;
 }
