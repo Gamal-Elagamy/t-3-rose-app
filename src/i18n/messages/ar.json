@@ -376,5 +376,18 @@
     "cart-item-quantity": "(×{quantity, number, items-count})",
     "cart-empty": "عربة التسوق فاضية، تحب تبدأ التسوق؟",
     "cart-button": "متابعة التسوق"
+  },
+  "checkout": {
+    "shipping": {
+      "title": "عنوان الشحن",
+      "addNewAddress": "إضافة عنوان جديد",
+      "next": "التالي"
+    }
+  },
+  "address": {
+    "list": {
+      "noAddresses": "لم يتم العثور على عناوين، يرجى إضافة عنوان جديد.",
+      "or": "أو"
+    }
   }
 }

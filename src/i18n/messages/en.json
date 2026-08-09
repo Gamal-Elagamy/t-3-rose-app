@@ -376,5 +376,18 @@
     "cart-item-quantity": "(×{quantity, number, items-count})",
     "cart-empty": "Your cart is empty, wanna try shopping?",
     "cart-button": "Containue Shopping"
+  },
+  "checkout": {
+    "shipping": {
+      "title": "Shipping Address",
+      "addNewAddress": "Add New Address",
+      "next": "Next"
+    }
+  },
+  "address": {
+    "list": {
+      "noAddresses": "No addresses found, please add a new address.",
+      "or": "OR"
+    }
   }
 }
