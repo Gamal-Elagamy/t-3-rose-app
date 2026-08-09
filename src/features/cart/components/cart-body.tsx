@@ -3,12 +3,12 @@ import { Button } from '@/shared/components/ui/button';
 import { Star, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import CartFooter from './cart-footer';
-import { useRouter } from '@/i18n/navigation';
 import useDeleteCartItem from '../hooks/use-delete-item-cart';
 import { useCart } from '../context/cart.context';
 import CartEmpty from './cart-empty';
 import { useTranslations } from 'next-intl';
 import CartSkeleton from '@/shared/components/cart-skeleton';
+import { setGuestCart } from '../storage/guest-cart';
 
 export default function CartBody() {
   // Translations
@@ -16,47 +16,49 @@ export default function CartBody() {
 
   // Cart Context
   const {
-    cartList,
-    isAuthenticated,
-    displayedProducts: products,
-    cartItems,
-    setCartItems,
     isEmpty,
+    refreshCart,
+    cartDataProducts,
+    products,
     isLoading,
+    isAuthenticated,
+    userData
   } = useCart();
-
-  // Router
-  const router = useRouter();
 
   // Delete Hook
   const { isPending, deleteUserCart } = useDeleteCartItem();
 
   // Remove Cart Item Function
-  async function removeCartItem(productId?: string) {
+  async function removeItem(productId?: string){
     if (!productId) return;
+
     if (!isAuthenticated) {
-      const removeItem = cartItems.filter((item) => item.productId !== productId);
-      localStorage.setItem('guest-cart', JSON.stringify(removeItem));
-      setCartItems(removeItem);
-    } else {
-      // Delete Item
-      const cartItem = cartList?.find((item) => item.productId === productId);
+    const cartData = cartDataProducts?.filter((item)=>item.productId !== productId)
+
+    setGuestCart(cartData)
+    refreshCart()
+    return
+    }
+
+    // Authenticated
+    const cartItem = userData?.find((item) => item.productId === productId);
+    if (!cartItem) return;
 
       deleteUserCart(cartItem!.id, {
         onSuccess: () => {
-          router.refresh();
+          refreshCart();
         },
       });
-    }
   }
 
+  // Loading State
   if (isLoading) return <CartSkeleton />;
 
   // Cart Empty Condition
   if (isEmpty) return <CartEmpty />;
 
   return (
-    <div className="cart-body flex flex-col gap-5 p-5 mt-6 border border-ds-border-muted rounded-lg max-h-150 overflow-y-auto">
+    <div className="cart-body relative flex flex-col gap-5 p-5 mt-6 border border-ds-border-muted rounded-lg h-150 overflow-y-auto">
       {/* Item */}
       {products?.map((product) => (
         <div key={product?.id} className="item pb-5 border-b border-ds-border-muted flex gap-4">
@@ -100,7 +102,7 @@ export default function CartBody() {
 
               {/* Remove Item Button */}
               <Button
-                onClick={() => removeCartItem(product?.id)}
+                onClick={() => removeItem(product?.id)}
                 variant={'destructive'}
                 disabled={isPending}
                 className="flex items-center gap-1.5 cursor-pointer"

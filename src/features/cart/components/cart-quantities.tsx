@@ -8,10 +8,10 @@ export default function CartQuantities() {
   const t = useTranslations('cart-list');
 
   // Cart Context
-  const { isAuthenticated, cartList, cartItems } = useCart();
+  const { cartDataProducts } = useCart();
 
   // Items Count
-  const itemsCount = isAuthenticated ? (cartList?.length ?? 0) : cartItems.length;
+  const itemsCount =  cartDataProducts.length ;
 
   return (
     <span className="font-medium text-base text-ds-text-muted ms-2.5">

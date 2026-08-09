@@ -11,14 +11,14 @@ export default function CartTotalPrise() {
   const locale = useLocale();
 
   // Cart Context
-  const { cartTotal } = useCart();
+  const { totalPrice, isLoading } = useCart();
 
-  if (!cartTotal) return;
+  if (isLoading || !totalPrice) return;
   return (
     <div className="cart-total flex items-center justify-between mt-6">
       <span className="font-semibold text-xl text-ds-text-plain">{t('cart-total')}</span>
       <h2 className="font-bold text-2xl text-ds-text-plain">
-        {formatLocaleNumber(cartTotal, locale)}
+        {formatLocaleNumber(totalPrice, locale)}
         <span className="font-medium text-base ms-1.5">{t('cart-currency')}</span>
       </h2>
     </div>

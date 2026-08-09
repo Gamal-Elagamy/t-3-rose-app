@@ -1,3 +1,4 @@
+'use server';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';

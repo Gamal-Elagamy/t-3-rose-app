@@ -15,13 +15,21 @@ import { MobileMenu } from './components/shared/mobile-menu';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { SearchBox } from '@/shared/components/search-box';
+import { useCart } from '../cart/context/cart.context';
 
 export function Header() {
   // Translation
   const t = useTranslations();
+
+  // Cart Context
+  const { cartDataProducts } = useCart();
+
   // Hooks
   const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
+
+  // Items Count
+  const itemsCount = cartDataProducts.length;
 
   return (
     <header>
@@ -35,7 +43,7 @@ export function Header() {
             <div className="flex items-center gap-4">
               <UserDropdown />
               <Notifications />
-              <CartButton />
+
               <WishlistButton />
             </div>
           ) : (
@@ -43,6 +51,7 @@ export function Header() {
               {t('header.nav.login')}
             </Link>
           )}
+          <CartButton count={itemsCount} />
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
@@ -53,7 +62,7 @@ export function Header() {
           <MobileMenu />
           <Logo />
           <div className="flex items-center gap-4">
-            <CartButton />
+            <CartButton count={itemsCount} />
             {isAuthenticated && <Notifications />}
           </div>
         </div>

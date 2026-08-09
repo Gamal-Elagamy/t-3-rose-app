@@ -5,11 +5,12 @@ import { Link } from '@/i18n/navigation';
 import CartQuantities from './cart-quantities';
 import CartButtonClear from './cart-button-clear';
 import CartTotalPrise from './cart-total-prise';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
-export default async function Cart() {
+export default function Cart() {
   // Translations
-  const t = await getTranslations('cart-list');
+  const t = useTranslations('cart-list');
+
   return (
     <>
       {/* Cart Head */}
