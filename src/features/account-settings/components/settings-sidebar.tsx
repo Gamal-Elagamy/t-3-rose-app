@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@/shared/components/ui/button';
 import { UserRoundPen, Lock, LogOut } from 'lucide-react';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -42,7 +43,7 @@ export default function AccountSettingsSidebar() {
         ))}
       </ul>
 
-      <Button className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-4 py-3 cursor-pointer mt-auto text-md font-normal justify-start">
+      <Button onClick={() => signOut()} className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-4 py-3 cursor-pointer mt-auto text-md font-normal justify-start">
         <LogOut className="w-6 h-6 text-ds-text-danger rotate-180" />
         Logout
       </Button>
