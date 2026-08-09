@@ -103,7 +103,7 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
         'group/field-label peer/field-label flex w-fit gap-2 font-medium text-sm leading-snug',
 
         // Default
-        'text-ds-text-default',
+        'text-ds-text-plain',
 
         // Invalid
         'group-data-[invalid=true]/field:not-group-data-[disabled=true]/field:text-ds-text-danger',
