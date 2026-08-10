@@ -1,16 +1,21 @@
+"use client";
+import { useCart } from '@/features/cart/context/cart.context';
 import { Separator } from '@/shared/components/ui/separator';
 
 interface Props {
-  subtotal: number;
+ 
 
   currency?: string;
 }
 
 export function SubtotalPrice({
-  subtotal,
+ 
 
   currency = 'EGP',
 }: Props) {
+
+   const { cartTotal: subtotal } = useCart();
+
   return (
     <>
      <Separator />
@@ -21,7 +26,7 @@ export function SubtotalPrice({
   </span>
 
   <span className="text-right text-lg font-semibold text-primary sm:text-xl">
-    {subtotal} {currency}
+    { subtotal ?? 0} {currency}
   </span>
 </div>
     </>

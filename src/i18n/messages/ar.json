@@ -358,17 +358,18 @@
     "resetAll": "إعادة الكل"
   },
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
-  "checkout": {
-    "shipping": {
-      "title": "عنوان الشحن",
-      "addNewAddress": "إضافة عنوان جديد",
-      "next": "التالي"
-    }
-  },
-  "address": {
-    "list": {
-      "noAddresses": "لم يتم العثور على عناوين، يرجى إضافة عنوان جديد.",
-      "or": "أو"
-    }
+
+  "cart-list": {
+    "cart-title": "السلة",
+    "cart-count": "{count, number, items-count} منتج",
+    "cart-clear": "إفراغ السلة",
+    "cart-total": "الإجمالي:",
+    "cart-currency": "ج.م",
+    "cart-rating": "التقييم: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} تقييم",
+    "cart-remove": "إزالة",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "عربة التسوق فاضية، تحب تبدأ التسوق؟",
+    "cart-button": "متابعة التسوق"
   }
 }

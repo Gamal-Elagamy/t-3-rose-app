@@ -1,11 +1,13 @@
 import { IApiResponse } from "@/shared/lib/types/api";
-import { getApiBaseUrl } from "@/shared/lib/utils/api-url";
 import { ICoupon } from "../types/copons";
 import { IMetadata } from "@/features/products/types/product-reviews";
 
-export default async function GetCoupon(search: string) {
+
+export default async function getCoupon(search: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/coupons?search=${encodeURIComponent(search)}&isActive=true`
+    `${process.env.NEXT_PUBLIC_API_URL}/coupons?search=${encodeURIComponent(
+      search
+    )}&isActive=true`
   );
 
   const data: IApiResponse<{
@@ -19,3 +21,6 @@ export default async function GetCoupon(search: string) {
 
   return data;
 }
+
+
+

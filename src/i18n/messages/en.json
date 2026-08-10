@@ -358,17 +358,18 @@
     "resetAll": "Reset All"
   },
   "failedToLoadProducts": "Failed to load products. Try again.",
-  "checkout": {
-    "shipping": {
-      "title": "Shipping Address",
-      "addNewAddress": "Add New Address",
-      "next": "Next"
-    }
-  },
-  "address": {
-    "list": {
-      "noAddresses": "No addresses found, please add a new address.",
-      "or": "OR"
-    }
+
+  "cart-list": {
+    "cart-title": "CART",
+    "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
+    "cart-clear": "Clear Cart",
+    "cart-total": "Total:",
+    "cart-currency": "EGP",
+    "cart-rating": "Rating: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} {count, plural, one {rating} other {ratings}}",
+    "cart-remove": "Remove",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "Your cart is empty, wanna try shopping?",
+    "cart-button": "Containue Shopping"
   }
 }

@@ -1,11 +1,12 @@
-import { Card, CardContent } from '@/shared/components/ui/card';
-import { ReactNode } from 'react';
+import { Card, CardContent } from "@/shared/components/ui/card";
+import { ReactNode } from "react";
 
 interface OrderSummaryProps {
   title?: string;
 
   couponForm: ReactNode;
-  couponList: ReactNode;
+  couponList?: ReactNode;
+
   subtotal?: ReactNode;
   totalPrice: ReactNode;
 
@@ -16,7 +17,7 @@ interface OrderSummaryProps {
 }
 
 export function OrderSummary({
-  title = 'Summary',
+  title = "Summary",
   couponForm,
   couponList,
   subtotal,
@@ -26,25 +27,28 @@ export function OrderSummary({
   className,
 }: OrderSummaryProps) {
   return (
- <div className="flex  items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
-  <Card className={`w-full max-w-md  ${className}`}>
-    <CardContent className="space-y-4 p-4 sm:p-6">
-      <h2 className="text-2xl font-bold">{title}</h2>
+    <div className="flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+      <Card className={`w-full max-w-md ${className ?? ""}`}>
+        <CardContent className="space-y-4 p-4 sm:p-6">
+          <h2 className="text-2xl font-bold">
+            {title}
+          </h2>
 
-      <div className="space-y-3 rounded-sm bg-zinc-50 p-4">
-        {couponForm}
+          <div className="space-y-3 rounded-sm bg-zinc-50 p-4">
+            {couponForm}
 
-        {couponList}
+            {couponList}
 
-        {summaryItems}
+            {summaryItems}
 
-        {subtotal}
-        {totalPrice}
-      </div>
+            {subtotal}
 
-      {checkoutButton}
-    </CardContent>
-  </Card>
-</div>
+            {totalPrice}
+          </div>
+
+          {checkoutButton}
+        </CardContent>
+      </Card>
+    </div>
   );
 }

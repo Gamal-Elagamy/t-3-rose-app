@@ -16,7 +16,7 @@ export interface ICoupon {
 }
 
 export interface ICouponsResponse {
-  data: ICoupon[];
+  payload: ICoupon[];
   metadata: {
     page: number;
     limit: number;
