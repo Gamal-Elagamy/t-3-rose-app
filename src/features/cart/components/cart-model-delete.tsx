@@ -48,13 +48,13 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
-        closeModel();
+        setShowModelDelete(false)
       }
     }
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [setShowModelDelete]);
 
   return (
     <div
