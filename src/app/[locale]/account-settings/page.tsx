@@ -1,3 +1,5 @@
+import ProfileForm from '@/features/account-settings/components/profile-form';
+
 export default function UpdateProfilePage() {
-  return <div className="w-full">UpdateProfilePage</div>;
+  return <ProfileForm />;
 }
