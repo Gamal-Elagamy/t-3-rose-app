@@ -4,7 +4,6 @@ import {
   createContext,
   ReactNode,
   useContext,
-  useMemo,
   useState,
 } from 'react';
 
@@ -14,27 +13,19 @@ interface CouponContextType {
   coupon: ICoupon | null;
   setCoupon: (coupon: ICoupon | null) => void;
   clearCoupon: () => void;
-  discount: number;
 }
 
-const CouponContext = createContext<CouponContextType | undefined>(
-  undefined
-);
+const CouponContext = createContext<
+  CouponContextType | undefined
+>(undefined);
 
-interface CouponProviderProps {
+export function CouponProvider({
+  children,
+}: {
   children: ReactNode;
-}
-
-export function CouponProvider({ children }: CouponProviderProps) {
-  const [coupon, setCoupon] = useState<ICoupon | null>(null);
-
-  const discount = useMemo(() => {
-    if (!coupon) {
-      return 0;
-    }
-
-    return 0;
-  }, [coupon]);
+}) {
+  const [coupon, setCoupon] =
+    useState<ICoupon | null>(null);
 
   const clearCoupon = () => {
     setCoupon(null);
@@ -46,7 +37,6 @@ export function CouponProvider({ children }: CouponProviderProps) {
         coupon,
         setCoupon,
         clearCoupon,
-        discount,
       }}
     >
       {children}
@@ -63,5 +53,5 @@ export function useCoupon() {
     );
   }
 
-  return context;
+  return context; 
 }

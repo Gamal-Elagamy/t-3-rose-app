@@ -1,34 +1,33 @@
-"use client";
-import { useCart } from '@/features/cart/context/cart.context';
-import { Separator } from '@/shared/components/ui/separator';
+'use client';
 
-interface Props {
- 
+import { useMemo } from 'react';
 
+import { useCoupon } from '../context/coupon-context';
+import { useCart } from '../../context/cart.context';
+import CartTotalPrise from '../../components/cart-total-prise';
+import { useTranslations } from 'next-intl';
+
+interface TotalPriceProps {
   currency?: string;
 }
 
-export function SubtotalPrice({
- 
+export function SubTotalPrice({ currency = 'EGP' }: TotalPriceProps) {
+  
+  const t = useTranslations("order-summary");
 
-  currency = 'EGP',
-}: Props) {
+  const { totalPrice } = useCart();
 
-   const { cartTotal: subtotal } = useCart();
+  
+
+
 
   return (
-    <>
-     <Separator />
+    <div className="flex items-center justify-between">
+      <span className="text-base font-bold ">{t("sub-total")}</span>
 
-<div className="flex items-center justify-between gap-2 pt-4">
-  <span className="text-lg font-semibold sm:text-xl">
-    Subtotal
-  </span>
-
-  <span className="text-right text-lg font-semibold text-primary sm:text-xl">
-    { subtotal ?? 0} {currency}
-  </span>
-</div>
-    </>
+      <span className="text-base font-bold ">
+        {totalPrice} {currency}
+      </span>
+    </div>
   );
 }

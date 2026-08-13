@@ -3,7 +3,7 @@ import { ICoupon } from "../types/copons";
 import { IMetadata } from "@/features/products/types/product-reviews";
 
 
-export default async function getCoupon(search: string) {
+export default async function GetCoupon(search: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/coupons?search=${encodeURIComponent(
       search

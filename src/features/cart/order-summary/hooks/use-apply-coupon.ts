@@ -1,8 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import getCoupon from "../apis/get-coupon.api";
+import { useMutation } from '@tanstack/react-query';
+import GetCoupon from '../apis/get-coupon.api';
 
-export default function useApplyCoupon() {
+export default function UseApplyCoupon() {
   return useMutation({
-    mutationFn: getCoupon,
+    mutationFn: (couponCode: string) => {
+      return GetCoupon(couponCode);
+    },
   });
 }

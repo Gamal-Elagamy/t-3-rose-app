@@ -1,4 +1,6 @@
 import { Card, CardContent } from "@/shared/components/ui/card";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ReactNode } from "react";
 
 interface OrderSummaryProps {
@@ -20,21 +22,26 @@ export function OrderSummary({
   title = "Summary",
   couponForm,
   couponList,
+  totalPrice,
   subtotal,
   summaryItems,
-  totalPrice,
   checkoutButton,
   className,
 }: OrderSummaryProps) {
+
+    const t = useTranslations("order-summary");
+  
+
+
   return (
-    <div className="flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center sm:px-6 lg:px-8 ">
       <Card className={`w-full max-w-md ${className ?? ""}`}>
         <CardContent className="space-y-4 p-4 sm:p-6">
           <h2 className="text-2xl font-bold">
-            {title}
+            <h1>{t("title" , {title})}</h1>
           </h2>
 
-          <div className="space-y-3 rounded-sm bg-zinc-50 p-4">
+          <div className="space-y-3 rounded-sm bg-zinc-50 p-4 dark:bg-zinc-800">
             {couponForm}
 
             {couponList}
@@ -42,8 +49,8 @@ export function OrderSummary({
             {summaryItems}
 
             {subtotal}
-
             {totalPrice}
+
           </div>
 
           {checkoutButton}

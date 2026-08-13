@@ -18,7 +18,9 @@ export function AddressCard({ address, isSelected = false, onSelect }: AddressCa
         isSelected ? 'bg-ds-bg-primary' : 'border-ds-border-subtle bg-ds-bg-plain'
       )}
     >
+      {/* Display address information */}
       <div className="flex items-center justify-between">
+        {/* Address title */}
         <h3
           className={cn(
             'font-semibold text-2xl text-ds-text-plain',
@@ -28,6 +30,7 @@ export function AddressCard({ address, isSelected = false, onSelect }: AddressCa
           {address.city}
         </h3>
 
+        {/* Phone number */}
         <p
           className={cn(
             'flex items-center gap-2',
@@ -45,6 +48,8 @@ export function AddressCard({ address, isSelected = false, onSelect }: AddressCa
           <span dir="ltr">{address.phone}</span>
         </p>
       </div>
+
+      {/* Address details */}
       <p
         className={cn(
           'text-ds-text-plain font-medium text-base bg-ds-bg-muted w-fit px-4 py-1 rounded-full mt-3',

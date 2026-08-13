@@ -2,14 +2,11 @@ import { IProduct } from '@/features/products/types/products';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Minus, Plus } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { CartItemRequest } from '../types/cart';
-import useDeleteCartItem from '../hooks/use-delete-item-cart';
 import useUpdateCartItem from '../hooks/use-update-item-cart';
-import { useRouter } from '@/i18n/navigation';
 import { useCart } from '../context/cart.context';
 import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { formatLocaleNumber } from '@/shared/lib/utils/format-number';
+import {  updateGuestCartItemQuantity } from '../storage/guest-cart';
 
 export default function CartFooter({ product }: { product: IProduct }) {
   // Translations
@@ -19,86 +16,43 @@ export default function CartFooter({ product }: { product: IProduct }) {
   const locale = useLocale();
 
   // Cart Context
-  const { cartList, isAuthenticated, cartItems, setCartItems } = useCart();
+  const { userData,cartDataProducts, isAuthenticated, refreshCart } = useCart();
 
-  // Router
-  const router = useRouter();
+  // Update User Cart Item
+  const{ isPending, updateUserCart } = useUpdateCartItem()
 
-  // Delete user Cart Hook
-  const { deleteUserCart, isPending } = useDeleteCartItem();
-
-  // Update user Cart Hook
-  const { updateUserCart, isPending: isUpdating } = useUpdateCartItem();
-
-  // Quantity State
-  const [quantity, setQuantity] = useState(1);
-
-  // Get Item Quanity
-  const itemQuantity = isAuthenticated
-    ? cartList?.find((item) => item.productId === product.id)?.quantity
-    : cartItems.filter((item) => product.id === item.productId)[0]?.quantity;
+  // Get Item Quantity
+  const quantity  = cartDataProducts.find((item) => item.productId === product.id)?.quantity ?? 1;
 
   // Stock Quanity Condition
   const isMaxStock = quantity >= product.stock;
 
-  // Loading
-  const isLoading = isPending || isUpdating;
 
   // Quanitity Change
   function quantityChange(num: number) {
-    if (num > 0 && quantity >= product.stock) return;
+    if(num < 0 && quantity === 1) return
+    if(num > 0 && isMaxStock) return
 
     const newQuantity = quantity + num;
 
     if (!isAuthenticated) {
-      let updatedCartItems: CartItemRequest[];
-
-      if (newQuantity <= 0) {
-        updatedCartItems = cartItems.filter((item) => item.productId !== product.id);
-      } else {
-        updatedCartItems = cartItems.map((item) =>
-          item.productId === product.id ? { ...item, quantity: newQuantity } : item
-        );
-      }
-
-      localStorage.setItem('guest-cart', JSON.stringify(updatedCartItems));
-      setCartItems(updatedCartItems);
-      setQuantity(newQuantity <= 0 ? 0 : newQuantity);
+      updateGuestCartItemQuantity(product.id, newQuantity);
+      refreshCart();
       return;
     }
 
-    // Authenticated user
-    const cartItem = cartList?.find((item) => item.productId === product.id);
+
+    // Authenticated
+    const cartItem = userData?.find((item) => item.productId === product.id);
     if (!cartItem) return;
 
-    if (newQuantity <= 0) {
-      deleteUserCart(cartItem.id, {
-        onSuccess: () => {
-          router.refresh();
-        },
-        onError: () => setQuantity(itemQuantity ?? 1),
-      });
-    } else {
-      updateUserCart(
-        { cartItemId: cartItem.id, quantity: newQuantity },
-        {
-          onSuccess: () => {
-            router.refresh();
-          },
-          onError: () => setQuantity(itemQuantity ?? 1),
-        }
-      );
-    }
-    setQuantity(newQuantity <= 0 ? 0 : newQuantity);
+    updateUserCart({ cartItemId: cartItem.id, quantity: newQuantity }, {
+      onSuccess: () => {
+        refreshCart();
+      },
+    })
   }
-
-  useEffect(() => {
-    if (itemQuantity !== undefined) {
-      setTimeout(() => setQuantity(itemQuantity));
-    } else {
-      setTimeout(() => setQuantity(1));
-    }
-  }, [itemQuantity]);
+  
 
   return (
     <div className="footer flex justify-between">
@@ -108,7 +62,7 @@ export default function CartFooter({ product }: { product: IProduct }) {
           {t('cart-item-quantity', { quantity })}
         </span>
         <h5 className="font-bold h-fit mt-auto text-2xl text-ds-text-plain">
-          {formatLocaleNumber(parseInt(product.price) * quantity, locale)}
+          {formatLocaleNumber(Number(product.price) * quantity, locale)}
         </h5>
         <span className="font-medium h-fit mt-auto text-base text-ds-text-plain">
           {t('cart-currency')}
@@ -121,7 +75,7 @@ export default function CartFooter({ product }: { product: IProduct }) {
         <Button
           onClick={() => quantityChange(-1)}
           variant={'secondary'}
-          disabled={isLoading}
+          disabled={quantity <= 1 || isPending}
           className="minus w-12.25 h-full cursor-pointer"
         >
           <Minus className="size-5" />
@@ -140,7 +94,7 @@ export default function CartFooter({ product }: { product: IProduct }) {
         <Button
           onClick={() => quantityChange(1)}
           variant={'secondary'}
-          disabled={isLoading || isMaxStock}
+          disabled={isMaxStock || isPending}
           className="plus w-12.25 h-full cursor-pointer"
         >
           <Plus className="size-5" />
