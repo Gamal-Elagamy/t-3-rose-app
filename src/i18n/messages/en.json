@@ -370,5 +370,33 @@
       "noAddresses": "No addresses found, please add a new address.",
       "or": "OR"
     }
+  },
+  "accountSettings": {
+    "title": "Account Settings",
+    "sidebar": {
+      "profile": "Profile",
+      "changePassword": "Change Password",
+      "logout": "Logout"
+    },
+    "updatePassword": {
+      "title": "Change Password",
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "placeholder": "********",
+      "submit": "Change Password",
+      "success": "Your password has been updated. Please login again.",
+      "validation": {
+        "currentPasswordRequired": "Current password is required",
+        "newPasswordRequired": "New password is required",
+        "confirmPasswordRequired": "Confirm password is required",
+        "minLength": "Password must be at least 8 characters",
+        "uppercase": "Password must include an uppercase letter",
+        "lowercase": "Password must include a lowercase letter",
+        "digit": "Password must include a number",
+        "special": "Password must include a special character",
+        "mismatch": "New password and confirm password don't match"
+      }
+    }
   }
 }
