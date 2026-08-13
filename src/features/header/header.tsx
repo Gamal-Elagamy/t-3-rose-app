@@ -17,49 +17,63 @@ import { useTranslations } from 'next-intl';
 import { SearchBox } from '@/shared/components/search-box';
 
 export function Header() {
-  // Translation
   const t = useTranslations();
-  // Hooks
+
   const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
 
   return (
-    <header>
-      {/* desktop */}
-      <div className="hidden  items-center gap-6 px-6 py-4 lg:flex">
+    <header className="sticky top-0 z-50 bg-ds-bg-plain">
+      {/* Desktop */}
+      <div className="hidden items-center gap-6 px-6 py-4 lg:flex">
         <Logo />
-        {/* <DeliverTo /> */}
+
         <SearchBox />
+
         <div className="flex shrink-0 items-center gap-4">
           {isAuthenticated ? (
-            <div className="flex items-center gap-4">
+            <>
               <UserDropdown />
               <Notifications />
-              <CartButton />
-              <WishlistButton />
-            </div>
+            </>
           ) : (
-            <Link href="/login" className="text-sm text-ds-text-default">
+            <Link
+              href="/login"
+              className="text-sm text-ds-text-default outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
+            >
               {t('header.nav.login')}
             </Link>
           )}
+
+          {/* Visible for both authenticated and unauthenticated users */}
+          <CartButton />
+          <WishlistButton />
+
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
       </div>
-      {/* mobile */}
+
+      {/* Mobile */}
       <div className="flex flex-col gap-3 px-4 py-3 lg:hidden">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-3">
           <MobileMenu />
+
           <Logo />
-          <div className="flex items-center gap-4">
+
+          <div className="flex shrink-0 items-center gap-3">
+            {/* Visible for both authenticated and unauthenticated users */}
+            <WishlistButton />
             <CartButton />
+
             {isAuthenticated && <Notifications />}
           </div>
         </div>
 
         <SearchBar />
       </div>
+
+      {/* Main Navigation */}
       <div className="hidden lg:block">
         <MainNav />
       </div>

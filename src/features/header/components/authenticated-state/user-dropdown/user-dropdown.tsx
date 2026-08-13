@@ -31,20 +31,25 @@ export function UserDropdown() {
   const items = menuItems.filter(
     (item) => item.key !== 'dashboard' || role === 'ADMIN' || role === 'SUPER_ADMIN'
   );
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-1.5 text-ds-text-default outline-none">
+      <DropdownMenuTrigger
+        aria-label={userName ? `${t('greeting')} ${userName}` : t('greeting')}
+        className="flex items-center gap-1.5 text-ds-text-default outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
+      >
         <span className="text-start text-xs leading-tight text-ds-text-muted">
           {t('greeting')}
           <br />
           <span className="text-sm font-semibold text-ds-text-plain">{userName}</span>
         </span>
-        <ChevronDown className="size-4 text-ds-text-muted" />
+
+        <ChevronDown className="size-4 shrink-0 text-ds-text-muted" aria-hidden="true" />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="end"
-        className="w-56 rounded-xl border-none bg-ds-bg-plain p-3 shadow-soft-lg"
+        className="w-auto max-w-[calc(100vw-2rem)] rounded-xl border-none bg-ds-bg-plain p-3 shadow-soft-lg"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel className="px-2 py-1 text-sm font-semibold text-ds-bg-primary">
@@ -58,18 +63,18 @@ export function UserDropdown() {
           <DropdownMenuItem
             key={key}
             render={<Link href={href} />}
-            className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle"
+            className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-inset"
           >
-            <Icon className="size-4" />
+            <Icon className="size-4 shrink-0" aria-hidden="true" />
             {t(key)}
           </DropdownMenuItem>
         ))}
 
         <DropdownMenuItem
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle"
+          className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-ds-text-default outline-none transition-colors hover:bg-ds-bg-subtle focus:bg-ds-bg-subtle focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-inset"
         >
-          <LogOut className="size-4" />
+          <LogOut className="size-4 shrink-0" aria-hidden="true" />
           {t('logout')}
         </DropdownMenuItem>
       </DropdownMenuContent>
