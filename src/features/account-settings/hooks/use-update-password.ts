@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { UpdatePasswordFormData } from '../types/account';
 import { updatePasswordAction } from '../actions/account.action';
+import { AccountSettingsApiError } from '../lib/account-settings-api-error';
 
 export default function useUpdatePassword() {
   return useMutation({
@@ -9,11 +10,7 @@ export default function useUpdatePassword() {
       const response = await updatePasswordAction(values);
 
       if (!response.status) {
-        if (response?.errors && Array.isArray(response.errors)) {
-          throw response.errors;
-        } else if (response?.message) {
-          throw response.message;
-        }
+        throw AccountSettingsApiError.fromApiResponse(response);
       }
 
       return response;
