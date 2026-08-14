@@ -1,50 +1,39 @@
-import { CheckoutButton } from "@/features/cart/order-summary/components/checkout-button";
-import { CouponSection } from "@/features/cart/order-summary/components/coupon-section";
-import { OrderSummary } from "@/features/cart/order-summary/components/order-summary";
-import { SubTotalPrice } from "@/features/cart/order-summary/components/subtotal-price";
-import { TotalPrice } from "@/features/cart/order-summary/components/total-price";
-
-import { CouponProvider } from "@/features/cart/order-summary/context/coupon-context";
-import ProductYouMayLikeSection from "@/features/products/components/product-you-may-like/product-you-may-like-section";
-import { IProductId } from "@/features/products/components/product/product-reviews/product-reviews";
-import { IProduct } from "@/features/products/types/products";
-
-
+import { CheckoutButton } from '@/features/cart/order-summary/components/checkout-button';
+import { CouponSection } from '@/features/cart/order-summary/components/coupon-section';
+import { OrderSummary } from '@/features/cart/order-summary/components/order-summary';
+import { SubTotalPrice } from '@/features/cart/order-summary/components/subtotal-price';
+import { TotalPrice } from '@/features/cart/order-summary/components/total-price';
+import { CouponProvider } from '@/features/cart/order-summary/context/coupon-context';
+import { getYouMayLikeProducts } from '@/features/products/apis/product-you-may-like.api';
+import ProductYouMayLikeCarouselSlot from '@/features/products/components/product-you-may-like/product-you-may-like-carousel-slot';
 
 interface CartLayoutProps {
   children: React.ReactNode;
-  product: IProduct
 }
 
-
-
-export default function CartLayout({ children , product }: CartLayoutProps ) {
+export default async function CartLayout({ children }: CartLayoutProps) {
+  const products = await getYouMayLikeProducts();
   return (
     <>
       <div className="grid h-screen grid-cols-3 gap-4">
         <section className="col-span-2">{children}</section>
 
-         <CouponProvider>
-       
-    <section className="col-span-1">
-    
-          <OrderSummary
-            couponForm={<CouponSection />}
-            totalPrice={<TotalPrice currency="EGP" />}
-            subtotal={<SubTotalPrice currency="EGP" />}
-            checkoutButton={<CheckoutButton />}
-          />
-        </section>
-      
+        <CouponProvider>
+          <section className="col-span-1">
+            <OrderSummary
+              couponForm={<CouponSection />}
+              totalPrice={<TotalPrice currency="EGP" />}
+              subtotal={<SubTotalPrice currency="EGP" />}
+              checkoutButton={<CheckoutButton />}
+            />
+          </section>
         </CouponProvider>
-        
-
-      
       </div>
 
-      <div className=" ">
-       <ProductYouMayLikeSection product={product} />
-      </div>
+      {/* Product You May Like */}
+      <section className="mx-10 my-20">
+        <ProductYouMayLikeCarouselSlot products={products} />
+      </section>
     </>
   );
 }

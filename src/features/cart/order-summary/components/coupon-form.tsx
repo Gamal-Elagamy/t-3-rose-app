@@ -5,53 +5,27 @@ import { Input } from '@/shared/components/ui/input';
 import { TicketPercent } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import useApplyCoupon from '../hooks/use-apply-coupon';
-import { ICoupon } from '../types/copons';
 import { useTranslations } from 'next-intl';
 
 interface CouponFormProps {
-  onCouponFound: (coupon: ICoupon) => void;
-  onCouponNotFound: () => void;
+  onApply: (code: string) => void;
+  isPending?: boolean;
 }
 
-export function CouponForm({ onCouponFound, onCouponNotFound }: CouponFormProps) {
+export function CouponForm({ onApply, isPending = false }: CouponFormProps) {
   const t = useTranslations('order-summary');
+
   const [couponCode, setCouponCode] = useState('');
 
-  const { mutate, isPending } = useApplyCoupon();
-
   const handleApplyCoupon = () => {
-    const trimmedCoupon = couponCode.trim();
+    const code = couponCode.trim();
 
-    if (!trimmedCoupon) {
+    if (!code) {
       toast.error(t('coupon-empty'));
       return;
     }
 
-    mutate(trimmedCoupon, {
-      onSuccess: (response) => {
-        const coupons = response.payload?.data ?? [];
-
-        if (coupons.length === 0) {
-          onCouponNotFound();
-
-          toast.error(t('coupon-not-found'));
-          return;
-        }
-
-        const coupon = coupons[0];
-
-        onCouponFound(coupon);
-
-        toast.success(t('coupon-found'));
-      },
-
-      onError: (error) => {
-        onCouponNotFound();
-
-        toast.error(error.message);
-      },
-    });
+    onApply(code);
   };
 
   return (
@@ -60,7 +34,9 @@ export function CouponForm({ onCouponFound, onCouponNotFound }: CouponFormProps)
         className="w-full uppercase"
         placeholder={t('coupon-Placeholder')}
         value={couponCode}
-        onChange={(event) => setCouponCode(event.target.value.toUpperCase())}
+        onChange={(event) => {
+          setCouponCode(event.target.value.toUpperCase());
+        }}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             handleApplyCoupon();
@@ -70,9 +46,9 @@ export function CouponForm({ onCouponFound, onCouponNotFound }: CouponFormProps)
 
       <Button
         type="button"
-        className="flex h-full items-center justify-center gap-2"
         disabled={isPending}
         onClick={handleApplyCoupon}
+        className="flex h-full items-center justify-center gap-2"
       >
         <TicketPercent className="size-5" />
 

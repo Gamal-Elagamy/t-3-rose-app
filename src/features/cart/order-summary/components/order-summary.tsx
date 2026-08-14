@@ -1,7 +1,6 @@
-import { Card, CardContent } from "@/shared/components/ui/card";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import { ReactNode } from "react";
+import { Card, CardContent } from '@/shared/components/ui/card';
+import { useTranslations } from 'next-intl';
+import { ReactNode } from 'react';
 
 interface OrderSummaryProps {
   title?: string;
@@ -19,7 +18,7 @@ interface OrderSummaryProps {
 }
 
 export function OrderSummary({
-  title = "Summary",
+  title = 'Summary',
   couponForm,
   couponList,
   totalPrice,
@@ -28,18 +27,15 @@ export function OrderSummary({
   checkoutButton,
   className,
 }: OrderSummaryProps) {
-
-    const t = useTranslations("order-summary");
-  
-
+  const t = useTranslations('order-summary');
 
   return (
     <div className="flex items-center justify-center sm:px-6 lg:px-8 ">
-      <Card className={`w-full max-w-md ${className ?? ""}`}>
+      <Card className={`w-full max-w-md ${className ?? ''}`}>
         <CardContent className="space-y-4 p-4 sm:p-6">
-          <h2 className="text-2xl font-bold">
-            <h1>{t("title" , {title})}</h1>
-          </h2>
+          <div className="text-2xl font-bold">
+            <h1>{t('title', { title })}</h1>
+          </div>
 
           <div className="space-y-3 rounded-sm bg-zinc-50 p-4 dark:bg-zinc-800">
             {couponForm}
@@ -50,7 +46,6 @@ export function OrderSummary({
 
             {subtotal}
             {totalPrice}
-
           </div>
 
           {checkoutButton}
