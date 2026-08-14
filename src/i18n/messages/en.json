@@ -394,6 +394,15 @@
     "phone": "Contact Number",
     "findMyLocation": "Find My Location",
     "FindYourLocation": "Find Your Location",
-    "locationDenied": "Location access denied. Please pin manually."
+    "findingLocation": "Finding...",
+    "locationDenied": "Location access denied. Please pin manually.",
+    "locationRequired": "Please select a location on the map",
+    "update": "Update Address",
+    "save": "Save Address",
+    "titleRequired": "Title is required",
+    "cityRequired": "City is required",
+    "streetRequired": "Address is required",
+    "phoneRequired": "Phone is required",
+    "phoneInvalid": "Please enter a valid phone number"
   }
 }

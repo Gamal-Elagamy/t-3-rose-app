@@ -17,48 +17,43 @@ interface AddAddressDialogProps {
   address?: IAddress | null;
 }
 
+const DEFAULT_FORM_VALUES: AddressFormValues = {
+  title: 'Home',
+  city: '',
+  street: '',
+  phone: '',
+  isPrimary: true,
+};
+
+function getFormValues(address?: IAddress | null): AddressFormValues {
+  if (!address) {
+    return DEFAULT_FORM_VALUES;
+  }
+
+  return {
+    title: address.title,
+    city: address.city,
+    street: address.street,
+    phone: address.phone,
+    isPrimary: address.isPrimary,
+  };
+}
+
 export default function AddAddressDialog({
   onClose,
   mode = 'add',
   address,
 }: AddAddressDialogProps) {
+  // State
   const { currentStep, goToStep, goToNextStep, goToPreviousStep } = useAddressStepper();
 
+  // Form
   const form = useForm<AddressFormValues>({
     resolver: zodResolver(addressSchema),
-    defaultValues: {
-      title: 'Home',
-      city: '',
-      street: '',
-      phone: '',
-      isPrimary: true,
-    },
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
-  useEffect(() => {
-    goToStep(1);
-
-    if (mode === 'edit' && address) {
-      form.reset({
-        title: address.title,
-        city: address.city,
-        street: address.street,
-        phone: address.phone,
-        isPrimary: address.isPrimary,
-      });
-    }
-
-    if (mode === 'add') {
-      form.reset({
-        title: 'Home',
-        city: '',
-        street: '',
-        phone: '',
-        isPrimary: true,
-      });
-    }
-  }, [mode, address, form, goToStep]);
-
+  // Functions
   const handleNext = async () => {
     const isValid = await form.trigger(['city', 'street', 'phone']);
 
@@ -71,14 +66,15 @@ export default function AddAddressDialog({
     goToPreviousStep();
   };
 
+  // Effects
+  useEffect(() => {
+    goToStep(1);
+    form.reset(mode === 'edit' ? getFormValues(address) : DEFAULT_FORM_VALUES);
+  }, [mode, address, form, goToStep]);
+
   return (
     <>
-      {currentStep === 1 && (
-        <AddressDetailsStep
-          control={form.control}
-          onNext={handleNext}
-        />
-      )}
+      {currentStep === 1 && <AddressDetailsStep control={form.control} onNext={handleNext} />}
 
       {currentStep === 2 && (
         <AddressLocationStep

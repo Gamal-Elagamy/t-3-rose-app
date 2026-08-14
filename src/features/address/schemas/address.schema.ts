@@ -1,13 +1,24 @@
 import { isValidPhoneNumber } from 'react-phone-number-input';
 import { z } from 'zod';
 
+export type AddressValidationKey =
+  | 'titleRequired'
+  | 'cityRequired'
+  | 'streetRequired'
+  | 'phoneRequired'
+  | 'phoneInvalid';
+
 export const addressSchema = z.object({
-  title: z.string().min(1, 'title is required'),
-  city: z.string().min(1, 'city is required'),
-  street: z.string().min(1, 'street is required'),
-  phone: z.string().min(1, 'phone is required').refine(isValidPhoneNumber, {
+  title: z.string().min(1, 'titleRequired'),
+
+  city: z.string().min(1, 'cityRequired'),
+
+  street: z.string().min(1, 'streetRequired'),
+
+  phone: z.string().min(1, 'phoneRequired').refine(isValidPhoneNumber, {
     message: 'phoneInvalid',
   }),
+
   isPrimary: z.boolean().optional(),
 });
 

@@ -1,25 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { Trash2, X } from 'lucide-react';
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/shared/components/ui/dialog';
 import { Button } from '@/shared/components/ui/button';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 import { IAddress } from '../types/address';
 import { useDeleteAddress } from '../hooks/use-delete-address';
-
-import { Trash2, X } from 'lucide-react';
 
 import { AddressList } from './address-list';
 import AddressStepper from './address-stepper';
 import AddAddressDialog from './add-address-dialog';
 
-import { cn } from '@/shared/lib/utils/tailwind-cn';
-
-type View = 'list' | 'add' | 'edit';
+type AddressView = 'list' | 'add' | 'edit';
 
 interface AddressesModalProps {
   open: boolean;
@@ -28,29 +26,29 @@ interface AddressesModalProps {
 }
 
 export default function AddressesModal({ open, onOpenChange, addresses }: AddressesModalProps) {
+  // Translation
   const t = useTranslations('address');
+
+  // Navigation
   const router = useRouter();
 
-  const [view, setView] = useState<View>('list');
-
+  // State
+  const [view, setView] = useState<AddressView>('list');
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
-
   const [addressToDelete, setAddressToDelete] = useState<IAddress | null>(null);
-
-  /*
-   * Keep track of addresses deleted locally while
-   * waiting for the refreshed server data.
-   */
   const [deletedAddressIds, setDeletedAddressIds] = useState<string[]>([]);
 
+  // Mutation
   const deleteAddressMutation = useDeleteAddress();
 
-  /*
-   * Same behavior as the old localAddresses state:
-   * deleted addresses disappear immediately from the UI.
-   */
-  const localAddresses = addresses.filter((address) => !deletedAddressIds.includes(address.id));
+  // Variables
+  const visibleAddresses = addresses.filter((address) => !deletedAddressIds.includes(address.id));
 
+  const isListView = view === 'list';
+  const isFormView = view === 'add' || view === 'edit';
+  const isDeleting = deleteAddressMutation.isPending;
+
+  // Functions
   const handleClose = () => {
     onOpenChange(false);
   };
@@ -70,7 +68,7 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
   };
 
   const handleCancelDelete = () => {
-    if (deleteAddressMutation.isPending) return;
+    if (isDeleting) return;
 
     setAddressToDelete(null);
   };
@@ -82,14 +80,10 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
       onSuccess: () => {
         toast.success(t('deleted'));
 
-        /*
-         * Remove the address immediately from the UI
-         * without waiting for router.refresh().
-         */
-        setDeletedAddressIds((prev) => [...prev, addressToDelete.id]);
+        // Keep the deleted address hidden until the server data refreshes.
+        setDeletedAddressIds((currentIds) => [...currentIds, addressToDelete.id]);
 
         setAddressToDelete(null);
-
         router.refresh();
       },
 
@@ -99,33 +93,29 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
     });
   };
 
-  const isListView = view === 'list';
-  const isFormView = view === 'add' || view === 'edit';
-
   return (
     <>
-      {/* Main Addresses Modal */}
+      {/* Addresses Modal */}
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent
           showCloseButton={false}
           className={cn(
-            'w-[calc(100%-32px)] max-w-[850px] gap-0 overflow-hidden rounded-2xl bg-white p-0 ring-0'
+            'w-[calc(100%-32px)] max-w-212.5 gap-0 overflow-hidden rounded-2xl bg-ds-bg-plain p-0 ring-0'
           )}
         >
+          {/* Addresses List */}
           {isListView && (
             <>
-              {/* Header */}
-              <DialogHeader
-                className="
-                  flex
-                  flex-row
-                  items-center
-                  justify-between
-                  px-6
-                  py-5
-                "
-              >
-                <DialogTitle className="text-[26px] font-bold leading-none">
+              <DialogHeader className="flex flex-row items-center justify-between px-6 py-5 border-b border-ds-border-soft">
+                <DialogTitle
+                  className="
+                    text-[26px]
+                    font-bold
+                    leading-none
+                    text-ds-text-default
+                  
+                  "
+                >
                   {t('modal.title')}
                 </DialogTitle>
 
@@ -150,11 +140,10 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
                 </Button>
               </DialogHeader>
 
-              {/* Address List */}
               <div className="flex-1 overflow-y-auto px-6 py-6">
                 <AddressList
                   variant="modal"
-                  addresses={localAddresses}
+                  addresses={visibleAddresses}
                   onAdd={handleAdd}
                   onEdit={handleEdit}
                   onDelete={handleDelete}
@@ -163,27 +152,31 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
             </>
           )}
 
+          {/* Add / Edit Address */}
           {isFormView && (
             <>
-              {/* Form Header */}
               <DialogHeader
                 className="
                   flex
                   flex-row
                   items-center
                   justify-between
-                  border-b
-                  border-ds-border-subtle
                   px-6
                   py-5
                 "
               >
-                <DialogTitle className="text-[26px] font-bold leading-none">
+                <DialogTitle
+                  className="
+                    text-[26px]
+                    font-bold
+                    leading-none
+                    text-ds-text-default
+                  "
+                >
                   {view === 'add' ? t('add.title') : t('edit')}
                 </DialogTitle>
               </DialogHeader>
 
-              {/* Form Content */}
               <div className="flex-1 overflow-y-auto px-6 py-6">
                 <AddressStepper
                   steps={[
@@ -209,7 +202,7 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
       <Dialog
         open={!!addressToDelete}
         onOpenChange={(isOpen) => {
-          if (!isOpen && !deleteAddressMutation.isPending) {
+          if (!isOpen && !isDeleting) {
             setAddressToDelete(null);
           }
         }}
@@ -222,16 +215,16 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
             gap-0
             overflow-hidden
             rounded-xl
-            bg-white
+            bg-ds-bg-plain
             p-0
           "
         >
-          {/* Close Button */}
+          {/* Close */}
           <button
             type="button"
             onClick={handleCancelDelete}
-            disabled={deleteAddressMutation.isPending}
-            aria-label="Close"
+            disabled={isDeleting}
+            aria-label={t('cancelDelete')}
             className="
               absolute
               right-4
@@ -243,10 +236,10 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
               items-center
               justify-center
               rounded-full
-              text-gray-400
+              text-ds-text-muted
               transition-colors
-              hover:bg-gray-100
-              hover:text-gray-700
+              hover:bg-ds-bg-muted
+              hover:text-ds-text-default
               disabled:pointer-events-none
               disabled:opacity-50
             "
@@ -265,7 +258,7 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
                 items-center
                 justify-center
                 rounded-full
-                bg-gray-100
+                bg-ds-bg-muted
               "
             >
               <div
@@ -276,10 +269,10 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
                   items-center
                   justify-center
                   rounded-full
-                  bg-gray-200
+                  bg-ds-border-soft
                 "
               >
-                <Trash2 className="h-6 w-6 text-gray-700" />
+                <Trash2 className="h-6 w-6 text-ds-text-default" />
               </div>
             </div>
 
@@ -291,7 +284,7 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
                 text-sm
                 font-medium
                 leading-5
-                text-gray-800
+                text-ds-text-default
               "
             >
               {t('deleteConfirmation')}
@@ -303,19 +296,19 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
               <Button
                 type="button"
                 variant="outline"
-                disabled={deleteAddressMutation.isPending}
+                disabled={isDeleting}
                 onClick={handleCancelDelete}
                 className="
                   h-8
                   flex-1
                   rounded-md
-                  border-gray-300
-                  bg-white
+                  border-ds-border-soft
+                  bg-ds-bg-plain
                   text-xs
                   font-medium
-                  text-gray-800
+                  text-ds-text-default
                   shadow-none
-                  hover:bg-gray-50
+                  hover:bg-ds-bg-muted
                 "
               >
                 {t('cancelDelete')}
@@ -325,8 +318,8 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
               <Button
                 type="button"
                 variant="destructive"
-                isLoading={deleteAddressMutation.isPending}
-                disabled={deleteAddressMutation.isPending}
+                isLoading={isDeleting}
+                disabled={isDeleting}
                 onClick={handleConfirmDelete}
                 className="
                   h-8

@@ -11,6 +11,8 @@ import {
   StepperSeparator,
 } from '@/shared/components/ui/stepper';
 
+const FIRST_STEP = 1;
+
 export interface AddressStep {
   step: number;
   title: string;
@@ -41,18 +43,20 @@ interface AddressStepperProps {
 }
 
 export default function AddressStepper({ steps, children }: AddressStepperProps) {
-  const [currentStep, setCurrentStep] = useState(steps[0].step);
+  const initialStep = steps[0]?.step ?? FIRST_STEP;
+
+  const [currentStep, setCurrentStep] = useState(initialStep);
 
   const goToStep = (step: number) => {
     setCurrentStep(step);
   };
 
   const goToNextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, steps.length));
+    setCurrentStep((previousStep) => Math.min(previousStep + 1, steps.length));
   };
 
   const goToPreviousStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
+    setCurrentStep((previousStep) => Math.max(previousStep - 1, FIRST_STEP));
   };
 
   return (

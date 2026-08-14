@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet';
-
-import { LatLngExpression } from 'leaflet';
+import { toast } from 'sonner';
+import { LatLngExpression, LeafletMouseEvent, Marker as LeafletMarker } from 'leaflet';
 
 import './leaflet-icon';
 import 'leaflet/dist/leaflet.css';
@@ -12,20 +12,17 @@ import 'leaflet/dist/leaflet.css';
 interface AddressMapProps {
   latitude: number;
   longitude: number;
-
   onLocationChange: (location: { latitude: number; longitude: number }) => void;
 }
 
-function MapClickHandler({
-  onLocationChange,
-}: {
-  onLocationChange: AddressMapProps['onLocationChange'];
-}) {
+type LocationChangeHandler = AddressMapProps['onLocationChange'];
+
+function MapClickHandler({ onLocationChange }: { onLocationChange: LocationChangeHandler }) {
   useMapEvents({
-    click(event) {
+    click({ latlng }: LeafletMouseEvent) {
       onLocationChange({
-        latitude: event.latlng.lat,
-        longitude: event.latlng.lng,
+        latitude: latlng.lat,
+        longitude: latlng.lng,
       });
     },
   });
@@ -44,76 +41,67 @@ function MapController({ latitude, longitude }: Pick<AddressMapProps, 'latitude'
 function DraggableMarker({ latitude, longitude, onLocationChange }: AddressMapProps) {
   const position: LatLngExpression = [latitude, longitude];
 
+  const handleMarkerDragEnd = (event: { target: LeafletMarker }) => {
+    const { lat, lng } = event.target.getLatLng();
+
+    onLocationChange({
+      latitude: lat,
+      longitude: lng,
+    });
+  };
+
   return (
     <Marker
       position={position}
       draggable
       eventHandlers={{
-        dragend: (event) => {
-          const marker = event.target;
-          const { lat, lng } = marker.getLatLng();
-
-          onLocationChange({
-            latitude: lat,
-            longitude: lng,
-          });
-        },
+        dragend: handleMarkerDragEnd,
       }}
     />
   );
 }
 
-function FindMyLocation({
-  onLocationChange,
-}: {
-  onLocationChange: AddressMapProps['onLocationChange'];
-}) {
+function FindMyLocation({ onLocationChange }: { onLocationChange: LocationChangeHandler }) {
   const map = useMap();
   const t = useTranslations('address');
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleLocationSuccess = ({ coords }: GeolocationPosition) => {
+    const { latitude, longitude } = coords;
+
+    map.flyTo([latitude, longitude], 16, {
+      animate: true,
+      duration: 1.5,
+      easeLinearity: 0.25,
+    });
+
+    onLocationChange({
+      latitude,
+      longitude,
+    });
+
+    setIsLoading(false);
+  };
+
+  const handleLocationError = () => {
+    setIsLoading(false);
+    toast.error(t('locationDenied'));
+  };
+
   const handleFindLocation = () => {
     if (!navigator.geolocation) {
-      alert(t('locationDenied'));
+      toast.error(t('locationDenied'));
       return;
     }
 
     setIsLoading(true);
 
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        const { latitude, longitude } = coords;
-
-        map.flyTo([latitude, longitude], 16, {
-          animate: true,
-          duration: 1.5,
-          easeLinearity: 0.25,
-        });
-
-        onLocationChange({
-          latitude,
-          longitude,
-        });
-
-        setIsLoading(false);
-      },
-      (error) => {
-        setIsLoading(false);
-
-        if (error.code === error.PERMISSION_DENIED) {
-          alert(t('locationDenied'));
-          return;
-        }
-
-        alert(t('locationDenied'));
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      }
-    );
+    navigator.geolocation.getCurrentPosition(handleLocationSuccess, handleLocationError, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
+    });
   };
 
   return (
@@ -121,9 +109,31 @@ function FindMyLocation({
       type="button"
       onClick={handleFindLocation}
       disabled={isLoading}
-      className="absolute right-3 top-3 z-[1000] rounded-md bg-white px-3 py-2 text-sm font-medium shadow-md transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-70"
+      className="
+        absolute
+        right-3
+        top-3
+        z-[1000]
+        rounded-md
+        border
+        border-ds-border-soft
+        bg-ds-bg-plain
+        px-3
+        py-2
+        text-sm
+        font-medium
+        text-ds-text-default
+        shadow-md
+        transition-colors
+        hover:bg-ds-bg-muted
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-ds-bg-primary
+        disabled:cursor-not-allowed
+        disabled:opacity-70
+      "
     >
-      {isLoading ? 'Finding...' : t('findMyLocation')}
+      {isLoading ? t('findingLocation') : t('findMyLocation')}
     </button>
   );
 }

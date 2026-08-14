@@ -10,19 +10,48 @@ import { Textarea } from '@/shared/components/ui/textarea';
 import { PhoneInput } from '@/shared/components/ui/phone';
 
 import { AddressFormValues } from '../types/address';
+import { AddressValidationKey } from '../schemas/address.schema';
 
 interface AddressDetailsStepProps {
   control: Control<AddressFormValues>;
   onNext: () => void;
+  mode?: 'add' | 'edit';
 }
 
-export default function AddressDetailsStep({ control, onNext }: AddressDetailsStepProps) {
+function getValidationMessage(
+  message: string | undefined,
+  translate: (key: AddressValidationKey) => string
+) {
+  if (!message) return undefined;
+
+  return translate(message as AddressValidationKey);
+}
+
+export default function AddressDetailsStep({
+  control,
+  onNext,
+  mode = 'add',
+}: AddressDetailsStepProps) {
+  // Translation
   const t = useTranslations('address');
+
+  // Variables
+  const title = mode === 'edit' ? t('edit') : t('addressDetails');
 
   return (
     <div className="flex flex-col gap-5">
       {/* Section Title */}
-      <h2 className="text-lg font-semibold  text-ds-text-primary">{t('addressDetails')}</h2>
+      <h2
+        className="
+          pb-3
+          text-lg
+          font-semibold
+          text-ds-bg-primary
+          border-b border-ds-border-soft
+        "
+      >
+        {title}
+      </h2>
 
       {/* City */}
       <Controller
@@ -30,19 +59,28 @@ export default function AddressDetailsStep({ control, onNext }: AddressDetailsSt
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor="city" className="text-sm font-medium text-gray-800">
-              City
+            <FieldLabel htmlFor="city" className="text-sm font-medium text-ds-text-default">
+              {t('city')}
             </FieldLabel>
 
             <Input
               {...field}
               id="city"
-              placeholder="Enter city name"
+              placeholder={t('city')}
               aria-invalid={fieldState.invalid}
-              className="h-10 rounded-lg border-gray-200 px-3 text-sm shadow-none"
+              className="
+                h-10
+                rounded-lg
+                border-ds-border-soft
+                px-3
+                text-sm
+                shadow-none
+              "
             />
 
-            {fieldState.error?.message && <FieldError>{fieldState.error.message}</FieldError>}
+            {fieldState.error?.message && (
+              <FieldError>{getValidationMessage(fieldState.error.message, t)}</FieldError>
+            )}
           </Field>
         )}
       />
@@ -53,18 +91,20 @@ export default function AddressDetailsStep({ control, onNext }: AddressDetailsSt
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor="street" className="text-sm font-medium text-gray-800">
-              Address
+            <FieldLabel htmlFor="street" className="text-sm font-medium text-ds-text-default">
+              {t('details')}
             </FieldLabel>
 
             <Textarea
               {...field}
               id="street"
-              placeholder="Enter your full address"
+              placeholder={t('details')}
               aria-invalid={fieldState.invalid}
             />
 
-            {fieldState.error?.message && <FieldError>{fieldState.error.message}</FieldError>}
+            {fieldState.error?.message && (
+              <FieldError>{getValidationMessage(fieldState.error.message, t)}</FieldError>
+            )}
           </Field>
         )}
       />
@@ -75,8 +115,8 @@ export default function AddressDetailsStep({ control, onNext }: AddressDetailsSt
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor="phone" className="text-sm font-medium text-gray-800">
-              Phone
+            <FieldLabel htmlFor="phone" className="text-sm font-medium text-ds-text-default">
+              {t('phone')}
             </FieldLabel>
 
             <PhoneInput
@@ -84,11 +124,13 @@ export default function AddressDetailsStep({ control, onNext }: AddressDetailsSt
               onChange={field.onChange}
               onBlur={field.onBlur}
               id="phone"
-              placeholder="Phone number"
+              placeholder={t('phone')}
               aria-invalid={fieldState.invalid}
             />
 
-            {fieldState.error?.message && <FieldError>{fieldState.error.message}</FieldError>}
+            {fieldState.error?.message && (
+              <FieldError>{getValidationMessage(fieldState.error.message, t)}</FieldError>
+            )}
           </Field>
         )}
       />
@@ -103,12 +145,12 @@ export default function AddressDetailsStep({ control, onNext }: AddressDetailsSt
           w-full
           cursor-pointer
           rounded-lg
-          bg-maroon-700
+          bg-ds-bg-primary
           text-sm
           font-medium
-          text-white
+          text-ds-text-inverse
           shadow-none
-          hover:bg-maroon-800
+          hover:bg-ds-bg-primary-saturated
         "
       >
         {t('next')}
