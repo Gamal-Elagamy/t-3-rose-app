@@ -2,7 +2,7 @@
 import { Button } from '@/shared/components/ui/button';
 import { UserRoundPen, Lock, LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 

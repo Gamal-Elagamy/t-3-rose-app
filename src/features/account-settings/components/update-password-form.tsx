@@ -12,6 +12,7 @@ import { signOut } from 'next-auth/react';
 import { UpdatePasswordFormData } from '../types/account';
 import useUpdatePassword from '../hooks/use-update-password';
 import { useTranslations } from 'next-intl';
+import { isAccountSettingsApiError } from '../lib/account-settings-api-error';
 
 function getErrorMessage(t: ReturnType<typeof useTranslations>, key: string): string {
   try {
@@ -35,6 +36,7 @@ export default function UpdatePasswordForm() {
       newPassword: '',
       confirmPassword: '',
     },
+    mode: 'onChange',
   });
 
   const onSubmit = (data: UpdatePasswordFormData) => {
@@ -46,11 +48,16 @@ export default function UpdatePasswordForm() {
         signOut({ callbackUrl: '/login' });
       },
       onError: (error: unknown) => {
-        if (Array.isArray(error)) {
-          setBackendErrors(error);
-        } else if (typeof error === 'string') {
-          setBackendErrors([{ path: '', message: error }]);
+        if (!isAccountSettingsApiError(error)) {
+          return;
         }
+
+        if (error.errors?.length) {
+          setBackendErrors(error.errors);
+          return;
+        }
+
+        setBackendErrors([{ path: '', message: error.message }]);
       },
     });
   };
