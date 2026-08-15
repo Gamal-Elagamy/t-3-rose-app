@@ -7,17 +7,16 @@ import { PhoneInput } from '@/shared/components/ui/phone';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import ProfileImage from '@/assets/images/account-settings/profile-image.png';
-import { CloudUpload } from 'lucide-react';
 import DeleteAccountConfirmation from './delete-account-confirmation';
 import { useEffect, useMemo, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import ProfileFormSkeleton from '@/shared/components/ui/delete-account-skeleton';
 import { profileFormSchema, ProfileFormValues } from '../schemas/profile-form.schema';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useUpdateProfile from '../hooks/use-update-profile';
 import { toast } from 'sonner';
+import ProfilePhoto from './profile-photo';
 
 export default function ProfileForm() {
   // Translations
@@ -39,6 +38,7 @@ export default function ProfileForm() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
+      photo: undefined,
       firstName: '',
       lastName: '',
       phone: '',
@@ -65,11 +65,13 @@ export default function ProfileForm() {
       toast.error(error instanceof Error ? error.message : t('update-failed'));
     }
   }
+  // console.log(userDate);
 
   // Effect State
   useEffect(() => {
     if (userDate) {
       form.reset({
+        photo: userDate.photo ?? '',
         firstName: userDate.firstName ?? '',
         lastName: userDate.lastName ?? '',
         phone: userDate.phone ?? '',
@@ -83,34 +85,13 @@ export default function ProfileForm() {
   }
 
   return (
-    <>
+    <FormProvider {...form}>
       <form
         onSubmit={form.handleSubmit(handlesubmitChanges)}
         className="relative w-full flex flex-col gap-4 p-5"
       >
         {/* Profile Photo */}
-        <div className="profile-photo flex flex-row items-center gap-4">
-          <div className="relative profile-image w-fit">
-            <div className="image-wrapper w-30 h-30 rounded-full border border-ds-border-muted overflow-hidden">
-              <Image
-                src={ProfileImage}
-                alt="profile-image"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="icon absolute bottom-0 right-0 flex items-center justify-center w-8.5 h-8.5 rounded-full border border-ds-border-muted bg-ds-bg-subtle cursor-pointer">
-              <CloudUpload className="size-5 text-ds-text-plain" />
-            </div>
-          </div>
-
-          <div className="profile-info flex flex-col gap-4">
-            <h2 className="font-semibold text-xl text-ds-text-plain">{t('upload-photo-title')}</h2>
-            <p className="font-normal text-base text-ds-text-soft">
-              {t('upload-photo-description')}
-            </p>
-          </div>
-        </div>
+        <ProfilePhoto />
 
         {/* Inputs */}
         <div className="inputs flex flex-col gap-2.5">
@@ -238,6 +219,6 @@ export default function ProfileForm() {
           <DeleteAccountConfirmation onClose={() => setIsDeleteAccountModalOpen(false)} />
         )}
       </form>
-    </>
+    </FormProvider>
   );
 }
