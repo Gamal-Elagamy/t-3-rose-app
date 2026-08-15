@@ -4,7 +4,6 @@ import { UserRoundPen, Lock, LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
 
 export default function AccountSettingsSidebar() {
   const pathname = usePathname();
