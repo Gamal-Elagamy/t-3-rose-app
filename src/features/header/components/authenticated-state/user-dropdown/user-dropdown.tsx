@@ -15,7 +15,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { User, MapPin, FileText, LayoutGrid, LogOut, ChevronDown } from 'lucide-react';
 
 const menuItems = [
-  { key: 'account', href: '/account', icon: User },
+  { key: 'account', href: '/account-settings', icon: User },
   { key: 'addresses', href: '/addresses', icon: MapPin },
   { key: 'orders', href: '/orders', icon: FileText },
   { key: 'dashboard', href: '/dashboard', icon: LayoutGrid },
