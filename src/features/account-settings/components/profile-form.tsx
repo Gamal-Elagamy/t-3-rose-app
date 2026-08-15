@@ -5,43 +5,45 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/u
 import { Input } from '@/shared/components/ui/input';
 import { PhoneInput } from '@/shared/components/ui/phone';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 
 import DeleteAccountConfirmation from './delete-account-confirmation';
-import { useEffect, useMemo, useState } from 'react';
+import { use, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import ProfileFormSkeleton from '@/shared/components/ui/delete-account-skeleton';
 import { profileFormSchema, ProfileFormValues } from '../schemas/profile-form.schema';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useUpdateProfile from '../hooks/use-update-profile';
 import { toast } from 'sonner';
 import ProfilePhoto from './profile-photo';
+import getProfileData from '../api/get-profile-data.api';
 
-export default function ProfileForm() {
+export default function ProfileForm({
+  profileData,
+}: {
+  profileData: ReturnType<typeof getProfileData>;
+}) {
   // Translations
   const t = useTranslations('accountSettings.profile');
+
+  const { user } = use(profileData);
 
   // State
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
 
   // Session
-  const { data: user, update } = useSession();
+  const { update } = useSession();
 
   // Mutation
   const { updateProfileAction, isPending } = useUpdateProfile();
-
-  // Variables
-  const userDate = useMemo(() => user?.user, [user]);
 
   // Form
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      photo: undefined,
-      firstName: '',
-      lastName: '',
-      phone: '',
+      photo: user.photo ?? '',
+      firstName: user.firstName ?? '',
+      lastName: user.lastName ?? '',
+      phone: user.phone ?? '',
     },
   });
 
@@ -52,7 +54,7 @@ export default function ProfileForm() {
 
       await update({
         user: {
-          ...userDate,
+          ...user,
           ...values,
         },
       });
@@ -65,24 +67,6 @@ export default function ProfileForm() {
       toast.error(error instanceof Error ? error.message : t('update-failed'));
     }
   }
-  // console.log(userDate);
-
-  // Effect State
-  useEffect(() => {
-    if (userDate) {
-      form.reset({
-        photo: userDate.photo ?? '',
-        firstName: userDate.firstName ?? '',
-        lastName: userDate.lastName ?? '',
-        phone: userDate.phone ?? '',
-      });
-    }
-  }, [userDate]);
-
-  // Skeleton
-  if (!user) {
-    return <ProfileFormSkeleton />;
-  }
 
   return (
     <FormProvider {...form}>
@@ -91,7 +75,7 @@ export default function ProfileForm() {
         className="relative w-full flex flex-col gap-4 p-5"
       >
         {/* Profile Photo */}
-        <ProfilePhoto />
+        <ProfilePhoto firstName={user.firstName} lastName={user.lastName} />
 
         {/* Inputs */}
         <div className="inputs flex flex-col gap-2.5">
@@ -153,7 +137,7 @@ export default function ProfileForm() {
           {/* Email */}
           <Field>
             <FieldLabel>{t('email')}</FieldLabel>
-            <Input type="email" defaultValue={userDate?.email} readOnly />
+            <Input type="email" defaultValue={user?.email} readOnly />
           </Field>
 
           {/* Phone */}
@@ -189,7 +173,7 @@ export default function ProfileForm() {
           {/* Gender */}
           <Field disabled>
             <FieldLabel>{t('gender')}</FieldLabel>
-            <Input defaultValue={userDate?.gender ?? ''} disabled />
+            <Input defaultValue={user?.gender ?? ''} readOnly />
           </Field>
         </div>
 

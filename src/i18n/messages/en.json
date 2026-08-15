@@ -402,6 +402,8 @@
       "upload-photo-title": "Upload Photo",
       "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
       "upload-failed": "Failed to upload photo, please try again.",
+      "confirm-word": "DELETE",
+      "confirm-word-label": "Type {word} to confirm",
 
       "firstName": "First Name",
       "firstName-required": "First name is required",

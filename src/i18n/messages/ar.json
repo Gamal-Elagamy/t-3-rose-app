@@ -402,6 +402,8 @@
       "upload-photo-title": "رفع صورة",
       "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif بحجم أقصى 5 ميجابايت.",
       "upload-failed": "فشل رفع الصورة، حاول مرة أخرى.",
+      "confirm-word": "حذف",
+      "confirm-word-label": "اكتب {word} للتأكيد",
 
       "firstName": "الاسم الأول",
       "lastName": "الاسم الأخير",
