@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/shared/components/ui/button';
 import { UserRoundPen, Lock, LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
@@ -23,6 +24,7 @@ export default function AccountSettingsSidebar() {
       icon: <Lock className="w-6 h-6" />,
     },
   ];
+
   return (
     <div className="w-full md:w-75 p-3 md:p-4 bg-ds-bg-subtle shrink-0 flex flex-col border border-ds-border-subtle rounded-lg">
       <ul>
@@ -30,13 +32,16 @@ export default function AccountSettingsSidebar() {
           <li key={link.id}>
             <Link
               href={link.href}
+              aria-current={pathname.endsWith(link.href) ? 'page' : undefined}
               className={`flex items-center gap-2 md:gap-3 rounded-lg px-3 md:px-4 py-2 md:py-2.5 mb-2 md:mb-2.5 font-medium text-sm md:text-base ${
                 pathname.endsWith(link.href)
                   ? 'text-ds-text-inverse bg-ds-bg-inverse'
                   : 'text-ds-text-plain'
               }`}
             >
-              <span className="w-5 h-5 md:w-6 md:h-6">{link.icon}</span>
+              <span className="w-5 h-5 md:w-6 md:h-6" aria-hidden="true">
+                {link.icon}
+              </span>
               {link.name}
             </Link>
           </li>
@@ -47,7 +52,10 @@ export default function AccountSettingsSidebar() {
         onClick={() => signOut({ callbackUrl: '/' })}
         className="bg-ds-bg-muted text-ds-text-danger hover:bg-ds-bg-muted/80 flex items-center gap-2 px-3 md:px-4 py-2.5 md:py-3 cursor-pointer mt-auto text-sm md:text-md font-normal justify-start"
       >
-        <LogOut className="w-5 h-5 md:w-6 md:h-6 text-ds-text-danger rotate-180" />
+        <LogOut
+          className="w-5 h-5 md:w-6 md:h-6 text-ds-text-danger rotate-180"
+          aria-hidden="true"
+        />
         {t('logout')}
       </Button>
     </div>

@@ -18,8 +18,10 @@ export function RatingFilter() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-ds-text-default">{t('filters.rating')}</h3>
+
         {filters.minRating && (
           <button
+            type="button"
             onClick={() => resetFilter('minRating')}
             className="text-xs text-ds-text-danger hover:underline"
           >
@@ -33,11 +35,16 @@ export function RatingFilter() {
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
+            type="button"
             onClick={() => setFilter('minRating', currentRating === star ? null : star.toString())}
             className="text-2xl transition-transform hover:scale-110"
             aria-label={`${star} stars`}
+            aria-pressed={currentRating === star}
           >
-            <span className={star <= currentRating ? 'text-yellow-400' : 'text-ds-text-muted'}>
+            <span
+              className={star <= currentRating ? 'text-yellow-400' : 'text-ds-text-muted'}
+              aria-hidden="true"
+            >
               ★
             </span>
           </button>

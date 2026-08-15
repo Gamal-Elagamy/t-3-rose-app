@@ -1,12 +1,12 @@
 export default function CartLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="grid grid-cols-3 gap-4 h-screen">
+      <div className="grid h-screen grid-cols-1 gap-4 lg:grid-cols-3">
         {/* Cart - Checkout */}
-        <section className="col-span-2">{children}</section>
+        <section className="lg:col-span-2">{children}</section>
 
         {/* Order Summary */}
-        <section className="col-span-1 bg-blue-600 "></section>
+        <section className="bg-blue-600 lg:col-span-1"></section>
       </div>
 
       {/* Products You Might Like */}

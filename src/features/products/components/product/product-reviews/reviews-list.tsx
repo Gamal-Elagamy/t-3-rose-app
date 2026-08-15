@@ -20,7 +20,10 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
           {/* User Review */}
           <div className="user-review flex items-center gap-2.5">
             {/* Avatar */}
-            <div className="avatar w-11.25 h-11.25 font-semibold text-xl flex items-center justify-center rounded-full bg-ds-bg-primary text-ds-text-inverse dark:text-ds-text-plain">
+            <div
+              className="avatar w-11.25 h-11.25 font-semibold text-xl flex items-center justify-center rounded-full bg-ds-bg-primary text-ds-text-inverse dark:text-ds-text-plain"
+              aria-hidden="true"
+            >
               {review.user.firstName.charAt(0)}
             </div>
 
@@ -29,6 +32,7 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
               <h3 className="text-ds-text-plain font-semibold text-base">
                 {review.user.firstName}
               </h3>
+
               <p className="font-medium text-sm text-ds-text-muted">
                 {new Date(review.createdAt).toLocaleDateString('en-US', {
                   month: 'short',
@@ -41,7 +45,7 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
 
           {/* Review Rating */}
           <div className="flex items-center gap-1">
-            <span className="review-rating flex items-center">
+            <span className="review-rating flex items-center" aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => (
                 <Star
                   key={i}
@@ -61,6 +65,7 @@ export function ReviewsList({ reviews }: IReviewsListProps) {
           {/* Review Description */}
           <div className="review-description font-semibold text-base text-black dark:text-white">
             {review.headline ?? ''}
+
             <p className="mt-1.5 font-normal text-ds-text-default leading-tight">
               {review.content ?? ''}
             </p>

@@ -21,9 +21,11 @@ export default function Error({
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-4">
       <h2>{t('errorPageTitle')}</h2>
-      <p>{t('errorPageDescription')}</p>
+
+      <p aria-live="polite">{t('errorPageDescription')}</p>
 
       <button
+        type="button"
         onClick={() => {
           reset();
           router.refresh();

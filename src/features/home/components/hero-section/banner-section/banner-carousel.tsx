@@ -1,4 +1,5 @@
 'use client';
+
 import Image2 from '@/assets/images/banner-home-page/Hero-Section-Banner (2).png';
 import Image3 from '@/assets/images/banner-home-page/Hero-Section-Banner (3).png';
 import Image4 from '@/assets/images/banner-home-page/Hero-Section-Banner (4).png';
@@ -40,18 +41,18 @@ const CarouselCustomDots = () => {
   }, [api]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       {/* Carousel */}
-      <Carousel setApi={setApi} className="w-full h-full">
+      <Carousel setApi={setApi} className="h-full w-full">
         <CarouselContent className="h-full">
           {images.map((src, index) => (
             <CarouselItem key={index} className="h-full">
-              <figure className="w-full h-full">
+              <figure className="h-full w-full">
                 <Image
                   src={src}
                   alt={`img ${index + 1}`}
                   placeholder="blur"
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="h-full w-full rounded-2xl object-cover"
                 />
               </figure>
             </CarouselItem>
@@ -59,16 +60,17 @@ const CarouselCustomDots = () => {
         </CarouselContent>
 
         {/* Carousel Arrow Icons */}
-        <div className="absolute inset-e-8 bottom-12 translate-y-1/2 z-40 flex items-center justify-between gap-2 rounded-full bg-maroon-50 h-8.5">
+        <div className="absolute inset-e-8 bottom-12 z-40 flex h-8.5 translate-y-1/2 items-center justify-between gap-2 rounded-full bg-maroon-50">
           <CarouselPrevious
             className={cn(
-              'cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5',
+              'static h-7.5 w-7.5 translate-y-0 cursor-pointer bg-transparent text-maroon-700 hover:bg-transparent',
               isRTL && 'rotate-180'
             )}
           />
+
           <CarouselNext
             className={cn(
-              'cursor-pointer static translate-y-0 bg-transparent hover:bg-transparent text-maroon-700 w-7.5 h-7.5',
+              'static h-7.5 w-7.5 translate-y-0 cursor-pointer bg-transparent text-maroon-700 hover:bg-transparent',
               isRTL && 'rotate-180'
             )}
           />
@@ -76,18 +78,27 @@ const CarouselCustomDots = () => {
       </Carousel>
 
       {/* Carousel Dots */}
-      <div className="absolute top-8 inset-e-8 flex gap-1.5 z-20">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => api?.scrollTo(index)}
-            className={cn('h-2.5 rounded-full transition-all duration-300 cursor-pointer', {
-              'bg-ds-bg-primary w-8': index + 1 === current,
-              'bg-ds-bg-primary-fade w-2.5 hover:bg-ds-bg-primary-faint': index + 1 !== current,
-            })}
-            aria-label={`Slide ${index + 1}`}
-          />
-        ))}
+      <div className="absolute inset-e-8 top-8 z-20 flex gap-1.5">
+        {images.map((_, index) => {
+          const isActive = index + 1 === current;
+
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={() => api?.scrollTo(index)}
+              aria-label={`Slide ${index + 1}`}
+              aria-current={isActive ? 'true' : undefined}
+              className={cn(
+                'h-2.5 cursor-pointer rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2',
+                {
+                  'w-8 bg-ds-bg-primary': isActive,
+                  'w-2.5 bg-ds-bg-primary-fade hover:bg-ds-bg-primary-faint': !isActive,
+                }
+              )}
+            />
+          );
+        })}
       </div>
     </div>
   );

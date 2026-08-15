@@ -1,4 +1,5 @@
 'use client';
+
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 
 export function PaymentStep() {
@@ -10,13 +11,18 @@ export function PaymentStep() {
       <p>Enter your payment details here.</p>
       <div className="mt-4 flex gap-2">
         <button
+          type="button"
           onClick={goToPreviousStep}
-          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+          className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
         >
           Back to Shipping
         </button>
+
         {isLastStep && (
-          <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+          <button
+            type="button"
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
             Complete Order
           </button>
         )}

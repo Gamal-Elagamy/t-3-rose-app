@@ -26,11 +26,13 @@ export default function ProductCard({
 }: IProduct) {
   // Translation
   const t = useTranslations('home.product');
+
   // Variables
   const totalStars = 5;
   const filledStars = Math.round(rating);
 
   const currentPrice = Number(price);
+
   // Calculate original price
   const originalPrice = calculateOriginalPrice(
     currentPrice,
@@ -61,7 +63,9 @@ export default function ProductCard({
 
           <div className="absolute top-2 inset-e-2 flex gap-1.5">
             {stock === 0 && <Badge>{t('outOfStock')}</Badge>}
+
             {isNew && <Badge className="bg-white text-zinc-700 hover:bg-white">{t('new')}</Badge>}
+
             {isHot && (
               <Badge className="bg-maroon-50 text-maroon-600 hover:bg-maroon-50">{t('hot')}</Badge>
             )}
@@ -77,7 +81,7 @@ export default function ProductCard({
 
       <div className="flex justify-between items-end">
         <div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" aria-hidden="true">
             {Array.from({ length: totalStars }).map((_, index) => (
               <Star
                 key={index}

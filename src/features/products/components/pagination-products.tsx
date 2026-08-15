@@ -1,7 +1,9 @@
 'use client';
+
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ReactNode, useCallback, useMemo } from 'react';
+
 import { getPageNumbers } from '../../../shared/lib/utils/pagination.utils';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 
@@ -22,6 +24,7 @@ function PageButton({
 }: PageButtonProps) {
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}
@@ -64,6 +67,7 @@ export default function PaginationProducts({ page, totalPages = 10 }: Pagination
     },
     [router, searchParams, totalPages]
   );
+
   const pages = useMemo(
     () =>
       getPageNumbers({
@@ -74,24 +78,25 @@ export default function PaginationProducts({ page, totalPages = 10 }: Pagination
   );
 
   return (
-    <div dir="ltr" className="flex items-center justify-center gap-1.5 p-6">
+    <nav aria-label="Pagination" dir="ltr" className="flex items-center justify-center gap-1.5 p-6">
       <PageButton ariaLabel="First page" disabled={page === 1} onClick={() => goTo(1)}>
-        <ChevronsLeft size={16} />
+        <ChevronsLeft size={16} aria-hidden="true" />
       </PageButton>
 
       <PageButton ariaLabel="Previous page" disabled={page === 1} onClick={() => goTo(page - 1)}>
-        <ChevronLeft size={16} />
+        <ChevronLeft size={16} aria-hidden="true" />
       </PageButton>
 
       {pages.map((p, idx) =>
         typeof p === 'number' ? (
-          <PageButton key={p} active={p === page} onClick={() => goTo(p)}>
+          <PageButton key={p} active={p === page} onClick={() => goTo(p)} ariaLabel={`Page ${p}`}>
             {p}
           </PageButton>
         ) : (
           <span
             key={p + idx}
-            className="inline-flex h-9 w-9 items-center justify-center text-sm text-gray-400 select-none"
+            aria-hidden="true"
+            className="inline-flex h-9 w-9 select-none items-center justify-center text-sm text-gray-400"
           >
             …
           </span>
@@ -103,7 +108,7 @@ export default function PaginationProducts({ page, totalPages = 10 }: Pagination
         disabled={page === totalPages}
         onClick={() => goTo(page + 1)}
       >
-        <ChevronRight size={16} />
+        <ChevronRight size={16} aria-hidden="true" />
       </PageButton>
 
       <PageButton
@@ -111,8 +116,8 @@ export default function PaginationProducts({ page, totalPages = 10 }: Pagination
         disabled={page === totalPages}
         onClick={() => goTo(totalPages)}
       >
-        <ChevronsRight size={16} />
+        <ChevronsRight size={16} aria-hidden="true" />
       </PageButton>
-    </div>
+    </nav>
   );
 }

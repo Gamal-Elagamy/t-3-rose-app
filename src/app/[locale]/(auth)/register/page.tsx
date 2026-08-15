@@ -1,4 +1,5 @@
 'use client';
+
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button } from '@/shared/components/ui/button';
 import { toast } from 'sonner';
@@ -102,6 +103,7 @@ export default function RegisterPage() {
   // Handle click on the Next button
   const handleClick = async (e: React.FormEvent) => {
     e.preventDefault();
+
     // Step One: Verify Email
     if (step === 1) {
       const isValid = await form.trigger('email');
@@ -213,6 +215,7 @@ export default function RegisterPage() {
                         <button
                           type="button"
                           onClick={handleEditEmail}
+                          aria-label="Edit email"
                           className="font-medium text-base underline text-blue-700 cursor-pointer"
                         >
                           {chunk}
@@ -221,11 +224,13 @@ export default function RegisterPage() {
                     })}
                   </p>
                 )}
+
                 {step === 3 && (
                   <p className="font-normal text-base text-ds-text-plain m-0">
                     {t('header.description-step-3')}
                   </p>
                 )}
+
                 {step === 4 && (
                   <p className="font-normal text-base text-ds-text-plain m-0">
                     {t('header.description-step-4')}
@@ -262,7 +267,7 @@ export default function RegisterPage() {
             className={'w-full cursor-pointer mt-5'}
           >
             {step === 2 ? t('button.step-2') : t('button.step-1')}
-            <MoveRight size={18} />
+            <MoveRight size={18} aria-hidden="true" />
           </Button>
         </form>
       </FormProvider>

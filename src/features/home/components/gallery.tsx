@@ -47,7 +47,7 @@ export default function Gallery() {
                 src={frame74}
                 alt="Frame74"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
 
@@ -60,7 +60,7 @@ export default function Gallery() {
                 src={frame79}
                 alt="Frame79"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
           </div>
@@ -75,7 +75,7 @@ export default function Gallery() {
                 src={frame75}
                 alt="Frame75"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
 
@@ -88,7 +88,7 @@ export default function Gallery() {
                 src={frame78}
                 alt="Frame78"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
           </div>
@@ -103,7 +103,7 @@ export default function Gallery() {
                 src={frame76}
                 alt="Frame76"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
 
@@ -116,7 +116,7 @@ export default function Gallery() {
                 src={frame80}
                 alt="Frame80"
                 placeholder="blur"
-                className="object-cover transition duration-300 hover:scale-[1.01]"
+                className="object-cover w-full transition duration-300 hover:scale-[1.01]"
               />
             </button>
           </div>

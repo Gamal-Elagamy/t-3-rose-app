@@ -13,8 +13,8 @@ export function ResetAllButton() {
   const { resetAll } = useProductFilters();
 
   return (
-    <Button variant="secondary" onClick={resetAll} className="w-full">
-      <RotateCcw className="size-4" />
+    <Button type="button" variant="secondary" onClick={resetAll} className="w-full">
+      <RotateCcw className="size-4" aria-hidden="true" />
       {t('filters.resetAll')}
     </Button>
   );
