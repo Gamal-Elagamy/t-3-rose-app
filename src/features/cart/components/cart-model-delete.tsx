@@ -15,7 +15,7 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
   const t = useTranslations('cart-list');
 
   // Cart Context
-  const { isAuthenticated,guestData ,clearCartGuest ,refreshCart } = useCart();
+  const { isAuthenticated, guestData, clearCartGuest, refreshCart } = useCart();
 
   // Clear Cart Hook
   const { mutate: clearCart, isPending } = useClearCart();
@@ -24,20 +24,19 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
     setShowModelDelete(false);
   }
 
-    // Handle Clear Function
+  // Handle Clear Function
   function handleClearCart() {
     if (!isAuthenticated && guestData.length > 0) {
-      clearCartGuest()
-      setShowModelDelete(false)
+      clearCartGuest();
+      setShowModelDelete(false);
       return;
     }
-
 
     // Authenticated
     clearCart(undefined, {
       onSuccess: () => {
         refreshCart();
-        setShowModelDelete(false)
+        setShowModelDelete(false);
       },
       onError: () => {
         toast.error(t('cart-clear-error'));
@@ -48,7 +47,7 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
-        setShowModelDelete(false)
+        setShowModelDelete(false);
       }
     }
 
@@ -56,15 +55,26 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [setShowModelDelete]);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
     <div
       onClick={() => closeModel()}
-      className="absolute z-20 flex items-center justify-center top-0 inset-s-0 bottom-0 inset-e-0 bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
     >
       <div onClick={(e) => e.stopPropagation()} className="w-118.5 p-6 rounded-2xl bg-ds-bg-plain">
         {/* Confirm info */}
         <div className="flex flex-col gap-6 items-center justify-center">
-          <X onClick={() => closeModel()} className="self-end size-6.5 text-ds-text-soft" />
+          <X
+            onClick={() => closeModel()}
+            className="self-end size-6.5 text-ds-text-soft cursor-pointer"
+          />
           <Trash2 className="size-7.5 text-ds-text-plain w-17.5 h-17.5 rounded-full bg-ds-bg-soft border-[17.5px] border-ds-border-muted" />
           <p className="font-semibold text-xl text-ds-text-plain">{t('cart-clear-info')}</p>
         </div>
@@ -72,13 +82,22 @@ export default function CartModelDelete({ setShowModelDelete }: IProps) {
         {/* Button */}
         <div className="flex items-center justify-center gap-2.5 mt-13">
           {/* Cancle Clear Cart Data Button */}
-          <Button onClick={()=>setShowModelDelete(false)} variant={'subtle'} className="flex-1 cursor-pointer">
+          <Button
+            onClick={() => setShowModelDelete(false)}
+            variant={'subtle'}
+            className="flex-1 cursor-pointer"
+          >
             {t('cart-clear-cancle')}
           </Button>
 
-      {/* Confirm Clear Cart Data Button */}
-          <Button disabled={isPending} onClick={()=>handleClearCart()} variant={'destructive'} className="flex-1 cursor-pointer">
-            {isPending ?t('cart-clearing') : t('cart-clear-confirm')}
+          {/* Confirm Clear Cart Data Button */}
+          <Button
+            disabled={isPending}
+            onClick={() => handleClearCart()}
+            variant={'destructive'}
+            className="flex-1 cursor-pointer"
+          >
+            {isPending ? t('cart-clearing') : t('cart-clear-confirm')}
           </Button>
         </div>
       </div>
