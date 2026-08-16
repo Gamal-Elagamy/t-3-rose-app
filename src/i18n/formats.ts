@@ -23,6 +23,16 @@ export const formats = {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     },
+    'rating-base': {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    },
+    'rating-count': {
+      maximumFractionDigits: 0,
+    },
+    'items-count': {
+      maximumFractionDigits: 0,
+    },
   },
 
   dateTime: {

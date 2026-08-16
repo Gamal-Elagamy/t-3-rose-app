@@ -36,6 +36,18 @@ export default getRequestConfig(async ({ requestLocale }) => {
           ...formats.number['percent-no-fractions'],
           numberingSystem,
         },
+        'rating-base': {
+          ...formats.number['rating-base'],
+          numberingSystem,
+        },
+        'rating-count': {
+          ...formats.number['rating-count'],
+          numberingSystem,
+        },
+        'items-count': {
+          ...formats.number['items-count'],
+          numberingSystem,
+        },
       },
 
       dateTime: {
