@@ -373,7 +373,6 @@
     "loadError": "Couldn't load your wishlist. Please try again.",
     "retry": "Try again"
   },
-  "failedToLoadProducts": "Failed to load products. Try again."
   "failedToLoadProducts": "Failed to load products. Try again.",
 
   "cart-list": {

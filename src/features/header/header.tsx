@@ -49,7 +49,7 @@ export function Header({ wishlistCount }: HeaderProps) {
               <CartButton />
               
 
-              <WishlistButton />
+              <WishlistButton authenticatedCount={wishlistCount} />
             </div>
           ) : (
             <Link href="/login" className="text-sm text-ds-text-default">
