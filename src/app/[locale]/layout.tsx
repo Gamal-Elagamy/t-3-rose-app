@@ -64,7 +64,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   setRequestLocale(locale);
 const jwt = await getNextAuthToken();
-  const wishlistCount = jwt?.token ? (await getWishlist()).length : 0;
+  let wishlistCount = 0;
+if (jwt?.token) {
+  try {
+    wishlistCount = (await getWishlist()).length;
+  } catch {
+    wishlistCount = 0;
+  }
+}
   return (
     <html
       lang={locale}

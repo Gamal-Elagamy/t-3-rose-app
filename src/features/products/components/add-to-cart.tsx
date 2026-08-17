@@ -19,7 +19,7 @@ export default function AddToCart({ variant = 'card', stock, productId }: AddToC
  
   if ((variant === 'details' || variant === 'wishlist') && isOutOfStock) {
     return (
-      <div className="flex items-center justify-center gap-2 rounded-xl bg-primary-fade px-4 py-2 text-sm ">
+      <div className="flex items-center justify-center gap-2 rounded-xl bg-ds-bg-primary-fade px-4 py-2 text-sm ">
         <Package className="size-4" />
         <span className="font-medium ">{t('outOfStock')}</span>
       </div>

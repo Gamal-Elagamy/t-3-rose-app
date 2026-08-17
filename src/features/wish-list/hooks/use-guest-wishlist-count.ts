@@ -1,11 +1,15 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import { getGuestWishlist} from '../storage/guest-wishlist'; 
+import { getGuestWishlist, GUEST_WISHLIST_CHANGE_EVENT} from '../storage/guest-wishlist'; 
 
 function subscribe(callback: () => void) {
   window.addEventListener('storage', callback);
-  return () => window.removeEventListener('storage', callback);
+  window.addEventListener(GUEST_WISHLIST_CHANGE_EVENT, callback);
+  return () => {
+    window.removeEventListener('storage', callback);
+    window.removeEventListener(GUEST_WISHLIST_CHANGE_EVENT, callback);
+  }
 }
 
 function getSnapshot() {
