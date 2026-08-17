@@ -11,7 +11,6 @@ interface RemoveWishlistPayload {
 }
 
 export async function removeFromWishlist({ id }: RemoveWishlistItemRequest) {
-
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
 

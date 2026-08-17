@@ -18,13 +18,21 @@ import { SearchBox } from '@/shared/components/search-box';
 interface HeaderProps {
   wishlistCount: number;
 }
+import { useCart } from '../cart/context/cart.context';
 
 export function Header({ wishlistCount }: HeaderProps) {
   // Translation
   const t = useTranslations();
+
+  // Cart Context
+  const { cartDataProducts } = useCart();
+
   // Hooks
   const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
+
+  // Items Count
+  const itemsCount = cartDataProducts.length;
 
   return (
     <header>
@@ -40,6 +48,8 @@ export function Header({ wishlistCount }: HeaderProps) {
               <Notifications />
               <CartButton />
               
+
+              <WishlistButton />
             </div>
           ) : (
             <Link href="/login" className="text-sm text-ds-text-default">
@@ -47,6 +57,7 @@ export function Header({ wishlistCount }: HeaderProps) {
             </Link>
           )}
           <WishlistButton authenticatedCount={wishlistCount} />
+          <CartButton count={itemsCount} />
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
@@ -57,7 +68,7 @@ export function Header({ wishlistCount }: HeaderProps) {
           <MobileMenu />
           <Logo />
           <div className="flex items-center gap-4">
-            <CartButton />
+            <CartButton count={itemsCount} />
             {isAuthenticated && <Notifications />}
           </div>
         </div>
