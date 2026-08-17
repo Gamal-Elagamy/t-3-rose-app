@@ -357,6 +357,24 @@
     "reset": "× إعادة",
     "resetAll": "إعادة الكل"
   },
+  "wishlist": {
+    "title": "المفضلة",
+    "itemsCount": "{count} منتجات",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "ratingsCount": "({count} تقييم)",
+    "remove": "إزالة من المفضلة",
+    "addToCart": "أضف إلى السلة",
+    "exploreSimilar": "استكشف منتجات مشابهة",
+    "clearWishlist": "إفراغ المفضلة",
+    "continueShopping": "متابعة التسوق",
+    "empty": "قائمة المفضلة فارغة",
+    "loading": "جارِ تحميل المفضلة...",
+    "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
+      "retry": "حاول مرة أخرى"
+
+  },
+
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
 
   "cart-list": {

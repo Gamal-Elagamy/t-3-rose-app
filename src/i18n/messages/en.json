@@ -357,6 +357,22 @@
     "reset": "× Reset",
     "resetAll": "Reset All"
   },
+  "wishlist": {
+    "title": "Wishlist",
+    "itemsCount": "{count} items",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "ratingsCount": "({count} ratings)",
+    "remove": "Remove from wishlist",
+    "addToCart": "Add to Cart",
+    "exploreSimilar": "Explore Similar Products",
+    "clearWishlist": "Clear Wishlist",
+    "continueShopping": "Continue Shopping",
+    "empty": "Your wishlist is empty",
+    "loading": "Loading your wishlist...",
+    "loadError": "Couldn't load your wishlist. Please try again.",
+    "retry": "Try again"
+  },
   "failedToLoadProducts": "Failed to load products. Try again.",
 
   "cart-list": {

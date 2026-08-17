@@ -15,9 +15,12 @@ import { MobileMenu } from './components/shared/mobile-menu';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { SearchBox } from '@/shared/components/search-box';
+interface HeaderProps {
+  wishlistCount: number;
+}
 import { useCart } from '../cart/context/cart.context';
 
-export function Header() {
+export function Header({ wishlistCount }: HeaderProps) {
   // Translation
   const t = useTranslations();
 
@@ -43,14 +46,17 @@ export function Header() {
             <div className="flex items-center gap-4">
               <UserDropdown />
               <Notifications />
+              <CartButton />
+              
 
-              <WishlistButton />
+              <WishlistButton authenticatedCount={wishlistCount} />
             </div>
           ) : (
             <Link href="/login" className="text-sm text-ds-text-default">
               {t('header.nav.login')}
             </Link>
           )}
+          <WishlistButton authenticatedCount={wishlistCount} />
           <CartButton count={itemsCount} />
           <ThemeToggle />
           <LanguageSwitcher />
