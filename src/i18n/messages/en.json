@@ -357,7 +357,42 @@
     "reset": "× Reset",
     "resetAll": "Reset All"
   },
+  "wishlist": {
+    "title": "Wishlist",
+    "itemsCount": "{count} items",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "ratingsCount": "({count} ratings)",
+    "remove": "Remove from wishlist",
+    "addToCart": "Add to Cart",
+    "exploreSimilar": "Explore Similar Products",
+    "clearWishlist": "Clear Wishlist",
+    "continueShopping": "Continue Shopping",
+    "empty": "Your wishlist is empty",
+    "loading": "Loading your wishlist...",
+    "loadError": "Couldn't load your wishlist. Please try again.",
+    "retry": "Try again"
+  },
   "failedToLoadProducts": "Failed to load products. Try again.",
+
+  "cart-list": {
+    "cart-title": "CART",
+    "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
+    "cart-clear": "Clear Cart",
+    "cart-clear-info": "Are you sure you want to clear your Cart?",
+    "cart-clear-cancle": "Cancle",
+    "cart-clear-confirm": "Confirm",
+    "cart-clearing": "Clearing...",
+    "cart-clear-error": "Failed to clear cart. Please try again.",
+    "cart-total": "Total:",
+    "cart-currency": "EGP",
+    "cart-rating": "Rating: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} {count, plural, one {rating} other {ratings}}",
+    "cart-remove": "Remove",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "Your cart is empty, wanna try shopping?",
+    "cart-button": "Containue Shopping"
+  },
   "checkout": {
     "shipping": {
       "title": "Shipping Address",
@@ -380,5 +415,21 @@
       "noAddresses": "No addresses found, please add a new address.",
       "or": "OR"
     }
+  },
+  "order-summary": {
+    "title": "Summary",
+    "apply-button": "Apply Coupon",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout-button": "Checkout",
+    "no-coupon": "No coupon applied",
+    "coupon-Placeholder": "coupon code",
+    "loading": "Applying...",
+    "coupon-found": "Coupon applied successfully",
+    "coupon-not-found": "Coupon not found.",
+    "sub-total": "Subtotal",
+    "coupon-empty": "Please enter coupon code",
+    "product-you-may-like": "Product you may like"
+    
   }
 }

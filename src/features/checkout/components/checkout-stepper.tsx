@@ -41,8 +41,10 @@ interface CheckoutStepperProps {
 }
 
 export function CheckoutStepper({ steps, children, defaultValue }: CheckoutStepperProps) {
+  // State
   const [currentStep, setCurrentStep] = useState(defaultValue ?? steps[0].step);
 
+  // Functions
   const goToStep = (step: number) => {
     setCurrentStep(step);
   };
@@ -57,6 +59,7 @@ export function CheckoutStepper({ steps, children, defaultValue }: CheckoutStepp
     goToStep(prevStep);
   };
 
+  // Derived values
   const isLastStep = currentStep === steps.length;
   const isFirstStep = currentStep === 1;
 
