@@ -5,6 +5,7 @@ import { IAddress } from '../types/address';
 import { AddressCard } from './address-card';
 import AddressFormModalButton from '@/features/checkout/components/shipping/form-modal-button';
 import AddressNextStepButton from '@/features/checkout/components/shipping/next-step-button';
+import { useCheckout } from '@/features/checkout/context/checkout-context';
 
 export function AddressList({ addresses }: { addresses: IAddress[] }) {
   // Translation
@@ -15,9 +16,13 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
     addresses.find((address) => address.isPrimary)?.id
   );
 
+  // Checkout context
+  const { updateCheckout } = useCheckout();
+
   // Functions
   const onSelectAddress = (address: IAddress) => {
     setSelectedAddressId(address.id);
+    updateCheckout({ addressId: address.id });
   };
 
   return (

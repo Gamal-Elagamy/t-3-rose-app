@@ -1,7 +1,7 @@
 'use server';
 
 import { IApiResponse } from '@/shared/lib/types/api';
-
+import { updateTag } from 'next/cache';
 import { RemoveWishlistItemRequest } from '../types/wishlist';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
@@ -30,6 +30,6 @@ export async function removeFromWishlist({ id }: RemoveWishlistItemRequest) {
   if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to remove item from wishlist');
   }
-
+updateTag('wishlist');
   return data;
 }
