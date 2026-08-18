@@ -357,12 +357,59 @@
     "reset": "× إعادة",
     "resetAll": "إعادة الكل"
   },
+  "wishlist": {
+    "title": "المفضلة",
+    "itemsCount": "{count} منتجات",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "ratingsCount": "({count} تقييم)",
+    "remove": "إزالة من المفضلة",
+    "addToCart": "أضف إلى السلة",
+    "exploreSimilar": "استكشف منتجات مشابهة",
+    "clearWishlist": "إفراغ المفضلة",
+    "continueShopping": "متابعة التسوق",
+    "empty": "قائمة المفضلة فارغة",
+    "loading": "جارِ تحميل المفضلة...",
+    "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
+      "retry": "حاول مرة أخرى"
+
+  },
+
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+
+  "cart-list": {
+    "cart-title": "السلة",
+    "cart-count": "{count, number, items-count} منتج",
+    "cart-clear": "إفراغ السلة",
+    "cart-clear-info": "هل أنت متأكد أنك تريد إفراغ السلة؟",
+    "cart-clear-cancle": "إلغاء",
+    "cart-clear-confirm": "تأكيد",
+    "cart-clearing": "جارِ التفريغ...",
+    "cart-clear-error": "حصل خطأ أثناء تفريغ السلة. حاول مرة أخرى.",
+    "cart-total": "الإجمالي:",
+    "cart-currency": "ج.م",
+    "cart-rating": "التقييم: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} تقييم",
+    "cart-remove": "إزالة",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "عربة التسوق فاضية، تحب تبدأ التسوق؟",
+    "cart-button": "متابعة التسوق"
+  },
   "checkout": {
     "shipping": {
       "title": "عنوان الشحن",
       "addNewAddress": "إضافة عنوان جديد",
       "next": "التالي"
+    },
+    "paymentMethod": {
+      "title": "طريقة الدفع",
+      "description": "اختر طريقة الدفع المناسبة لك.",
+      "cashOnDelivery": "الدفع عند الاستلام",
+      "cashOnDeliveryDescription": "ادفع نقدًا عند استلام طلبك.",
+      "creditCard": "بطاقة ائتمانية",
+      "creditCardDescription": "سيتم تحويلك إلى Stripe لإتمام عملية الدفع.",
+      "back": "رجوع",
+      "checkout": "إتمام الطلب"
     }
   },
   "address": {
@@ -371,32 +418,20 @@
       "or": "أو"
     }
   },
-  "accountSettings": {
-    "title": "إعدادات الحساب",
-    "sidebar": {
-      "profile": "الملف الشخصي",
-      "changePassword": "تغيير كلمة المرور",
-      "logout": "تسجيل الخروج"
-    },
-    "updatePassword": {
-      "title": "تغيير كلمة المرور",
-      "oldPassword": "كلمة المرور القديمة",
-      "newPassword": "كلمة المرور الجديدة",
-      "confirmPassword": "تأكيد كلمة المرور الجديدة",
-      "placeholder": "********",
-      "submit": "تغيير كلمة المرور",
-      "success": "تم تحديث كلمة المرور الخاصة بك. يرجى تسجيل الدخول مرة أخرى.",
-      "validation": {
-        "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
-        "newPasswordRequired": "كلمة المرور الجديدة مطلوبة",
-        "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
-        "minLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
-        "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
-        "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
-        "digit": "يجب أن تحتوي كلمة المرور على رقم",
-        "special": "يجب أن تحتوي كلمة المرور على رمز خاص",
-        "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
-      }
-    }
+  "order-summary": {
+    "title": "ملخص الطلب",
+    "apply-button": " تطبيق الكوبون",
+    "subtotal": "المجموع الفرعي",
+    "total": "المجموع",
+    "checkout-button": "الدفع",
+    "no-coupon": "لم يتم تطبيق الكوبون",
+    "coupon-Placeholder": "كود الكوبون",
+    "loading": "جارى التطبيق...",
+    "coupon-found": "تم تطبيق الكوبون بنجاح",
+    "coupon-not-found": "الكوبون غير موجود.",
+    "sub-total": "المجموع الفرعي",
+    "coupon-empty": "يرجى ادخال كود الكوبون",
+    "product-you-may-like": "المنتجات التي تحبها"
+    
   }
 }
