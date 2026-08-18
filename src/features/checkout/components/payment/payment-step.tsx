@@ -92,7 +92,7 @@ export function PaymentStep() {
                   : ''
               )}
             >
-              <Image src={imageSrc} height={250} width={200} alt={method.id} />
+              <Image src={imageSrc} className='dark:brightness-0 dark:invert' height={250} width={200} alt={method.id} />
               <h3 className={cn('text-2xl font-semibold', isSelected && 'text-maroon-600 dark:text-ds-bg-primary')}>
                 {method.id === 'CASH_ON_DELIVERY'
                   ? t('cashOnDelivery')

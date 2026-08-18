@@ -3,6 +3,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { checkoutAction } from "../apis/checkout.action"
 import { useRouter } from "@/i18n/navigation"
+import { toast } from "sonner"
 
 export const useCheckoutMutation = () => {
     const router = useRouter()
@@ -19,6 +20,9 @@ export const useCheckoutMutation = () => {
 
             // Cash on Delivery
             router.push('/orders');
+        },
+        onError: (error) => {
+            toast.error(error.message);
         },
     })
 }

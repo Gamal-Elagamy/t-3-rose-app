@@ -22,7 +22,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
 
   return (
     <div className="px-20 py-15">
-      <CheckoutStepper steps={steps} defaultValue={2}>
+      <CheckoutStepper steps={steps} defaultValue={1}>
         {/* Address */}
         <CheckoutStep value={1}>
           <ShippingStep locale={locale} />
