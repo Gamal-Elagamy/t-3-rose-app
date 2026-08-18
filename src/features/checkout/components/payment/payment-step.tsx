@@ -13,17 +13,18 @@ import Image from 'next/image';
 import { useCheckoutMutation } from '../../hooks/checkout.hook';
 import { useTransition } from 'react';
 import { PaymentMethod } from '../../types/checkout';
+import { id } from 'zod/v4/locales';
 
 
 
 const paymentMethods :{ id: PaymentMethod, image: string, }[] = [
   {
     id: 'CASH_ON_DELIVERY',
-    image: cashIcon,
+    image: creditIcon,
   },
   {
     id: 'CREDIT_CARD',
-    image: creditIcon,
+    image: cashIcon,
   },
 ] as const;
 
@@ -93,7 +94,7 @@ export function PaymentStep() {
             >
               <Image src={imageSrc} height={250} width={200} alt={method.id} />
               <h3 className={cn('text-2xl font-semibold', isSelected && 'text-maroon-600 dark:text-ds-bg-primary')}>
-                {method.id === 'CREDIT_CARD'
+                {method.id === 'CASH_ON_DELIVERY'
                   ? t('cashOnDelivery')
                   : t('creditCard')}
               </h3>
