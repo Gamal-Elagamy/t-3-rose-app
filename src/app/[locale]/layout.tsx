@@ -63,15 +63,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   setRequestLocale(locale);
-const jwt = await getNextAuthToken();
-  let wishlistCount = 0;
-if (jwt?.token) {
-  try {
-    wishlistCount = (await getWishlist()).length;
-  } catch {
-    wishlistCount = 0;
-  }
-}
+
   return (
     <html
       lang={locale}
@@ -81,7 +73,6 @@ if (jwt?.token) {
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>
-          <ConditionalHeader wishlistCount={wishlistCount} />
           {children}
         </Providers>
         <Toaster />
