@@ -42,14 +42,13 @@ export function Header({ wishlistCount }: HeaderProps) {
         {/* <DeliverTo /> */}
         <SearchBox />
         <div className="flex shrink-0 items-center gap-4">
-          {isAuthenticated ? (
+           {status === 'loading' ? (
+            <div className="h-9 w-24 animate-pulse rounded-lg bg-ds-bg-subtle" />
+          ) : status === 'authenticated' ? (
             <div className="flex items-center gap-4">
               <UserDropdown />
-              <Notifications />
-              <CartButton />
-              
-
-              <WishlistButton authenticatedCount={wishlistCount} />
+              <Notifications  />
+           
             </div>
           ) : (
             <Link href="/login" className="text-sm text-ds-text-default">
