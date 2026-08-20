@@ -2,9 +2,9 @@ import { HEADERS } from "@/shared/constant/api-header.constants";
 import { RESPONSES } from "@/shared/constant/api.responses";
 import { IApiResponse } from "@/shared/lib/types/api";
 import { getNextAuthToken } from "@/shared/lib/utils/auth.utils";
+import { DashboardPayload } from "../types/admin";
 
 export async function getAdminStatisticsApi() {
-    
     const token = await getNextAuthToken()
     if (!token?.token) return RESPONSES.unauthorized
     
@@ -14,9 +14,7 @@ export async function getAdminStatisticsApi() {
             ...HEADERS.AUTH(token.token)
         }
     })
-
-    const data : IApiResponse<{}> = await response.json()
-
+    const data : IApiResponse<DashboardPayload> = await response.json()
     if (!data.status) {
         throw new Error(data.message || "Failed to get admin statistics")
     }

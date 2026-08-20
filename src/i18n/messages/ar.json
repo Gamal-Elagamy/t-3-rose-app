@@ -462,5 +462,13 @@
       }
     }
 
+  },
+  "dashboard" :{
+    "navMain" :{
+      "overview": "لوحة التحكم",
+      "products": "المنتجات",
+      "categories": "الاقسام",
+      "occasions": "المناسبات"
+    }
   }
 }

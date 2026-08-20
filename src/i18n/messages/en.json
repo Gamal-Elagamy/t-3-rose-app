@@ -374,7 +374,6 @@
     "retry": "Try again"
   },
   "failedToLoadProducts": "Failed to load products. Try again.",
-
   "cart-list": {
     "cart-title": "CART",
     "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
@@ -416,7 +415,6 @@
       "or": "OR"
     }
   },
-
   "order-summary": {
     "title": "Summary",
     "apply-button": "Apply Coupon",
@@ -432,7 +430,6 @@
     "coupon-empty": "Please enter coupon code",
     "product-you-may-like": "Product you may like"
   },
-    
   "accountSettings": {
     "title": "Account Settings",
     "sidebar": {
@@ -460,6 +457,13 @@
         "mismatch": "New password and confirm password don't match"
       }
     }
-
+  },
+  "dashboard": {
+    "navMain": {
+      "overview": "Overview",
+      "products": "Products",
+      "categories": "Categories",
+      "occasions": "Occasions"
+    }
   }
 }
