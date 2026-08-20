@@ -358,6 +358,25 @@
     "resetAll": "Reset All"
   },
   "failedToLoadProducts": "Failed to load products. Try again.",
+
+  "cart-list": {
+    "cart-title": "CART",
+    "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
+    "cart-clear": "Clear Cart",
+    "cart-clear-info": "Are you sure you want to clear your Cart?",
+    "cart-clear-cancle": "Cancle",
+    "cart-clear-confirm": "Confirm",
+    "cart-clearing": "Clearing...",
+    "cart-clear-error": "Failed to clear cart. Please try again.",
+    "cart-total": "Total:",
+    "cart-currency": "EGP",
+    "cart-rating": "Rating: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} {count, plural, one {rating} other {ratings}}",
+    "cart-remove": "Remove",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "Your cart is empty, wanna try shopping?",
+    "cart-button": "Containue Shopping"
+  },
   "checkout": {
     "shipping": {
       "title": "Shipping Address",
@@ -398,5 +417,20 @@
         "mismatch": "New password and confirm password don't match"
       }
     }
+  },
+  "order-summary": {
+    "title": "Summary",
+    "apply-button": "Apply Coupon",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout-button": "Checkout",
+    "no-coupon": "No coupon applied",
+    "coupon-Placeholder": "coupon code",
+    "loading": "Applying...",
+    "coupon-found": "Coupon applied successfully",
+    "coupon-not-found": "Coupon not found.",
+    "sub-total": "Subtotal",
+    "coupon-empty": "Please enter coupon code",
+    "product-you-may-like": "Product you may like"
   }
 }
