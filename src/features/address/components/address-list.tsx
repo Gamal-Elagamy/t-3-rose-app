@@ -37,6 +37,7 @@ export function AddressList({
     addresses.find((address) => address.isPrimary)?.id
   );
 
+  // Functions
   const onSelectAddress = (address: IAddress) => {
     setSelectedAddressId(address.id);
   };
@@ -55,8 +56,8 @@ export function AddressList({
       <div
         className={
           variant === 'modal'
-            ? 'h-[420px] space-y-4 overflow-y-auto pr-1'
-            : 'max-h-[420px] space-y-4 overflow-y-auto'
+            ? 'h-105 space-y-4 overflow-y-auto pr-1'
+            : 'max-h-105 space-y-4 overflow-y-auto'
         }
         dir={isRTL ? 'rtl' : 'ltr'}
       >
@@ -81,6 +82,10 @@ export function AddressList({
         )}
       </div>
 
+      <div className="flex items-center justify-center my-3 before:flex-1 before:border-t before:border-ds-border-muted after:flex-1 after:border-t after:border-ds-border-muted">
+        <span className="px-4 text-md text-ds-text-soft font-medium">{t('list.or')}</span>
+      </div>
+
       {/* Checkout actions only */}
       {variant === 'checkout' && (
         <>
@@ -88,13 +93,15 @@ export function AddressList({
             <div className="flex-1 border-t border-ds-border-muted" />
 
             <span className="px-4 text-md font-medium text-ds-text-soft">{t('list.or')}</span>
-
             <div className="flex-1 border-t border-ds-border-muted" />
           </div>
 
           <AddressFormModalButton addresses={addresses} />
 
-          <AddressNextStepButton selectedAddressId={selectedAddressId} />
+          {/* Show next step button only if addresses exist */}
+          {addresses.length !== 0 && (
+            <AddressNextStepButton selectedAddressId={selectedAddressId} />
+          )}
         </>
       )}
     </>

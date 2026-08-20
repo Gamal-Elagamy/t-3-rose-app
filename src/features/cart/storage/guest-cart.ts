@@ -49,6 +49,19 @@ export function addGuestCartItem(guestCartItem: GuestCartItem) {
   setGuestCart([...cart, guestCartItem]);
 }
 
+// Update Guest Cart Item Quantity
+export  function updateGuestCartItemQuantity(productId: string, quantity: number) {
+  const cart = getGuestCart();
+
+  const updatedCart = cart.map((item) =>
+    item.productId === productId
+      ? { ...item, quantity }
+      : item
+  );
+
+  setGuestCart(updatedCart);
+}
+
 // Clear guest cart
 export function clearGuestCart() {
   localStorage.removeItem(GUEST_CART_KEY);
