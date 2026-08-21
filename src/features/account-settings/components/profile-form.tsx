@@ -25,12 +25,13 @@ export default function ProfileForm({
   // Translations
   const t = useTranslations('accountSettings.profile');
 
+  // Query
   const { user } = use(profileData);
 
   // State
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
 
-  // Session
+  // Context
   const { update } = useSession();
 
   // Mutation
@@ -48,39 +49,39 @@ export default function ProfileForm({
   });
 
   // Submit Changes Function
-  async function handlesubmitChanges(values: ProfileFormValues) {
+  async function handleSubmitChanges(values: ProfileFormValues) {
     try {
       await updateProfileAction(values);
-
-      await update({
-        user: {
-          ...user,
-          ...values,
-        },
-      });
-
-      // Reset Form
-      form.reset(values);
-
-      toast.success(t('update-success'));
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : t('update-failed'));
+    } catch {
+      return;
     }
+
+    await update({
+      user: {
+        ...user,
+        ...values,
+      },
+    });
+
+    // Reset Form
+    form.reset(values);
+
+    toast.success(t('update-success'));
   }
 
   return (
     <FormProvider {...form}>
       <form
-        onSubmit={form.handleSubmit(handlesubmitChanges)}
+        onSubmit={form.handleSubmit(handleSubmitChanges)}
         className="relative w-full flex flex-col gap-4 p-5"
       >
         {/* Profile Photo */}
-        <ProfilePhoto firstName={user.firstName} lastName={user.lastName} />
+        <ProfilePhoto user={user} />
 
         {/* Inputs */}
         <div className="inputs flex flex-col gap-2.5">
           {/* First & Last Name */}
-          <FieldGroup className="flex flex-row item-center gap-5">
+          <FieldGroup className="flex flex-row items-center gap-5">
             {/* First Name */}
             <Controller
               name="firstName"
@@ -136,8 +137,8 @@ export default function ProfileForm({
 
           {/* Email */}
           <Field>
-            <FieldLabel>{t('email')}</FieldLabel>
-            <Input type="email" defaultValue={user?.email} readOnly />
+            <FieldLabel htmlFor="email">{t('email')}</FieldLabel>
+            <Input id="email" type="email" defaultValue={user?.email} readOnly />
           </Field>
 
           {/* Phone */}
@@ -172,13 +173,13 @@ export default function ProfileForm({
 
           {/* Gender */}
           <Field disabled>
-            <FieldLabel>{t('gender')}</FieldLabel>
-            <Input defaultValue={user?.gender ?? ''} readOnly />
+            <FieldLabel htmlFor="gender">{t('gender')}</FieldLabel>
+            <Input id="gender" defaultValue={user?.gender ?? ''} readOnly />
           </Field>
         </div>
 
         {/* Buttons */}
-        <div className="actions pt-15 flex item-center justify-between">
+        <div className="actions pt-15 flex items-center justify-between">
           {/* Delete Button */}
           <button
             onClick={() => setIsDeleteAccountModalOpen(true)}

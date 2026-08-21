@@ -11,13 +11,19 @@ export const profileFormSchema = z.object({
     .refine(isValidPhoneNumber, { message: 'phone-invalid' }),
 });
 
-export const photoFileSchema = z
-  .instanceof(File)
-  .refine((file) => file.size <= 5 * 1024 * 1024, {
-    message: 'file-too-large',
-  })
-  .refine((file) => ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type), {
-    message: 'invalid-file-type',
-  });
+export const photoFileSchema = z.object({
+  photo: z
+    .union([
+      z.string().url(),
+      z
+        .file()
+        .min(1)
+        .max(5 * 1024 * 1024)
+        .mime(['image/jpeg', 'image/png', 'image/gif', 'image/webp']),
+    ])
+    .optional(),
+});
 
 export type ProfileFormValues = z.infer<typeof profileFormSchema>;
+
+export type FileField = z.infer<typeof photoFileSchema>;

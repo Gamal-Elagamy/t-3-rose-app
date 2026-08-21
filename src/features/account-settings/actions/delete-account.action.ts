@@ -20,7 +20,7 @@ export default async function deleteAccountAction() {
 
   const data: IApiResponse<{ message: string }> = await response.json();
 
-  if (!response.ok || !data) {
+  if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to delete account');
   }
 

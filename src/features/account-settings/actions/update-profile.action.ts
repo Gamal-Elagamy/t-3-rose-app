@@ -23,7 +23,7 @@ export default async function updateProfileAction(values: ProfileFormValues) {
 
   const data: IApiResponse<{ user: IUser }> = await response.json();
 
-  if (!response.ok || !data) {
+  if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to update profile');
   }
 
