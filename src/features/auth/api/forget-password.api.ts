@@ -3,9 +3,10 @@
 import { IForgotPasswordResponse } from '../type/forget-password';
 import { EmailFormData } from '../schema/forget-password.schema';
 import { IApiResponse } from '@/shared/lib/types/api';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 
 export async function forgotPasswordApi(data: EmailFormData) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`, {
+  const response = await fetch(`${getApiBaseUrl()}/auth/forgot-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
