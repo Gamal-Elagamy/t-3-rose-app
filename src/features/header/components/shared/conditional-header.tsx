@@ -2,10 +2,13 @@
 
 import { usePathname } from '@/i18n/navigation';
 import { Header } from '../../header';
+import type { PushStatus } from '../authenticated-state/notifications/apis/get-push-status';
 
 const authRoutes = ['/login', '/register', '/forgot-password'];
-
-export function ConditionalHeader() {
+interface ConditionalHeaderProps {
+  pushStatus: PushStatus;
+}
+export function ConditionalHeader({ pushStatus }: ConditionalHeaderProps) {
   // Hooks
   const pathname = usePathname();
 
@@ -17,5 +20,5 @@ export function ConditionalHeader() {
     return null;
   }
 
-  return <Header />;
+  return <Header pushStatus={pushStatus} />;
 }

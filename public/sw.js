@@ -1,18 +1,18 @@
 self.addEventListener('push', (event) => {
-  const data = event.data ? event.data.json() : {};
+  const data = event.data.json();
 
-  const title = data.title || 'New notification';
-  const options = {
-    body: data.body || '',
-
-    data: { url: data.url || '/' },
-  };
-
-  event.waitUntil(self.registration.showNotification(title, options));
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.message,
+      tag: data.id,
+      data: { link: data.link },
+    })
+  );
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const url = event.notification.data?.url || '/';
-  event.waitUntil(clients.openWindow(url));
+  if (event.notification.data?.link) {
+    event.waitUntil(clients.openWindow(event.notification.data.link));
+  }
 });

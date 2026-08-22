@@ -9,6 +9,7 @@ import { LayoutProps } from '@/shared/lib/types/locale';
 import { Toaster } from '@/shared/components/ui/sonner';
 import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
 import { ConditionalHeader } from '@/features/header/components/shared/conditional-header';
+import { getPushStatus } from '@/features/header/components/authenticated-state/notifications/apis/get-push-status';
 
 // Fonts
 const dancing = Dancing_Script({
@@ -56,12 +57,12 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
-
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
+  const pushStatus = await getPushStatus();
 
   return (
     <html
@@ -72,7 +73,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     >
       <body className={locale === 'ar' ? 'font-tajawal' : 'font-sarabun'}>
         <Providers>
-          <ConditionalHeader />
+          <ConditionalHeader 
+          pushStatus={pushStatus}
+          />
           {children}
         </Providers>
         <Toaster />

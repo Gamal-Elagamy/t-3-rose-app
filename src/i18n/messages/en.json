@@ -188,7 +188,9 @@
       "new": "New",
       "loading": "Loading notifications...",
       "error": "Something went wrong",
-      "empty": "You're all caught up!"
+      "empty": "You're all caught up!",
+      "enablePush": "Enable push notifications",
+  "disablePush": "Disable push notifications"
     },
     "nav": {
       "searchPlaceholder": "what awesome gift are you looking for",

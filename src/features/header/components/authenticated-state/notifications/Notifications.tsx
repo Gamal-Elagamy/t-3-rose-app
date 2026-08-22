@@ -6,15 +6,23 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
-import { Bell, BellOff, Check } from 'lucide-react';
+import { Bell, BellOff, BellRing, Check } from 'lucide-react';
 import { useNotifications, useMarkAsRead, useMarkAllAsRead } from './hooks/use-notifications';
 import { NotificationsSkeleton } from './notifications-skeleton';
+import type { PushStatus } from './apis/get-push-status'; 
+import { usePushNotifications } from './hooks/use-push-notifications';
 
-export function Notifications() {
+
+interface NotificationsProps { 
+  pushStatus: PushStatus;
+}
+
+export function Notifications({ pushStatus }: NotificationsProps) {
   const t = useTranslations('header.notifications');
   const { data: notifications = [], isLoading } = useNotifications();
   const markAsRead = useMarkAsRead();
   const markAllAsRead = useMarkAllAsRead();
+  const { isSubscribed, isSupported, subscribeToPush, unsubscribeFromPush } = usePushNotifications();
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
@@ -31,14 +39,24 @@ export function Notifications() {
 
       <DropdownMenuContent
         align="end"
-        className="w-80 overflow-hidden rounded-xl border-none bg-ds-bg-plain p-0 shadow-soft-lg"
+        className="w-80 overflow-hidden rounded-xl  border-none bg-ds-bg-plain p-0 shadow-soft-lg"
       >
-        <div className="flex items-center justify-between bg-ds-bg-primary px-4 py-3">
+        <div className="flex items-center  justify-between bg-ds-bg-primary px-4 py-3">
           <h2 className="text-sm font-semibold text-ds-text-inverse">
             {notifications.length > 0
               ? t('titleWithCount', { count: notifications.length })
               : t('title')}
           </h2>
+          {isSupported && pushStatus.pushConfigured && ( 
+            <button
+              onClick={isSubscribed ? unsubscribeFromPush : subscribeToPush}
+              className="text-ds-text-inverse/80 hover:text-ds-text-inverse"
+              aria-label={isSubscribed ? t('disablePush') : t('enablePush')}
+              title={isSubscribed ? t('disablePush') : t('enablePush')}
+            >
+              {isSubscribed ? <BellRing className="size-4" /> : <BellOff className="size-4" />}
+            </button>
+          )}
         </div>
 
         <div className="flex items-center justify-end border-b border-ds-border-subtle px-4 py-2 text-xs text-ds-text-muted">

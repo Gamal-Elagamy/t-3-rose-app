@@ -15,8 +15,11 @@ import { MobileMenu } from './components/shared/mobile-menu';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { SearchBox } from '@/shared/components/search-box';
-
-export function Header() {
+import { PushStatus } from './components/authenticated-state/notifications/apis/get-push-status';
+interface HeaderProps {
+  pushStatus: PushStatus; 
+}
+export function Header({ pushStatus }: HeaderProps) {
   // Translation
   const t = useTranslations();
   // Hooks
@@ -34,7 +37,7 @@ export function Header() {
           {isAuthenticated ? (
             <div className="flex items-center gap-4">
               <UserDropdown />
-              <Notifications />
+              <Notifications  pushStatus={pushStatus} />
               <CartButton />
               <WishlistButton />
             </div>
@@ -54,7 +57,7 @@ export function Header() {
           <Logo />
           <div className="flex items-center gap-4">
             <CartButton />
-            {isAuthenticated && <Notifications />}
+            {isAuthenticated && <Notifications pushStatus={pushStatus} />}
           </div>
         </div>
 
