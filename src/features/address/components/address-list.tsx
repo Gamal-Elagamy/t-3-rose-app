@@ -10,6 +10,7 @@ import AddressModalItem from './address-modal-item';
 
 import AddressFormModalButton from '@/features/checkout/components/shipping/form-modal-button';
 import AddressNextStepButton from '@/features/checkout/components/shipping/next-step-button';
+import { useCheckout } from '@/features/checkout/context/checkout-context';
 
 interface AddressListProps {
   addresses: IAddress[];
@@ -37,9 +38,13 @@ export function AddressList({
     addresses.find((address) => address.isPrimary)?.id
   );
 
+  // Checkout context
+  const { updateCheckout } = useCheckout();
+
   // Functions
   const onSelectAddress = (address: IAddress) => {
     setSelectedAddressId(address.id);
+    updateCheckout({ addressId: address.id });
   };
 
   if (!addresses.length) {

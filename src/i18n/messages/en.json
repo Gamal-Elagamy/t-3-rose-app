@@ -398,6 +398,16 @@
       "title": "Shipping Address",
       "addNewAddress": "Add New Address",
       "next": "Next"
+    },
+    "paymentMethod": {
+      "title": "Payment Method",
+      "description": "Choose your preferred payment method.",
+      "cashOnDelivery": "Cash on Delivery",
+      "cashOnDeliveryDescription": "Pay with cash when your order is delivered.",
+      "creditCard": "Credit Card",
+      "creditCardDescription": "You will be redirected to Stripe to complete your payment.",
+      "back": "Back",
+      "checkout": "Checkout"
     }
   },
   "address": {
