@@ -371,8 +371,7 @@
     "empty": "قائمة المفضلة فارغة",
     "loading": "جارِ تحميل المفضلة...",
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
-      "retry": "حاول مرة أخرى"
-
+    "retry": "حاول مرة أخرى"
   },
 
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
@@ -433,7 +432,7 @@
     "sub-total": "المجموع الفرعي",
     "coupon-empty": "يرجى ادخال كود الكوبون",
     "product-you-may-like": "المنتجات التي تحبها"
-},
+  },
   "accountSettings": {
     "title": "إعدادات الحساب",
     "sidebar": {
@@ -461,14 +460,61 @@
         "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
       }
     }
-
   },
-  "dashboard" :{
-    "navMain" :{
+  "dashboard": {
+    "navMain": {
       "overview": "لوحة التحكم",
       "products": "المنتجات",
       "categories": "الاقسام",
       "occasions": "المناسبات"
+    },
+    "products": {
+      "addProduct": "إضافة منتج",
+      "addProductPageTitle": "إضافة منتج جديد",
+      "updateProduct": "تحديث المنتج",
+      "updateProductPageTitle": "تحديث المنتج: {title}",
+      "title": "العنوان",
+      "description": "الوصف",
+      "price": "السعر",
+      "discount": "الخصم",
+      "priceAfterDiscount": "السعر بعد الخصم",
+      "quantity": "الكمية",
+      "category": "الفئة",
+      "occasion": "المناسبة",
+      "productCoverImage": "صورة غلاف المنتج",
+      "productGallery": "معرض المنتج",
+      "viewProductCover": "عرض غلاف المنتج",
+      "viewProductGallery": "عرض معرض المنتج",
+      "imagePreview": "معاينة الصورة",
+      "closePreview": "إغلاق المعاينة",
+      "previousImage": "الصورة السابقة",
+      "nextImage": "الصورة التالية",
+      "goToImage": "الانتقال إلى الصورة {number}",
+      "uploading": "جاري رفع {fileName}...",
+      "clear": "مسح",
+      "noChanges": "لا توجد تغييرات للتحديث",
+      "productCreated": "تم إنشاء المنتج بنجاح",
+      "productUpdated": "تم تحديث المنتج بنجاح",
+      "validation": {
+        "titleRequired": "عنوان المنتج مطلوب",
+        "descriptionRequired": "وصف المنتج مطلوب",
+        "priceRequired": "يرجى إدخال سعر صحيح",
+        "priceAfterDiscountRequired": "يرجى إدخال سعر صحيح بعد الخصم",
+        "quantityRequired": "كمية المنتج مطلوبة",
+        "categoryRequired": "يرجى اختيار فئة للمنتج",
+        "occasionRequired": "يرجى اختيار مناسبة للمنتج",
+        "coverRequired": "غلاف المنتج مطلوب",
+        "galleryRequired": "صور معرض المنتج مطلوبة",
+        "uploadCoverFailed": "فشل رفع صورة الغلاف",
+        "uploadGalleryFailed": "فشل رفع صور المعرض"
+      },
+      "placeholders": {
+        "title": "أدخل عنوان المنتج",
+        "description": "أدخل وصف المنتج",
+        "price": "مثال: 5000",
+        "discount": "مثال: 5",
+        "quantity": "مثال: 200"
+      }
     }
   }
 }

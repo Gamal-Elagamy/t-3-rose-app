@@ -1,6 +1,7 @@
 import ProductForm from '@/features/products/components/dashboard/product-form';
 import { getProduct } from '@/features/products/apis/products.api';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
 interface UpdateProductPageProps {
   params: Promise<{ id: string }>;
@@ -9,7 +10,7 @@ interface UpdateProductPageProps {
 export default async function UpdateProductPage({ params }: UpdateProductPageProps) {
   // Params
   const { id } = await params;
-  
+
   // Variables
   let product;
   try {
@@ -18,11 +19,13 @@ export default async function UpdateProductPage({ params }: UpdateProductPagePro
     notFound();
   }
 
+  const t = await getTranslations('dashboard.products');
+
   return (
     <div className="p-7">
       {/* Title */}
       <h1 className="text-2xl font-bold text-ds-text-plain line-clamp-1">
-        Update Product: {product.title}
+        {t('updateProductPageTitle', { title: product.title })}
       </h1>
 
       {/* Form */}

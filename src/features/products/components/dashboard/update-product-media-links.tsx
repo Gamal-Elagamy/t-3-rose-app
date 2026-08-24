@@ -5,12 +5,14 @@ import { ImageIcon, Images } from 'lucide-react';
 import { Control, useWatch } from 'react-hook-form';
 import { ProductFormData } from '../../types/products';
 import MediaPreviewModal from './media-preview-modal';
+import { useTranslations } from 'next-intl';
 
 interface UpdateProductMediaLinksProps {
   control: Control<ProductFormData>;
 }
 
 export default function UpdateProductMediaLinks({ control }: UpdateProductMediaLinksProps) {
+  const t = useTranslations('dashboard.products');
   // Form Watch
   const cover = useWatch({ control, name: 'cover' });
   const gallery = useWatch({ control, name: 'gallery' });
@@ -37,7 +39,7 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
             className="inline-flex items-center gap-2 rounded-lg border border-ds-border-soft bg-ds-bg-plain p-2 text-sm font-medium text-blue-600 transition-colors hover:bg-ds-bg-soft"
           >
             <ImageIcon className="size-4" />
-            View product cover
+            {t('viewProductCover')}
           </button>
         )}
 
@@ -48,7 +50,7 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
             className="inline-flex items-center gap-2 rounded-lg border border-ds-border-soft bg-ds-bg-plain p-2 text-sm font-medium text-blue-600 transition-colors hover:bg-ds-bg-soft"
           >
             <Images className="size-4" />
-            View product gallery
+            {t('viewProductGallery')}
           </button>
         )}
       </div>
@@ -58,7 +60,7 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
         open={coverPreviewOpen}
         onOpenChange={setCoverPreviewOpen}
         images={[coverUrl]}
-        title="Product cover"
+        title={t('productCoverImage')}
       />
 
       {/* Gallery Modal */}
@@ -66,7 +68,7 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
         open={galleryPreviewOpen}
         onOpenChange={setGalleryPreviewOpen}
         images={galleryUrls}
-        title="Product gallery"
+        title={t('productGallery')}
       />
     </>
   );

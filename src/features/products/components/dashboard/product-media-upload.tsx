@@ -7,12 +7,15 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/u
 import { Input } from '@/shared/components/ui/input';
 import { uploadImage } from '@/shared/actions/upload-image.action';
 import { ProductFormData } from '../../types/products';
+import { useTranslations } from 'next-intl';
+import { getErrorMessage } from '../../schemas/product.schema';
 
 interface ProductMediaUploadProps {
   control: Control<ProductFormData>;
 }
 
 export default function ProductMediaUpload({ control }: ProductMediaUploadProps) {
+  const t = useTranslations('dashboard.products');
   // State
   const [coverFileName, setCoverFileName] = useState<string | null>(null);
   const [galleryFileNames, setGalleryFileNames] = useState<string[]>([]);
@@ -29,7 +32,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="cover">
-                Product cover image <span className="text-ds-text-danger">*</span>
+                {t('productCoverImage')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Input
                 id="cover"
@@ -56,7 +59,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                     setCoverFileName(null);
                     field.onChange('');
                     toast.error(
-                      error instanceof Error ? error.message : 'Failed to upload cover image'
+                      error instanceof Error ? error.message : t('validation.uploadCoverFailed')
                     );
                   } finally {
                     setIsCoverUploading(false);
@@ -67,7 +70,9 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                 <div className="flex items-center gap-2">
                   <Input
                     type="text"
-                    value={isCoverUploading ? `Uploading ${coverFileName}...` : coverFileName}
+                    value={
+                      isCoverUploading ? t('uploading', { fileName: coverFileName }) : coverFileName
+                    }
                     readOnly
                     disabled={isCoverUploading}
                     className="cursor-pointer"
@@ -87,12 +92,22 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                       }}
                       className="text-xs text-ds-text-muted hover:text-ds-text-danger"
                     >
-                      Clear
+                      {t('clear')}
                     </button>
                   )}
                 </div>
               )}
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -106,7 +121,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="gallery">
-                Product gallery <span className="text-ds-text-danger">*</span>
+                {t('productGallery')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Input
                 id="gallery"
@@ -140,7 +155,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                     setGalleryFileNames([]);
                     field.onChange(currentGallery);
                     toast.error(
-                      error instanceof Error ? error.message : 'Failed to upload gallery images'
+                      error instanceof Error ? error.message : t('validation.uploadGalleryFailed')
                     );
                   } finally {
                     setIsGalleryUploading(false);
@@ -153,7 +168,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                     type="text"
                     value={
                       isGalleryUploading
-                        ? `Uploading ${galleryFileNames.join(', ')}...`
+                        ? t('uploading', { fileName: galleryFileNames.join(', ') })
                         : galleryFileNames.join(', ')
                     }
                     readOnly
@@ -173,12 +188,22 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
                       }}
                       className="text-xs text-ds-text-muted hover:text-ds-text-danger"
                     >
-                      Clear
+                      {t('clear')}
                     </button>
                   )}
                 </div>
               )}
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />

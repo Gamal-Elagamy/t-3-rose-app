@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle } from '@/shared/components/ui/dialo
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { getMediaUrl } from '../../lib/product-media.utils';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface MediaPreviewModalProps {
   open: boolean;
@@ -20,8 +21,8 @@ export default function MediaPreviewModal({
   onOpenChange,
   images,
   initialIndex = 0,
-  title = 'Image preview',
 }: MediaPreviewModalProps) {
+  const t = useTranslations('dashboard.products');
   // State
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -45,7 +46,7 @@ export default function MediaPreviewModal({
         showCloseButton={false}
         className="max-w-4xl border-0 bg-transparent p-0 shadow-none ring-0 sm:max-w-4xl"
       >
-        <DialogTitle className="sr-only">{title}</DialogTitle>
+        <DialogTitle className="sr-only">{t('imagePreview')}</DialogTitle>
 
         {/* Close Button */}
         <div className="relative">
@@ -53,7 +54,7 @@ export default function MediaPreviewModal({
             type="button"
             onClick={() => onOpenChange(false)}
             className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full text-ds-text-muted transition-colors hover:text-ds-text-plain"
-            aria-label="Close preview"
+            aria-label={t('closePreview')}
           >
             <X className="size-5" />
           </button>
@@ -65,7 +66,7 @@ export default function MediaPreviewModal({
                 width={1000}
                 height={1000}
                 src={getMediaUrl(currentImage)}
-                alt={`${title} ${currentIndex + 1}`}
+                alt={`${t('imagePreview')} ${currentIndex + 1}`}
                 className="max-h-[65vh] w-full object-contain"
               />
             </div>
@@ -80,7 +81,7 @@ export default function MediaPreviewModal({
                       key={`${image}-${index}`}
                       type="button"
                       onClick={() => setCurrentIndex(index)}
-                      aria-label={`Go to image ${index + 1}`}
+                      aria-label={t('goToImage', { number: index + 1 })}
                       className={cn(
                         'size-2.5 rounded-full transition-colors',
                         index === currentIndex ? 'bg-ds-bg-primary' : 'bg-ds-border-soft'
@@ -94,7 +95,7 @@ export default function MediaPreviewModal({
                   <button
                     type="button"
                     onClick={goToPrevious}
-                    aria-label="Previous image"
+                    aria-label={t('previousImage')}
                     className="flex size-9 items-center justify-center rounded-full border border-ds-border-primary text-ds-text-primary transition-colors hover:bg-ds-bg-primary-fade"
                   >
                     <ChevronLeft className="size-4" />
@@ -102,7 +103,7 @@ export default function MediaPreviewModal({
                   <button
                     type="button"
                     onClick={goToNext}
-                    aria-label="Next image"
+                    aria-label={t('nextImage')}
                     className="flex size-9 items-center justify-center rounded-full border border-ds-border-primary text-ds-text-primary transition-colors hover:bg-ds-bg-primary-fade"
                   >
                     <ChevronRight className="size-4" />

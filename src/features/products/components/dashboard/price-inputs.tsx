@@ -5,10 +5,13 @@ import { Input } from '@/shared/components/ui/input';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useEffect } from 'react';
 import { ProductFormData } from '../../types/products';
+import { useTranslations } from 'next-intl';
+import { getErrorMessage } from '../../schemas/product.schema';
 
 export default function PriceInputs() {
   // Form Context
   const { control, setValue } = useFormContext<ProductFormData>();
+  const t = useTranslations('dashboard.products');
 
   // Form Watche
   const listPrice = useWatch({ control, name: 'listPrice' });
@@ -45,7 +48,7 @@ export default function PriceInputs() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="listPrice">
-                Price <span className="text-ds-text-danger">*</span>
+                {t('price')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Input
                 {...field}
@@ -54,9 +57,19 @@ export default function PriceInputs() {
                 type="number"
                 min={0}
                 step="0.01"
-                placeholder="Example: 5000"
+                placeholder={t('placeholders.price')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -69,7 +82,7 @@ export default function PriceInputs() {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="discountValue">Discount</FieldLabel>
+              <FieldLabel htmlFor="discountValue">{t('discount')}</FieldLabel>
               <Input
                 {...field}
                 id="discountValue"
@@ -77,9 +90,19 @@ export default function PriceInputs() {
                 type="number"
                 min={0}
                 step="0.01"
-                placeholder="Example: 5"
+                placeholder={t('placeholders.discount')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -92,16 +115,26 @@ export default function PriceInputs() {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="price">Price after discount</FieldLabel>
+              <FieldLabel htmlFor="price">{t('priceAfterDiscount')}</FieldLabel>
               <Input
                 {...field}
                 id="price"
                 aria-invalid={fieldState.invalid}
                 type="number"
                 disabled
-                placeholder="Example: 5"
+                placeholder={t('placeholders.price')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />

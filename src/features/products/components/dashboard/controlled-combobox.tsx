@@ -2,6 +2,8 @@
 
 import { Controller } from 'react-hook-form';
 import { Combobox } from '@/shared/components/Dropdown/combobox';
+import { useTranslations } from 'next-intl';
+import { getErrorMessage } from '../../schemas/product.schema';
 
 interface ControlledComboboxProps {
   name: string;
@@ -36,6 +38,7 @@ export function ControlledCombobox({
   loading,
   fallbackOption,
 }: ControlledComboboxProps) {
+  const t = useTranslations('dashboard.products');
   return (
     <Controller
       name={name}
@@ -64,7 +67,11 @@ export function ControlledCombobox({
             onChange={field.onChange}
             onSearchChange={onSearchChange}
             loading={loading}
-            error={fieldState.error?.message}
+            error={
+              fieldState.error?.message
+                ? getErrorMessage(t, fieldState.error.message)
+                : fieldState.error?.message
+            }
           />
         );
       }}

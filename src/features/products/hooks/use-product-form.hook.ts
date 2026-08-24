@@ -13,6 +13,7 @@ import {
 } from '../schemas/product.schema';
 import { createProduct, updateProduct } from '../actions/products.action';
 import { parseGallery } from '../lib/product-media.utils';
+import { useTranslations } from 'next-intl';
 
 // Utils
 function calculateListPrice(
@@ -116,6 +117,7 @@ interface UseProductFormOptions {
 
 export function useProductForm({ mode, product, productId }: UseProductFormOptions) {
   const router = useRouter();
+  const t = useTranslations('dashboard.products');
   const isUpdate = mode === 'update';
 
   const defaultValues = useMemo(() => getDefaultValues(product), [product]);
@@ -133,12 +135,12 @@ export function useProductForm({ mode, product, productId }: UseProductFormOptio
         const payload = buildUpdateProductPayload(data, product);
 
         if (Object.keys(payload).length === 0) {
-          toast.info('No changes to update');
+          toast.info(t('noChanges'));
           return;
         }
 
         await updateProduct(productId, payload);
-        toast.success('Product updated successfully');
+        toast.success(t('productUpdated'));
         router.push('/admin/products');
         return;
       }
@@ -146,7 +148,7 @@ export function useProductForm({ mode, product, productId }: UseProductFormOptio
       // @ts-expect-error - TODO: fix this later
       await createProduct(buildCreateProductPayload(data));
 
-      toast.success('Product created successfully');
+      toast.success(t('productCreated'));
       router.push('/admin/products');
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Something went wrong');

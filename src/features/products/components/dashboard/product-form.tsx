@@ -14,6 +14,8 @@ import { useOccasionsQuery } from '@/features/occasions/hooks/occasions.hook';
 import { IProduct, ProductFormData } from '../../types/products';
 import ProductMediaUpload from './product-media-upload';
 import UpdateProductMediaLinks from './update-product-media-links';
+import { useTranslations } from 'next-intl';
+import { getErrorMessage } from '../../schemas/product.schema';
 
 interface ProductFormProps {
   mode: 'create' | 'update';
@@ -24,6 +26,7 @@ interface ProductFormProps {
 function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; product?: IProduct }) {
   // Hooks
   const { control } = useFormContext<ProductFormData>();
+  const t = useTranslations('dashboard.products');
   // Variable
   const isUpdate = mode === 'update';
 
@@ -46,16 +49,26 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="title">
-                Title <span className="text-ds-text-danger">*</span>
+                {t('title')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Input
                 {...field}
                 id="title"
                 aria-invalid={fieldState.invalid}
                 type="text"
-                placeholder="Enter product title"
+                placeholder={t('placeholders.title')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -69,15 +82,25 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="description">
-                Description <span className="text-ds-text-danger">*</span>
+                {t('description')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Textarea
                 {...field}
                 id="description"
                 aria-invalid={fieldState.invalid}
-                placeholder="Enter product description"
+                placeholder={t('placeholders.description')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -94,7 +117,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="stock">
-                Quantity <span className="text-ds-text-danger">*</span>
+                {t('quantity')} <span className="text-ds-text-danger">*</span>
               </FieldLabel>
               <Input
                 {...field}
@@ -102,9 +125,19 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
                 aria-invalid={fieldState.invalid}
                 type="number"
                 min={0}
-                placeholder="Example: 200"
+                placeholder={t('placeholders.quantity')}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {fieldState.invalid && (
+                <FieldError
+                  errors={[
+                    {
+                      message: fieldState.error?.message
+                        ? getErrorMessage(t, fieldState.error.message)
+                        : fieldState.error?.message,
+                    },
+                  ]}
+                />
+              )}
             </Field>
           )}
         />
@@ -117,7 +150,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
       <ControlledCombobox
         name="categoryId"
         control={control}
-        label="Category"
+        label={t('category')}
         required
         data={categories}
         product={product}
@@ -135,7 +168,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
       <ControlledCombobox
         name="occasionId"
         control={control}
-        label="Occasion"
+        label={t('occasion')}
         required
         data={occasions}
         product={product}
@@ -161,6 +194,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
 export default function ProductForm({ mode, product, productId }: ProductFormProps) {
   // Hooks
   const { productForm, onSubmit, isUpdate } = useProductForm({ mode, product, productId });
+  const t = useTranslations('dashboard.products');
 
   // Variable
   const isSubmitting = productForm.formState.isSubmitting;
@@ -179,7 +213,7 @@ export default function ProductForm({ mode, product, productId }: ProductFormPro
           disabled={!isValid || isSubmitting}
           className="w-full"
         >
-          {isUpdate ? 'Update Product' : 'Add Product'}
+          {isUpdate ? t('updateProduct') : t('addProduct')}
         </Button>
       </form>
     </FormProvider>

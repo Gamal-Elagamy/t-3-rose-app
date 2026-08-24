@@ -464,6 +464,54 @@
       "products": "Products",
       "categories": "Categories",
       "occasions": "Occasions"
+    },
+    "products": {
+      "addProduct": "Add Product",
+      "addProductPageTitle": "Add a New Product",
+      "updateProduct": "Update Product",
+      "updateProductPageTitle": "Update Product: {title}",
+      "title": "Title",
+      "description": "Description",
+      "price": "Price",
+      "discount": "Discount",
+      "priceAfterDiscount": "Price after discount",
+      "quantity": "Quantity",
+      "category": "Category",
+      "occasion": "Occasion",
+      "productCoverImage": "Product cover image",
+      "productGallery": "Product gallery",
+      "viewProductCover": "View product cover",
+      "viewProductGallery": "View product gallery",
+      "imagePreview": "Image preview",
+      "closePreview": "Close preview",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "goToImage": "Go to image {number}",
+      "uploading": "Uploading {fileName}...",
+      "clear": "Clear",
+      "noChanges": "No changes to update",
+      "productCreated": "Product created successfully",
+      "productUpdated": "Product updated successfully",
+      "validation": {
+        "titleRequired": "Product title is required",
+        "descriptionRequired": "Product description is required",
+        "priceRequired": "Please enter a valid price",
+        "priceAfterDiscountRequired": "Please enter a valid price after discount",
+        "quantityRequired": "Product quantity is required",
+        "categoryRequired": "Please select a category for the product",
+        "occasionRequired": "Please select an occasion for the product",
+        "coverRequired": "Product cover is required",
+        "galleryRequired": "Product gallery images are required",
+        "uploadCoverFailed": "Failed to upload cover image",
+        "uploadGalleryFailed": "Failed to upload gallery images"
+      },
+      "placeholders": {
+        "title": "Enter product title",
+        "description": "Enter product description",
+        "price": "Example: 5000",
+        "discount": "Example: 5",
+        "quantity": "Example: 200"
+      }
     }
   }
 }
