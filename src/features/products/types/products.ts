@@ -1,3 +1,10 @@
+import { ProductFormValues } from '../schemas/product.schema';
+
+export interface IProductOccasion {
+  id: string;
+  title: string;
+}
+
 export interface IProduct {
   id: string;
   title: string;
@@ -24,10 +31,12 @@ export interface IProduct {
     id: string;
     title: string;
   };
-  occasions: [];
+  occasions: IProductOccasion[];
   _count: {
     reviews: number;
     cartItems: number;
     wishlistItems: number;
   };
 }
+
+export type ProductFormData = ProductFormValues;

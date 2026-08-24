@@ -9,9 +9,6 @@ import { IUser } from "@/shared/lib/types/user";
 
 export function SiteHeader({user} :{user:IUser}) {
     const pathName = usePathname()
-    // console.log(pathName.split("/").slice(0,1)[1].toLocaleUpperCase())
-    console.log(pathName.split("/")[1].slice(0, 1).toLocaleUpperCase())
-    console.log(pathName.split("/")[1].slice(1))
     return (
         <header className="flex  shrink-0 items-center gap-2  bg-white dark:bg-zinc-800 py-2">
             <div className="flex w-full items-center justify-between gap-1 py-2 px-4 lg:gap-2">

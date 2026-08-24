@@ -8,18 +8,13 @@ export default async function GetCoupon(search: string) {
     `?search=${encodeURIComponent(search)}` +
     `&isActive=true`;
 
-  console.log('COUPON API URL:', url);
-
   const response = await fetch(url);
 
-  console.log('COUPON API STATUS:', response.status);
 
   const data: IApiResponse<{
     data: ICoupon[];
     metadata: IMetadata;
   }> = await response.json();
-
-  console.log('COUPON API RESPONSE:', data);
 
   if (!response.ok || !data.status) {
     throw new Error(

@@ -31,7 +31,6 @@ const navMain = [
 export default function MainNavSidebar() {
     const t = useTranslations("dashboard.navMain")
     const pathname = usePathname()
-    console.log(pathname)
     return (
         <SidebarGroup>
             <SidebarMenu className="space-y-2">

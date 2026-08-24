@@ -1,3 +1,4 @@
+'use server';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IProduct } from '../types/products';
 import { SortBy, SortOrder } from '../constants/sort.constants';
@@ -30,7 +31,6 @@ export async function getProducts({ ...params }: GetProductsParams) {
       searchParams.append(key, String(value));
     }
   });
-  console.log(`${getApiBaseUrl()}/products?${searchParams.toString()}`)
   const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
   const data: IApiResponse<{
     data: IProduct[];
@@ -39,7 +39,7 @@ export async function getProducts({ ...params }: GetProductsParams) {
       limit: string;
       total: string;
       totalPages: string;
-    }
+    };
   }> = await response.json();
 
   if (!response.ok || !data.status || !data.payload) {
