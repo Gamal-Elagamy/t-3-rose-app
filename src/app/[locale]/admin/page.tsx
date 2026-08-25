@@ -1,7 +1,17 @@
-import React from 'react'
+import AdminDashboardPage from '@/features/admin/components/overview/charts/admin-dashboard-charts';
 
-export default function page() {
+type PageProps = {
+  searchParams: Promise<{
+    revenuePeriod?: string;
+  }>;
+};
+
+export default async function Page({
+  searchParams,
+}: PageProps) {
   return (
-    <div className='flex-1 h-full'>page</div>
-  )
+    <AdminDashboardPage
+      searchParams={searchParams}
+    />
+  );
 }

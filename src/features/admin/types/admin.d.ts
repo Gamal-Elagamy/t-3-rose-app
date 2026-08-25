@@ -30,6 +30,8 @@ export type RevenuePoint = {
     revenue: number;
 };
 
+export type StatisticsPeriod = 'monthly' | 'weekly';
+
 export type DashboardRevenue = {
     period: string;
     points: RevenuePoint[];
