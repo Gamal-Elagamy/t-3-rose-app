@@ -371,8 +371,7 @@
     "empty": "قائمة المفضلة فارغة",
     "loading": "جارِ تحميل المفضلة...",
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
-      "retry": "حاول مرة أخرى"
-
+    "retry": "حاول مرة أخرى"
   },
 
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
@@ -433,7 +432,7 @@
     "sub-total": "المجموع الفرعي",
     "coupon-empty": "يرجى ادخال كود الكوبون",
     "product-you-may-like": "المنتجات التي تحبها"
-},
+  },
   "accountSettings": {
     "title": "إعدادات الحساب",
     "sidebar": {
@@ -461,14 +460,105 @@
         "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
       }
     }
-
   },
-  "dashboard" :{
-    "navMain" :{
+  "dashboard": {
+    "navMain": {
       "overview": "لوحة التحكم",
       "products": "المنتجات",
       "categories": "الاقسام",
       "occasions": "المناسبات"
+    },
+    "categoriesPage": {
+      "header": "كل التصنيفات",
+      "titleAdd": "إضافة تصنيف جديد",
+      "search": "بحث",
+      "searchPlaceholder": "ابحث...",
+      "add": "إضافة تصنيف",
+      "updateCategory": "تعديل التصنيف:",
+      "update": "تحديث التصنيف",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "deleteing": "جاري الحذف...",
+      "deleteSuccess": "تم حذف التصنيف بنجاح",
+      "deleteConfirmDescription": "هل أنت متأكد من حذف هذا التصنيف؟",
+      "cancle": "إلغاء",
+      "table": {
+        "name": "الاسم",
+        "products": "المنتجات",
+        "productCount": "{count, plural, zero {منتج} one {منتج} two {منتجين} few {منتجات} many {منتج} other {منتج}}",
+        "actions": "الإجراءات",
+        "empty": "لا توجد نتائج مطابقة للبحث"
+      },
+      "fields": {
+        "name": {
+          "label": "الاسم",
+          "placeholder": "أدخل اسم التصنيف"
+        },
+        "description": {
+          "label": "الوصف",
+          "placeholder": "أدخل وصف التصنيف"
+        },
+        "image": {
+          "label": "صورة التصنيف",
+          "view": "عرض صورة التصنيف",
+          "uploading": "جاري الرفع..."
+        },
+        "errors": {
+          "nameRequired": "الاسم مطلوب",
+          "descriptionRequired": "الوصف مطلوب",
+          "imageRequired": "الصورة مطلوبة",
+          "imageInvalidType": "نوع الملف غير مدعوم",
+          "imageTooLarge": "حجم الملف يجب ألا يتجاوز 1 ميجا",
+          "addFailed": "فشل إضافة التصنيف",
+          "uploadFailed": "فشل رفع الصورة"
+        }
+      }
+    },
+    "occasionsPage": {
+      "header": "كل المناسبات",
+      "titleAdd": "إضافة مناسبة جديدة",
+      "search": "بحث",
+      "searchPlaceholder": "ابحث...",
+      "add": "إضافة مناسبة",
+      "updateOccasion": "تعديل المناسبة:",
+      "update": "تحديث المناسبة",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "deleteing": "جاري الحذف...",
+      "deleteSuccess": "تم حذف المناسبة بنجاح",
+      "deleteConfirmDescription": "هل أنت متأكد من حذف هذه المناسبة؟",
+      "cancle": "إلغاء",
+      "table": {
+        "name": "الاسم",
+        "products": "المنتجات",
+        "productCount": "{count, plural, zero {منتج} one {منتج} two {منتجين} few {منتجات} many {منتج} other {منتج}}",
+        "actions": "الإجراءات",
+        "empty": "لا توجد نتائج مطابقة للبحث"
+      },
+      "fields": {
+        "name": {
+          "label": "الاسم",
+          "placeholder": "أدخل اسم المناسبة"
+        },
+        "description": {
+          "label": "الوصف",
+          "placeholder": "أدخل وصف المناسبة"
+        },
+        "image": {
+          "label": "صورة المناسبة",
+          "view": "عرض صورة المناسبة",
+          "uploading": "جاري الرفع..."
+        },
+        "errors": {
+          "nameRequired": "الاسم مطلوب",
+          "descriptionRequired": "الوصف مطلوب",
+          "imageRequired": "الصورة مطلوبة",
+          "imageInvalidType": "نوع الملف غير مدعوم",
+          "imageTooLarge": "حجم الملف يجب ألا يتجاوز 1 ميجا",
+          "addFailed": "فشل إضافة المناسبة",
+          "uploadFailed": "فشل رفع الصورة"
+        }
+      }
     }
   }
 }
