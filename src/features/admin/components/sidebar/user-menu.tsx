@@ -92,7 +92,7 @@ export default function UserMenu({ user }: UserMenuProps) {
                 >
                     <DropdownMenuItem >
                         <Link
-                            href="/account-settings"
+                            href="/admin/account-settings"
                             className="flex cursor-pointer items-center gap-2"
                         >
                             <User className="size-4" />

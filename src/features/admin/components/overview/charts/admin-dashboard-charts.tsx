@@ -1,6 +1,6 @@
-import { getAdminStatistics } from "@/features/admin/apis/get-admin-statistics";
+import { GetChartsApi } from "@/features/admin/apis/get-charts.api";
 import { OrderStatusChart } from "./order-status/order-status-chart";
-import { RevenueChartClient } from "./revenue/revenue-chart";
+import { RevenueChart,  } from "./revenue/revenue-chart";
 
 type AdminDashboardPageProps = {
   searchParams: Promise<{
@@ -18,14 +18,14 @@ export default async function AdminDashboardPage({
       ? 'week'
       : 'monthly';
 
-  const stats = await getAdminStatistics(revenuePeriod);
+  const stats = await GetChartsApi(revenuePeriod);
 
   return (
-    <div className="grid grid-cols-1  p-6  sm:grid-cols-2  lg:grid-cols-4">
+    <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-4">
       <OrderStatusChart orderStatus={stats.orderStatus} />
 
     
-        <RevenueChartClient
+        <RevenueChart
         revenue={stats.revenue}
         period={revenuePeriod}
       />

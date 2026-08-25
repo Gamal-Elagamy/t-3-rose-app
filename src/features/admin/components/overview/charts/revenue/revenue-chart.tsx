@@ -25,11 +25,11 @@ import {
 } from '@/shared/components/ui/chart';
 
 import type { DashboardRevenue } from '@/features/admin/types/admin';
-import { RevenuePeriod } from '@/features/admin/apis/get-admin-statistics-api';
+import { GetAdminStatisticsParams } from '@/features/admin/apis/admin.api';
 
 type RevenueChartClientProps = {
   revenue: DashboardRevenue;
-  period: RevenuePeriod;
+  period: GetAdminStatisticsParams['revenuePeriod'];
 };
 
 const chartConfig = {
@@ -39,7 +39,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function RevenueChartClient({
+export function RevenueChart({
   revenue,
   period,
 }: RevenueChartClientProps) {
@@ -59,13 +59,14 @@ export function RevenueChartClient({
       : Math.ceil(maxRevenue / 1000) * 1000;
 
   const handlePeriodChange = (
-    newPeriod: RevenuePeriod,
+    newPeriod: GetAdminStatisticsParams['revenuePeriod'] = 'monthly',
   ) => {
     const params = new URLSearchParams(searchParams.toString());
 
     params.set('revenuePeriod', newPeriod);
 
-    router.replace(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`,{scroll: false,});
+    
   };
 
   return (
@@ -109,7 +110,7 @@ export function RevenueChartClient({
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="h-50 w-full sm:h-87.5 lg:h-70"
+          className="h-50 w-full sm:h-87.5 lg:h-75"
         >
           <AreaChart
             accessibilityLayer
@@ -137,7 +138,7 @@ export function RevenueChartClient({
               tickMargin={12}
               tick={{
                 fontSize: 13,
-                fontWeight: 500,
+                fontWeight: 700,
               }}
             />
 
@@ -151,7 +152,7 @@ export function RevenueChartClient({
               width={45}
               tick={{
                 fontSize: 13,
-                fontWeight: 800,
+                fontWeight: 700,
               }}
               tickFormatter={(value) =>
                 value.toString()
@@ -164,7 +165,7 @@ export function RevenueChartClient({
               content={
                 <ChartTooltipContent
                   hideLabel
-                  className="shadow-none ring-0 text-maroon-600"
+                  className="shadow-none ring-0  text-maroon-600"
                   formatter={(value) =>
                     `${Number(value).toLocaleString()} EGP`
                   }

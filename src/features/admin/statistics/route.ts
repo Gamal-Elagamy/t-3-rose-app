@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { GetChartsApi } from '../apis/get-charts.api';
 
-import { getAdminStatistics } from '@/features/admin/apis/get-admin-statistics';
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const data = await getAdminStatistics(revenuePeriod);
+    const data = await GetChartsApi(revenuePeriod);
 
     return NextResponse.json({
       status: true,
