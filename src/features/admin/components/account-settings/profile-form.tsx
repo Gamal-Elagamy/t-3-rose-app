@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import ProfilePhoto from './profile-photo';
 import getProfileData from '../../apis/get-profile-data.api';
 import { Card } from '@/shared/components/ui/card';
+import { Link } from '@/i18n/navigation';
 
 export default function ProfileForm({
   profileData,
@@ -232,13 +233,22 @@ export default function ProfileForm({
           {/* Buttons */}
           <div className="actions flex flex-col-reverse gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-10 md:pt-15">
             {/* Delete Button */}
-            <button
+           <div className=''>
+             <button
               onClick={() => setIsDeleteAccountModalOpen(true)}
               type="button"
-              className="cursor-pointer self-start text-sm font-medium text-maroon-500 sm:text-base"
+              className="cursor-pointer self-start text-sm font-medium text-maroon-500 sm:text-base mx-3"
             >
               {t('delete-account')}
             </button>
+            <Link
+            href="/admin/account-settings/change-password"
+              type="button"
+              className="cursor-pointer self-start text-sm font-medium hover:text-maroon-500 sm:text-base"
+            >
+              {t('change-password')}
+            </Link>
+           </div>
 
             {/* Submit Button */}
             <Button

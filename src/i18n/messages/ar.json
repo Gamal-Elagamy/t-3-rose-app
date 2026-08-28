@@ -470,6 +470,7 @@
       "invalid-file-type": "امتداد الملف غير مدعوم",
       "confirm-word": "حذف",
       "confirm-word-label": "اكتب {word} للتأكيد",
+      "change-password": "تغيير كلمة المرور",
 
       "firstName": "الاسم الأول",
       "lastName": "الاسم الأخير",

@@ -7,7 +7,6 @@ import { ChartConfig, ChartContainer } from '@/shared/components/ui/chart';
 import { DashboardOrderStatus } from '@/features/admin/types/admin';
 import LegendRow from './legent-row';
 import PercentBubble from './percent-puple';
-import { use } from 'react';
 import { useTranslations } from 'next-intl';
 
 type Props = {

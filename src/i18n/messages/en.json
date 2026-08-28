@@ -466,6 +466,7 @@
       "invalid-file-type": "Unsupported file type",
       "confirm-word": "DELETE",
       "confirm-word-label": "Type {word} to confirm",
+      "change-password": "Change Password",
 
       "firstName": "First Name",
       "firstName-required": "First name is required",
