@@ -5,11 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { User } from 'lucide-react';
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/shared/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover';
 
 import { LoginPopoverForm } from './login-popover-form';
 
@@ -21,6 +17,7 @@ export function LoginPopover() {
     <Popover open={open} onOpenChange={setOpen}>
       {/* Login Trigger */}
       <PopoverTrigger
+        nativeButton={false}
         onMouseEnter={() => setOpen(true)}
         render={
           <Link

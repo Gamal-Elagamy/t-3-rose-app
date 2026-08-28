@@ -60,6 +60,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <CartButton count={itemsCount} />
             {isAuthenticated && <Notifications />}
+            <WishlistButton />
           </div>
         </div>
 
