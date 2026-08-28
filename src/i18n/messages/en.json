@@ -358,6 +358,25 @@
     "resetAll": "Reset All"
   },
   "failedToLoadProducts": "Failed to load products. Try again.",
+
+  "cart-list": {
+    "cart-title": "CART",
+    "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
+    "cart-clear": "Clear Cart",
+    "cart-clear-info": "Are you sure you want to clear your Cart?",
+    "cart-clear-cancle": "Cancle",
+    "cart-clear-confirm": "Confirm",
+    "cart-clearing": "Clearing...",
+    "cart-clear-error": "Failed to clear cart. Please try again.",
+    "cart-total": "Total:",
+    "cart-currency": "EGP",
+    "cart-rating": "Rating: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} {count, plural, one {rating} other {ratings}}",
+    "cart-remove": "Remove",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "Your cart is empty, wanna try shopping?",
+    "cart-button": "Containue Shopping"
+  },
   "checkout": {
     "shipping": {
       "title": "Shipping Address",
@@ -397,6 +416,53 @@
         "special": "Password must include a special character",
         "mismatch": "New password and confirm password don't match"
       }
+    },
+    "profile": {
+      "upload-photo-title": "Upload Photo",
+      "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+      "upload-failed": "Failed to upload photo, please try again.",
+      "file-too-large": "Image is too large, max size is 5MB",
+      "invalid-file-type": "Unsupported file type",
+      "confirm-word": "DELETE",
+      "confirm-word-label": "Type {word} to confirm",
+
+      "firstName": "First Name",
+      "firstName-required": "First name is required",
+      "lastName": "Last Name",
+      "lastName-required": "Last name is required",
+      "email": "Email",
+      "phone": "Phone",
+      "phone-required": "Phone is required",
+      "phone-invalid": "Phone is invalid",
+      "gender": "Gender",
+      "submit-changes": "Save Changes",
+      "delete-account": "Delete My Account",
+      "saving": "Saving...",
+      "update-success": "Your profile has been updated successfully.",
+      "update-failed": "Failed to update your profile. Please try again.",
+
+      "title": "Are you sure you want to delete your account?",
+      "description": "This action is permanent and cannot be undone.",
+      "cancel": "Nope, not doing it",
+      "confirm": "Yes, delete",
+      "deleting": "Deleting...",
+      "delete-success": "Your account has been deleted successfully.",
+      "delete-failed": "Failed to delete your account. Please try again."
     }
+  },
+  "order-summary": {
+    "title": "Summary",
+    "apply-button": "Apply Coupon",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout-button": "Checkout",
+    "no-coupon": "No coupon applied",
+    "coupon-Placeholder": "coupon code",
+    "loading": "Applying...",
+    "coupon-found": "Coupon applied successfully",
+    "coupon-not-found": "Coupon not found.",
+    "sub-total": "Subtotal",
+    "coupon-empty": "Please enter coupon code",
+    "product-you-may-like": "Product you may like"
   }
 }

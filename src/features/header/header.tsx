@@ -12,15 +12,20 @@ import { MainNav } from './components/shared/main-nav';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme-toggle';
 import { MobileMenu } from './components/shared/mobile-menu';
-import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
 import { SearchBox } from '@/shared/components/search-box';
+import { useCart } from '../cart/context/cart.context';
+import { LoginPopover } from '../auth/components/login-popover/login-popover';
 
 export function Header() {
-  const t = useTranslations();
+  // Cart Context
+  const { cartDataProducts } = useCart();
 
+  // Hooks
   const { status } = useSession();
   const isAuthenticated = status === 'authenticated';
+
+  // Items Count
+  const itemsCount = cartDataProducts.length;
 
   return (
     <header className="sticky top-0 z-50 bg-ds-bg-plain">
@@ -35,20 +40,12 @@ export function Header() {
             <>
               <UserDropdown />
               <Notifications />
+              <WishlistButton />
             </>
           ) : (
-            <Link
-              href="/login"
-              className="text-sm text-ds-text-default outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
-            >
-              {t('header.nav.login')}
-            </Link>
+            <LoginPopover />
           )}
-
-          {/* Visible for both authenticated and unauthenticated users */}
-          <CartButton />
-          <WishlistButton />
-
+          <CartButton count={itemsCount} />
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
@@ -60,12 +57,8 @@ export function Header() {
           <MobileMenu />
 
           <Logo />
-
-          <div className="flex shrink-0 items-center gap-3">
-            {/* Visible for both authenticated and unauthenticated users */}
-            <WishlistButton />
-            <CartButton />
-
+          <div className="flex items-center gap-4">
+            <CartButton count={itemsCount} />
             {isAuthenticated && <Notifications />}
           </div>
         </div>

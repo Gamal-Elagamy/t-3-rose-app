@@ -1,16 +1,39 @@
-export default function CartLayout({ children }: { children: React.ReactNode }) {
+import { CheckoutButton } from '@/features/cart/order-summary/components/checkout-button';
+import { CouponSection } from '@/features/cart/order-summary/components/coupon-section';
+import { OrderSummary } from '@/features/cart/order-summary/components/order-summary';
+import { SubTotalPrice } from '@/features/cart/order-summary/components/subtotal-price';
+import { TotalPrice } from '@/features/cart/order-summary/components/total-price';
+import { CouponProvider } from '@/features/cart/order-summary/context/coupon-context';
+import { getYouMayLikeProducts } from '@/features/products/apis/product-you-may-like.api';
+import ProductYouMayLikeCarouselSlot from '@/features/products/components/product-you-may-like/product-you-may-like-carousel-slot';
+
+interface CartLayoutProps {
+  children: React.ReactNode;
+}
+
+export default async function CartLayout({ children }: CartLayoutProps) {
+  const products = await getYouMayLikeProducts();
   return (
     <>
-      <div className="grid h-screen grid-cols-1 gap-4 lg:grid-cols-3">
-        {/* Cart - Checkout */}
-        <section className="lg:col-span-2">{children}</section>
+      <div className="grid h-screen grid-cols-3 gap-4">
+        <section className="col-span-2">{children}</section>
 
-        {/* Order Summary */}
-        <section className="bg-blue-600 lg:col-span-1"></section>
+        <CouponProvider>
+          <section className="col-span-1">
+            <OrderSummary
+              couponForm={<CouponSection />}
+              totalPrice={<TotalPrice currency="EGP" />}
+              subtotal={<SubTotalPrice currency="EGP" />}
+              checkoutButton={<CheckoutButton />}
+            />
+          </section>
+        </CouponProvider>
       </div>
 
-      {/* Products You Might Like */}
-      <div className="h-56 bg-yellow-200">Products</div>
+      {/* Product You May Like */}
+      <section className="mx-10 my-20">
+        <ProductYouMayLikeCarouselSlot products={products} />
+      </section>
     </>
   );
 }

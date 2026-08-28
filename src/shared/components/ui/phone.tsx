@@ -31,7 +31,7 @@ const PhoneInput = React.forwardRef<React.ElementRef<typeof RPNInput.default>, P
       <div className="flex flex-col gap-1.5" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         {/* RPNInput */}
         <RPNInput.default
-          dir={locale === 'ar' ? 'rtl' : 'ltr'}
+          // dir={locale === 'ar' ? 'rtl' : 'ltr'}
           ref={ref}
           disabled={disabled}
           defaultCountry="EG"
@@ -80,9 +80,10 @@ const InputComponent = React.forwardRef<
   return (
     <input
       ref={ref}
+      dir="ltr"
       className={cn(
         // Base
-        'h-full w-full bg-ds-bg-plain border-0 pe-4 text-sm font-normal',
+        'h-full w-full bg-ds-bg-plain border-0 pe-4 text-sm font-normal rtl:text-end',
 
         // Default
         'text-ds-text-plain placeholder:text-ds-text-muted',

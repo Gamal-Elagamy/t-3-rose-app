@@ -358,6 +358,25 @@
     "resetAll": "إعادة الكل"
   },
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+
+  "cart-list": {
+    "cart-title": "السلة",
+    "cart-count": "{count, number, items-count} منتج",
+    "cart-clear": "إفراغ السلة",
+    "cart-clear-info": "هل أنت متأكد أنك تريد إفراغ السلة؟",
+    "cart-clear-cancle": "إلغاء",
+    "cart-clear-confirm": "تأكيد",
+    "cart-clearing": "جارِ التفريغ...",
+    "cart-clear-error": "حصل خطأ أثناء تفريغ السلة. حاول مرة أخرى.",
+    "cart-total": "الإجمالي:",
+    "cart-currency": "ج.م",
+    "cart-rating": "التقييم: <bold>{rating, number, rating-base}</bold>",
+    "cart-rating-count": "{count, number, rating-count} تقييم",
+    "cart-remove": "إزالة",
+    "cart-item-quantity": "(×{quantity, number, items-count})",
+    "cart-empty": "عربة التسوق فاضية، تحب تبدأ التسوق؟",
+    "cart-button": "متابعة التسوق"
+  },
   "checkout": {
     "shipping": {
       "title": "عنوان الشحن",
@@ -397,6 +416,50 @@
         "special": "يجب أن تحتوي كلمة المرور على رمز خاص",
         "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
       }
+    },
+    "profile": {
+      "upload-photo-title": "رفع صورة",
+      "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif بحجم أقصى 5 ميجابايت.",
+      "upload-failed": "فشل رفع الصورة، حاول مرة أخرى.",
+      "file-too-large": "الصورة كبيرة، الحجم الأقصى 5 ميجا",
+      "invalid-file-type": "امتداد الملف غير مدعوم",
+      "confirm-word": "حذف",
+      "confirm-word-label": "اكتب {word} للتأكيد",
+
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الأخير",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "gender": "النوع",
+      "delete-account": "حذف الحساب",
+      "submit-changes": "حفظ التعديلات",
+      "saving": "جارٍ الحفظ...",
+      "update-success": "تم تحديث ملفك الشخصي بنجاح.",
+      "update-failed": "فشل تحديث الملف الشخصي. حاول مرة أخرى.",
+
+      "title": "هل أنت متأكد أنك تريد حذف حسابك؟",
+      "description": "هذا الإجراء نهائي ولا يمكن التراجع عنه.",
+      "cancel": "لا، تراجعت",
+      "confirm": "نعم، احذف",
+      "deleting": "جارٍ الحذف...",
+      "delete-success": "تم حذف حسابك بنجاح.",
+      "delete-failed": "فشل حذف الحساب. حاول مرة أخرى."
     }
-  }
+    
+  },
+  "order-summary": {
+      "title": "ملخص الطلب",
+      "apply-button": " تطبيق الكوبون",
+      "subtotal": "المجموع الفرعي",
+      "total": "المجموع",
+      "checkout-button": "الدفع",
+      "no-coupon": "لم يتم تطبيق الكوبون",
+      "coupon-Placeholder": "كود الكوبون",
+      "loading": "جارى التطبيق...",
+      "coupon-found": "تم تطبيق الكوبون بنجاح",
+      "coupon-not-found": "الكوبون غير موجود.",
+      "sub-total": "المجموع الفرعي",
+      "coupon-empty": "يرجى ادخال كود الكوبون",
+      "product-you-may-like": "المنتجات التي تحبها"
+    }
 }
