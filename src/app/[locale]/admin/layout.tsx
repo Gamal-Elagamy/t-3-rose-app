@@ -15,7 +15,7 @@ export default async function layout({ children }: { children: React.ReactNode }
     return (
         <SidebarProvider>
             <AdminAppSidebar user={session.user} />
-            <main className='size-full bg-zinc-50 dark:bg-zinc-900 flex flex-col flex-1 min-h-screen'>
+            <main className='size-full bg-zinc-50 dark:bg-zinc-900 flex flex-col flex-1 min-h-screen '>
                 <SiteHeader user={session.user} />
                 {children}
             </main>

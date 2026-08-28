@@ -7,6 +7,8 @@ import { ChartConfig, ChartContainer } from '@/shared/components/ui/chart';
 import { DashboardOrderStatus } from '@/features/admin/types/admin';
 import LegendRow from './legent-row';
 import PercentBubble from './percent-puple';
+import { use } from 'react';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   orderStatus: DashboardOrderStatus;
@@ -18,8 +20,11 @@ const chartConfig = {
   inProgress: { label: 'In progress', color: '#2C7BFF' },
   canceled: { label: 'Canceled', color: '#E5342A' },
 } satisfies ChartConfig;
-
+ 
 export function OrderStatusChart({ orderStatus }: Props) {
+
+  // Translation
+  const t = useTranslations('dashboard.charts');
   const { completed, inProgress, canceled } = orderStatus;
 
   const chartData = [
@@ -38,18 +43,24 @@ export function OrderStatusChart({ orderStatus }: Props) {
       count: canceled.count,
       fill: chartConfig.canceled.color,
     },
-  ].filter((d) => d.count > 0); // بيمنع البابل يترسم لقطاع صفر
+  ].filter((d) => d.count > 0);
 
   const hasData = orderStatus.totalOrders > 0;
 
   return (
-    <Card className=" bg-white   rounded-xl max-h-105  max-w-80 ">
-      <CardHeader>
-        <CardTitle className="text-2xl  font-bold text-center  ">Orders Status</CardTitle>
+    <Card className="w-full max-w-none  rounded-xl bg-white lg:col-span-1 ">
+      <CardHeader className="px-4 pt-1 sm:px-5">
+        <CardTitle className="text-center  font-bold sm:text-xl">
+          <h1 className="text-lg font-semibold sm:text-2xl lg:text-3xl">{t('order-status')}</h1>
+        </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col items-center ">
+
+      <CardContent className="flex w-full flex-col items-center px-4 sm:px-5">
         {hasData ? (
-          <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-56 w-full">
+          <ChartContainer
+            config={chartConfig}
+            className="mx-auto aspect-square w-full max-h-52 sm:max-h-56"
+          >
             <PieChart>
               <Pie
                 data={chartData}
@@ -68,27 +79,29 @@ export function OrderStatusChart({ orderStatus }: Props) {
             </PieChart>
           </ChartContainer>
         ) : (
-          <div className="flex aspect-square max-h-56 w-full items-center justify-center rounded-full text-sm text-muted-foreground">
-            لا توجد طلبات بعد
+          <div className="flex aspect-square max-h-52 w-full items-center justify-center rounded-full text-sm text-muted-foreground">
+            {t('no-data')}
           </div>
         )}
 
         <div className="w-full pb-4 font-bold">
           <LegendRow
             color={chartConfig.completed.color}
-            label="Completed"
+            label={t('completed')}
             count={completed.count}
             percent={completed.percent}
           />
+
           <LegendRow
             color={chartConfig.inProgress.color}
-            label="In progress"
+            label={t('in-progress')}
             count={inProgress.count}
             percent={inProgress.percent}
           />
+
           <LegendRow
             color={chartConfig.canceled.color}
-            label="Canceled"
+            label={t('canceled')}
             count={canceled.count}
             percent={canceled.percent}
           />

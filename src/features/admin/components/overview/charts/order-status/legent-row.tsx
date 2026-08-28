@@ -1,3 +1,4 @@
+
 export default function LegendRow({
   color,
   label,
@@ -9,6 +10,8 @@ export default function LegendRow({
   count: number;
   percent: number;
 }) {
+
+  
   return (
     <div className="flex items-center justify-between py-2  mx-auto ">
       <div className="flex items-center gap-2.5">
