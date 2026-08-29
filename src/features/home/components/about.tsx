@@ -33,28 +33,18 @@ export default function About() {
           <div className="absolute inset-0 rotate-[4deg] rounded-[50px_120px_120px_120px] border-4 border-ds-border-primary" />
 
           <div className="absolute inset-0 translate-x-6 translate-y-2 overflow-hidden rounded-[50px_120px_120px_120px]">
-            <Image src={gift1} alt="Gift Box" fill placeholder="blur" className="object-cover" />
+            <Image src={gift1} alt="" fill placeholder="blur" className="object-cover" />
           </div>
         </div>
 
         {/* Right Images */}
         <div className="flex flex-col gap-2">
           <div className="h-32 w-32 overflow-hidden rounded-full sm:h-40 sm:w-40 lg:h-48 lg:w-48">
-            <Image
-              src={gift2}
-              alt="Gift box"
-              placeholder="blur"
-              className="h-full w-full object-cover"
-            />
+            <Image src={gift2} alt="" placeholder="blur" className="h-full w-full object-cover" />
           </div>
 
           <div className="h-24 w-32 overflow-hidden rounded-[50px_100px_100px_50px] sm:h-28 sm:w-40 lg:h-36 lg:w-48">
-            <Image
-              src={gift3}
-              alt="Gift box"
-              placeholder="blur"
-              className="h-full w-full object-cover"
-            />
+            <Image src={gift3} alt="" placeholder="blur" className="h-full w-full object-cover" />
           </div>
         </div>
       </div>
@@ -81,14 +71,18 @@ export default function About() {
         >
           <span>{t('discover')}</span>
 
-          {isRTL ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+          {isRTL ? (
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          ) : (
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          )}
         </Link>
 
         {/* Features */}
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
           {features.map((feature) => (
             <div key={feature} className="flex items-center justify-center gap-3 lg:justify-start">
-              <Check className="h-4 w-4 text-soft-pink-600" />
+              <Check className="h-4 w-4 text-soft-pink-600" aria-hidden="true" />
 
               <span className="text-sm text-ds-text-plain dark:text-ds-text-subtle">{feature}</span>
             </div>

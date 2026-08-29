@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import { IProduct } from '../../types/products';
@@ -9,6 +10,7 @@ interface ProductImageGalleryProps {
 
 export default function ProductImageGallery({ product }: ProductImageGalleryProps) {
   const [selectedImage, setSelectedImage] = useState(product.cover);
+
   const images = [
     product.cover,
     ...(() => {
@@ -40,7 +42,10 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
           {images.map((image, index) => (
             <button
               key={index}
+              type="button"
               onClick={() => setSelectedImage(image)}
+              aria-label={`${product.title} - view ${index + 1}`}
+              aria-current={selectedImage === image ? 'true' : undefined}
               className={`relative shrink-0 w-1/3 md:w-1/6 h-16 md:h-28 cursor-pointer rounded-md overflow-hidden border-2 transition-all ${
                 selectedImage === image ? 'border-maroon-600 border-2' : 'border-transparent'
               }`}
@@ -52,8 +57,12 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
                 className="object-cover"
                 sizes="80px"
               />
+
               {selectedImage !== image && (
-                <div className="absolute inset-0 bg-black/30 hover:bg-transparent transition-colors" />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-black/30 hover:bg-transparent transition-colors"
+                />
               )}
             </button>
           ))}

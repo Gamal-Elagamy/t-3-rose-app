@@ -13,12 +13,14 @@ import { getMostPopularOccasionProducts } from '../../lib/utils/most-popular-dat
 export default async function MostPopularSection() {
   // Translation
   const t = await getTranslations('home');
+
+  // Data
   const occasionProductsPromise = getMostPopularOccasionProducts();
 
   return (
     <MostPopularSharedTabsProvider>
-      <div className="mx-auto max-w-11/12 my-27">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <section className="mx-auto my-27 max-w-11/12">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <SectionTitle title={t('mostPopular')} />
 
           <ProductsErrorBoundary>
@@ -35,7 +37,7 @@ export default async function MostPopularSection() {
         </ProductsErrorBoundary>
 
         <ViewMoreLink />
-      </div>
+      </section>
     </MostPopularSharedTabsProvider>
   );
 }

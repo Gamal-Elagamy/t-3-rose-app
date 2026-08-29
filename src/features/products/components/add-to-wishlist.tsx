@@ -64,7 +64,11 @@ export default function AddToWishlist({ variant = 'card', productId }: AddToWish
         disabled={isAdding}
         aria-label={isWishlisted ? t('removeFromWishlist') : t('addToWishlist')}
       >
-        {isWishlisted ? <HeartMinus className="size-5" /> : <HeartPlus className="size-5" />}
+        {isWishlisted ? (
+          <HeartMinus className="size-5" aria-hidden="true" />
+        ) : (
+          <HeartPlus className="size-5" aria-hidden="true" />
+        )}
       </Button>
     );
   }
@@ -76,8 +80,9 @@ export default function AddToWishlist({ variant = 'card', productId }: AddToWish
           className="absolute top-2 inset-s-2 flex items-center justify-center text-white bg-zinc-800 rounded-full h-7.5 p-2.5 gap-0.75 cursor-pointer hover:bg-zinc-800"
           onClick={handleToggle}
           disabled={isAdding}
+          aria-label={t('removeFromWishlist')}
         >
-          <HeartMinus className="w-4.5 h-4.5" />
+          <HeartMinus className="w-4.5 h-4.5" aria-hidden="true" />
           <p>{t('removeFromWishlist')}</p>
         </Button>
       ) : (
@@ -85,8 +90,9 @@ export default function AddToWishlist({ variant = 'card', productId }: AddToWish
           className="absolute top-2 inset-s-2 h-7.5 w-7.5 rounded-full bg-white p-0 text-maroon-600 hover:bg-white cursor-pointer overflow-hidden transition-all duration-200 hover:w-auto hover:px-2.5 [&>span]:gap-0 hover:[&>span]:gap-1.5 hover:[&_p]:max-w-40 hover:[&_p]:opacity-100"
           onClick={handleToggle}
           disabled={isAdding}
+          aria-label={t('addToWishlist')}
         >
-          <HeartPlus className="size-4.5 shrink-0" />
+          <HeartPlus className="size-4.5 shrink-0" aria-hidden="true" />
           <p className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium text-maroon-600 opacity-0 transition-all duration-200">
             {t('addToWishlist')}
           </p>

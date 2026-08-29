@@ -51,6 +51,7 @@ function LoginForm() {
         rememberMe: rememberMe.toString(),
         redirect: false,
       });
+
       if (result?.error) {
         setGeneralError(t('login.invalidCredentials'));
       } else {
@@ -72,11 +73,18 @@ function LoginForm() {
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
             {/* username */}
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="password" className="text-sm font-medium text-ds-text-default">
+              <label htmlFor="username" className="text-sm font-medium text-ds-text-default">
                 {t('login.username')}
               </label>
 
-              <Input id="username" type="text" placeholder="johndoe" {...register('username')} />
+              <Input
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                aria-invalid={!!errors.username}
+                {...register('username')}
+              />
+
               {errors.username && (
                 <p className="text-xs text-ds-text-danger">
                   {t(errors.username?.message as Parameters<typeof t>[0])}
@@ -98,11 +106,12 @@ function LoginForm() {
                 disabled={isSubmitting}
                 {...register('password')}
               />
+
               {errors.password && (
                 <p className="text-xs text-ds-text-danger">{t(`login.passwordRequired`)}</p>
               )}
 
-              {/* Forgot password  */}
+              {/* Forgot password */}
               <Link
                 href="/forget-password"
                 className="text-end text-xs text-ds-text-primary hover:underline"
@@ -128,7 +137,7 @@ function LoginForm() {
               <p className="text-center text-sm text-ds-text-danger">{generalError}</p>
             )}
 
-            {/* Login button  */}
+            {/* Login button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -136,7 +145,10 @@ function LoginForm() {
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
-                  <span className="size-4 animate-spin rounded-full border-2 border-ds-text-inverse border-t-transparent" />
+                  <span
+                    className="size-4 animate-spin rounded-full border-2 border-ds-text-inverse border-t-transparent"
+                    aria-hidden="true"
+                  />
                   {t('login.button')}
                 </span>
               ) : (

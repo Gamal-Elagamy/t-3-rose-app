@@ -15,11 +15,11 @@ export default async function CartLayout({ children }: CartLayoutProps) {
   const products = await getYouMayLikeProducts();
   return (
     <>
-      <div className="grid h-screen grid-cols-3 gap-4">
-        <section className="col-span-2">{children}</section>
+      <div className="grid grid-cols-1 gap-4 min-h-screen lg:grid-cols-3">
+        <section className="lg:col-span-2">{children}</section>
 
         <CouponProvider>
-          <section className="col-span-1">
+          <section aria-label="Order summary" className="lg:col-span-1">
             <OrderSummary
               couponForm={<CouponSection />}
               totalPrice={<TotalPrice currency="EGP" />}
@@ -31,7 +31,7 @@ export default async function CartLayout({ children }: CartLayoutProps) {
       </div>
 
       {/* Product You May Like */}
-      <section className="mx-10 my-20">
+      <section className="mx-4 my-10 sm:mx-6 lg:mx-10 lg:my-20">
         <ProductYouMayLikeCarouselSlot products={products} />
       </section>
     </>

@@ -21,7 +21,7 @@ export default async function CheckoutPage({ params }: { params: { locale: 'en' 
   const locale = params.locale;
 
   return (
-    <div className="px-20 py-15">
+    <div className="px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12 lg:px-20 lg:py-15">
       <CheckoutStepper steps={steps} defaultValue={1}>
         {/* Address */}
         <CheckoutStep value={1}>
