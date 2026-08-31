@@ -1,8 +1,11 @@
 import { ProductFormValues } from '../schemas/product.schema';
 
 export interface IProductOccasion {
-  id: string;
-  title: string;
+  occasionId: string;
+  occasion: {
+    id: string;
+    title: string;
+  };
 }
 
 export interface IProduct {

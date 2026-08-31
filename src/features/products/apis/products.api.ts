@@ -1,4 +1,3 @@
-'use server';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IProduct } from '../types/products';
 import { SortBy, SortOrder } from '../constants/sort.constants';

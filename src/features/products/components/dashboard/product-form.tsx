@@ -176,10 +176,10 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
         loading={occasionsLoading}
         fallbackOption={(selectedValue, product) => {
           const selectedOccasion =
-            product?.occasions?.find((occasion) => occasion.id === selectedValue) ??
+            product?.occasions?.find((occasion) => occasion.occasionId === selectedValue) ??
             product?.occasions?.[0];
           if (selectedValue && selectedOccasion) {
-            return { value: selectedOccasion.id, label: selectedOccasion.title };
+            return { value: selectedOccasion.occasion.id, label: selectedOccasion.occasion.title };
           }
           return null;
         }}
@@ -193,11 +193,14 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
 
 export default function ProductForm({ mode, product, productId }: ProductFormProps) {
   // Hooks
-  const { productForm, onSubmit, isUpdate } = useProductForm({ mode, product, productId });
+  const { productForm, onSubmit, isUpdate, isSubmitting } = useProductForm({
+    mode,
+    product,
+    productId,
+  });
   const t = useTranslations('dashboard.products');
 
   // Variable
-  const isSubmitting = productForm.formState.isSubmitting;
   const isValid = productForm.formState.isValid;
 
   return (
