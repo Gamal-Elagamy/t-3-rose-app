@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getAdminStatisticsApi } from '../apis/admin.api';
+import { getProductStatsApi } from '../apis/admin.client.api';
 import { TopSellingProduct } from '../types/admin';
 
 const PAGE_SIZE = 10;
@@ -17,7 +17,7 @@ export function useTopSellingProducts() {
   return useInfiniteQuery({
     queryKey: ['top-selling-products'],
     queryFn: async ({ pageParam }): Promise<TopSellingPage> => {
-      const res = await getAdminStatisticsApi({ topProductsLimit: pageParam });
+      const res = await getProductStatsApi({ topProductsLimit: pageParam });
 
       if (!res.status || !('payload' in res) || !res.payload) {
         throw new Error('message' in res ? res.message : 'Failed to fetch top selling products');

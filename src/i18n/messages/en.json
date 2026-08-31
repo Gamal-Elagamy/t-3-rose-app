@@ -465,5 +465,36 @@
       "categories": "Categories",
       "occasions": "Occasions"
     }
+  },
+  "admin-dashboard": {
+    "summary": {
+      "total-products": "Total Products",
+      "total-orders": "Total Orders",
+      "total-categories": "Total Categories",
+      "total-revenue": "Total Revenue"
+    },
+    "categories": {
+      "title": "All Categories",
+      "empty": "No categories found",
+      "products-count": "{count, plural, =0 {No products} one {# product} other {# products}}"
+    },
+    "top-selling": {
+      "title": "Top Selling Products",
+      "empty": "No products sold yet",
+      "sold": "{count, plural, one {# sold} other {# sold}}",
+      "no-more": "No more products",
+      "load-failed": "Failed to load top selling products"
+    },
+    "low-stock": {
+      "title": "Low Stock Products",
+      "empty": "No low stock products",
+      "left": "{count, plural, =0 {Out of stock} one {# left} other {# left}}",
+      "no-more": "No more products",
+      "load-failed": "Failed to load low stock products"
+    },
+    "errors": {
+      "load-failed": "Failed to load dashboard data"
+    },
+    "currency": "EGP"
   }
 }
