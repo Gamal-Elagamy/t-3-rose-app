@@ -21,7 +21,7 @@ const RANK_GRADIENTS: Record<number, string> = {
 
 export default function TopSellingProducts() {
   const t = useTranslations('admin-dashboard.top-selling');
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, isPending } =
     useTopSellingProducts();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,7 +46,8 @@ export default function TopSellingProducts() {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   const products: TopSellingProduct[] = data?.pages.at(-1)?.items ?? [];
-  const isEmpty = !isLoading && !isError && products.length === 0;
+  const isError = status === 'error';
+  const isEmpty = status === 'success' && products.length === 0;
 
   return (
     <div className="rounded-xl bg-white p-4 dark:bg-zinc-800">
@@ -56,14 +57,13 @@ export default function TopSellingProducts() {
         ref={containerRef}
         className="max-h-80 space-y-2 overflow-y-auto [&::-webkit-scrollbar]:hidden"
       >
-        {isLoading && <TopSellingProductsSkeleton />}
+        {isPending && <TopSellingProductsSkeleton />}
 
         {isError && <p className="py-6 text-center text-sm text-red-500">{t('load-failed')}</p>}
 
         {isEmpty && <p className="py-6 text-center text-sm text-muted-foreground">{t('empty')}</p>}
 
-        {!isLoading &&
-          !isError &&
+        {status === 'success' &&
           products.map((product, index) => {
             const gradientClass = RANK_GRADIENTS[index];
 
@@ -83,7 +83,7 @@ export default function TopSellingProducts() {
                     {truncateText(product.title, 25)}
                   </span>
                   <span className="text-xs font-light text-muted-foreground sm:text-sm">
-                    ({product.unitPrice} EGP)
+                    ({product.unitPrice}, {t('currency')})
                   </span>
                 </div>
                 <span className="shrink-0 text-sm font-semibold">

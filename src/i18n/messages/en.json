@@ -483,7 +483,8 @@
       "empty": "No products sold yet",
       "sold": "{count, plural, one {# sold} other {# sold}}",
       "no-more": "No more products",
-      "load-failed": "Failed to load top selling products"
+      "load-failed": "Failed to load top selling products",
+      "currency": "EGP"
     },
     "low-stock": {
       "title": "Low Stock Products",
@@ -496,5 +497,9 @@
       "load-failed": "Failed to load dashboard data"
     },
     "currency": "EGP"
+  },
+
+  "change-password": {
+    "title": "Change Password"
   }
 }

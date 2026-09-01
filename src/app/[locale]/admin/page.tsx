@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server';
 import { getAdminStatisticsServer } from '@/features/admin/apis/admin.server.api';
 import DashboardBottom from '@/features/admin/components/overview/dashboard-bottom';
 import DashboardError from '@/features/admin/components/overview/dashboard-error';
-import DashboardMiddle from '@/features/admin/components/overview/middle'; // شغل زميلك
 import DashboardTop from '@/features/admin/components/overview/dashboard-top';
 
 export default async function DashboardPage() {
@@ -20,7 +19,6 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6 p-4 md:p-6">
       <DashboardTop summary={summary} categories={categories} />
-      <DashboardMiddle />
       <DashboardBottom />
     </div>
   );

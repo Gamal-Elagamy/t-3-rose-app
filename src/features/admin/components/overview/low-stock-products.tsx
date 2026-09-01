@@ -11,7 +11,7 @@ import LowStockProductsSkeleton from '../../Skeletons/low-stock-products-skeleto
 
 export default function LowStockProducts() {
   const t = useTranslations('admin-dashboard.low-stock');
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, isPending } =
     useLowStockProducts();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,8 @@ export default function LowStockProducts() {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   const products = data?.pages.at(-1)?.items ?? [];
-  const isEmpty = !isLoading && !isError && products.length === 0;
+  const isError = status === 'error';
+  const isEmpty = status === 'success' && products.length === 0;
 
   return (
     <div className="rounded-xl bg-white p-4 dark:bg-zinc-800">
@@ -46,14 +47,13 @@ export default function LowStockProducts() {
         ref={containerRef}
         className="max-h-80 space-y-2 overflow-y-auto [&::-webkit-scrollbar]:hidden"
       >
-        {isLoading && <LowStockProductsSkeleton />}
+        {isPending && <LowStockProductsSkeleton />}
 
         {isError && <p className="py-6 text-center text-sm text-red-500">{t('load-failed')}</p>}
 
         {isEmpty && <p className="py-6 text-center text-sm text-muted-foreground">{t('empty')}</p>}
 
-        {!isLoading &&
-          !isError &&
+        {status === 'success' &&
           products.map((product) => (
             <div
               key={product.id}
