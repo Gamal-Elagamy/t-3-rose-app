@@ -3,7 +3,7 @@
 import { LogOut, MoreVertical, User } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
-import { Avatar, AvatarFallback } from '@/shared/components/ui/avatar';
+import { Avatar } from '@/shared/components/ui/avatar';
 
 import {
   DropdownMenu,
@@ -87,6 +87,35 @@ export default function UserMenu({ user }: UserMenuProps) {
         >
           <DropdownMenuItem>
             <Link href="/account-settings" className="flex cursor-pointer items-center gap-2">
+              <User className="size-4" />
+              <span>Account</span>
+            </Link>
+          </DropdownMenuItem>
+
+          {/* Desktop: Three dots */}
+          <DropdownMenuTrigger>
+            <button>
+              <span
+                className={cn(
+                  'hidden md:flex',
+                  'size-8 items-center justify-center rounded-md',
+                  'text-muted-foreground transition-colors',
+                  'hover:bg-muted hover:text-foreground'
+                )}
+              >
+                <MoreVertical className="size-5" />
+              </span>
+            </button>
+          </DropdownMenuTrigger>
+        </DropdownMenuContent>
+
+        <DropdownMenuContent
+          align="end"
+          sideOffset={8}
+          className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
+        >
+          <DropdownMenuItem>
+            <Link href="/admin/account-settings" className="flex cursor-pointer items-center gap-2">
               <User className="size-4" />
               <span>Account</span>
             </Link>

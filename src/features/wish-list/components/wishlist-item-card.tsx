@@ -80,11 +80,14 @@ export function WishlistItemCard({ product, onRemove, isRemoving }: WishlistItem
         {isInStock ? (
           <AddToCart variant="wishlist" productId={product.id} stock={product.stock} />
         ) : (
-          <Button className="bg-ds-bg-primary-fade text-ds-text-primary hover:bg-ds-bg-primary-faint px-2 py-2 border-none" variant="subtle">{t('wishlist.exploreSimilar')}</Button>
+          <Button
+            className="bg-ds-bg-primary-fade text-ds-text-primary hover:bg-ds-bg-primary-faint px-2 py-2 border-none"
+            variant="subtle"
+          >
+            {t('wishlist.exploreSimilar')}
+          </Button>
         )}
       </div>
-     
     </div>
-    
   );
 }

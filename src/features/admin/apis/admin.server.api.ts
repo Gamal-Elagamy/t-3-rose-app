@@ -5,17 +5,33 @@ import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { DashboardPayload } from '../types/admin';
 
-export async function getAdminStatisticsServer(): Promise<IApiResponse<DashboardPayload>> {
+export type RevenuePeriod = 'monthly' | 'week';
+
+export async function getAdminStatisticsServer(
+  revenuePeriod: RevenuePeriod = 'monthly'
+): Promise<IApiResponse<DashboardPayload>> {
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
 
   if (!token) {
-    return { status: false, code: 401, message: 'Unauthorized' };
+    return {
+      status: false,
+      code: 401,
+      message: 'Unauthorized',
+    };
   }
 
-  const response = await fetch(`${getApiBaseUrl()}/admin/statistics`, {
-    headers: { Authorization: `Bearer ${token}` },
-    next: { tags: ['admin-statistics'] },
+  // Build API URL
+  const url = new URL(`${getApiBaseUrl()}/admin/statistics`);
+
+  // Add revenue period BEFORE fetch
+  url.searchParams.set('revenuePeriod', revenuePeriod);
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store',
   });
 
   const data: IApiResponse<DashboardPayload> = await response.json();

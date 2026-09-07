@@ -30,6 +30,6 @@ export async function removeFromWishlist({ id }: RemoveWishlistItemRequest) {
   if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to remove item from wishlist');
   }
-updateTag('wishlist');
+  updateTag('wishlist');
   return data;
 }

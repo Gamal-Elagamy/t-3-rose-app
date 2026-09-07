@@ -3,10 +3,13 @@
 import { IApiResponse } from '@/shared/lib/types/api';
 import { DashboardPayload } from '../types/admin';
 
+export type RevenuePeriod = 'monthly' | 'week';
+
 export interface GetProductStatsParams {
   topProductsLimit?: number;
   lowStockLimit?: number;
   lowStockThreshold?: number;
+  revenuePeriod?: RevenuePeriod;
 }
 
 export async function getProductStatsApi(params: GetProductStatsParams = {}) {

@@ -1,6 +1,6 @@
-import { IApiResponse } from "@/shared/lib/types/api";
-import { ICoupon } from "../types/copons";
-import { IMetadata } from "@/features/products/types/product-reviews";
+import { IApiResponse } from '@/shared/lib/types/api';
+import { ICoupon } from '../types/copons';
+import { IMetadata } from '@/features/products/types/product-reviews';
 
 export default async function GetCoupon(search: string) {
   const url =
@@ -22,9 +22,7 @@ export default async function GetCoupon(search: string) {
   console.log('COUPON API RESPONSE:', data);
 
   if (!response.ok || !data.status) {
-    throw new Error(
-      data.message ?? 'Failed to fetch coupon'
-    );
+    throw new Error(data.message ?? 'Failed to fetch coupon');
   }
 
   return data;
