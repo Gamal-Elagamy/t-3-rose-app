@@ -14,12 +14,14 @@ import {
 } from '@/shared/components/ui/chart';
 
 import type { DashboardRevenue } from '@/features/admin/types/admin';
-import { GetAdminStatisticsParams } from '@/features/admin/apis/admin.api';
+
 import { useTranslations } from 'next-intl';
+
+import { RevenuePeriod } from '@/features/admin/apis/admin.client.api';
 
 type RevenueChartClientProps = {
   revenue: DashboardRevenue;
-  period: GetAdminStatisticsParams['revenuePeriod'];
+  period: RevenuePeriod;
 };
 
 const chartConfig = {
@@ -36,13 +38,20 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const chartData = revenue.points;
+  const formatYAxisValue = (value: number) => {
+    if (value >= 1000) {
+      return `${Number(value / 1000)}k`;
+    }
 
+    return value.toString();
+  };
+
+  const chartData = revenue.points;
   const maxRevenue = Math.max(...chartData.map((point) => point.revenue), 0);
 
   const yAxisMax = maxRevenue === 0 ? 5000 : Math.ceil(maxRevenue / 1000) * 1000;
 
-  const handlePeriodChange = (newPeriod: GetAdminStatisticsParams['revenuePeriod'] = 'monthly') => {
+  const handlePeriodChange = (newPeriod: RevenuePeriod = 'monthly') => {
     const params = new URLSearchParams(searchParams.toString());
 
     params.set('revenuePeriod', newPeriod);
@@ -51,10 +60,12 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
   };
 
   return (
-    <Card className="w-full  min-w-0 rounded-2xl border-none bg-white shadow-none sm:col-span-2 lg:col-span-3">
+    <Card className="w-full min-w-0 rounded-2xl border-none bg-white shadow-none dark:bg-zinc-800 sm:col-span-2 lg:col-span-3">
       {/* Header */}
-      <CardHeader className="flex flex-row items-center justify-between px-4  sm:px-6 lg:px-8">
-        <CardTitle className="text-lg font-semibold sm:text-2xl lg:text-3xl">{t('revenue')}</CardTitle>
+      <CardHeader className="flex flex-row items-center justify-between px-4 sm:px-6 lg:px-8">
+        <CardTitle className="text-lg font-semibold text-ds-text-default sm:text-2xl lg:text-3xl">
+          {t('revenue')}
+        </CardTitle>
 
         <div className="flex items-center gap-3 text-sm sm:gap-4 sm:text-base">
           {/* Monthly */}
@@ -103,7 +114,7 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
               vertical
               horizontal={false}
               strokeDasharray="0"
-              className="stroke-ds-border-soft"
+              className="stroke-ds-border-soft dark:stroke-ds-border-soft"
             />
 
             {/* X Axis */}
@@ -115,7 +126,9 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
               tick={{
                 fontSize: 13,
                 fontWeight: 700,
+                fill: 'currentColor',
               }}
+              className="fill-ds-text-muted"
             />
 
             {/* Y Axis */}
@@ -125,12 +138,14 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
               axisLine={false}
               tickMargin={10}
               tickCount={6}
-              width={45}
+              width={60}
               tick={{
                 fontSize: 13,
                 fontWeight: 700,
+                fill: 'currentColor',
               }}
-              tickFormatter={(value) => value.toString()}
+              className="fill-ds-text-muted"
+              tickFormatter={formatYAxisValue}
             />
 
             {/* Tooltip */}
@@ -139,7 +154,7 @@ export function RevenueChart({ revenue, period }: RevenueChartClientProps) {
               content={
                 <ChartTooltipContent
                   hideLabel
-                  className="shadow-none ring-0  text-maroon-600"
+                  className="border-ds-border-soft bg-white text-ds-text-default shadow-none ring-0 dark:bg-ds-bg-plain"
                   formatter={(value) => `${Number(value).toLocaleString()} EGP`}
                 />
               }

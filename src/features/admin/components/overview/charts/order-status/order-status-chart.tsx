@@ -19,9 +19,8 @@ const chartConfig = {
   inProgress: { label: 'In progress', color: '#2C7BFF' },
   canceled: { label: 'Canceled', color: '#E5342A' },
 } satisfies ChartConfig;
- 
-export function OrderStatusChart({ orderStatus }: Props) {
 
+export function OrderStatusChart({ orderStatus }: Props) {
   // Translation
   const t = useTranslations('dashboard.charts');
   const { completed, inProgress, canceled } = orderStatus;
@@ -47,7 +46,7 @@ export function OrderStatusChart({ orderStatus }: Props) {
   const hasData = orderStatus.totalOrders > 0;
 
   return (
-    <Card className="w-full max-w-none  rounded-xl bg-white lg:col-span-1 ">
+    <Card className="w-full max-w-none  rounded-xl bg-white dark:bg-zinc-800 lg:col-span-1 ">
       <CardHeader className="px-4 pt-1 sm:px-5">
         <CardTitle className="text-center  font-bold sm:text-xl">
           <h1 className="text-lg font-semibold sm:text-2xl lg:text-3xl">{t('order-status')}</h1>

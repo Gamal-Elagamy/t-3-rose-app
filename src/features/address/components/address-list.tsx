@@ -35,7 +35,7 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
         </>
       ) : (
         <>
-        {/* Display addresses */}
+          {/* Display addresses */}
           <div className="space-y-3 max-h-88 overflow-y-auto">
             {addresses.map((address) => (
               <AddressCard

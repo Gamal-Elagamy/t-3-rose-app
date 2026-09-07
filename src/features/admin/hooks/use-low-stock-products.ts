@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getAdminStatisticsApi } from '../apis/admin.api';
+import { getProductStatsApi } from '../apis/admin.client.api';
 import { LowStockProduct } from '../types/admin';
 
 const PAGE_SIZE = 10;
@@ -17,7 +17,7 @@ export function useLowStockProducts(threshold = 20) {
   return useInfiniteQuery({
     queryKey: ['low-stock-products', threshold],
     queryFn: async ({ pageParam }): Promise<LowStockPage> => {
-      const res = await getAdminStatisticsApi({
+      const res = await getProductStatsApi({
         lowStockLimit: pageParam,
         lowStockThreshold: threshold,
       });

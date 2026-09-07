@@ -1,5 +1,5 @@
-import z from "zod";
-import { loginPopoverSchema } from "../schema/login-popover-schema";
+import z from 'zod';
+import { loginPopoverSchema } from '../schema/login-popover-schema';
 
 export type LoginPopoverFormValues = z.infer<typeof loginPopoverSchema>;
 

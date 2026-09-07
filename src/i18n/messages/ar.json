@@ -371,8 +371,7 @@
     "empty": "قائمة المفضلة فارغة",
     "loading": "جارِ تحميل المفضلة...",
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
-      "retry": "حاول مرة أخرى"
-
+    "retry": "حاول مرة أخرى"
   },
 
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
@@ -433,7 +432,7 @@
     "sub-total": "المجموع الفرعي",
     "coupon-empty": "يرجى ادخال كود الكوبون",
     "product-you-may-like": "المنتجات التي تحبها"
-},
+  },
   "accountSettings": {
     "title": "إعدادات الحساب",
     "sidebar": {
@@ -473,9 +472,12 @@
       "change-password": "تغيير كلمة المرور",
 
       "firstName": "الاسم الأول",
+      "firstName-required": "الاسم الأول مطلوب",
       "lastName": "الاسم الأخير",
+      "lastName-required": "الاسم الأخير مطلوب",
       "email": "البريد الإلكتروني",
       "phone": "رقم الهاتف",
+      "phone-required": "رقم الهاتف مطلوب",
       "gender": "النوع",
       "delete-account": "حذف الحساب",
       "submit-changes": "حفظ التعديلات",
@@ -491,16 +493,15 @@
       "delete-success": "تم حذف حسابك بنجاح.",
       "delete-failed": "فشل حذف الحساب. حاول مرة أخرى."
     }
-
   },
-  "dashboard" :{
-    "navMain" :{
+  "dashboard": {
+    "navMain": {
       "overview": "لوحة التحكم",
       "products": "المنتجات",
       "categories": "الاقسام",
       "occasions": "المناسبات"
     },
-    "charts" :{
+    "charts": {
       "order-status": "حالة الطلب",
       "no-data": "لا يوجد بيانات",
       "completed": "مكتمل",
@@ -510,5 +511,41 @@
       "monthly": "شهري",
       "last-Week": "اخر اسبوع"
     }
+  },
+
+  "admin-dashboard": {
+    "summary": {
+      "total-products": "إجمالي المنتجات",
+      "total-orders": "إجمالي الطلبات",
+      "total-categories": "إجمالي الفئات",
+      "total-revenue": "إجمالي الإيرادات"
+    },
+    "categories": {
+      "title": "كل الفئات",
+      "empty": "لا توجد فئات",
+      "products-count": "{count, plural, =0 {لا يوجد منتجات} one {منتج واحد} two {منتجان} few {# منتجات} many {# منتجًا} other {# منتج}}"
+    },
+    "top-selling": {
+      "title": "الأكثر مبيعًا",
+      "empty": "لا توجد مبيعات بعد",
+      "sold": "{count, plural, =0 {لا يوجد مبيعات} one {تم بيع قطعة واحدة} two {تم بيع قطعتين} few {تم بيع # قطع} many {تم بيع # قطعة} other {تم بيع # قطعة}}",
+      "no-more": "لا مزيد من المنتجات",
+      "load-failed": "فشل تحميل الأكثر مبيعًا",
+      "currency": "جنيه"
+    },
+    "low-stock": {
+      "title": "منتجات على وشك النفاد",
+      "empty": "لا توجد منتجات منخفضة المخزون",
+      "left": "{count, plural, =0 {نفدت الكمية} one {قطعة واحدة متبقية} two {قطعتان متبقيتان} few {# قطع متبقية} many {# قطعة متبقية} other {# قطعة متبقية}}",
+      "no-more": "لا مزيد من المنتجات",
+      "load-failed": "فشل تحميل منتجات المخزون المنخفض"
+    },
+    "errors": {
+      "load-failed": "فشل تحميل بيانات لوحة التحكم"
+    },
+    "currency": "جنيه"
+  },
+  "change-password": {
+    "title": "تغيير كلمة المرور"
   }
 }

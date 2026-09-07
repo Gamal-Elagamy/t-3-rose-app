@@ -92,48 +92,44 @@ export default function UserMenu({ user }: UserMenuProps) {
             </Link>
           </DropdownMenuItem>
 
-                        {/* Desktop: Three dots */}
-                        <DropdownMenuTrigger>
-                        <button>
-                        <span
-                            className={cn(
-                                "hidden md:flex",
-                                "size-8 items-center justify-center rounded-md",
-                                "text-muted-foreground transition-colors",
-                                "hover:bg-muted hover:text-foreground"
-                            )}
-                        >
-                            <MoreVertical className="size-5" />
-                        </span>
-                    </button>
-                </DropdownMenuTrigger>
-                </DropdownMenuContent>
+          {/* Desktop: Three dots */}
+          <DropdownMenuTrigger>
+            <button>
+              <span
+                className={cn(
+                  'hidden md:flex',
+                  'size-8 items-center justify-center rounded-md',
+                  'text-muted-foreground transition-colors',
+                  'hover:bg-muted hover:text-foreground'
+                )}
+              >
+                <MoreVertical className="size-5" />
+              </span>
+            </button>
+          </DropdownMenuTrigger>
+        </DropdownMenuContent>
 
+        <DropdownMenuContent
+          align="end"
+          sideOffset={8}
+          className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
+        >
+          <DropdownMenuItem>
+            <Link href="/admin/account-settings" className="flex cursor-pointer items-center gap-2">
+              <User className="size-4" />
+              <span>Account</span>
+            </Link>
+          </DropdownMenuItem>
 
-                <DropdownMenuContent
-                    align="end"
-                    sideOffset={8}
-                    className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
-                >
-                    <DropdownMenuItem >
-                        <Link
-                            href="/admin/account-settings"
-                            className="flex cursor-pointer items-center gap-2"
-                        >
-                            <User className="size-4" />
-                            <span>Account</span>
-                        </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        className="cursor-pointer text-red-600 focus:text-red-600"
-                    >
-                        <LogOut className="size-4" />
-                        <span>Logout</span>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
-    );
+          <DropdownMenuItem
+            onClick={() => signOut({ callbackUrl: '/' })}
+            className="cursor-pointer text-red-600 focus:text-red-600"
+          >
+            <LogOut className="size-4" />
+            <span>Logout</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
 }

@@ -1,19 +1,14 @@
 import 'server-only';
 
 import { DashboardPayload } from '../types/admin';
-import { getAdminStatisticsApi, GetAdminStatisticsParams } from './admin.api';
+import { getAdminStatisticsServer, RevenuePeriod } from './admin.server.api';
+import { GetProductStatsParams } from './admin.client.api';
 
-
-export async function GetChartsApi(
-  revenuePeriod: GetAdminStatisticsParams['revenuePeriod']
-): Promise<DashboardPayload> {
-  const data = await getAdminStatisticsApi({ revenuePeriod });
-  
+export async function GetChartsApi(revenuePeriod: RevenuePeriod): Promise<DashboardPayload> {
+  const data = await getAdminStatisticsServer(revenuePeriod);
 
   if (!data.status) {
-    throw new Error(
-      data.message || 'Failed to get admin statistics',
-    );
+    throw new Error(data.message || 'Failed to get admin statistics');
   }
 
   if (!data.payload) {

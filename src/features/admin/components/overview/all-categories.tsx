@@ -1,23 +1,24 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { useAdminStatistics } from '../../hooks/use-admin-statistics';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
-import AllCategoriesSkeleton from '../../Skeletons/all-categories-skeleton';
+import { DashboardCategory } from '../../types/admin';
+
+interface AllCategoriesProps {
+  categories: DashboardCategory[];
+}
 
 const PAGE_SIZE = 10;
 
-export default function AllCategories() {
-  const { data, isLoading, isError } = useAdminStatistics();
+export default function AllCategories({ categories }: AllCategoriesProps) {
+  const t = useTranslations('admin-dashboard.categories');
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const containerRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  const payload = data?.status && 'payload' in data ? data.payload : undefined;
-  const hasValidData = Boolean(payload);
-  const categories = payload?.categories ?? [];
 
   useEffect(() => {
     const el = bottomRef.current;
@@ -37,45 +38,47 @@ export default function AllCategories() {
     return () => observer.disconnect();
   }, [categories.length]);
 
-  if (isLoading) {
-    return <AllCategoriesSkeleton />;
-  }
-
-  if (isError || !hasValidData) {
-    return <p className="text-sm text-red-500">Failed to load categories</p>;
-  }
-
   const visibleCategories = categories.slice(0, visibleCount);
   const hasMore = visibleCount < categories.length;
+  const isEmpty = categories.length === 0;
 
   return (
-    <div className="flex h-80 w-full flex-col rounded-2xl bg-white p-6 dark:bg-zinc-800">
-      <h3 className="mb-4 text-2xl font-bold text-muted-foreground">All Categories</h3>
+    <div className="flex h-80 w-full flex-col rounded-2xl bg-white p-4 dark:bg-zinc-800 sm:p-6">
+      <h3 className="mb-4 text-xl font-bold text-muted-foreground sm:text-2xl">{t('title')}</h3>
 
       <div
         ref={containerRef}
-        className="min-h-0 flex-1 space-y-2 overflow-y-auto [&::-webkit-scrollbar]:hidden"
-      >
-        {visibleCategories.map((category) => (
-          <div
-            key={category.id}
-            className="flex items-center justify-between border-b border-zinc-100 px-3 py-2 last:border-b-0 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-700"
-          >
-            <span className="text-xl font-medium">{category.title}</span>
-
-            <span className="rounded-lg bg-zinc-100 px-2 py-1 text-muted-foreground dark:bg-zinc-700">
-              {category.productCount} products
-            </span>
-          </div>
-        ))}
-
-        {categories.length === 0 && (
-          <p className="text-sm font-semibold text-muted-foreground">No categories</p>
+        className={cn(
+          'min-h-0 flex-1 space-y-2 overflow-y-auto [&::-webkit-scrollbar]:hidden',
+          isEmpty && 'flex items-center justify-center'
         )}
+      >
+        {isEmpty ? (
+          <p className="text-sm text-muted-foreground">{t('empty')}</p>
+        ) : (
+          <>
+            {visibleCategories.map((category) => (
+              <div
+                key={category.id}
+                className="flex items-center justify-between gap-2 border-b border-zinc-100 px-2 py-2 last:border-b-0 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-700 sm:px-3"
+              >
+                <span className="truncate text-base font-medium sm:text-xl">{category.title}</span>
 
-        <div ref={bottomRef} />
+                <span className="shrink-0 rounded-lg bg-zinc-100 px-2 py-1 text-xs text-muted-foreground dark:bg-zinc-700 sm:text-sm">
+                  {t('products-count', { count: category.productCount })}
+                </span>
+              </div>
+            ))}
 
-        {hasMore && <p className="text-sm text-muted-foreground">Loading more...</p>}
+            <div ref={bottomRef} />
+
+            {hasMore && (
+              <div className="flex justify-center py-2">
+                <div className="size-4 animate-spin rounded-full border-2 border-zinc-300 border-t-transparent" />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

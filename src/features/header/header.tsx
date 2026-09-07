@@ -43,7 +43,6 @@ export function Header({ wishlistCount }: HeaderProps) {
               <UserDropdown />
               <Notifications />
               <CartButton />
-              
 
               <WishlistButton authenticatedCount={wishlistCount} />
             </div>

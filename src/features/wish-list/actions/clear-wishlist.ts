@@ -1,4 +1,3 @@
-
 'use server';
 
 import { updateTag } from 'next/cache';

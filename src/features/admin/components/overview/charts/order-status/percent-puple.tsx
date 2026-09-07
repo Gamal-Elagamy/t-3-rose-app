@@ -1,4 +1,4 @@
-import { PieLabelRenderProps } from "recharts";
+import { PieLabelRenderProps } from 'recharts';
 
 export default function PercentBubble(props: PieLabelRenderProps) {
   const { cx, cy, midAngle, outerRadius, percent } = props as {
@@ -25,7 +25,7 @@ export default function PercentBubble(props: PieLabelRenderProps) {
         fill="white"
         stroke="rgba(0,0,0,0.06)"
         strokeWidth={1}
-        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }}
+        style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.12))' }}
       />
       <text
         x={x}
