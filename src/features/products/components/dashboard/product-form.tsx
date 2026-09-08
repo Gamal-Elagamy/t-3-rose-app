@@ -89,6 +89,8 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
                 id="description"
                 aria-invalid={fieldState.invalid}
                 placeholder={t('placeholders.description')}
+                disabled={isUpdate}
+                title={isUpdate ? t('descriptionNotEditable') : undefined}
               />
               {fieldState.invalid && (
                 <FieldError
@@ -156,6 +158,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
         product={product}
         onSearchChange={setCategorySearch}
         loading={categoriesLoading}
+        disabled={isUpdate}
         fallbackOption={(selectedValue, product) => {
           if (selectedValue && product?.category && product.category.id === selectedValue) {
             return { value: product.category.id, label: product.category.title };
@@ -174,6 +177,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
         product={product}
         onSearchChange={setOccasionSearch}
         loading={occasionsLoading}
+        disabled={isUpdate}
         fallbackOption={(selectedValue, product) => {
           const selectedOccasion =
             product?.occasions?.find((occasion) => occasion.occasionId === selectedValue) ??

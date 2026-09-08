@@ -15,6 +15,7 @@ interface ControlledComboboxProps<TFieldValues extends ProductFormData = Product
   product?: IProduct;
   onSearchChange: (value: string) => void;
   loading?: boolean;
+  disabled?: boolean;
   fallbackOption?: (
     selectedValue: string,
     product?: IProduct
@@ -30,6 +31,7 @@ export function ControlledCombobox({
   product,
   onSearchChange,
   loading,
+  disabled,
   fallbackOption,
 }: ControlledComboboxProps) {
   const t = useTranslations('dashboard.products');
@@ -61,6 +63,7 @@ export function ControlledCombobox({
             onChange={field.onChange}
             onSearchChange={onSearchChange}
             loading={loading}
+            disabled={disabled}
             error={
               fieldState.error?.message
                 ? getErrorMessage(t, fieldState.error.message)

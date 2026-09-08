@@ -2,9 +2,9 @@
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { IProduct } from '../types/products';
-import { HEADERS } from "@/shared/constant/api-header.constants";
-import { RESPONSES } from "@/shared/constant/api.responses";
+import { HEADERS } from '@/shared/constant/api-header.constants';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
+import { revalidatePath } from 'next/cache';
 
 export async function createProduct(productData: {
   title: string;
@@ -18,12 +18,12 @@ export async function createProduct(productData: {
   cover: string;
   gallery: string[];
 }): Promise<IProduct> {
-  const token = await getNextAuthToken()
-  if (!token?.token) return RESPONSES.unauthorized as unknown as IProduct
+  const token = await getNextAuthToken();
+  if (!token?.token) throw new Error('Unauthorized');
 
   const response = await fetch(`${getApiBaseUrl()}/products`, {
     method: 'POST',
-    headers :{
+    headers: {
       ...HEADERS.JSON,
       ...HEADERS.AUTH(token.token),
     },
@@ -36,6 +36,7 @@ export async function createProduct(productData: {
     throw new Error(data.message || 'Failed to create product');
   }
 
+  revalidatePath('/admin/products');
   return data.payload.product;
 }
 
@@ -54,15 +55,15 @@ export async function updateProduct(
     gallery: string[];
   }>
 ): Promise<IProduct> {
-  const token = await getNextAuthToken()
-  if (!token?.token) return RESPONSES.unauthorized as unknown as IProduct
+  const token = await getNextAuthToken();
+  if (!token?.token) throw new Error('Unauthorized');
 
   const response = await fetch(`${getApiBaseUrl()}/products/${id}`, {
     method: 'PATCH',
-    headers :{
-            ...HEADERS.JSON,
-            ...HEADERS.AUTH(token.token)
-        },
+    headers: {
+      ...HEADERS.JSON,
+      ...HEADERS.AUTH(token.token),
+    },
     body: JSON.stringify(productData),
   });
 
@@ -72,5 +73,6 @@ export async function updateProduct(
     throw new Error(data.message || 'Failed to update product');
   }
 
+  revalidatePath('/admin/products');
   return data.payload.product;
 }

@@ -490,6 +490,9 @@
       "uploading": "Uploading {fileName}...",
       "clear": "Clear",
       "noChanges": "No changes to update",
+      "descriptionNotEditable": "Description cannot be edited after creation",
+      "categoryNotEditable": "Category cannot be edited after creation",
+      "occasionNotEditable": "Occasion cannot be edited after creation",
       "productCreated": "Product created successfully",
       "productUpdated": "Product updated successfully",
       "validation": {

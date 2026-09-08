@@ -75,7 +75,7 @@ export function Combobox({
             aria-invalid={!!error}
             className="flex h-12.25 w-full items-center gap-2 rounded-lg border border-ds-border-soft bg-ds-bg-plain p-4 text-ds-text-default hover:border-ds-border-default aria-invalid:border-ds-border-danger"
           >
-            <span className="flex-1 truncate text-start text-sm text-black">
+            <span className="flex-1 truncate text-start text-sm text-ds-text-plain">
               {selectedLabel ?? t('combobox.placeholder')}
             </span>
           </ComboboxTrigger>
