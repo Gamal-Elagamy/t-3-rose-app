@@ -390,7 +390,7 @@
     "cart-remove": "Remove",
     "cart-item-quantity": "(×{quantity, number, items-count})",
     "cart-empty": "Your cart is empty, wanna try shopping?",
-    "cart-button": "Containue Shopping"
+    "cart-button": "Continue Shopping"
   },
   "checkout": {
     "shipping": {

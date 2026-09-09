@@ -46,7 +46,7 @@ export default function ActionMenu({ id, page }: { id: string; page: ItemPageTyp
       </Button>
 
       {isOpen && (
-        <div className="w-40 bg-ds-bg-plain border border-ds-border-soft absolute top-full right-0 mt-2 z-10">
+        <div className="w-40 bg-ds-bg-plain border border-ds-border-soft absolute top-full inset-e-0 mt-2 z-10">
           <EditButton
             text={t('edit')}
             style={

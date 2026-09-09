@@ -1,26 +1,27 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { updateCategoriesItem } from '../apis/categories-item.api';
-import { updateOccasionsItem } from '../apis/occasions-item.api';
+import { ItemPageType } from '../types/page-type';
+import { updateCategoriesItem } from '../apis/categories-mutations.api';
+import { updateOccasionsItem } from '../apis/occasions-mutations.api';
 
-// Update Categorie Item Mutation
-export default function useUpdateCategorieItem() {
+type UpdatePayload = {
+  id: string;
+  title: string;
+  description?: string;
+};
+
+const updateFnMap: Record<ItemPageType, (payload: UpdatePayload) => Promise<unknown>> = {
+  categories: updateCategoriesItem,
+  occasions: updateOccasionsItem,
+};
+
+export default function useUpdateItem(page: ItemPageType) {
   const { mutateAsync, isPending, error } = useMutation({
-    mutationFn: updateCategoriesItem,
-    onError: (err) => {
+    mutationFn: updateFnMap[page],
+    onError: (err: Error) => {
       toast.error(err.message);
     },
   });
-  return { updateCategoriesItem: mutateAsync, isPending, error };
-}
 
-// Update Occacion Item Mutation
-export function useUpdateOccasionItem() {
-  const { mutateAsync, isPending, error } = useMutation({
-    mutationFn: updateOccasionsItem,
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
-  return { updateOccasionsItem: mutateAsync, isPending, error };
+  return { updateItem: mutateAsync, isPending, error };
 }

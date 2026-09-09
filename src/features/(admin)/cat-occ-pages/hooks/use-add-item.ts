@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import addCategoriesItemApi from '../apis/add-categories-item.api';
 import { toast } from 'sonner';
-import addOccasionItemApi from '../apis/add-occassion-item.api';
+import { addCategoriesItemApi } from '../apis/categories-mutations.api';
+import { addOccasionItemApi } from '../apis/occasions-mutations.api';
 
 // add categories item Mutation
 export default function useAddCategoreItem() {

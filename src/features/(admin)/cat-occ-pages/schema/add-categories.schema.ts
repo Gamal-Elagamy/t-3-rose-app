@@ -7,6 +7,9 @@ export const addItemsSchema = z.object({
   image: z.string().min(1, 'imageRequired'),
 });
 
+// Edit Schema
+export const editItemsSchema = addItemsSchema.pick({ title: true, description: true });
+
 // Image Schema
 export const uploadImageSchema = z.object({
   image: z
@@ -19,6 +22,9 @@ export const uploadImageSchema = z.object({
 
 // Categories Fields Type
 export type AddItemsFields = z.infer<typeof addItemsSchema>;
+
+// Edit Fields Type
+export type EditItemsFields = z.infer<typeof editItemsSchema>;
 
 // Image Field Type
 export type UploadImageFields = z.infer<typeof uploadImageSchema>;

@@ -4,13 +4,11 @@ import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
-import z from 'zod';
 import { Category } from '../../../products/types/product-details';
 import { Button } from '@/shared/components/ui/button';
 import { Image as ImageIcon, X } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
-import useUpdateCategorieItem, { useUpdateOccasionItem } from '../hooks/use-update-item';
 import { useRouter } from '@/i18n/navigation';
 import { getErrorMessage } from '@/features/auth/register/lib/utils/field-error';
 import { useTranslations } from 'next-intl';
@@ -18,6 +16,8 @@ import { IOccasion } from '@/features/occasions/types/occasions';
 import { ItemPageType } from '../types/page-type';
 import { itemPageConfig } from '../config/item-page.config';
 import { useModalLock } from '../hooks/use-modal-lock';
+import { EditItemsFields, editItemsSchema } from '../schema/add-categories.schema';
+import useUpdateItem from '../hooks/use-update-item';
 
 export default function EditForm({
   editData,
@@ -38,27 +38,19 @@ export default function EditForm({
   const [showImage, setShowImage] = useState(false);
 
   // Mutation
-  const { updateCategoriesItem, isPending: isPendingCategory } = useUpdateCategorieItem();
-  const { updateOccasionsItem, isPending: isPendingOccasion } = useUpdateOccasionItem();
+  const { updateItem, isPending: isSubmitting } = useUpdateItem(page);
 
   // Lock modal Effect
   useModalLock(showImage, () => setShowImage(false));
 
   // Form
-  const form = useForm<{
-    title: string;
-    description: string;
-  }>({
-    resolver: zodResolver(z.object({ title: z.string(), description: z.string() })),
+  const form = useForm<EditItemsFields>({
+    resolver: zodResolver(editItemsSchema),
     defaultValues: {
       title: editData?.title || '',
       description: editData?.description || '',
     },
   });
-
-  // IsPending
-  const isSubmitting = page === 'categories' ? isPendingCategory : isPendingOccasion;
-  const updateItem = page === 'categories' ? updateCategoriesItem : updateOccasionsItem;
 
   // Function Submit
   function onSubmit(data: { title: string; description: string }) {
@@ -84,7 +76,11 @@ export default function EditForm({
         control={form.control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>{t('fields.name.label')}</FieldLabel>
+            <FieldLabel htmlFor={field.name}>
+              {t('fields.name.label')}
+              <span className="text-ds-text-danger">*</span>
+            </FieldLabel>
+
             <Input
               {...field}
               id={field.name}

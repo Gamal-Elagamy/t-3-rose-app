@@ -3,6 +3,8 @@ import { ItemPageType } from '../types/page-type';
 import EditForm from './edit-form';
 import { getTranslations } from 'next-intl/server';
 import { SetBreadcrumbExtra } from './set-breadcrumb-extra';
+import { getCategoriesItem } from '../apis/categories-item.api';
+import { getOccasionsItem } from '../apis/occasions-item.api';
 
 export default async function ItemEditPage({
   page,
@@ -18,8 +20,10 @@ export default async function ItemEditPage({
 
   const { id } = await searchParams;
 
+  const getOneItem = page === 'categories' ? getCategoriesItem : getOccasionsItem;
+
   // Item Data
-  const item = await config.getOne(id);
+  const item = await getOneItem(id);
 
   return (
     <div className="pt-5 px-4">

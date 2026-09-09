@@ -43,10 +43,10 @@ export function TableData({ page, data }: { page: ItemPageType; data: ICategory[
         {data.map((item) => (
           <TableRow key={item.id}>
             <TableCell className="font-medium">{item?.title}</TableCell>
-            <TableCell className="font-normal">
-              {/* {(item as ICategory)?.subCategories?.length || 0} */}
+            <TableCell className="font-normal truncate max-w-50 text-ellipsis overflow-hidden">
               {(() => {
-                const count = 'subCategories' in item ? (item.subCategories?.length ?? 0) : 0;
+                const count =
+                  'subCategories' in item ? (item._count?.products ?? 0) : item.description;
                 return (
                   <>
                     {count} {t('table.productCount', { count })}

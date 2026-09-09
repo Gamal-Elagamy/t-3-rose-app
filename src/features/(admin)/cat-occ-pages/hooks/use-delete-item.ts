@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { deleteCategoriesItem } from '../apis/categories-item.api';
-import { deleteOccasionsItem } from '../apis/occasions-item.api';
+import { deleteCategoriesItem } from '../apis/categories-mutations.api';
+import { deleteOccasionsItem } from '../apis/occasions-mutations.api';
 
 // Categories Mutation
 export default function useDeleteCategorieItem() {

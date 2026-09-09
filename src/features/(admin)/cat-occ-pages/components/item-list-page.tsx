@@ -8,6 +8,8 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { itemPageConfig } from '../config/item-page.config';
 import { ItemPageType } from '../types/page-type';
+import { getAllCategories } from '../apis/categories-item.api';
+import { getAllOccasions } from '../apis/occasions-item.api';
 
 export default async function ItemListPage({
   page,
@@ -25,8 +27,10 @@ export default async function ItemListPage({
   const { page: pageParam, search } = await searchParams;
   const currentPage = Number(pageParam) || 1;
 
+  const getAllItems = page === 'categories' ? getAllCategories : getAllOccasions;
+
   // Items Data
-  const itemsData = await config.getAll({
+  const itemsData = await getAllItems({
     page: currentPage,
     limit: PRODUCTS_PER_PAGE,
     ...(search ? { search } : {}),

@@ -16,14 +16,14 @@ export default function EditButton({
   page: ItemPageType;
 }) {
   return (
-    <Link className="w-full md:w-auto" href={`/admin/${page}/edit?id=${id}`}>
-      <Button
-        variant="ghost"
-        className={cn('flex items-center gap-1 text-ds-text-info cursor-pointer', style)}
-      >
-        <PencilIcon className="size-3.5" />
-        {text}
-      </Button>
-    </Link>
+    <Button
+      render={<Link className="w-full md:w-auto" href={`/admin/${page}/edit?id=${id}`} />}
+      nativeButton={false}
+      variant="ghost"
+      className={cn('flex items-center gap-1 text-ds-text-info cursor-pointer', style)}
+    >
+      <PencilIcon className="size-3.5" />
+      {text}
+    </Button>
   );
 }
