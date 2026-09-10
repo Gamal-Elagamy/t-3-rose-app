@@ -7,6 +7,7 @@ const intlMiddleware = createMiddleware(routing);
 
 const authPages = ['/login', '/register', '/forgot-password'];
 const protectedRoutes = ['/account-settings', '/cart/checkout'];
+const adminRoutes = ['/admin'];
 
 export default async function proxy(req: NextRequest) {
   const token = await getToken({ req });
@@ -21,6 +22,11 @@ export default async function proxy(req: NextRequest) {
   );
 
   const isProtectedRoute = protectedRoutes.some(
+    (route) => normalizedPath === route || normalizedPath.startsWith(`${route}/`)
+  );
+
+  //Check if current route is an admin route
+  const isAdminRoute = adminRoutes.some(
     (route) => normalizedPath === route || normalizedPath.startsWith(`${route}/`)
   );
 
@@ -50,6 +56,16 @@ export default async function proxy(req: NextRequest) {
     const url = req.nextUrl.clone();
     url.pathname = '/login';
     url.searchParams.set('returnUrl', pathname + req.nextUrl.search);
+    return NextResponse.redirect(url);
+  }
+
+  // Protect admin routes
+  if (isAdminRoute && (!token || token.user?.role !== 'ADMIN')) {
+    const url = req.nextUrl.clone();
+
+    url.pathname = '/';
+    url.search = '';
+
     return NextResponse.redirect(url);
   }
 

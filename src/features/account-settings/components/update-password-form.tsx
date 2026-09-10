@@ -63,7 +63,7 @@ export default function UpdatePasswordForm() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col font-geist-mono gap-3 md:gap-4"

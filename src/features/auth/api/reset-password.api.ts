@@ -2,7 +2,7 @@
 import {
   IResetPassordTypeResponse,
   ResetPasswordPayload,
-} from '@/features/auth/type/reset-password';
+} from '@/features/auth/types/reset-password';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 export async function resetPasswordApi(data: ResetPasswordPayload) {

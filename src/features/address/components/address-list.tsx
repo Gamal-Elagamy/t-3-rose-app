@@ -38,10 +38,8 @@ export function AddressList({
     addresses.find((address) => address.isPrimary)?.id
   );
 
-  // Checkout context
   const { updateCheckout } = useCheckout();
 
-  // Functions
   const onSelectAddress = (address: IAddress) => {
     setSelectedAddressId(address.id);
     updateCheckout({ addressId: address.id });
@@ -49,7 +47,10 @@ export function AddressList({
 
   if (!addresses.length) {
     return (
-      <div className="py-10 text-center text-ds-text-muted" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div
+        className="py-10 text-center text-ds-text-muted"
+        dir={isRTL ? 'rtl' : 'ltr'}
+      >
         {t('list.noAddresses')}
       </div>
     );
@@ -57,7 +58,7 @@ export function AddressList({
 
   return (
     <>
-      {/* Address items only */}
+      {/* Address items */}
       <div
         className={
           variant === 'modal'
@@ -90,21 +91,25 @@ export function AddressList({
       {/* Checkout actions only */}
       {variant === 'checkout' && (
         <>
-          <div className="my-3 flex items-center" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div
+            className="my-3 flex items-center"
+            dir={isRTL ? 'rtl' : 'ltr'}
+          >
             <div className="flex-1 border-t border-ds-border-muted" />
 
-            <span className="px-4 text-md font-medium text-ds-text-soft">{t('list.or')}</span>
+            <span className="px-4 text-md font-medium text-ds-text-soft">
+              {t('list.or')}
+            </span>
+
             <div className="flex-1 border-t border-ds-border-muted" />
           </div>
 
           <AddressFormModalButton addresses={addresses} />
 
-          {/* Show next step button only if addresses exist */}
-          {addresses.length !== 0 && (
-            <AddressNextStepButton selectedAddressId={selectedAddressId} />
-          )}
+          <AddressNextStepButton selectedAddressId={selectedAddressId} />
         </>
       )}
     </>
   );
 }
+

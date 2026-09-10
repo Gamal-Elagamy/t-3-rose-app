@@ -50,13 +50,11 @@ export function addGuestCartItem(guestCartItem: GuestCartItem) {
 }
 
 // Update Guest Cart Item Quantity
-export  function updateGuestCartItemQuantity(productId: string, quantity: number) {
+export function updateGuestCartItemQuantity(productId: string, quantity: number) {
   const cart = getGuestCart();
 
   const updatedCart = cart.map((item) =>
-    item.productId === productId
-      ? { ...item, quantity }
-      : item
+    item.productId === productId ? { ...item, quantity } : item
   );
 
   setGuestCart(updatedCart);

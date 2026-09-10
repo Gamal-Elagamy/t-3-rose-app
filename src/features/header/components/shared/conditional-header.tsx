@@ -5,11 +5,10 @@ import { Header } from '../../header';
 
 const authRoutes = ['/login', '/register', '/forgot-password'];
 interface ConditionalHeaderProps {
-  wishlistCount: number; 
+  wishlistCount: number;
 }
 
-
-export function ConditionalHeader({wishlistCount}:ConditionalHeaderProps) {
+export function ConditionalHeader({ wishlistCount }: ConditionalHeaderProps) {
   // Hooks
   const pathname = usePathname();
 
@@ -21,5 +20,5 @@ export function ConditionalHeader({wishlistCount}:ConditionalHeaderProps) {
     return null;
   }
 
-  return <Header wishlistCount={wishlistCount}/>;
+  return <Header wishlistCount={wishlistCount} />;
 }

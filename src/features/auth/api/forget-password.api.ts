@@ -1,6 +1,6 @@
 'use server';
 
-import { IForgotPasswordResponse } from '../type/forget-password';
+import { IForgotPasswordResponse } from '../types/forget-password';
 import { EmailFormData } from '../schema/forget-password.schema';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';

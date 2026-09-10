@@ -5,12 +5,19 @@ import { IApiResponse } from '@/shared/lib/types/api';
 interface GetOccasionsParams {
   page?: number;
   limit?: number;
+  search?: string;
 }
 
-export async function getOccasions({ ...params }: GetOccasionsParams): Promise<IOccasion[]> {
-  const response = await fetch(
-    `${getApiBaseUrl()}/occasions?${new URLSearchParams(params as Record<string, string>).toString()}`
-  );
+export async function getOccasions({ ...params }: GetOccasionsParams = {}): Promise<IOccasion[]> {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      searchParams.append(key, String(value));
+    }
+  });
+
+  const response = await fetch(`${getApiBaseUrl()}/occasions?${searchParams.toString()}`);
   const data: IApiResponse<{
     data: IOccasion[];
     metadata: { page: string; limit: string; total: string; totalPages: string };
