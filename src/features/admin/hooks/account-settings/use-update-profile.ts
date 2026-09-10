@@ -1,5 +1,5 @@
+import updateProfileAction from '@/features/account-settings/actions/update-profile.action';
 import { useMutation } from '@tanstack/react-query';
-import updateProfileAction from '../../account-settings-action/update-profile.action';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
