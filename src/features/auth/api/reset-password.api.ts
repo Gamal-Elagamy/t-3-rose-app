@@ -4,8 +4,9 @@ import {
   ResetPasswordPayload,
 } from '@/features/auth/types/reset-password';
 import { IApiResponse } from '@/shared/lib/types/api';
+import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 export async function resetPasswordApi(data: ResetPasswordPayload) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
+  const response = await fetch(`${getApiBaseUrl()}/auth/reset-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
