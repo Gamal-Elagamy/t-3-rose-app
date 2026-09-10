@@ -1,5 +1,5 @@
+import uploadPhotoAction from '@/features/account-settings/actions/upload-photo.action';
 import { useMutation } from '@tanstack/react-query';
-import uploadPhotoAction from '../../account-settings-action/upload-photo.action';
 
 export default function useUploadPhoto() {
   const { mutateAsync, isPending, error } = useMutation({

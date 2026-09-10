@@ -134,7 +134,7 @@
       "step2": {
         "title": "Password Reset Sent",
         "subtitle": "We have sent a password reset link to:",
-        "inbox": " Please check your inbox and follow the instructions to reset your password. ",
+        "inbox": "Please check your inbox and follow the instructions to reset your password.",
         "spam": "If you don’t see the email within a few minutes, check your spam or junk folder."
       },
       "step3": {
@@ -191,11 +191,11 @@
       "empty": "You're all caught up!"
     },
     "nav": {
-      "searchPlaceholder": "what awesome gift are you looking for",
-      "deliverTo": " deliver to",
+      "searchPlaceholder": "What awesome gift are you looking for?",
+      "deliverTo": "Deliver to",
       "locating": "Locating...",
       "selectLocation": "Select location",
-      "login": "login",
+      "login": "Login",
       "searchDefault": "Products you may like",
       "Rating": "Rating",
       "ratings": "ratings"
@@ -217,7 +217,7 @@
   "home-page": {
     "hero-section": {
       "banner": {
-        "card-title": "Staring from 10.99 EGP",
+        "card-title": "Starting from 10.99 EGP",
         "card-description": "Special Gifts For The People You Love",
         "card-button": "Shop Now",
         "carousel-title": "Say It with Flowers",
@@ -379,7 +379,7 @@
     "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
     "cart-clear": "Clear Cart",
     "cart-clear-info": "Are you sure you want to clear your Cart?",
-    "cart-clear-cancle": "Cancle",
+    "cart-clear-cancle": "Cancel",
     "cart-clear-confirm": "Confirm",
     "cart-clearing": "Clearing...",
     "cart-clear-error": "Failed to clear cart. Please try again.",
@@ -390,7 +390,7 @@
     "cart-remove": "Remove",
     "cart-item-quantity": "(×{quantity, number, items-count})",
     "cart-empty": "Your cart is empty, wanna try shopping?",
-    "cart-button": "Containue Shopping"
+    "cart-button": "Continue Shopping"
   },
   "checkout": {
     "shipping": {
@@ -422,13 +422,13 @@
     "total": "Total",
     "checkout-button": "Checkout",
     "no-coupon": "No coupon applied",
-    "coupon-Placeholder": "coupon code",
+    "coupon-Placeholder": "Coupon code",
     "loading": "Applying...",
     "coupon-found": "Coupon applied successfully",
     "coupon-not-found": "Coupon not found.",
     "sub-total": "Subtotal",
     "coupon-empty": "Please enter coupon code",
-    "product-you-may-like": "Product you may like"
+    "product-you-may-like": "Products you may like"
   },
   "accountSettings": {
     "title": "Account Settings",
@@ -467,7 +467,6 @@
       "confirm-word": "DELETE",
       "confirm-word-label": "Type {word} to confirm",
       "change-password": "Change Password",
-
       "firstName": "First Name",
       "firstName-required": "First name is required",
       "lastName": "Last Name",
@@ -477,12 +476,11 @@
       "phone-required": "Phone is required",
       "phone-invalid": "Phone is invalid",
       "gender": "Gender",
-      "submit-changes": "Save Changes",
       "delete-account": "Delete My Account",
+      "submit-changes": "Save Changes",
       "saving": "Saving...",
       "update-success": "Your profile has been updated successfully.",
       "update-failed": "Failed to update your profile. Please try again.",
-
       "title": "Are you sure you want to delete your account?",
       "description": "This action is permanent and cannot be undone.",
       "cancel": "Nope, not doing it",
@@ -498,6 +496,57 @@
       "products": "Products",
       "categories": "Categories",
       "occasions": "Occasions"
+    },
+    "products": {
+      "addProduct": "Add Product",
+      "addProductPageTitle": "Add a New Product",
+      "updateProduct": "Update Product",
+      "updateProductPageTitle": "Update Product: {title}",
+      "title": "Title",
+      "description": "Description",
+      "price": "Price",
+      "discount": "Discount",
+      "priceAfterDiscount": "Price after discount",
+      "quantity": "Quantity",
+      "category": "Category",
+      "occasion": "Occasion",
+      "productCoverImage": "Product cover image",
+      "productGallery": "Product gallery",
+      "viewProductCover": "View product cover",
+      "viewProductGallery": "View product gallery",
+      "imagePreview": "Image preview",
+      "closePreview": "Close preview",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "goToImage": "Go to image {number}",
+      "uploading": "Uploading {fileName}...",
+      "clear": "Clear",
+      "noChanges": "No changes to update",
+      "descriptionNotEditable": "Description cannot be edited after creation",
+      "categoryNotEditable": "Category cannot be edited after creation",
+      "occasionNotEditable": "Occasion cannot be edited after creation",
+      "productCreated": "Product created successfully",
+      "productUpdated": "Product updated successfully",
+      "validation": {
+        "titleRequired": "Product title is required",
+        "descriptionRequired": "Product description is required",
+        "priceRequired": "Please enter a valid price",
+        "priceAfterDiscountRequired": "Please enter a valid price after discount",
+        "quantityRequired": "Product quantity is required",
+        "categoryRequired": "Please select a category for the product",
+        "occasionRequired": "Please select an occasion for the product",
+        "coverRequired": "Product cover is required",
+        "galleryRequired": "Product gallery images are required",
+        "uploadCoverFailed": "Failed to upload cover image",
+        "uploadGalleryFailed": "Failed to upload gallery images"
+      },
+      "placeholders": {
+        "title": "Enter product title",
+        "description": "Enter product description",
+        "price": "Example: 5000",
+        "discount": "Example: 5",
+        "quantity": "Example: 200"
+      }
     },
     "charts": {
       "order-status": "Order Status",
@@ -542,7 +591,6 @@
     },
     "currency": "EGP"
   },
-
   "change-password": {
     "title": "Change Password"
   }

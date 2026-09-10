@@ -37,6 +37,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           size="default"
         />
       </div>
+
       {/* User info - Desktop only */}
       <div className="hidden min-w-0 flex-col md:flex">
         <span className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
@@ -47,75 +48,46 @@ export default function UserMenu({ user }: UserMenuProps) {
       </div>
 
       <DropdownMenu>
-        <DropdownMenuTrigger>
-          <button
-            type="button"
-            className={cn(
-              'shrink-0 rounded-full focus:outline-none',
-              'focus-visible:ring-2 focus-visible:ring-ring'
-            )}
-            aria-label="Open user menu"
-          >
-            {/* Mobile: Avatar */}
-            <span className="sm:hidden">
-              <Avatar
-                userId={user.id}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                size="default"
-              />
-            </span>
+        <DropdownMenuTrigger
+          className={cn(
+            'shrink-0 rounded-full focus:outline-none',
+            'focus-visible:ring-2 focus-visible:ring-ring'
+          )}
+          aria-label="Open user menu"
+        >
+          {/* Mobile: Avatar */}
+          <span className="sm:hidden">
+            <Avatar
+              userId={user.id}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              size="default"
+            />
+          </span>
 
-            {/* Desktop: Three dots */}
-            <span
-              className={cn(
-                'hidden md:flex',
-                'size-8 items-center justify-center rounded-md',
-                'text-muted-foreground transition-colors',
-                'hover:bg-muted hover:text-foreground'
-              )}
-            >
-              <MoreVertical className="size-5" />
-            </span>
-          </button>
+          {/* Desktop: Three dots */}
+          <span
+            className={cn(
+              'hidden md:flex',
+              'size-8 items-center justify-center rounded-md',
+              'text-muted-foreground transition-colors',
+              'hover:bg-muted hover:text-foreground'
+            )}
+          >
+            <MoreVertical className="size-5" />
+          </span>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
           align="end"
           sideOffset={8}
-          className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
+          className="w-44 border-none bg-white outline-none dark:bg-zinc-800"
         >
           <DropdownMenuItem>
-            <Link href="/account-settings" className="flex cursor-pointer items-center gap-2">
-              <User className="size-4" />
-              <span>Account</span>
-            </Link>
-          </DropdownMenuItem>
-
-          {/* Desktop: Three dots */}
-          <DropdownMenuTrigger>
-            <button>
-              <span
-                className={cn(
-                  'hidden md:flex',
-                  'size-8 items-center justify-center rounded-md',
-                  'text-muted-foreground transition-colors',
-                  'hover:bg-muted hover:text-foreground'
-                )}
-              >
-                <MoreVertical className="size-5" />
-              </span>
-            </button>
-          </DropdownMenuTrigger>
-        </DropdownMenuContent>
-
-        <DropdownMenuContent
-          align="end"
-          sideOffset={8}
-          className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
-        >
-          <DropdownMenuItem>
-            <Link href="/admin/account-settings" className="flex cursor-pointer items-center gap-2">
+            <Link
+              href="/account-settings"
+              className="flex cursor-pointer items-center gap-2"
+            >
               <User className="size-4" />
               <span>Account</span>
             </Link>

@@ -373,9 +373,7 @@
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
     "retry": "حاول مرة أخرى"
   },
-
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
-
   "cart-list": {
     "cart-title": "السلة",
     "cart-count": "{count, number, items-count} منتج",
@@ -417,7 +415,6 @@
       "or": "أو"
     }
   },
-
   "order-summary": {
     "title": "ملخص الطلب",
     "apply-button": " تطبيق الكوبون",
@@ -454,9 +451,9 @@
         "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
         "minLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
         "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
-        "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
-        "digit": "يجب أن تحتوي كلمة المرور على رقم",
-        "special": "يجب أن تحتوي كلمة المرور على رمز خاص",
+        "lowercase": "يجب أن تحتوي على حرف صغير",
+        "digit": "يجب أن تحتوي على رقم",
+        "special": "يجب أن تحتوي على رمز خاص",
         "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
       }
     },
@@ -470,7 +467,6 @@
       "confirm-word": "حذف",
       "confirm-word-label": "اكتب {word} للتأكيد",
       "change-password": "تغيير كلمة المرور",
-
       "firstName": "الاسم الأول",
       "firstName-required": "الاسم الأول مطلوب",
       "lastName": "الاسم الأخير",
@@ -484,7 +480,6 @@
       "saving": "جارٍ الحفظ...",
       "update-success": "تم تحديث ملفك الشخصي بنجاح.",
       "update-failed": "فشل تحديث الملف الشخصي. حاول مرة أخرى.",
-
       "title": "هل أنت متأكد أنك تريد حذف حسابك؟",
       "description": "هذا الإجراء نهائي ولا يمكن التراجع عنه.",
       "cancel": "لا، تراجعت",
@@ -501,6 +496,57 @@
       "categories": "الاقسام",
       "occasions": "المناسبات"
     },
+    "products": {
+      "addProduct": "إضافة منتج",
+      "addProductPageTitle": "إضافة منتج جديد",
+      "updateProduct": "تحديث المنتج",
+      "updateProductPageTitle": "تحديث المنتج: {title}",
+      "title": "العنوان",
+      "description": "الوصف",
+      "price": "السعر",
+      "discount": "الخصم",
+      "priceAfterDiscount": "السعر بعد الخصم",
+      "quantity": "الكمية",
+      "category": "الفئة",
+      "occasion": "المناسبة",
+      "productCoverImage": "صورة غلاف المنتج",
+      "productGallery": "معرض المنتج",
+      "viewProductCover": "عرض غلاف المنتج",
+      "viewProductGallery": "عرض معرض المنتج",
+      "imagePreview": "معاينة الصورة",
+      "closePreview": "إغلاق المعاينة",
+      "previousImage": "الصورة السابقة",
+      "nextImage": "الصورة التالية",
+      "goToImage": "الانتقال إلى الصورة {number}",
+      "uploading": "جاري رفع {fileName}...",
+      "clear": "مسح",
+      "noChanges": "لا توجد تغييرات للتحديث",
+      "descriptionNotEditable": "لا يمكن تحرير الوصف بعد الإنشاء",
+      "categoryNotEditable": "لا يمكن تحرير الفئة بعد الإنشاء",
+      "occasionNotEditable": "لا يمكن تحرير المناسبة بعد الإنشاء",
+      "productCreated": "تم إنشاء المنتج بنجاح",
+      "productUpdated": "تم تحديث المنتج بنجاح",
+      "validation": {
+        "titleRequired": "عنوان المنتج مطلوب",
+        "descriptionRequired": "وصف المنتج مطلوب",
+        "priceRequired": "يرجى إدخال سعر صحيح",
+        "priceAfterDiscountRequired": "يرجى إدخال سعر صحيح بعد الخصم",
+        "quantityRequired": "كمية المنتج مطلوبة",
+        "categoryRequired": "يرجى اختيار فئة للمنتج",
+        "occasionRequired": "يرجى اختيار مناسبة للمنتج",
+        "coverRequired": "غلاف المنتج مطلوب",
+        "galleryRequired": "صور معرض المنتج مطلوبة",
+        "uploadCoverFailed": "فشل رفع صورة الغلاف",
+        "uploadGalleryFailed": "فشل رفع صور المعرض"
+      },
+      "placeholders": {
+        "title": "أدخل عنوان المنتج",
+        "description": "أدخل وصف المنتج",
+        "price": "مثال: 5000",
+        "discount": "مثال: 5",
+        "quantity": "مثال: 200"
+      }
+    },
     "charts": {
       "order-status": "حالة الطلب",
       "no-data": "لا يوجد بيانات",
@@ -512,7 +558,6 @@
       "last-Week": "اخر اسبوع"
     }
   },
-
   "admin-dashboard": {
     "summary": {
       "total-products": "إجمالي المنتجات",
@@ -549,3 +594,4 @@
     "title": "تغيير كلمة المرور"
   }
 }
+
