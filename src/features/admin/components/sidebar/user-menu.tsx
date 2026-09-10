@@ -37,6 +37,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           size="default"
         />
       </div>
+
       {/* User info - Desktop only */}
       <div className="hidden min-w-0 flex-col md:flex">
         <span className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
@@ -80,10 +81,13 @@ export default function UserMenu({ user }: UserMenuProps) {
         <DropdownMenuContent
           align="end"
           sideOffset={8}
-          className="w-44 bg-white dark:bg-zinc-800 border-none outline-none"
+          className="w-44 border-none bg-white outline-none dark:bg-zinc-800"
         >
           <DropdownMenuItem>
-            <Link href="/account-settings" className="flex cursor-pointer items-center gap-2">
+            <Link
+              href="/account-settings"
+              className="flex cursor-pointer items-center gap-2"
+            >
               <User className="size-4" />
               <span>Account</span>
             </Link>

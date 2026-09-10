@@ -134,7 +134,7 @@
       "step2": {
         "title": "Password Reset Sent",
         "subtitle": "We have sent a password reset link to:",
-        "inbox": " Please check your inbox and follow the instructions to reset your password. ",
+        "inbox": "Please check your inbox and follow the instructions to reset your password.",
         "spam": "If you don’t see the email within a few minutes, check your spam or junk folder."
       },
       "step3": {
@@ -191,11 +191,11 @@
       "empty": "You're all caught up!"
     },
     "nav": {
-      "searchPlaceholder": "what awesome gift are you looking for",
-      "deliverTo": " deliver to",
+      "searchPlaceholder": "What awesome gift are you looking for?",
+      "deliverTo": "Deliver to",
       "locating": "Locating...",
       "selectLocation": "Select location",
-      "login": "login",
+      "login": "Login",
       "searchDefault": "Products you may like",
       "Rating": "Rating",
       "ratings": "ratings"
@@ -217,7 +217,7 @@
   "home-page": {
     "hero-section": {
       "banner": {
-        "card-title": "Staring from 10.99 EGP",
+        "card-title": "Starting from 10.99 EGP",
         "card-description": "Special Gifts For The People You Love",
         "card-button": "Shop Now",
         "carousel-title": "Say It with Flowers",
@@ -379,7 +379,7 @@
     "cart-count": "{count, number, items-count} {count, plural, one {Product} other {Products}}",
     "cart-clear": "Clear Cart",
     "cart-clear-info": "Are you sure you want to clear your Cart?",
-    "cart-clear-cancle": "Cancle",
+    "cart-clear-cancle": "Cancel",
     "cart-clear-confirm": "Confirm",
     "cart-clearing": "Clearing...",
     "cart-clear-error": "Failed to clear cart. Please try again.",
@@ -390,7 +390,7 @@
     "cart-remove": "Remove",
     "cart-item-quantity": "(×{quantity, number, items-count})",
     "cart-empty": "Your cart is empty, wanna try shopping?",
-    "cart-button": "Containue Shopping"
+    "cart-button": "Continue Shopping"
   },
   "checkout": {
     "shipping": {
@@ -422,13 +422,13 @@
     "total": "Total",
     "checkout-button": "Checkout",
     "no-coupon": "No coupon applied",
-    "coupon-Placeholder": "coupon code",
+    "coupon-Placeholder": "Coupon code",
     "loading": "Applying...",
     "coupon-found": "Coupon applied successfully",
     "coupon-not-found": "Coupon not found.",
     "sub-total": "Subtotal",
     "coupon-empty": "Please enter coupon code",
-    "product-you-may-like": "Product you may like"
+    "product-you-may-like": "Products you may like"
   },
   "accountSettings": {
     "title": "Account Settings",
@@ -456,6 +456,38 @@
         "special": "Password must include a special character",
         "mismatch": "New password and confirm password don't match"
       }
+    },
+    "profile": {
+      "account-settings-dashoard": "Account Settings",
+      "upload-photo-title": "Upload Photo",
+      "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+      "upload-failed": "Failed to upload photo, please try again.",
+      "file-too-large": "Image is too large, max size is 5MB",
+      "invalid-file-type": "Unsupported file type",
+      "confirm-word": "DELETE",
+      "confirm-word-label": "Type {word} to confirm",
+      "change-password": "Change Password",
+      "firstName": "First Name",
+      "firstName-required": "First name is required",
+      "lastName": "Last Name",
+      "lastName-required": "Last name is required",
+      "email": "Email",
+      "phone": "Phone",
+      "phone-required": "Phone is required",
+      "phone-invalid": "Phone is invalid",
+      "gender": "Gender",
+      "delete-account": "Delete My Account",
+      "submit-changes": "Save Changes",
+      "saving": "Saving...",
+      "update-success": "Your profile has been updated successfully.",
+      "update-failed": "Failed to update your profile. Please try again.",
+      "title": "Are you sure you want to delete your account?",
+      "description": "This action is permanent and cannot be undone.",
+      "cancel": "Nope, not doing it",
+      "confirm": "Yes, delete",
+      "deleting": "Deleting...",
+      "delete-success": "Your account has been deleted successfully.",
+      "delete-failed": "Failed to delete your account. Please try again."
     }
   },
   "dashboard": {
@@ -515,6 +547,51 @@
         "discount": "Example: 5",
         "quantity": "Example: 200"
       }
+    },
+    "charts": {
+      "order-status": "Order Status",
+      "no-data": "No data",
+      "completed": "Completed",
+      "in-progress": "In Progress",
+      "canceled": "Canceled",
+      "revenue": "Revenue",
+      "monthly": "Monthly",
+      "last-Week": "Weekly"
     }
+  },
+  "admin-dashboard": {
+    "summary": {
+      "total-products": "Total Products",
+      "total-orders": "Total Orders",
+      "total-categories": "Total Categories",
+      "total-revenue": "Total Revenue"
+    },
+    "categories": {
+      "title": "All Categories",
+      "empty": "No categories found",
+      "products-count": "{count, plural, =0 {No products} one {# product} other {# products}}"
+    },
+    "top-selling": {
+      "title": "Top Selling Products",
+      "empty": "No products sold yet",
+      "sold": "{count, plural, one {# sold} other {# sold}}",
+      "no-more": "No more products",
+      "load-failed": "Failed to load top selling products",
+      "currency": "EGP"
+    },
+    "low-stock": {
+      "title": "Low Stock Products",
+      "empty": "No low stock products",
+      "left": "{count, plural, =0 {Out of stock} one {# left} other {# left}}",
+      "no-more": "No more products",
+      "load-failed": "Failed to load low stock products"
+    },
+    "errors": {
+      "load-failed": "Failed to load dashboard data"
+    },
+    "currency": "EGP"
+  },
+  "change-password": {
+    "title": "Change Password"
   }
 }
