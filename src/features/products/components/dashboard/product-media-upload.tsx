@@ -113,7 +113,7 @@ export default function ProductMediaUpload({ control }: ProductMediaUploadProps)
         />
       </FieldGroup>
 
-      {/* Galery */}
+      {/* Gallery */}
       <FieldGroup className="flex-1">
         <Controller
           name="gallery"

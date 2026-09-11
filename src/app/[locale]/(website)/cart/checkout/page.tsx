@@ -17,7 +17,11 @@ const steps: StepConfig[] = [
   },
 ];
 
-export default async function CheckoutPage({ params }: { params: Promise<{ locale: 'en' | 'ar' }> }) {
+export default async function CheckoutPage({
+  params,
+}: {
+  params: Promise<{ locale: 'en' | 'ar' }>;
+}) {
   const { locale } = await params;
 
   return (

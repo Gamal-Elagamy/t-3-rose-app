@@ -60,7 +60,6 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
         open={coverPreviewOpen}
         onOpenChange={setCoverPreviewOpen}
         images={[coverUrl]}
-        title={t('productCoverImage')}
       />
 
       {/* Gallery Modal */}
@@ -68,7 +67,6 @@ export default function UpdateProductMediaLinks({ control }: UpdateProductMediaL
         open={galleryPreviewOpen}
         onOpenChange={setGalleryPreviewOpen}
         images={galleryUrls}
-        title={t('productGallery')}
       />
     </>
   );

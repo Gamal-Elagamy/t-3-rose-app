@@ -13,7 +13,6 @@ interface MediaPreviewModalProps {
   onOpenChange: (open: boolean) => void;
   images: string[];
   initialIndex?: number;
-  title?: string;
 }
 
 export default function MediaPreviewModal({

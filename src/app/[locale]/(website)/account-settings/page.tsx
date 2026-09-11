@@ -1,3 +1,13 @@
+import getProfileData from '@/features/account-settings/api/get-profile-data.api';
+import ProfileForm from '@/features/account-settings/components/profile-form';
+import ProfileFormSkeleton from '@/shared/components/ui/profile-account-skeleton';
+import { Suspense } from 'react';
+
 export default function UpdateProfilePage() {
-  return <div className="w-full">UpdateProfilePage</div>;
+  const profileData = getProfileData();
+  return (
+    <Suspense fallback={<ProfileFormSkeleton />}>
+      <ProfileForm profileData={profileData} />
+    </Suspense>
+  );
 }
