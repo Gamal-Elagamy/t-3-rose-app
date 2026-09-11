@@ -1,4 +1,5 @@
 import { authOptions } from '@/auth';
+import { BreadcrumbProvider } from '@/features/(admin)/cat-occ-pages/context/breadcrumb.context';
 import AdminAppSidebar from '@/features/admin/components/sidebar/admin-app-sidebar';
 import { SiteHeader } from '@/features/admin/components/sidebar/site-header';
 import { SidebarProvider } from '@/shared/components/ui/sidebar';
@@ -15,10 +16,13 @@ export default async function layout({ children }: { children: React.ReactNode }
   return (
     <SidebarProvider>
       <AdminAppSidebar user={session.user} />
-      <main className="size-full bg-zinc-50 dark:bg-zinc-900 flex flex-col flex-1 min-h-screen">
-        <SiteHeader user={session.user} />
-        {children}
-      </main>
+      {/* Breadcrumb Provider */}
+      <BreadcrumbProvider>
+        <main className="size-full bg-zinc-50 dark:bg-zinc-900 flex flex-col flex-1 min-h-screen">
+          <SiteHeader user={session.user} />
+          {children}
+        </main>
+      </BreadcrumbProvider>
     </SidebarProvider>
   );
 }

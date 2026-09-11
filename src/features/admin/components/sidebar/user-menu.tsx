@@ -84,10 +84,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           className="w-44 border-none bg-white outline-none dark:bg-zinc-800"
         >
           <DropdownMenuItem>
-            <Link
-              href="/account-settings"
-              className="flex cursor-pointer items-center gap-2"
-            >
+            <Link href="/account-settings" className="flex cursor-pointer items-center gap-2">
               <User className="size-4" />
               <span>Account</span>
             </Link>

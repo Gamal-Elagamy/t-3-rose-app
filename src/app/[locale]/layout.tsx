@@ -8,6 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LayoutProps } from '@/shared/lib/types/locale';
 import { Toaster } from '@/shared/components/ui/sonner';
 import { Sarabun, Tajawal, Dancing_Script } from 'next/font/google';
+
 // Fonts
 const dancing = Dancing_Script({
   subsets: ['latin'],
