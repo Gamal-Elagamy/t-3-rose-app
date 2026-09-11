@@ -89,6 +89,8 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
                 id="description"
                 aria-invalid={fieldState.invalid}
                 placeholder={t('placeholders.description')}
+                disabled={isUpdate}
+                title={isUpdate ? t('descriptionNotEditable') : undefined}
               />
               {fieldState.invalid && (
                 <FieldError
@@ -156,6 +158,7 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
         product={product}
         onSearchChange={setCategorySearch}
         loading={categoriesLoading}
+        disabled={isUpdate}
         fallbackOption={(selectedValue, product) => {
           if (selectedValue && product?.category && product.category.id === selectedValue) {
             return { value: product.category.id, label: product.category.title };
@@ -174,12 +177,13 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
         product={product}
         onSearchChange={setOccasionSearch}
         loading={occasionsLoading}
+        disabled={isUpdate}
         fallbackOption={(selectedValue, product) => {
           const selectedOccasion =
-            product?.occasions?.find((occasion) => occasion.id === selectedValue) ??
+            product?.occasions?.find((occasion) => occasion.occasionId === selectedValue) ??
             product?.occasions?.[0];
           if (selectedValue && selectedOccasion) {
-            return { value: selectedOccasion.id, label: selectedOccasion.title };
+            return { value: selectedOccasion.occasion.id, label: selectedOccasion.occasion.title };
           }
           return null;
         }}
@@ -193,11 +197,14 @@ function ProductFormFields({ mode, product }: { mode: 'create' | 'update'; produ
 
 export default function ProductForm({ mode, product, productId }: ProductFormProps) {
   // Hooks
-  const { productForm, onSubmit, isUpdate } = useProductForm({ mode, product, productId });
+  const { productForm, onSubmit, isUpdate, isSubmitting } = useProductForm({
+    mode,
+    product,
+    productId,
+  });
   const t = useTranslations('dashboard.products');
 
   // Variable
-  const isSubmitting = productForm.formState.isSubmitting;
   const isValid = productForm.formState.isValid;
 
   return (

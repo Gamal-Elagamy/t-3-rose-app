@@ -10,11 +10,11 @@ export function ResetAllButton() {
   const t = useTranslations();
 
   // Hooks
-  const { filters,resetAll } = useProductFilters();
-// Variables
+  const { filters, resetAll } = useProductFilters();
+  // Variables
   const hasActiveFilters = Object.values(filters).some((value) => value !== null);
   return (
-    <Button variant="secondary" onClick={resetAll} className="w-full"  disabled={!hasActiveFilters} >
+    <Button variant="secondary" onClick={resetAll} className="w-full" disabled={!hasActiveFilters}>
       <RotateCcw className="size-4" />
       {t('filters.resetAll')}
     </Button>

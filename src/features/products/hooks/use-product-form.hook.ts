@@ -5,6 +5,7 @@ import { FormProvider, useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { IProduct, ProductFormData } from '../types/products';
 import {
   createProductFormSchema,
@@ -51,7 +52,7 @@ function getDefaultValues(product?: IProduct): ProductFormData {
     categoryId: product?.categoryId ?? '',
     cover: product?.cover ?? '',
     gallery: parseGallery(product?.gallery),
-    occasionId: product?.occasions?.[0]?.id ?? '',
+    occasionId: product?.occasions?.[0]?.occasionId ?? '',
   };
 }
 
@@ -64,7 +65,7 @@ function buildCreateProductPayload(data: ProductFormData) {
     discountType: data.discountType,
     discountValue: data.discountValue ? parseFloat(data.discountValue) : 0,
     categoryId: data.categoryId,
-    // occasionId: data.occasionId,
+    occasionId: data.occasionId,
     cover: data.cover ?? '',
     gallery: data.gallery,
   };
@@ -118,6 +119,7 @@ interface UseProductFormOptions {
 export function useProductForm({ mode, product, productId }: UseProductFormOptions) {
   const router = useRouter();
   const t = useTranslations('dashboard.products');
+  const queryClient = useQueryClient();
   const isUpdate = mode === 'update';
 
   const defaultValues = useMemo(() => getDefaultValues(product), [product]);
@@ -129,36 +131,52 @@ export function useProductForm({ mode, product, productId }: UseProductFormOptio
     mode: 'onChange',
   });
 
+  const createMutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      toast.success(t('productCreated'));
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+      router.push('/admin/products');
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Something went wrong');
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: Parameters<typeof updateProduct>[1] }) =>
+      updateProduct(id, payload),
+    onSuccess: () => {
+      toast.success(t('productUpdated'));
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+      router.push('/admin/products');
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Something went wrong');
+    },
+  });
+
   const onSubmit = async (data: ProductFormData) => {
-    try {
-      if (isUpdate && productId && product) {
-        const payload = buildUpdateProductPayload(data, product);
+    if (isUpdate && productId && product) {
+      const payload = buildUpdateProductPayload(data, product);
 
-        if (Object.keys(payload).length === 0) {
-          toast.info(t('noChanges'));
-          return;
-        }
-
-        await updateProduct(productId, payload);
-        toast.success(t('productUpdated'));
-        router.push('/admin/products');
+      if (Object.keys(payload).length === 0) {
+        toast.info(t('noChanges'));
         return;
       }
 
-      // @ts-expect-error - TODO: fix this later
-      await createProduct(buildCreateProductPayload(data));
-
-      toast.success(t('productCreated'));
-      router.push('/admin/products');
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Something went wrong');
+      updateMutation.mutate({ id: productId, payload });
+      return;
     }
+
+    createMutation.mutate(buildCreateProductPayload(data) as Parameters<typeof createProduct>[0]);
   };
 
   return {
     productForm,
     onSubmit,
     isUpdate,
+    isSubmitting: createMutation.isPending || updateMutation.isPending,
   };
 }
 

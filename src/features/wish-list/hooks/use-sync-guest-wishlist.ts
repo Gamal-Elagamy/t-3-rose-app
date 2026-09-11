@@ -14,8 +14,13 @@ export function useSyncGuestWishlist() {
         return;
       }
 
-      for (const item of guestWishlist) {
-        await addToWishlist(item);
+      try {
+        for (const item of guestWishlist) {
+          await addToWishlist(item);
+        }
+        clearGuestWishlist();
+      } catch (error) {
+        console.error('Failed to sync guest wishlist:', error);
       }
 
       clearGuestWishlist();

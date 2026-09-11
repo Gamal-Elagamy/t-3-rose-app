@@ -1,29 +1,24 @@
 'use client';
 
-import { Controller } from 'react-hook-form';
+import { Controller, Control, FieldPath } from 'react-hook-form';
 import { Combobox } from '@/shared/components/Dropdown/combobox';
 import { useTranslations } from 'next-intl';
 import { getErrorMessage } from '../../schemas/product.schema';
+import { ProductFormData, IProduct } from '../../types/products';
 
-interface ControlledComboboxProps {
-  name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: any;
+interface ControlledComboboxProps<TFieldValues extends ProductFormData = ProductFormData> {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
   label: string;
   required?: boolean;
   data: { id: string; title: string }[];
-  product?: {
-    category?: { id: string; title: string };
-    occasions?: { id: string; title: string }[];
-  };
+  product?: IProduct;
   onSearchChange: (value: string) => void;
   loading?: boolean;
+  disabled?: boolean;
   fallbackOption?: (
     selectedValue: string,
-    product?: {
-      category?: { id: string; title: string };
-      occasions?: { id: string; title: string }[];
-    }
+    product?: IProduct
   ) => { value: string; label: string } | null;
 }
 
@@ -36,6 +31,7 @@ export function ControlledCombobox({
   product,
   onSearchChange,
   loading,
+  disabled,
   fallbackOption,
 }: ControlledComboboxProps) {
   const t = useTranslations('dashboard.products');
@@ -67,6 +63,7 @@ export function ControlledCombobox({
             onChange={field.onChange}
             onSearchChange={onSearchChange}
             loading={loading}
+            disabled={disabled}
             error={
               fieldState.error?.message
                 ? getErrorMessage(t, fieldState.error.message)

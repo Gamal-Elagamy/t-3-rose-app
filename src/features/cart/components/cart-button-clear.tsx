@@ -18,7 +18,7 @@ export default function CartButtonClear() {
 
   // Show Model Delete Function
   function deleteModel() {
-    if(!isEmpty){
+    if (!isEmpty) {
       setShowModelDelete(true);
     }
   }
@@ -34,7 +34,7 @@ export default function CartButtonClear() {
         <BrushCleaning className="size-5" /> {t('cart-clear')}
       </Button>
 
-{/* Model Delete */}
+      {/* Model Delete */}
       {showModelDelete && <CartModelDelete setShowModelDelete={setShowModelDelete} />}
     </>
   );

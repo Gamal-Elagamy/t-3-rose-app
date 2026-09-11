@@ -50,6 +50,10 @@ export const createProductFormSchema = productFormFieldsSchema.superRefine((data
   }
 });
 
-export const updateProductFormSchema = productFormFieldsSchema;
+export const updateProductFormSchema = productFormFieldsSchema.extend({
+  description: z.string().optional(),
+  categoryId: z.string().optional(),
+  occasionId: z.string().optional(),
+});
 
 export type ProductFormValues = z.infer<typeof productFormFieldsSchema>;

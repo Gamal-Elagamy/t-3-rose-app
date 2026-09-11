@@ -9,7 +9,6 @@ const authPages = ['/login', '/register', '/forgot-password'];
 const protectedRoutes = ['/account-settings', '/cart/checkout'];
 const adminRoutes = ['/admin'];
 
-
 export default async function proxy(req: NextRequest) {
   const token = await getToken({ req });
 
@@ -28,9 +27,7 @@ export default async function proxy(req: NextRequest) {
 
   //Check if current route is an admin route
   const isAdminRoute = adminRoutes.some(
-    (route) =>
-      normalizedPath === route ||
-      normalizedPath.startsWith(`${route}/`)
+    (route) => normalizedPath === route || normalizedPath.startsWith(`${route}/`)
   );
 
   if (token && isAuthPage) {

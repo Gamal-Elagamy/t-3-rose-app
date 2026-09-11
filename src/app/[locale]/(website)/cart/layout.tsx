@@ -17,9 +17,8 @@ export default async function CartLayout({ children }: CartLayoutProps) {
   return (
     <>
       <CheckoutProvider>
-        <div className="grid h-screen grid-cols-3 gap-4">
-
-          <section className="col-span-2">{children}</section>
+        <div className="grid min-h-screen grid-cols-3 gap-4">
+          <section className="col-span-2 mt-15 ms-10">{children}</section>
 
           <CouponProvider>
             <section className="col-span-1">
@@ -37,7 +36,7 @@ export default async function CartLayout({ children }: CartLayoutProps) {
         <section className="mx-10 my-20">
           <ProductYouMayLikeCarouselSlot products={products} />
         </section>
-      </CheckoutProvider >
+      </CheckoutProvider>
     </>
   );
 }
