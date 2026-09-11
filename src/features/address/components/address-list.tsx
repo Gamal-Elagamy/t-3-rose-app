@@ -1,62 +1,115 @@
 'use client';
+
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+
 import { IAddress } from '../types/address';
+
 import { AddressCard } from './address-card';
+import AddressModalItem from './address-modal-item';
+
 import AddressFormModalButton from '@/features/checkout/components/shipping/form-modal-button';
 import AddressNextStepButton from '@/features/checkout/components/shipping/next-step-button';
 import { useCheckout } from '@/features/checkout/context/checkout-context';
 
-export function AddressList({ addresses }: { addresses: IAddress[] }) {
-  // Translation
-  const t = useTranslations('address.list');
+interface AddressListProps {
+  addresses: IAddress[];
 
-  // State
-  const [selectedAddressId, setSelectedAddressId] = useState<string | undefined>(
+  variant?: 'checkout' | 'modal';
+
+  onAdd?: () => void;
+  onEdit?: (address: IAddress) => void;
+  onDelete?: (address: IAddress) => void;
+}
+
+export function AddressList({
+  addresses,
+  variant = 'checkout',
+  onEdit,
+  onDelete,
+}: AddressListProps) {
+  const t = useTranslations('address');
+
+  const locale = useLocale();
+
+  const isRTL = locale === 'ar';
+
+  const [selectedAddressId, setSelectedAddressId] = useState(
     addresses.find((address) => address.isPrimary)?.id
   );
 
-  // Checkout context
   const { updateCheckout } = useCheckout();
 
-  // Functions
   const onSelectAddress = (address: IAddress) => {
     setSelectedAddressId(address.id);
     updateCheckout({ addressId: address.id });
   };
 
+  if (!addresses.length) {
+    return (
+      <div
+        className="py-10 text-center text-ds-text-muted"
+        dir={isRTL ? 'rtl' : 'ltr'}
+      >
+        {t('list.noAddresses')}
+      </div>
+    );
+  }
+
   return (
     <>
-      {addresses.length === 0 ? (
-        <>
-          <div className="text-center max-h-88 flex items-center justify-center text-ds-text-muted">
-            {t('noAddresses')}
-          </div>
-        </>
-      ) : (
-        <>
-        {/* Display addresses */}
-          <div className="space-y-3 max-h-88 overflow-y-auto">
-            {addresses.map((address) => (
-              <AddressCard
-                key={address.id}
-                address={address}
-                isSelected={address.id === selectedAddressId}
-                onSelect={onSelectAddress}
-              />
-            ))}
-          </div>
-        </>
-      )}
-
-      <div className="flex items-center justify-center my-3 before:flex-1 before:border-t before:border-ds-border-muted after:flex-1 after:border-t after:border-ds-border-muted">
-        <span className="px-4 text-md text-ds-text-soft font-medium">{t('or')}</span>
+      {/* Address items */}
+      <div
+        className={
+          variant === 'modal'
+            ? 'h-105 space-y-4 overflow-y-auto pr-1'
+            : 'max-h-105 space-y-4 overflow-y-auto'
+        }
+        dir={isRTL ? 'rtl' : 'ltr'}
+      >
+        {addresses.map((address) =>
+          variant === 'checkout' ? (
+            <AddressCard
+              key={address.id}
+              address={address}
+              isSelected={selectedAddressId === address.id}
+              onSelect={onSelectAddress}
+            />
+          ) : (
+            <AddressModalItem
+              key={address.id}
+              address={address}
+              isSelected={selectedAddressId === address.id}
+              onSelect={onSelectAddress}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
+          )
+        )}
       </div>
 
-      <AddressFormModalButton />
+      {/* Checkout actions only */}
+      {variant === 'checkout' && (
+        <>
+          <div
+            className="my-3 flex items-center"
+            dir={isRTL ? 'rtl' : 'ltr'}
+          >
+            <div className="flex-1 border-t border-ds-border-muted" />
 
-      {/* Show next step button only if addresses exist */}
-      {addresses.length !== 0 && <AddressNextStepButton selectedAddressId={selectedAddressId} />}
+            <span className="px-4 text-md font-medium text-ds-text-soft">
+              {t('list.or')}
+            </span>
+
+            <div className="flex-1 border-t border-ds-border-muted" />
+          </div>
+
+          <AddressFormModalButton addresses={addresses} />
+
+          <AddressNextStepButton selectedAddressId={selectedAddressId} />
+        </>
+      )}
     </>
   );
 }
+

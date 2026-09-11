@@ -45,13 +45,15 @@ export function TableData({ page, data }: { page: ItemPageType; data: ICategory[
             <TableCell className="font-medium">{item?.title}</TableCell>
             <TableCell className="font-normal truncate max-w-50 text-ellipsis overflow-hidden">
               {(() => {
-                const count =
-                  'subCategories' in item ? (item._count?.products ?? 0) : item.description;
-                return (
-                  <>
-                    {count} {t('table.productCount', { count })}
-                  </>
-                );
+                if ('subCategories' in item) {
+                  const count = item._count?.products ?? 0;
+                  return (
+                    <>
+                      {count} {t('table.productCount', { count })}
+                    </>
+                  );
+                }
+                return <>{item.description}</>;
               })()}
             </TableCell>
             <TableCell className="text-right">

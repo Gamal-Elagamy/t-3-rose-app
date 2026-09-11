@@ -11,7 +11,7 @@ export default function CartQuantities() {
   const { cartDataProducts } = useCart();
 
   // Items Count
-  const itemsCount =  cartDataProducts.length ;
+  const itemsCount = cartDataProducts.length;
 
   return (
     <span className="font-medium text-base text-ds-text-muted ms-2.5">

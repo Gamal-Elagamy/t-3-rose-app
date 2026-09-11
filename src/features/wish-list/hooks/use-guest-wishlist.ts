@@ -2,7 +2,11 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { IProduct } from '@/features/products/types/products';
-import { getGuestWishlist, removeGuestWishlistItem, clearGuestWishlist } from '../storage/guest-wishlist';
+import {
+  getGuestWishlist,
+  removeGuestWishlistItem,
+  clearGuestWishlist,
+} from '../storage/guest-wishlist';
 
 export function useGuestWishlist() {
   // State

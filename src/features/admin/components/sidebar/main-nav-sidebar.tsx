@@ -1,14 +1,18 @@
 'use client';
+
+import { CalendarHeart, Clipboard, LayoutDashboard, Package } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+
 import { Link, usePathname } from '@/i18n/navigation';
+
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/components/ui/sidebar';
+
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { CalendarHeart, Clipboard, LayoutDashboard, Package } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
 const navMain = [
   {
@@ -48,10 +52,10 @@ export default function MainNavSidebar() {
             <SidebarMenuItem key={item.key}>
               <SidebarMenuButton
                 className={cn(
-                  isActive || (item.href !== '/admin' && pathname.includes(item.href))
-                    ? 'bg-maroon-50 dark:bg-soft-pink-50 text-maroon-600 hover:bg-primary'
-                    : 'hover:bg-maroon-50 dark:hover:bg-soft-pink-50 hover:text-maroon-600',
-                  'font-bold flex items-center gap-3 transition-all'
+                  isActive
+                    ? 'bg-maroon-50 text-maroon-600 hover:bg-primary dark:bg-soft-pink-50'
+                    : 'hover:bg-maroon-50 hover:text-maroon-600 dark:hover:bg-soft-pink-50',
+                  'flex items-center gap-3 font-bold transition-all'
                 )}
               >
                 <Link href={item.href} className="flex items-center gap-3">

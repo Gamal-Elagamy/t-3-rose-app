@@ -1,4 +1,4 @@
-"use server"
+'use server';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { UpdatePasswordFormData } from '../types/account';
 import { IApiError, IApiResponse } from '@/shared/lib/types/api';

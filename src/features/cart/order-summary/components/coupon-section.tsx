@@ -34,8 +34,6 @@ export function CouponSection() {
 
         const coupon = coupons[0];
 
-        console.log('Coupon found:', coupon);
-
         setCoupons([coupon]);
 
         setCoupon(coupon);

@@ -1,7 +1,7 @@
-import { ConditionalHeader } from '@/features/header/components/shared/conditional-header'
+import { ConditionalHeader } from '@/features/header/components/shared/conditional-header';
 import { getWishlist } from '@/features/wish-list/apis/get-wishlist';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
-import React from 'react'
+import React from 'react';
 
 export default async function layout({ children }: { children: React.ReactNode }) {
   const jwt = await getNextAuthToken();
@@ -18,5 +18,5 @@ export default async function layout({ children }: { children: React.ReactNode }
       <ConditionalHeader wishlistCount={wishlistCount} />
       {children}
     </>
-  )
+  );
 }
