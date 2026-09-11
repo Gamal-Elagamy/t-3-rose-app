@@ -1,4 +1,3 @@
-// features/products/components/dashboard/products-table-skeleton.tsx
 import { Skeleton } from '@/shared/components/ui/skeleton';
 
 export function ProductsTableSkeleton() {

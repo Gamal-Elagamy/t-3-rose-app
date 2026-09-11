@@ -373,9 +373,7 @@
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
     "retry": "حاول مرة أخرى"
   },
-
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
-
   "cart-list": {
     "cart-title": "السلة",
     "cart-count": "{count, number, items-count} منتج",
@@ -417,7 +415,6 @@
       "or": "أو"
     }
   },
-
   "order-summary": {
     "title": "ملخص الطلب",
     "apply-button": " تطبيق الكوبون",
@@ -493,6 +490,9 @@
       "uploading": "جاري رفع {fileName}...",
       "clear": "مسح",
       "noChanges": "لا توجد تغييرات للتحديث",
+      "descriptionNotEditable": "لا يمكن تحرير الوصف بعد الإنشاء",
+      "categoryNotEditable": "لا يمكن تحرير الفئة بعد الإنشاء",
+      "occasionNotEditable": "لا يمكن تحرير المناسبة بعد الإنشاء",
       "productCreated": "تم إنشاء المنتج بنجاح",
       "productUpdated": "تم تحديث المنتج بنجاح",
       "validation": {
@@ -514,6 +514,35 @@
         "price": "مثال: 5000",
         "discount": "مثال: 5",
         "quantity": "مثال: 200"
+      },
+      "list": {
+        "pageTitle": "جميع المنتجات",
+        "searchPlaceholder": "بحث...",
+        "empty": "لم يتم العثور على منتجات.",
+        "columns": {
+          "name": "الاسم",
+          "price": "السعر",
+          "stock": "المخزون",
+          "sales": "المبيعات",
+          "ratings": "التقييمات"
+        },
+        "edit": "تعديل",
+        "delete": "حذف",
+        "productActions": "إجراءات المنتج",
+        "deleteDialog": {
+          "title": "حذف المنتج",
+          "description": "هل أنت متأكد من رغبتك في حذف هذا المنتج؟ لا يمكن التراجع عن هذا الإجراء.",
+          "cancel": "إلغاء",
+          "confirm": "حذف"
+        },
+        "pagination": {
+          "prev": "السابق",
+          "next": "التالي"
+        },
+        "error": {
+          "message": "تعذر تحميل المنتجات. يرجى المحاولة مرة أخرى.",
+          "retry": "حاول مرة أخرى"
+        }
       }
     }
   }

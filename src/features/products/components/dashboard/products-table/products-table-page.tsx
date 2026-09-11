@@ -3,12 +3,14 @@ import { ProductsTable } from './products-table';
 import { ProductsSearch } from './products-search';
 import { Link } from '@/i18n/navigation';
 import { Plus } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 interface ProductsPageProps {
   searchParams: Promise<{ page?: string; search?: string }>;
 }
 
 export async function ProductsPage({ searchParams }: ProductsPageProps) {
+   const t = await getTranslations('dashboard.products');
   const { page, search } = await searchParams;
 
   const { data: products, metadata } = await getProducts({
@@ -28,14 +30,14 @@ export async function ProductsPage({ searchParams }: ProductsPageProps) {
       <div className="flex items-center justify-between p-2">
       
 
-        <h1 className="text-xl font-bold text-ds-text-default">All Products</h1>
+        <h1 className="text-xl font-bold text-ds-text-default">{t('list.pageTitle')}</h1>
 
           <Link
           href="/admin/products/add-product"
           className="flex items-center gap-1.5 rounded-lg bg-ds-bg-danger-saturated px-4 py-2 text-sm font-medium text-ds-text-inverse hover:bg-ds-bg-danger-faint"
         >
           <Plus className="size-4" />
-           <span className="hidden sm:inline">Add a new product</span>
+           <span className="hidden sm:inline">{t('addProduct')}</span>
         </Link>
       </div>
 

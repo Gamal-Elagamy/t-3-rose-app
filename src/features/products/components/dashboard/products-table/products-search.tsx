@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { useProductsFilters } from '@/features/products/hooks/use-products-filters';
+import { useTranslations } from 'next-intl';
 
 export function ProductsSearch() {
+  const t = useTranslations('dashboard.products.list');
   const { search, setSearch } = useProductsFilters();
   const [value, setValue] = useState(search);
 
@@ -25,7 +27,7 @@ export function ProductsSearch() {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Search..."
+        placeholder={t('searchPlaceholder')}
         className="w-full bg-transparent text-sm text-ds-text-default outline-none placeholder:text-ds-text-muted"
       />
     </div>

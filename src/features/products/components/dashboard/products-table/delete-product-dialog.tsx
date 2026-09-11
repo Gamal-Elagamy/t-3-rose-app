@@ -10,7 +10,7 @@ import {
 } from '@/shared/components/ui/dialog';
 import { Button } from '@/shared/components/ui/button';
 import { deleteProduct } from '@/features/products/actions/delete-product.action';
-// import { deleteProduct } from '../../actions/delete-product.action';
+import { useTranslations } from 'next-intl';
 
 interface DeleteProductDialogProps {
   productId: string;
@@ -19,6 +19,7 @@ interface DeleteProductDialogProps {
 }
 
 export function DeleteProductDialog({ productId, open, onOpenChange }: DeleteProductDialogProps) {
+  const t = useTranslations('dashboard.products.list.deleteDialog');
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
@@ -32,19 +33,19 @@ export function DeleteProductDialog({ productId, open, onOpenChange }: DeletePro
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete product</DialogTitle>
+          <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
 
         <p className="text-sm text-ds-text-muted">
-          Are you sure you want to delete this product? This action cannot be undone.
+          {t('description')}
         </p>
 
         <DialogFooter>
           <Button variant="secondary" onClick={() => onOpenChange(false)} disabled={isPending}>
-            Cancel
+           {t('cancel')}
           </Button>
           <Button variant="destructive" onClick={handleDelete} isLoading={isPending}>
-            Delete
+            {t('confirm')}
           </Button>
         </DialogFooter>
       </DialogContent>

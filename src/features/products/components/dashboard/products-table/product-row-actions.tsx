@@ -4,12 +4,14 @@ import { Link } from '@/i18n/navigation';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { DeleteProductDialog } from './delete-product-dialog';
+import { useTranslations } from 'next-intl';
 
 interface ProductRowActionsProps {
   productId: string;
 }
 
 export function ProductRowActions({ productId }: ProductRowActionsProps) {
+   const t = useTranslations('dashboard.products.list');
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   return (
@@ -20,7 +22,7 @@ export function ProductRowActions({ productId }: ProductRowActionsProps) {
           className="flex items-center gap-1 rounded-xl bg-ds-bg-info-faint p-1 text-sm text-ds-text-info hover:bg-ds-bg-info-fade"
         >
           <Pencil className="size-3.5" />
-          Edit
+          {t('edit')}
         </Link>
 
         <button
@@ -29,7 +31,7 @@ export function ProductRowActions({ productId }: ProductRowActionsProps) {
           className="flex items-center gap-1 rounded-xl bg-ds-bg-primary-faint hover:bg-ds-bg-primary-fade p-1 text-sm text-ds-text-danger"
         >
           <Trash2 className="size-3.5" />
-          Delete
+          {t('delete')}
         </button>
       </div>
 

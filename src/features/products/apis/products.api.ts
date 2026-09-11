@@ -31,7 +31,9 @@ export async function getProducts({ ...params }: GetProductsParams) {
       searchParams.append(key, String(value));
     }
   });
-  const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
+  const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`, {
+    next: { tags: ['products'] },
+  });
   const data: IApiResponse<{
     data: IProduct[];
     metadata: {
