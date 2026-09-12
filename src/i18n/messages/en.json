@@ -531,7 +531,6 @@
       "categories": "Categories",
       "occasions": "Occasions"
     },
-
     "categoriesPage": {
       "header": "All Categories",
       "titleAdd": "Add a New Category",
@@ -675,32 +674,33 @@
         "quantity": "Example: 200"
       },
       "list": {
-      "pageTitle": "All Products",
-      "searchPlaceholder": "Search...",
-      "empty": "No products found.",
-      "columns": {
-        "name": "Name",
-        "price": "Price",
-        "stock": "Stock",
-        "sales": "Sales",
-        "ratings": "Ratings"
-      },
-      "edit": "Edit",
-      "delete": "Delete",
-      "productActions": "Product actions",
-      "deleteDialog": {
-        "title": "Delete product",
-        "description": "Are you sure you want to delete this product? This action cannot be undone.",
-        "cancel": "Cancel",
-        "confirm": "Delete"
-      },
-      "pagination": {
-        "prev": "Prev",
-        "next": "Next"
-      },
-      "error": {
-        "message": "Couldn't load products. Please try again.",
-        "retry": "Try again"
+        "pageTitle": "All Products",
+        "searchPlaceholder": "Search...",
+        "empty": "No products found.",
+        "columns": {
+          "name": "Name",
+          "price": "Price",
+          "stock": "Stock",
+          "sales": "Sales",
+          "ratings": "Ratings"
+        },
+        "edit": "Edit",
+        "delete": "Delete",
+        "productActions": "Product actions",
+        "deleteDialog": {
+          "title": "Delete product",
+          "description": "Are you sure you want to delete this product? This action cannot be undone.",
+          "cancel": "Cancel",
+          "confirm": "Delete"
+        },
+        "pagination": {
+          "prev": "Prev",
+          "next": "Next"
+        },
+        "error": {
+          "message": "Couldn't load products. Please try again.",
+          "retry": "Try again"
+        }
       }
     },
     "charts": {
@@ -749,5 +749,4 @@
   "change-password": {
     "title": "Change Password"
   }
-}
 }
