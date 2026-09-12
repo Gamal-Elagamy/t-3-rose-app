@@ -39,6 +39,7 @@ export interface IProduct {
     reviews: number;
     cartItems: number;
     wishlistItems: number;
+     orderItems: number;
   };
 }
 
