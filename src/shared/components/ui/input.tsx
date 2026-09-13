@@ -6,12 +6,17 @@ import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Eye, EyeOff, Search, Upload } from 'lucide-react';
 
-function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
+function Input({
+  className,
+  type,
+  fileName,
+  ...props
+}: React.ComponentProps<'input'> & { fileName?: string | null }) {
   // State to toggle password
   const [showPassword, setShowPassword] = useState(false);
 
   // File State
-  const [fileName, setFileName] = useState<string | null>(null);
+  // const [fileName, setFileName] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,7 +39,7 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
 
     if (file.size > 5 * 1024 * 1024) return;
 
-    setFileName(file.name);
+    // setFileName(file.name);
   };
 
   return (
@@ -75,7 +80,7 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
             if (e.target.files?.[0]) {
               handleFile(e.target.files[0]);
             } else {
-              setFileName(null);
+              // setFileName(null);
             }
           }
           props.onChange?.(e);

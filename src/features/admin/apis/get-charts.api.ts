@@ -2,7 +2,6 @@ import 'server-only';
 
 import { DashboardPayload } from '../types/admin';
 import { getAdminStatisticsServer, RevenuePeriod } from './admin.server.api';
-import { GetProductStatsParams } from './admin.client.api';
 
 export async function GetChartsApi(revenuePeriod: RevenuePeriod): Promise<DashboardPayload> {
   const data = await getAdminStatisticsServer(revenuePeriod);

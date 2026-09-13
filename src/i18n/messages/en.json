@@ -531,6 +531,98 @@
       "categories": "Categories",
       "occasions": "Occasions"
     },
+    "categoriesPage": {
+      "header": "All Categories",
+      "titleAdd": "Add a New Category",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "add": "Add Category",
+      "updateCategory": "Update Category:",
+      "update": "Update Category",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteing": "Deleting...",
+      "deleteSuccess": "Category deleted successfully",
+      "deleteConfirmDescription": "Are you sure you want to delete this category?",
+      "cancle": "Cancle",
+      "table": {
+        "name": "Name",
+        "products": "Products",
+        "productCount": "{count, plural, one {product} other {products}}",
+        "actions": "Actions",
+        "empty": "No categories found"
+      },
+      "fields": {
+        "name": {
+          "label": "Category Name",
+          "placeholder": "Enter category name"
+        },
+        "description": {
+          "label": "Category Description",
+          "placeholder": "Enter category description"
+        },
+        "image": {
+          "label": "Categorie Image",
+          "view": "View category image",
+          "uploading": "Uploading..."
+        },
+        "errors": {
+          "nameRequired": "Name is required",
+          "descriptionRequired": "Description is required",
+          "imageRequired": "Image is required",
+          "imageInvalidType": "File type is not supported",
+          "imageTooLarge": "File size must be less than 1MB",
+          "addFailed": "Failed to add category",
+          "uploadFailed": "Failed to upload image"
+        }
+      }
+    },
+    "occasionsPage": {
+      "header": "All Occasions",
+      "titleAdd": "Add a New Occasion",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "add": "Add Occasion",
+      "updateOccasion": "Update Occasion:",
+      "update": "Update Occasion",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteing": "Deleting...",
+      "deleteSuccess": "Occasion deleted successfully",
+      "deleteConfirmDescription": "Are you sure you want to delete this occasion?",
+      "cancle": "Cancle",
+      "table": {
+        "name": "Name",
+        "products": "Products",
+        "productCount": "{count, plural, one {product} other {products}}",
+        "actions": "Actions",
+        "empty": "No occasions found"
+      },
+      "fields": {
+        "name": {
+          "label": "Occasion Name",
+          "placeholder": "Enter occasion name"
+        },
+        "description": {
+          "label": "Occasion Description",
+          "placeholder": "Enter occasion description"
+        },
+        "image": {
+          "label": "Occasion Image",
+          "view": "View occasion image",
+          "uploading": "Uploading..."
+        },
+        "errors": {
+          "nameRequired": "Name is required",
+          "descriptionRequired": "Description is required",
+          "imageRequired": "Image is required",
+          "imageInvalidType": "File type is not supported",
+          "imageTooLarge": "File size must be less than 1MB",
+          "addFailed": "Failed to add occasion",
+          "uploadFailed": "Failed to upload image"
+        }
+      }
+    },
     "products": {
       "addProduct": "Add Product",
       "addProductPageTitle": "Add a New Product",
