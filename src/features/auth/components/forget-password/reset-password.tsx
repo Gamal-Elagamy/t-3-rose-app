@@ -5,7 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema, ResetPasswordFormData } from '../../schema/reset-password.schema';
-import { ResetPasswordPayload } from '@/features/auth/type/reset-password';
+import { ResetPasswordPayload } from '@/features/auth/types/reset-password';
 import { resetPasswordApi } from '../../api/reset-password.api';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/components/ui/input';
