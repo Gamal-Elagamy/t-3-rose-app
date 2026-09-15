@@ -1,0 +1,21 @@
+import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
+
+import { GuestWishlist } from './guest-wishlist';
+import { Suspense } from 'react';
+import { WishlistSkeleton } from './wishlist-skeleton';
+import { AuthenticatedWishlistData } from './authenticated-wishlist-data';
+
+export async function WishlistPage() {
+  // Auth check
+  const jwt = await getNextAuthToken();
+
+if (jwt?.token) {
+    return (
+      <Suspense fallback={<WishlistSkeleton />}>
+        <AuthenticatedWishlistData />
+      </Suspense>
+    );
+  }
+
+  return <GuestWishlist />;
+}

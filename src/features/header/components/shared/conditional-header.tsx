@@ -4,8 +4,12 @@ import { usePathname } from '@/i18n/navigation';
 import { Header } from '../../header';
 
 const authRoutes = ['/login', '/register', '/forgot-password'];
+interface ConditionalHeaderProps {
+  wishlistCount: number; 
+}
 
-export function ConditionalHeader() {
+
+export function ConditionalHeader({wishlistCount}:ConditionalHeaderProps) {
   // Hooks
   const pathname = usePathname();
 
@@ -17,5 +21,5 @@ export function ConditionalHeader() {
     return null;
   }
 
-  return <Header />;
+  return <Header wishlistCount={wishlistCount}/>;
 }

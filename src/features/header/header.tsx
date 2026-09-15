@@ -13,6 +13,9 @@ import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme-toggle';
 import { MobileMenu } from './components/shared/mobile-menu';
 import { SearchBox } from '@/shared/components/search-box';
+interface HeaderProps {
+  wishlistCount: number;
+}
 import { useCart } from '../cart/context/cart.context';
 import { LoginPopover } from '../auth/components/login-popover/login-popover';
 
@@ -39,12 +42,15 @@ export function Header() {
             <div className="flex items-center gap-4">
               <UserDropdown />
               <Notifications />
+              <CartButton />
+              
 
-              <WishlistButton />
+              <WishlistButton authenticatedCount={wishlistCount} />
             </div>
           ) : (
             <LoginPopover />
           )}
+          <WishlistButton authenticatedCount={wishlistCount} />
           <CartButton count={itemsCount} />
           <ThemeToggle />
           <LanguageSwitcher />

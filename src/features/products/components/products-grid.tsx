@@ -1,7 +1,7 @@
 import { PRODUCTS_PER_PAGE } from '@/shared/constant/products.constants';
 import { getProducts, GetProductsParams } from '../apis/products.api';
 import EmptyState from './empty-state';
-import PaginationProducts from './pagination-products';
+import Pagination from '@/shared/components/pagination';
 import ProductCard from './product-card';
 import { getTranslations } from 'next-intl/server';
 
@@ -43,7 +43,7 @@ export async function ProductsGrid({
       {totalPages > 1 && (
         <>
           <div className="h-px bg-zinc-100 dark:bg-zinc-700 w-full mt-5 "></div>
-          <PaginationProducts page={page!} totalPages={totalPages} />
+          <Pagination page={page!} totalPages={totalPages} />
         </>
       )}
     </div>

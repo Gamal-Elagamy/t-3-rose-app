@@ -4,55 +4,61 @@ import { Input } from '@/shared/components/ui/input';
 import { Minus, Plus } from 'lucide-react';
 import useUpdateCartItem from '../hooks/use-update-item-cart';
 import { useCart } from '../context/cart.context';
-import { useFormatter, useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { formatLocaleNumber } from '@/shared/lib/utils/format-number';
-import {  updateGuestCartItemQuantity } from '../storage/guest-cart';
+import { updateGuestCartItemQuantity } from '../storage/guest-cart';
+import { useState } from 'react';
 
 export default function CartFooter({ product }: { product: IProduct }) {
   // Translations
   const t = useTranslations('cart-list');
-  const format = useFormatter();
 
   const locale = useLocale();
 
   // Cart Context
-  const { userData,cartDataProducts, isAuthenticated, refreshCart } = useCart();
+  const { userData, cartDataProducts, isAuthenticated, refreshCart } = useCart();
 
   // Update User Cart Item
-  const{ isPending, updateUserCart } = useUpdateCartItem()
+  const { isPending, updateUserCart } = useUpdateCartItem();
 
   // Get Item Quantity
-  const quantity  = cartDataProducts.find((item) => item.productId === product.id)?.quantity ?? 1;
+  const quantity = cartDataProducts.find((item) => item.productId === product.id)?.quantity ?? 1;
 
   // Stock Quanity Condition
   const isMaxStock = quantity >= product.stock;
 
+  const [inputValue, setInputValue] = useState(quantity);
+  const [prevQuantity, setPrevQuantity] = useState(quantity);
 
-  // Quanitity Change
-  function quantityChange(num: number) {
-    if(num < 0 && quantity === 1) return
-    if(num > 0 && isMaxStock) return
+  if (quantity !== prevQuantity) {
+    setPrevQuantity(quantity);
+    setInputValue(quantity);
+  }
 
-    const newQuantity = quantity + num;
+  function commitQuantity(newQuantity: number) {
+    const clamped = Math.min(Math.max(newQuantity, 1), product.stock);
+    setInputValue(clamped);
+
+    if (clamped === quantity) return;
 
     if (!isAuthenticated) {
-      updateGuestCartItemQuantity(product.id, newQuantity);
+      updateGuestCartItemQuantity(product.id, clamped);
       refreshCart();
       return;
     }
 
-
-    // Authenticated
     const cartItem = userData?.find((item) => item.productId === product.id);
     if (!cartItem) return;
 
-    updateUserCart({ cartItemId: cartItem.id, quantity: newQuantity }, {
-      onSuccess: () => {
-        refreshCart();
-      },
-    })
+    updateUserCart(
+      { cartItemId: cartItem.id, quantity: clamped },
+      { onSuccess: () => refreshCart() }
+    );
   }
-  
+
+  function quantityChange(num: number) {
+    commitQuantity(quantity + num);
+  }
 
   return (
     <div className="footer flex justify-between">
@@ -83,10 +89,13 @@ export default function CartFooter({ product }: { product: IProduct }) {
 
         {/* Quantity Input */}
         <Input
-          value={format.number(quantity, 'items-count')}
-          readOnly
-          type="text"
-          inputMode="numeric"
+          // value={format.number(quantity, 'items-count')}
+          value={inputValue}
+          onChange={(e) => setInputValue(Number(e.target.value) || 0)}
+          onBlur={() => commitQuantity(inputValue)}
+          onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+          disabled={isPending}
+          type="number"
           className="w-25.75 h-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
 

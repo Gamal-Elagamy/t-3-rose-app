@@ -1,5 +1,5 @@
 'use server';
-
+import { updateTag } from 'next/cache'; 
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IApiResponse } from '@/shared/lib/types/api';
 
@@ -28,6 +28,6 @@ export async function addToWishlist(body: WishlistItemRequest) {
   if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to add product to wishlist');
   }
-
+  updateTag('wishlist'); 
   return data.payload;
 }

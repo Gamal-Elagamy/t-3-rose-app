@@ -30,6 +30,7 @@ export async function getProducts({ ...params }: GetProductsParams) {
       searchParams.append(key, String(value));
     }
   });
+  console.log(`${getApiBaseUrl()}/products?${searchParams.toString()}`)
   const response = await fetch(`${getApiBaseUrl()}/products?${searchParams.toString()}`);
   const data: IApiResponse<{
     data: IProduct[];
@@ -45,7 +46,7 @@ export async function getProducts({ ...params }: GetProductsParams) {
     throw new Error(data.message || 'Failed to fetch products');
   }
 
-  return data.payload
+  return data.payload;
 }
 
 export async function getProduct(id: string): Promise<IProduct> {
