@@ -34,8 +34,6 @@ export default function OrderCard({ order }: OrderCardProps) {
 
     // Variables
     const status = getStatusLabel(order.status);
-    console.log(order.status);
-
 
     const paymentStatus = order.paymentStatus === "PAID"
         ? { label: t("paid"), color: "bg-emerald-500" }

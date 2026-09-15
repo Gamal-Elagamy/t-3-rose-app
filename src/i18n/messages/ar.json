@@ -373,7 +373,9 @@
     "loadError": "تعذر تحميل المفضلة. حاول مرة أخرى.",
     "retry": "حاول مرة أخرى"
   },
+
   "failedToLoadProducts": "فشل تحميل المنتجات. حاول مجدداً.",
+
   "cart-list": {
     "cart-title": "السلة",
     "cart-count": "{count, number, items-count} منتج",
@@ -411,9 +413,43 @@
   },
   "address": {
     "list": {
-      "noAddresses": "لم يتم العثور على عناوين، يرجى إضافة عنوان جديد.",
+      "noAddresses": "لا توجد عناوين محفوظة، يرجى إضافة عنوان جديد.",
       "or": "أو"
-    }
+    },
+    "modal": {
+      "title": "عناويني"
+    },
+    "add": {
+      "title": "إضافة عنوان جديد",
+      "step1Title": "تفاصيل العنوان",
+      "step2Title": "حدد موقعك على الخريطة"
+    },
+    "edit": "تحديث معلومات العنوان",
+    "addressDetails": "ادخل تفاصيل العنوان",
+    "delete": "حذف",
+    "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا العنوان؟",
+    "confirmDelete": "تاكيد",
+    "cancelDelete": "إلغاء",
+    "next": "التالي",
+    "back": "رجوع",
+    "deleted": "تم حذف العنوان",
+    "updated": "تم تحديث العنوان",
+    "added": "تم إضافة العنوان",
+    "city": "المدينة",
+    "details": "العنوان",
+    "phone": "رقم التواصل",
+    "findMyLocation": "حدد موقعي",
+    "FindYourLocation": "ابحث عن موقعك",
+    "findingLocation": "جارٍ إيجاد الموقع...",
+    "locationDenied": "تم رفض إذن الموقع. يرجى تحديد الموقع يدوياً.",
+    "locationRequired": "يرجى اختيار موقع على الخريطة",
+    "update": "تحديث العنوان",
+    "save": "حفظ العنوان",
+    "titleRequired": "العنوان مطلوب",
+    "cityRequired": "المدينة مطلوبة",
+    "streetRequired": "العنوان مطلوب",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "phoneInvalid": "يرجى إدخال رقم هاتف صحيح"
   },
   "order-summary": {
     "title": "ملخص الطلب",
@@ -430,7 +466,7 @@
     "coupon-empty": "يرجى ادخال كود الكوبون",
     "product-you-may-like": "المنتجات التي تحبها"
   },
-  "orders": {
+    "orders": {
     "title": "الطلبات",
     "no-orders": "لم تقم بأي طلبيات حتى الآن!",
     "no-orders-desc": "ابدأ بالتسوق وستظهر طلبياتك هنا.",
@@ -460,5 +496,33 @@
     "retry": "إعادة محاولة",
     "errorTitle":"حدث خطأ ما. يرجى المحاولة لاحقاً.",
     "errorDesc":"حدث خطأ ما. يرجى المحاولة لاحقاً."
+  },
+  "accountSettings": {
+    "title": "إعدادات الحساب",
+    "sidebar": {
+      "profile": "الملف الشخصي",
+      "changePassword": "تغيير كلمة المرور",
+      "logout": "تسجيل الخروج"
+    },
+    "updatePassword": {
+      "title": "تغيير كلمة المرور",
+      "oldPassword": "كلمة المرور القديمة",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "placeholder": "********",
+      "submit": "تغيير كلمة المرور",
+      "success": "تم تحديث كلمة المرور الخاصة بك. يرجى تسجيل الدخول مرة أخرى.",
+      "validation": {
+        "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
+        "newPasswordRequired": "كلمة المرور الجديدة مطلوبة",
+        "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+        "minLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+        "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
+        "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
+        "digit": "يجب أن تحتوي كلمة المرور على رقم",
+        "special": "يجب أن تحتوي كلمة المرور على رمز خاص",
+        "mismatch": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين"
+      }
+    }
   }
 }
