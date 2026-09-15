@@ -1,7 +1,7 @@
 import { authOptions } from "@/auth";
 import { getOrdersApi } from "@/features/order/apis/order.api";
 import OrderList from "@/features/order/components/order-list";
-import PaginationOrders from "@/features/order/components/pagination-orders";
+import Pagination from "@/shared/components/pagination";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/shared/components/ui/button";
 import { ORDERS_PER_PAGE } from "@/shared/constant/orders-constant";
@@ -55,7 +55,7 @@ export default async function OrdersPage({ searchParams }: {
                 :
                 <div className="space-y-4">
                     <OrderList orders={orders.payload?.data || []} />
-                    <PaginationOrders page={page} totalPages={Number(orders.payload?.metadata?.totalPages) || 1} />
+                    <Pagination page={page} totalPages={Number(orders.payload?.metadata?.totalPages) || 1} />
                 </div>
             }
         </div>
