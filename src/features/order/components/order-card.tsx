@@ -24,23 +24,25 @@ export default function OrderCard({ order }: OrderCardProps) {
     const formatPrice = (value: number) => format.number(value);
     const getStatusLabel = (state: string) => {
         const statusMap: { [key: string]: { label: string; key: string; color: string } } = {
-            pending: { label: t("pending"), key: "pending", color: "bg-yellow-500" },
-            processing: { label: t("processing"), key: "processing", color: "bg-blue-500" },
-            delivered: { label: t("delivered"), key: "delivered", color: "bg-green-500" },
-            cancelled: { label: t("cancelled"), key: "cancelled", color: "bg-red-500" },
+            pending: { label: t("pending"), key: "PENDING", color: "bg-yellow-500" },
+            processing: { label: t("processing"), key: "PROCESSING", color: "bg-blue-500" },
+            confirmed: { label: t("confirmed"), key: "CONFIRMED", color: "bg-green-500" },
+            cancelled: { label: t("cancelled"), key: "CANCELLED", color: "bg-red-500" },
         };
-        return statusMap[state] || { label: state, key: state, color: "bg-gray-400" };
+        return statusMap[state?.toLowerCase()] || { label: state, key: state, color: "bg-gray-400" };
     };
 
     // Variables
     const status = getStatusLabel(order.status);
+    console.log(order.status);
 
-    const paymentStatus = order.paymentMethod === "CREDIT_CARD"
+
+    const paymentStatus = order.paymentStatus === "PAID"
         ? { label: t("paid"), color: "bg-emerald-500" }
         : { label: t("not-paid"), color: "bg-red-500" };
 
-    const deliveryStatus = order.status === "DELIVERED"
-        ? { label: t("delivered"), color: "text-green-600" }
+    const deliveryStatus = order.status === "CONFIRMED"
+        ? { label: t("confirmed"), color: "text-green-600" }
         : { label: t("pending"), color: "text-yellow-600" };
 
     const orderItems = order.orderItems || [];
@@ -149,46 +151,9 @@ export default function OrderCard({ order }: OrderCardProps) {
                         >
                             <div className="gap-5 grid grid-cols-1 md:grid-cols-2">
                                 {(showAll ? orderItems : orderItems.slice(0, maxProducts))
-                                    .slice(0, previewCount)
                                     .map((item, index) => (
                                         <div
-                                            key={`${item.product.id}-preview-${index}`}
-                                            className="flex items-stretch gap-0 rounded-xl min-h-[130px] sm:min-h-[150px] overflow-hidden transition-all duration-300"
-                                        >
-                                            <div className="relative flex-shrink-0 w-[96px] sm:w-[120px] min-h-full">
-                                                <Image
-                                                    sizes="auto"
-                                                    src={item.product.cover || "/placeholder.png"}
-                                                    alt={item.product.title || "Product"}
-                                                    height={150}
-                                                    width={120}
-                                                    className="object-fill object-center"
-                                                />
-                                            </div>
-
-                                            <div className="flex flex-col flex-1 justify-between gap-4 pt-1 pb-2 sm:pb-3 ps-3 sm:ps-4 min-w-0">
-                                                <div className="space-y-1">
-                                                    <h6 className="font-semibold text-maroon-700 dark:text-soft-pink-200 text-base sm:text-xl line-clamp-2">
-                                                        {item.product?.title || "Product"}
-                                                    </h6>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-medium text-red-500 text-xs sm:text-sm">
-                                                        (×{item.quantity || 1})
-                                                    </span>
-                                                    <span className="font-bold text-zinc-700 dark:text-zinc-50 text-base sm:text-xl">
-                                                        {formatPrice(Number(item.price) || 0)} <span className="text-sm sm:text-base">EGP</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-
-                                {(showAll ? orderItems : orderItems.slice(0, maxProducts))
-                                    .slice(previewCount)
-                                    .map((item, index) => (
-                                        <div
-                                            key={`${item.product.id}-preview-${index}`}
+                                            key={`${item.product.id}-item-${index}`}
                                             className="flex items-stretch gap-0 rounded-xl min-h-[130px] sm:min-h-[150px] overflow-hidden transition-all duration-300"
                                         >
                                             <div className="relative flex-shrink-0 w-[96px] sm:w-[120px] min-h-full">

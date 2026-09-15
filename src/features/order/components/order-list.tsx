@@ -9,6 +9,7 @@ interface OrderListProps {
 export default function OrderList({ orders }: OrderListProps) {
     // Translation
     const t = useTranslations("orders");
+    
 
     // Variables
     const hasOrders = orders.length > 0;

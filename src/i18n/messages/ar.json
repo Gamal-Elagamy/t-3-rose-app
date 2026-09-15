@@ -448,7 +448,7 @@
     "credit-card": "بطاقة ائتمان",
     "pending": "قيد الانتظار",
     "processing": "قيد المعالجة",
-    "delivered": "تم التسليم",
+    "confirmed": "تم التسليم",
     "cancelled": "ملغى",
     "order-items": "عناصر الطلب:",
     "show-all": "عرض الكل",

@@ -28,10 +28,11 @@ export default async function OrdersPage({ searchParams }: {
 
     const params = await searchParams;
 
-  const page = Number(params.page ?? "1");
+    const page = Number(params.page ?? "1");
     const limit = Number(params.limit ?? ORDERS_PER_PAGE);
 
     const orders = await getOrdersApi({ page, limit });
+
 
     return (
         <div className="w-full max-w-7xl mx-auto px-4 py-8">
