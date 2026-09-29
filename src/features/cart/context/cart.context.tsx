@@ -6,20 +6,21 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useEffect,
   useState,
 } from 'react';
 
 // use-cart.ts
 import { useContext } from 'react';
-import {  clearGuestCart, getGuestCart } from '../storage/guest-cart';
+import { clearGuestCart, getGuestCart } from '../storage/guest-cart';
 import { CartItem, CartItemRequest } from '../types/cart';
 import { IProduct } from '@/features/products/types/products';
 import { useCartProducts } from '../hooks/use-cart-products';
 import getUserCart from '../api/get-user-cart';
 
 interface ICartContextType {
-  isAuthenticated:boolean;
+  isAuthenticated: boolean;
   guestData: CartItemRequest[];
   setGuestData: Dispatch<SetStateAction<CartItemRequest[]>>;
   userData: CartItem[];
@@ -27,13 +28,12 @@ interface ICartContextType {
   cartDataProducts: CartItemRequest[] | CartItem[];
   refreshCart: () => void;
   clearCartGuest: () => void;
-  isEmpty:boolean;
-  products: IProduct[] | undefined; 
-  isLoading: boolean; 
-  isFetching: boolean; 
-  totalPrice:number
+  isEmpty: boolean;
+  products: IProduct[] | undefined;
+  isLoading: boolean;
+  isFetching: boolean;
+  totalPrice: number;
 }
-
 
 export const CartContext = createContext<ICartContextType | undefined>(undefined);
 
@@ -52,33 +52,33 @@ export default function CartContextProviders({ children }: { children: ReactNode
   const productIds = cartDataProducts.map((item) => item.productId);
 
   // Get User Products
-  const { data: products, isLoading , isFetching } = useCartProducts(productIds);
+  const { data: products, isLoading, isFetching } = useCartProducts(productIds);
 
-  const isEmpty = cartDataProducts.length === 0
+  const isEmpty = cartDataProducts.length === 0;
 
   // Total Price
-  const totalPrice = products?.reduce((acc, product) => {
-  const cartItem = cartDataProducts.find((item) => item.productId === product.id);
-  const quantity = cartItem?.quantity ?? 0;
-  return acc + Number(product.price) * quantity;
-  }, 0) ?? 0;
+  const totalPrice =
+    products?.reduce((acc, product) => {
+      const cartItem = cartDataProducts.find((item) => item.productId === product.id);
+      const quantity = cartItem?.quantity ?? 0;
+      return acc + Number(product.price) * quantity;
+    }, 0) ?? 0;
 
   //Get Cart Data
-  async function refreshCart() {
-    if(!isAuthenticated){
+  const refreshCart = useCallback(async () => {
+    if (!isAuthenticated) {
       const guestCart = getGuestCart();
       setGuestData(guestCart);
-      return
+      return;
     }
 
-    // Authenticated
     try {
-    const userCart = await getUserCart();
-    setUserData(userCart);
-  } catch (error) {
-    throw new Error('Failed to get user cart:' , {cause:error}) 
-  }
-  }
+      const userCart = await getUserCart();
+      setUserData(userCart);
+    } catch (error) {
+      throw new Error('Failed to get user cart:', { cause: error });
+    }
+  }, [isAuthenticated]);
 
   // Clear guest cart data
   function clearCartGuest() {
@@ -86,13 +86,14 @@ export default function CartContextProviders({ children }: { children: ReactNode
     setGuestData([]);
   }
 
-// Effect State
-  useEffect(()=>{
+  // Effect State
+  useEffect(() => {
     if (status === 'loading') return;
-    refreshCart()
-  },[isAuthenticated])
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    refreshCart();
+  }, [isAuthenticated, status, refreshCart]);
 
-  const value :ICartContextType = {
+  const value: ICartContextType = {
     isAuthenticated,
     guestData,
     setGuestData,
@@ -105,8 +106,8 @@ export default function CartContextProviders({ children }: { children: ReactNode
     products,
     isLoading,
     isFetching,
-    totalPrice
-  }
+    totalPrice,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
