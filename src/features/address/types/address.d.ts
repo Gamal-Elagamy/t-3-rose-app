@@ -1,3 +1,7 @@
+import { z } from 'zod';
+
+import { addressSchema } from '../schemas/address.schema';
+
 export interface IAddress {
   id: string;
   userId: string;
@@ -10,4 +14,15 @@ export interface IAddress {
   longitude: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface AddAddressPayload {
+  address: IAddress;
+}
+
+export type AddressFormValues = z.infer<typeof addressSchema>;
+
+export interface AddAddressRequest extends AddressFormValues {
+  latitude: number;
+  longitude: number;
 }

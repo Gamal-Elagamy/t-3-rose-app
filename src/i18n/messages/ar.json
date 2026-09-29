@@ -468,37 +468,6 @@
     "coupon-empty": "يرجى ادخال كود الكوبون",
     "product-you-may-like": "المنتجات التي تحبها"
   },
-    "orders": {
-    "title": "الطلبات",
-    "no-orders": "لم تقم بأي طلبيات حتى الآن!",
-    "no-orders-desc": "ابدأ بالتسوق وستظهر طلبياتك هنا.",
-    "go-home": "اذهب للرئيسية",
-    "order-header": "الطلب",
-    "created-in": "تم الإنشاء في:",
-    "total-price": "السعر الإجمالي:",
-    "payment-status": "حالة الدفع",
-    "paid": "مدفوعة",
-    "not-paid": "غير مدفوعة",
-    "status": "الحالة",
-    "payment-method": "طريقة الدفع:",
-    "delivery-status": "حالة التوصيل:",
-    "cash": "نقد",
-    "credit-card": "بطاقة ائتمان",
-    "pending": "قيد الانتظار",
-    "processing": "قيد المعالجة",
-    "confirmed": "تم التسليم",
-    "cancelled": "ملغى",
-    "order-items": "عناصر الطلب:",
-    "show-all": "عرض الكل",
-    "show-less": "عرض أقل",
-    "rating": "التقييم:",
-    "quantity": "الكمية:",
-    "failed-to-load": "فشل تحميل الطلبيات",
-    "try-again": "حدث خطأ ما. يرجى المحاولة لاحقاً.",
-    "retry": "إعادة محاولة",
-    "errorTitle":"حدث خطأ ما. يرجى المحاولة لاحقاً.",
-    "errorDesc":"حدث خطأ ما. يرجى المحاولة لاحقاً."
-  },
   "accountSettings": {
     "title": "إعدادات الحساب",
     "sidebar": {
@@ -571,4 +540,6 @@
       "coupon-empty": "يرجى ادخال كود الكوبون",
       "product-you-may-like": "المنتجات التي تحبها"
     }
+    }
+  }
 }
