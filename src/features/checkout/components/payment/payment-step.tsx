@@ -1,8 +1,8 @@
 'use client';
 
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-
+import { useTranslations, useLocale } from 'next-intl';
+import { toast } from 'sonner';
 
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 import { useCheckout } from '../../context/checkout-context';
@@ -20,17 +20,19 @@ import { id } from 'zod/v4/locales';
 const paymentMethods :{ id: PaymentMethod, image: string, }[] = [
   {
     id: 'CASH_ON_DELIVERY',
-    image: cashIcon,
+    image: creditIcon,
   },
   {
     id: 'CREDIT_CARD',
-    image: creditIcon,
+    image: cashIcon,
   },
 ] as const;
 
 export function PaymentStep() {
   //  Translations
   const t = useTranslations('checkout.paymentMethod');
+  const tCheckout = useTranslations('checkout');
+  const locale = useLocale();
   // States
   const [isPending, startTransition] = useTransition();
 
@@ -49,12 +51,22 @@ export function PaymentStep() {
   // Handle checkout
   function handleCheckout() {
     startTransition(async() => {
+      try {
+        const baseUrl = window.location.origin;
+        const successUrl = `${baseUrl}/${locale}/orders`;
+        const cancelUrl = `${baseUrl}/${locale}/cart/checkout`;
 
-      await checkout({
-        addressId,
-        couponCode,
-        paymentMethod
-      })
+        await checkout({
+          addressId,
+          couponCode,
+          paymentMethod,
+          successUrl,
+          cancelUrl,
+        });
+        toast.success(tCheckout('orderSuccess'));
+      } catch (error) {
+        toast.error(tCheckout('orderFailed'));
+      }
     })
   }
 

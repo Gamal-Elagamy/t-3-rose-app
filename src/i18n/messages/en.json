@@ -394,6 +394,8 @@
     "cart-button": "Containue Shopping"
   },
   "checkout": {
+    "orderSuccess": "Order placed successfully!",
+    "orderFailed": "Failed to place order. Please try again.",
     "shipping": {
       "title": "Shipping Address",
       "addNewAddress": "Add New Address",
