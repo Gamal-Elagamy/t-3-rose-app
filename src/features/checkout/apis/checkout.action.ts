@@ -23,7 +23,6 @@ export async function checkoutAction(payload: PayloadCheckOut) {
     })
 
     const data: IApiResponse<CheckoutResponse> = await res.json()
-    console.log(data)
     if (!data.status) {
         throw new Error(data.message || "Checkout failed")
     }

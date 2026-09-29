@@ -20,11 +20,11 @@ import { id } from 'zod/v4/locales';
 const paymentMethods :{ id: PaymentMethod, image: string, }[] = [
   {
     id: 'CASH_ON_DELIVERY',
-    image: creditIcon,
+    image: cashIcon,
   },
   {
     id: 'CREDIT_CARD',
-    image: cashIcon,
+    image: creditIcon,
   },
 ] as const;
 

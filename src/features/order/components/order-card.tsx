@@ -1,13 +1,25 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronDown, Banknote } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
 import { Order } from "../types/order";
+import cashIcon from "@/assets/icons/cash.svg";
+import creditIcon from "@/assets/icons/credit.svg";
 
 interface OrderCardProps {
     order: Order;
 }
+
+const STATUS_MAP: Record<string, { labelKey: string; key: string; color: string; textColor: string }> = {
+    pending: { labelKey: "pending", key: "PENDING", color: "bg-yellow-500", textColor: "text-yellow-600" },
+    processing: { labelKey: "processing", key: "PROCESSING", color: "bg-blue-500", textColor: "text-blue-600" },
+    confirmed: { labelKey: "confirmed", key: "CONFIRMED", color: "bg-green-500", textColor: "text-green-600" },
+    shipped: { labelKey: "shipped", key: "SHIPPED", color: "bg-purple-500", textColor: "text-purple-600" },
+    delivered: { labelKey: "delivered", key: "DELIVERED", color: "bg-teal-500", textColor: "text-teal-600" },
+    cancelled: { labelKey: "cancelled", key: "CANCELLED", color: "bg-red-500", textColor: "text-red-600" },
+};
+
 export default function OrderCard({ order }: OrderCardProps) {
     // Translation
     const t = useTranslations("orders");
@@ -23,13 +35,8 @@ export default function OrderCard({ order }: OrderCardProps) {
     // Functions
     const formatPrice = (value: number) => format.number(value);
     const getStatusLabel = (state: string) => {
-        const statusMap: { [key: string]: { label: string; key: string; color: string } } = {
-            pending: { label: t("pending"), key: "PENDING", color: "bg-yellow-500" },
-            processing: { label: t("processing"), key: "PROCESSING", color: "bg-blue-500" },
-            confirmed: { label: t("confirmed"), key: "CONFIRMED", color: "bg-green-500" },
-            cancelled: { label: t("cancelled"), key: "CANCELLED", color: "bg-red-500" },
-        };
-        return statusMap[state?.toLowerCase()] || { label: state, key: state, color: "bg-gray-400" };
+        const mapped = STATUS_MAP[state?.toLowerCase()];
+        return mapped ? { label: t(mapped.labelKey), key: mapped.key, color: mapped.color, textColor: mapped.textColor } : { label: state, key: state, color: "bg-gray-400", textColor: "text-gray-600" };
     };
 
     // Variables
@@ -39,9 +46,7 @@ export default function OrderCard({ order }: OrderCardProps) {
         ? { label: t("paid"), color: "bg-emerald-500" }
         : { label: t("not-paid"), color: "bg-red-500" };
 
-    const deliveryStatus = order.status === "CONFIRMED"
-        ? { label: t("confirmed"), color: "text-green-600" }
-        : { label: t("pending"), color: "text-yellow-600" };
+    const deliveryStatus = { label: status.label, color: status.textColor };
 
     const orderItems = order.orderItems || [];
 
@@ -102,7 +107,11 @@ export default function OrderCard({ order }: OrderCardProps) {
                             {t("payment-method")}
                         </span>
                         <div className="flex items-center gap-2">
-                            <Banknote className="w-5 h-5 text-zinc-700 dark:text-zinc-50" />
+                            <Image 
+                                src={order.paymentMethod === "CASH_ON_DELIVERY" ? cashIcon : creditIcon} 
+                                alt={order.paymentMethod || "Payment Method"} 
+                                className="w-5 h-5 object-contain dark:brightness-0 dark:invert" 
+                            />
                             <span className="font-primary font-semibold text-sm sm:text-base leading-none text-zinc-700 dark:text-zinc-50">
                                 {order.paymentMethod === "CASH_ON_DELIVERY" ? t("cash") : t("credit-card")}
                             </span>

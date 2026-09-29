@@ -43,9 +43,6 @@ export function Header() {
               <UserDropdown />
               <Notifications />
               <CartButton />
-              
-
-              <WishlistButton authenticatedCount={wishlistCount} />
             </div>
           ) : (
             <LoginPopover />
