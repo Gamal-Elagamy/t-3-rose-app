@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { IAddress } from '../types/address';
 
 import { AddressCard } from './address-card';
-import AddressModalItem from './address-modal-item';
 
 import AddressFormModalButton from '@/features/checkout/components/shipping/form-modal-button';
 import AddressNextStepButton from '@/features/checkout/components/shipping/next-step-button';

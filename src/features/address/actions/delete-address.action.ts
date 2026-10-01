@@ -5,6 +5,8 @@ import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { AddAddressPayload } from '../types/address';
 
+import { HEADERS } from '@/shared/constant/api.constant';
+
 export async function deleteAddressAction(id: string) {
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
@@ -16,7 +18,8 @@ export async function deleteAddressAction(id: string) {
   const response = await fetch(`${getApiBaseUrl()}/addresses/${id}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${token}`,
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token),
     },
   });
 

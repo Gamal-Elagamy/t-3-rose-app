@@ -13,7 +13,7 @@ import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { IAddress } from '../types/address';
 import { useDeleteAddress } from '../hooks/use-delete-address';
 
-import { AddressList } from './address-list';
+import AddressModalItem from './address-modal-item';
 import AddressStepper from './address-stepper';
 import AddAddressDialog from './add-address-dialog';
 
@@ -140,14 +140,22 @@ export default function AddressesModal({ open, onOpenChange, addresses }: Addres
                 </Button>
               </DialogHeader>
 
-              <div className="flex-1 overflow-y-auto px-6 py-6">
-                <AddressList
-                  variant="modal"
-                  addresses={visibleAddresses}
-                  onAdd={handleAdd}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                />
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+                {visibleAddresses.length === 0 ? (
+                  <div className="text-center py-10 text-ds-text-muted">
+                    {t('list.noAddresses')}
+                  </div>
+                ) : (
+                  visibleAddresses.map((address) => (
+                    <AddressModalItem
+                      key={address.id}
+                      address={address}
+                      isSelected={false}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                    />
+                  ))
+                )}
               </div>
             </>
           )}

@@ -6,6 +6,8 @@ import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 
 import { AddAddressRequest, AddAddressPayload } from '../types/address';
 
+import { HEADERS } from '@/shared/constant/api.constant';
+
 export async function updateAddressAction({ id, body }: { id: string; body: AddAddressRequest }) {
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
@@ -17,8 +19,8 @@ export async function updateAddressAction({ id, body }: { id: string; body: AddA
   const response = await fetch(`${getApiBaseUrl()}/addresses/${id}`, {
     method: 'PATCH',
     headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token),
     },
     body: JSON.stringify(body),
   });
