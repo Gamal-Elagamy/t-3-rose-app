@@ -3,7 +3,7 @@ import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { UpdatePasswordFormData } from '../types/account';
 import { IApiError, IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
-import { HEADERS } from '@/shared/constant/api-header.constants';
+import { HEADERS } from '@/shared/constant/api.constant';
 
 export const updatePasswordAction = async (
   values: UpdatePasswordFormData
@@ -22,8 +22,8 @@ export const updatePasswordAction = async (
   const response = await fetch(`${getApiBaseUrl()}/users/change-password`, {
     method: 'POST',
     headers: {
-      ...HEADERS.JSON,
-      ...HEADERS.AUTH(token),
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token),
     },
     body: JSON.stringify(values),
   });

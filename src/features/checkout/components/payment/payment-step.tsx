@@ -2,7 +2,6 @@
 
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
 
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 import { useCheckout } from '../../context/checkout-context';
@@ -13,6 +12,7 @@ import Image from 'next/image';
 import { useCheckoutMutation } from '../../hooks/checkout.hook';
 import { useTransition } from 'react';
 import { PaymentMethod } from '../../types/checkout';
+import { toast } from 'sonner';
 
 const paymentMethods: { id: PaymentMethod; image: string }[] = [
   {
@@ -35,6 +35,7 @@ export function PaymentStep() {
 
   // Mutation
   const { mutateAsync: checkout } = useCheckoutMutation();
+  // const { mutateAsync: postPaymentIntent } = usePostPaymentIntentMutation();
 
   // Checkout stepper
   const { goToPreviousStep, isLastStep } = useCheckoutStepper();
@@ -45,6 +46,7 @@ export function PaymentStep() {
     updateCheckout,
   } = useCheckout();
 
+  console.log({paymentMethod})
   // Handle checkout
   function handleCheckout() {
     startTransition(async() => {

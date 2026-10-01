@@ -5,6 +5,7 @@ import {
   type StepConfig,
   PaymentStep,
 } from '@/features/checkout/components';
+import { CheckoutProvider } from '@/features/checkout/providers/checkout-provider';
 
 const steps: StepConfig[] = [
   {
@@ -17,26 +18,24 @@ const steps: StepConfig[] = [
   },
 ];
 
-export default async function CheckoutPage({
-  params,
-}: {
-  params: Promise<{ locale: 'en' | 'ar' }>;
-}) {
+export default async function CheckoutPage({ params }: { params: Promise<{ locale: 'en' | 'ar' }> }) {
   const { locale } = await params;
 
   return (
     <div className="px-20 py-15">
-      <CheckoutStepper steps={steps} defaultValue={1}>
-        {/* Address */}
-        <CheckoutStep value={1}>
-          <ShippingStep locale={locale} />
-        </CheckoutStep>
+      <CheckoutProvider>
+        <CheckoutStepper steps={steps} defaultValue={2}>
+          {/* Address */}
+          <CheckoutStep value={1}>
+            <ShippingStep locale={locale} />
+          </CheckoutStep>
 
-        {/* Payment */}
-        <CheckoutStep value={2}>
-          <PaymentStep />
-        </CheckoutStep>
-      </CheckoutStepper>
+          {/* Payment */}
+          <CheckoutStep value={2}>
+            <PaymentStep />
+          </CheckoutStep>
+        </CheckoutStepper>
+      </CheckoutProvider>
     </div>
   );
 }

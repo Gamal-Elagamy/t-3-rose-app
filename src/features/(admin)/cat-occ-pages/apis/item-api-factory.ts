@@ -1,8 +1,8 @@
-import { HEADERS } from '@/shared/constant/api-header.constants';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { AddItemsFields } from '../schema/add-categories.schema';
+import { HEADERS } from '@/shared/constant/api.constant';
 
 export interface IAddItemResponse {
   status: boolean;
@@ -24,7 +24,7 @@ export async function addItemRequest(resource: string, fields: AddItemsFields) {
   const response = await fetch(`${getApiBaseUrl()}/${resource}`, {
     method: 'POST',
     body: JSON.stringify(body),
-    headers: { ...HEADERS.JSON, ...HEADERS.AUTH(token) },
+    headers: { ...HEADERS.JsonBody, ...HEADERS.authorize(token) },
   });
 
   const data: IApiResponse<IAddItemResponse> = await response.json();
@@ -45,7 +45,7 @@ export async function updateItemRequest<TItem, K extends string>(
   const response = await fetch(`${getApiBaseUrl()}/${resource}/${id}`, {
     method: 'PATCH',
     body: JSON.stringify({ title, description }),
-    headers: { ...HEADERS.JSON, ...HEADERS.AUTH(token) },
+    headers: { ...HEADERS.JsonBody, ...HEADERS.authorize(token) },
   });
 
   const data: IApiResponse<Record<K, TItem>> = await response.json();
@@ -62,7 +62,7 @@ export async function deleteItemRequest<TItem, K extends string>(resource: strin
 
   const response = await fetch(`${getApiBaseUrl()}/${resource}/${id}`, {
     method: 'DELETE',
-    headers: { ...HEADERS.JSON, ...HEADERS.AUTH(token) },
+    headers: { ...HEADERS.JsonBody, ...HEADERS.authorize(token) },
   });
 
   const data: IApiResponse<Record<K, TItem>> = await response.json();

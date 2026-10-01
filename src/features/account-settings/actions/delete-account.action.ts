@@ -1,8 +1,8 @@
 'use server';
-import { HEADERS } from '@/shared/constant/api-header.constants';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
 import { IApiResponse } from '@/shared/lib/types/api';
+import { HEADERS } from '@/shared/constant/api.constant';
 
 export default async function deleteAccountAction() {
   const jwt = await getNextAuthToken();
@@ -13,8 +13,8 @@ export default async function deleteAccountAction() {
   const response = await fetch(`${getApiBaseUrl()}/users/account`, {
     method: 'DELETE',
     headers: {
-      ...HEADERS.JSON,
-      ...HEADERS.AUTH(token),
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token),
     },
   });
 

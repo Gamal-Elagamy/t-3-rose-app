@@ -1,4 +1,4 @@
-import { HEADERS } from '@/shared/constant/api-header.constants';
+import { HEADERS } from '@/shared/constant/api.constant';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
 
@@ -33,7 +33,7 @@ export function getItemFactoryApi<TListItem, K extends string, TSingleItem = TLi
   async function getItem(id: string): Promise<TSingleItem | undefined> {
     const response = await fetch(`${getApiBaseUrl()}/${resource}/${id}`, {
       method: 'GET',
-      headers: { ...HEADERS.JSON },
+      headers: { ...HEADERS.JsonBody },
     });
 
     const data: IApiResponse<Record<K, TSingleItem>> = await response.json();

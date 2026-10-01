@@ -1,4 +1,4 @@
-import { HEADERS } from '@/shared/constant/api-header.constants';
+import { HEADERS } from '@/shared/constant/api.constant';
 import { IApiResponse } from '@/shared/lib/types/api';
 import { IUser } from '@/shared/lib/types/user';
 import { getApiBaseUrl } from '@/shared/lib/utils/api-url';
@@ -11,8 +11,8 @@ export default async function getProfileData() {
   const response = await fetch(`${getApiBaseUrl()}/users/profile`, {
     method: 'GET',
     headers: {
-      ...HEADERS.JSON,
-      ...HEADERS.AUTH(token || ''),
+      ...HEADERS.JsonBody,
+      ...HEADERS.authorize(token || ''),
     },
   });
   const data: IApiResponse<{ user: IUser }> = await response.json();
