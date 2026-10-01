@@ -40,25 +40,13 @@ export function AddressList({ addresses }: { addresses: IAddress[] }) {
     updateCheckout({ addressId: address.id });
   };
 
-  if (!addresses.length) {
-    return (
-      <div
-        className="py-10 text-center text-ds-text-muted"
-        dir={isRTL ? 'rtl' : 'ltr'}
-      >
-        {t('list.noAddresses')}
-      </div>
-    );
-  }
-
   return (
     <>
       {addresses.length === 0 ? (
-        <>
-          <div className="text-center max-h-88 flex items-center justify-center text-ds-text-muted">
-            {t('noAddresses')}
-          </div>
-        </>
+        <div className="text-center max-h-88 flex flex-col gap-4 items-center justify-center py-10 text-ds-text-muted">
+          <p>{t('noAddresses')}</p>
+          <AddressFormModalButton addresses={addresses} />
+        </div>
       ) : (
         <>
           {/* Display addresses */}
