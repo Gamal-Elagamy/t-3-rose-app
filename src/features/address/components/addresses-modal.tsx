@@ -26,7 +26,7 @@ interface AddressesModalProps {
 }
 
 export default function AddressesModal({ open, onOpenChange, addresses }: AddressesModalProps) {
-  // Translations
+  // Translation  
   const t = useTranslations('address');
 
   // Navigation
