@@ -2,6 +2,7 @@ import { Button } from '@/shared/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+
 type Props = {
   email: string;
   onBack: () => void;
@@ -9,11 +10,12 @@ type Props = {
 
 export default function CheckEmailStep({ email, onBack }: Props) {
   const t = useTranslations();
+
   return (
     <section className="max-w-96">
       <div className="flex items-center gap-2">
-        <Button onClick={onBack} className=" p-1">
-          <ArrowLeft className="text-ds-text-plain " size={11} />
+        <Button type="button" onClick={onBack} aria-label="Go back" className=" p-1">
+          <ArrowLeft aria-hidden="true" className="text-ds-text-plain " size={11} />
         </Button>
         <h1 className="text-2xl font-semibold text-ds-text-inverse">
           {t('auth.forgotPw.step2.title')}

@@ -45,7 +45,7 @@ export default function AuthHeader() {
 
         {/* Add  w-3/4 text-center*/}
         {title && (
-          <h1 className="text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted w-3/4 text-center">
+          <h1 className="text-4xl sm:text-5xl font-normal leading-none text-ds-text-primary pb-4 border-b border-ds-border-muted w-3/4 text-center">
             {title}
           </h1>
         )}

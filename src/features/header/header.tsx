@@ -32,7 +32,7 @@ export function Header({ wishlistCount }: HeaderProps) {
   const itemsCount = cartDataProducts.length;
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-ds-bg-plain">
       {/* Desktop */}
       <div className="hidden items-center gap-6 px-6 py-4 lg:flex">
         <Logo />
@@ -62,14 +62,16 @@ export function Header({ wishlistCount }: HeaderProps) {
 
       {/* Mobile */}
       <div className="flex flex-col gap-3 px-4 py-3 lg:hidden">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-3">
           <MobileMenu />
+
           <Logo />
 
           <div className="flex items-center gap-4">
             <CartButton count={itemsCount} />
 
             {isAuthenticated && <Notifications />}
+            <WishlistButton authenticatedCount={wishlistCount} />
           </div>
         </div>
 

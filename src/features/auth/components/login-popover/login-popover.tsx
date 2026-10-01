@@ -17,6 +17,7 @@ export function LoginPopover() {
     <Popover open={open} onOpenChange={setOpen}>
       {/* Login Trigger */}
       <PopoverTrigger
+        nativeButton={false}
         onMouseEnter={() => setOpen(true)}
         render={
           <Link

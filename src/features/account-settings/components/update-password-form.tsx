@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Field, FieldLabel, FieldGroup, FieldError } from '@/shared/components/ui/field';
@@ -166,7 +167,10 @@ export default function UpdatePasswordForm() {
 
         {/* Backend Validation Errors */}
         {backendErrors.length > 0 && (
-          <div className="mt-4 md:mt-6 bg-ds-bg-danger/10 border border-ds-border-danger/20 rounded-lg p-2 md:p-3">
+          <div
+            role="alert"
+            className="mt-4 md:mt-6 bg-ds-bg-danger/10 border border-ds-border-danger/20 rounded-lg p-2 md:p-3"
+          >
             {backendErrors.map((err, index) => (
               <p key={index} className="text-sm text-ds-text-danger">
                 {err.message}

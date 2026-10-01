@@ -2,7 +2,6 @@
 
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 import { useCheckout } from '../../context/checkout-context';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
@@ -63,7 +62,7 @@ export function PaymentStep() {
           cancelUrl,
         });
         toast.success(tCheckout('orderSuccess'));
-      } catch (error) {
+      } catch {
         toast.error(tCheckout('orderFailed'));
       }
     })

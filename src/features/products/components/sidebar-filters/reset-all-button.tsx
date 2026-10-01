@@ -14,8 +14,8 @@ export function ResetAllButton() {
   // Variables
   const hasActiveFilters = Object.values(filters).some((value) => value !== null);
   return (
-    <Button variant="secondary" onClick={resetAll} className="w-full" disabled={!hasActiveFilters}>
-      <RotateCcw className="size-4" />
+    <Button type="button" variant="secondary" onClick={resetAll} className="w-full" disabled={!hasActiveFilters}>
+      <RotateCcw className="size-4" aria-hidden="true" />
       {t('filters.resetAll')}
     </Button>
   );

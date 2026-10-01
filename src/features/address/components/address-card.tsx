@@ -1,4 +1,5 @@
 'use client';
+
 import { IAddress } from '../types/address';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Phone } from 'lucide-react';
@@ -10,9 +11,20 @@ interface AddressCardProps {
 }
 
 export function AddressCard({ address, isSelected = false, onSelect }: AddressCardProps) {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onSelect?.(address);
+    }
+  };
+
   return (
     <div
       onClick={() => onSelect?.(address)}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isSelected}
       className={cn(
         'relative py-3.5 px-4 rounded-2xl cursor-pointer border-2 border-ds-border-soft',
         isSelected ? 'bg-ds-bg-primary' : 'border-ds-border-subtle bg-ds-bg-plain'
@@ -43,7 +55,7 @@ export function AddressCard({ address, isSelected = false, onSelect }: AddressCa
               isSelected ? 'bg-white text-ds-text-primary' : 'bg-ds-bg-primary text-ds-text-inverse'
             )}
           >
-            <Phone className="w-5 h-5" />
+            <Phone className="w-5 h-5" aria-hidden="true" />
           </span>
           <span dir="ltr">{address.phone}</span>
         </p>

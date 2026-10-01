@@ -14,83 +14,96 @@ export default function BannerHomePage() {
   return (
     <>
       {/* Banner Section */}
-      <div className="banner h-auto sm:h-110.25 w-full flex items-center justify-between gap-6.25 mt-10">
+      <section className="banner flex h-auto w-full items-center justify-between gap-6.25 mt-10 sm:h-110.25">
         {/* Banner Card */}
-        <div className="card hidden lg:block lg:min-w-75 h-full relative rounded-2xl overflow-hidden">
+        <div className="card relative hidden h-full overflow-hidden rounded-2xl lg:block lg:min-w-75">
           {/* Overlay */}
-          <div className="overlay absolute top-0 bottom-0 left-0 right-0 bg-black/10"></div>
+          <div
+            className="overlay absolute top-0 right-0 bottom-0 left-0 bg-black/10"
+            aria-hidden="true"
+          />
 
           {/* Image */}
           <Image
             src={BannerCard}
-            alt="banner-card"
+            alt=""
             placeholder="blur"
             width={300}
             height={439}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* Card Info */}
-          <div className="info p-6 absolute bottom-0">
-            <h3 className="w-fit font-medium text-xs leading-4 text-maroon-600 py-0.5 px-2 bg-maroon-50 rounded-full">
+          <div className="info absolute bottom-0 p-6">
+            <p className="w-fit rounded-full bg-maroon-50 px-2 py-0.5 text-xs font-medium leading-4 text-maroon-600">
               {t('card-title')}
-            </h3>
-            <h1 className="h-19.5 font-semibold text-2xl text-white my-2.5">
+            </p>
+
+            <h2 className="my-2.5 h-19.5 text-2xl font-semibold text-white">
               {t('card-description')}
-            </h1>
+            </h2>
 
             {/* Button */}
-            <Link href={'/products'}>
+            <Link
+              href="/products"
+              className="outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
+            >
               <Button
                 className={cn(
                   // Default
-                  'py-2.5 cursor-pointer',
+                  'cursor-pointer py-2.5',
 
                   // Dark
                   'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
                 )}
-                variant={'secondary'}
+                variant="secondary"
               >
-                {t('card-button')} <ArrowRight className="rtl:rotate-180" />
+                {t('card-button')} <ArrowRight className="rtl:rotate-180" aria-hidden="true" />
               </Button>
             </Link>
           </div>
         </div>
 
         {/* Banner Carousel */}
-        <div className="banner-carousel relative flex-1 w-full md:min-w-125 h-auto md:h-full rounded-2xl overflow-hidden">
+        <div className="banner-carousel relative h-auto w-full flex-1 overflow-hidden rounded-2xl md:h-full md:min-w-125">
           {/* Overlay */}
-          <div className="overlay absolute inset-0 z-10 bg-linear-to-r rtl:bg-linear-to-l from-black/80 to-black/0"></div>
+          <div
+            className="overlay absolute inset-0 z-10 bg-linear-to-r from-black/80 to-black/0 rtl:bg-linear-to-l"
+            aria-hidden="true"
+          />
 
           {/* Carousel */}
           <CarouselCustomDots />
 
           {/* Carousel Card Info */}
-          <div className="info w-fit absolute flex flex-col gap-1.5 bottom-9 inset-s-9 z-10">
-            <h1 className="font-semibold text-4xl text-white">{t('carousel-title')}</h1>
+          <div className="info absolute inset-s-9 bottom-9 z-10 flex w-fit flex-col gap-1.5">
+            <h1 className="text-4xl font-semibold text-white">{t('carousel-title')}</h1>
 
-            <h3 className="font-normal text-base leading-4 text-white h-12">
+            <p className="h-12 text-base font-normal leading-4 text-white">
               {t('carousel-description')}
-            </h3>
+            </p>
 
             {/* Button */}
-            <Link href={'/products'}>
+            <Link
+              href="/products"
+              className="w-fit outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
+            >
               <Button
                 className={cn(
                   // Default
-                  'py-2.5 w-fit cursor-pointer',
+                  'w-fit cursor-pointer py-2.5',
 
                   // Dark
                   'dark:bg-maroon-50 dark:text-maroon-800 dark:hover:bg-maroon-100'
                 )}
-                variant={'secondary'}
+                variant="secondary"
               >
                 {t('carousel-button')}
               </Button>
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

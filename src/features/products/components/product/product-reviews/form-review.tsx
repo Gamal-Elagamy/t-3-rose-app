@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/shared/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
@@ -17,7 +18,7 @@ import { Link } from '@/i18n/navigation';
 import { useRouter } from 'next/navigation';
 
 export default function FormReview({ productId }: { productId: string }) {
-  //   Translations
+  // Translations
   const t = useTranslations('product.product-reviews.form-review-validation');
 
   // Navigation
@@ -30,10 +31,10 @@ export default function FormReview({ productId }: { productId: string }) {
   const { data: session } = useSession();
   const isAuthenticated = !!session;
 
-  //   Add Review Hook
+  // Add Review Hook
   const { error, addProductReview, isPending } = useAddReview();
 
-  //   Form
+  // Form
   const form = useForm<FormReviewValue>({
     resolver: zodResolver(formReviewSchema),
     defaultValues: {
@@ -43,7 +44,7 @@ export default function FormReview({ productId }: { productId: string }) {
     },
   });
 
-  //   Handle submit
+  // Handle submit
   const onSubmit = (data: FormReviewValue) => {
     if (rating === 0) {
       return;
@@ -71,7 +72,7 @@ export default function FormReview({ productId }: { productId: string }) {
       {!isAuthenticated && (
         <div className="absolute w-full h-full flex items-center justify-center top-0 bottom-0 inset-s-0 inset-e-0 bg-white/20 backdrop-blur-[2px] z-20">
           <Link
-            href={'/login'}
+            href="/login"
             className="font-semibold text-base text-ds-text-plain px-4 py-3.5 rounded-lg"
           >
             {t('form-login-link')}
@@ -83,22 +84,35 @@ export default function FormReview({ productId }: { productId: string }) {
       <div className="flex flex-col gap-1 py-2.5">
         <div className="flex items-center gap-2.5 font-medium text-base text-ds-text-plain">
           {t('form-rating')}
-          <span className="review-rating flex items-center">
+
+          <div
+            className="review-rating flex items-center"
+            role="group"
+            aria-label={t('form-rating')}
+          >
             {Array.from({ length: 5 }, (_, i) => (
-              <Star
+              <button
                 key={i}
+                type="button"
                 onClick={() => {
                   setRating(i + 1);
                   form.setValue('rating', i + 1);
                   form.clearErrors('rating');
                 }}
-                className={cn(
-                  'size-5 cursor-pointer',
-                  i < rating ? 'text-orange-500 fill-orange-500' : 'text-orange-500'
-                )}
-              />
+                aria-label={`${i + 1} stars`}
+                aria-pressed={rating === i + 1}
+                className="rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ds-bg-primary focus-visible:ring-offset-2"
+              >
+                <Star
+                  aria-hidden="true"
+                  className={cn(
+                    'size-5 cursor-pointer',
+                    i < rating ? 'text-orange-500 fill-orange-500' : 'text-orange-500'
+                  )}
+                />
+              </button>
             ))}
-          </span>
+          </div>
         </div>
 
         {/* Rating Error */}
@@ -120,6 +134,7 @@ export default function FormReview({ productId }: { productId: string }) {
               <Field data-invalid={fieldState.invalid}>
                 {/* Label */}
                 <FieldLabel>{t('form-title')}</FieldLabel>
+
                 <Input
                   {...field}
                   aria-invalid={fieldState.invalid}
@@ -143,6 +158,7 @@ export default function FormReview({ productId }: { productId: string }) {
               <Field data-invalid={fieldState.invalid}>
                 {/* Label */}
                 <FieldLabel>{t('form-review')}</FieldLabel>
+
                 <Textarea
                   {...field}
                   aria-invalid={fieldState.invalid}
@@ -157,11 +173,11 @@ export default function FormReview({ productId }: { productId: string }) {
             )}
           />
 
-          {/* Api Error Message */}
+          {/* API Error Message */}
           {error && <p className="text-ds-text-danger text-sm">{error.message}</p>}
 
           {/* Button */}
-          <Button isLoading={isPending} type="submit" className={`cursor-pointer`}>
+          <Button isLoading={isPending} type="submit" className="cursor-pointer">
             {t('form-button')}
           </Button>
         </FieldGroup>

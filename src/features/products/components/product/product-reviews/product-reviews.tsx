@@ -29,7 +29,9 @@ export default async function ProductReviews({ product }: IProductId) {
         {/* Rate */}
         <h2 className="font-bold text-2xl text-ds-text-plain">
           {/* Product Rating Number */}
-          {product?.rating.toFixed(1)} {/* Product Rating Icon */}
+          {product?.rating.toFixed(1)}
+
+          {/* Product Rating Count */}
           <span className="font-medium text-sm text-ds-text-soft">
             ({(product?.ratings ?? 0) > 0 ? `${product?.ratings} ${t('ratings')}` : t('no-ratings')}
             )
@@ -37,7 +39,7 @@ export default async function ProductReviews({ product }: IProductId) {
         </h2>
 
         {/* Star Icon */}
-        <span className="flex items-center">
+        <span className="flex items-center" aria-hidden="true">
           {Array.from({ length: 5 }, (_, i) => (
             <Star
               key={i}
