@@ -14,7 +14,7 @@ export default function Cart() {
   return (
     <>
       {/* Cart Head */}
-      <div className="cart-head flex items-center justify-between  ">
+      <div className="cart-head flex items-center justify-between">
         <h1 className="font-bold text-5xl text-ds-text-plain ">
           {t('cart-title')}
 
@@ -33,7 +33,7 @@ export default function Cart() {
       <CartBody />
 
       {/* Continue Shoping Button */}
-      <Link href={'/products'}>
+      <Link href={'/products'} className="block w-fit">
         <Button className="w-53.25 flex items-center gap-2.5 cursor-pointer mt-6">
           <MoveLeft className="size-5 rtl:rotate-180" /> {t('cart-button')}
         </Button>

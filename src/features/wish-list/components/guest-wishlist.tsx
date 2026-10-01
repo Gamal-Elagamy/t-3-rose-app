@@ -34,7 +34,11 @@ export function GuestWishlist() {
       }
     >
       {products.map((product) => (
-        <WishlistItemCard key={product.id} product={product} onRemove={() => removeProduct(product.id)} />
+        <WishlistItemCard
+          key={product.id}
+          product={product}
+          onRemove={() => removeProduct(product.id)}
+        />
       ))}
     </WishlistLayout>
   );

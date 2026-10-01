@@ -5,12 +5,19 @@ import { IApiResponse } from '@/shared/lib/types/api';
 interface GetCategoriesParams {
   page?: number;
   limit?: number;
+  search?: string;
 }
 
 export async function getCategories({ ...params }: GetCategoriesParams = {}): Promise<ICategory[]> {
-  const response = await fetch(
-    `${getApiBaseUrl()}/categories?${new URLSearchParams(params as Record<string, string>).toString()}`
-  );
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      searchParams.append(key, String(value));
+    }
+  });
+
+  const response = await fetch(`${getApiBaseUrl()}/categories?${searchParams.toString()}`);
 
   const data: IApiResponse<{
     data: ICategory[];

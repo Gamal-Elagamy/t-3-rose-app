@@ -5,7 +5,6 @@ import { IApiResponse } from '@/shared/lib/types/api';
 import { WishlistItem } from '../types/wishlist';
 
 export async function getWishlist(): Promise<WishlistItem[]> {
-  
   const jwt = await getNextAuthToken();
   const token = jwt?.token;
 

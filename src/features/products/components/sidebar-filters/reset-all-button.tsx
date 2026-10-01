@@ -10,8 +10,8 @@ export function ResetAllButton() {
   const t = useTranslations();
 
   // Hooks
-  const { filters,resetAll } = useProductFilters();
-// Variables
+  const { filters, resetAll } = useProductFilters();
+  // Variables
   const hasActiveFilters = Object.values(filters).some((value) => value !== null);
   return (
     <Button type="button" variant="secondary" onClick={resetAll} className="w-full" disabled={!hasActiveFilters}>

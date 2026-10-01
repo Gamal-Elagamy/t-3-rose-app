@@ -2,7 +2,7 @@ import { getToken } from 'next-auth/jwt';
 import { cookies, headers } from 'next/headers';
 
 export async function getServerToken(): Promise<string | null> {
-  const headersList = await headers(); 
+  const headersList = await headers();
 
   const token = await getToken({
     req: {

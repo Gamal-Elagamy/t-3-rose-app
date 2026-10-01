@@ -15,40 +15,33 @@ export default function CartBody() {
   const t = useTranslations('cart-list');
 
   // Cart Context
-  const {
-    isEmpty,
-    refreshCart,
-    cartDataProducts,
-    products,
-    isLoading,
-    isAuthenticated,
-    userData
-  } = useCart();
+  const { isEmpty, refreshCart, cartDataProducts, products, isLoading, isAuthenticated, userData } =
+    useCart();
 
   // Delete Hook
   const { isPending, deleteUserCart } = useDeleteCartItem();
 
   // Remove Cart Item Function
-  async function removeItem(productId?: string){
+  async function removeItem(productId?: string) {
     if (!productId) return;
 
     if (!isAuthenticated) {
-    const cartData = cartDataProducts?.filter((item)=>item.productId !== productId)
+      const cartData = cartDataProducts?.filter((item) => item.productId !== productId);
 
-    setGuestCart(cartData)
-    refreshCart()
-    return
+      setGuestCart(cartData);
+      refreshCart();
+      return;
     }
 
     // Authenticated
     const cartItem = userData?.find((item) => item.productId === productId);
     if (!cartItem) return;
 
-      deleteUserCart(cartItem!.id, {
-        onSuccess: () => {
-          refreshCart();
-        },
-      });
+    deleteUserCart(cartItem!.id, {
+      onSuccess: () => {
+        refreshCart();
+      },
+    });
   }
 
   // Loading State

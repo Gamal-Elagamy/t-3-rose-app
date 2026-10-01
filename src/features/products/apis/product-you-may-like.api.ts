@@ -1,4 +1,4 @@
-import { getProducts } from "./products.api";
+import { getProducts } from './products.api';
 
 export async function getYouMayLikeProducts() {
   const response = await getProducts({

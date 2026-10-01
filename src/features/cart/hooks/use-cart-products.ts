@@ -9,6 +9,6 @@ export function useCartProducts(productIds: string[]) {
     queryKey: ['cart-products', productIds.slice().sort()],
     queryFn: () => getCartProducts(productIds),
     enabled: productIds.length > 0,
-     placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData,
   });
 }

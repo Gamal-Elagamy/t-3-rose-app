@@ -9,7 +9,7 @@ export async function WishlistPage() {
   // Auth check
   const jwt = await getNextAuthToken();
 
-if (jwt?.token) {
+  if (jwt?.token) {
     return (
       <Suspense fallback={<WishlistSkeleton />}>
         <AuthenticatedWishlistData />

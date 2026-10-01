@@ -14,8 +14,7 @@ export function WishlistButton({ authenticatedCount }: WishlistButtonProps) {
   const { data: session } = useSession();
 
   // State
- const guestCount = useGuestWishlistCount();
-
+  const guestCount = useGuestWishlistCount();
 
   // Variables
   const count = session?.user ? authenticatedCount : guestCount;

@@ -1,12 +1,10 @@
 import { Button } from '@/shared/components/ui/button';
-import { Trash2, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import useDeleteAccount from '../hooks/use-delete-account';
+import { Trash, X } from 'lucide-react';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-import { Input } from '@/shared/components/ui/input';
-import { Field } from '@/shared/components/ui/field';
+import useDeleteAccount from '../hooks/use-delete-account';
 
 export default function DeleteAccountConfirmation({
   onClose,
@@ -15,10 +13,6 @@ export default function DeleteAccountConfirmation({
 }) {
   // Translations
   const t = useTranslations('accountSettings.profile');
-
-  const [confirmText, setConfirmText] = useState('');
-  const confirmWord = t('confirm-word');
-  const isMatch = confirmText.trim() === confirmWord;
 
   // Mutation
   const { deleteAccountAction, isPending } = useDeleteAccount();
@@ -30,8 +24,6 @@ export default function DeleteAccountConfirmation({
 
   // Delete Account Function
   function handleDeleteAccount() {
-    if (!isMatch) return;
-
     deleteAccountAction(undefined, {
       onSuccess: async () => {
         toast.success(t('delete-success'));
@@ -58,50 +50,38 @@ export default function DeleteAccountConfirmation({
 
   return (
     <div
-      onClick={() => closeModel()}
-      className="overlay absolute bg-black/50 top-0 bottom-0 inset-s-0 inset-e-0 flex items-center justify-center rounded-4xl"
+      onClick={closeModel}
+      className="overlay absolute inset-0 z-50 flex items-center justify-center rounded-4xl bg-black/50 p-4 sm:p-6"
     >
-      <div onClick={(e) => e.stopPropagation()} className="w-118.5 rounded-2xl p-6 bg-ds-bg-plain">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-118.5 rounded-2xl bg-ds-bg-plain p-4 sm:p-6"
+      >
         {/* Confirm info */}
-        <div className="flex flex-col gap-6 items-center justify-center">
-          <X onClick={closeModel} className="self-end size-6.5 text-ds-text-soft cursor-pointer" />
-          <Trash2 className="size-7.5 text-ds-text-plain w-17.5 h-17.5 rounded-full bg-ds-bg-soft border-[17.5px] border-ds-border-muted" />
-          <div className="flex flex-col gap-2.5 items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:gap-6">
+          <X onClick={closeModel} className="size-6.5 self-end cursor-pointer text-ds-text-soft" />
+
+          <div className="rounded-full bg-zinc-100 p-3 sm:p-4">
+            <Trash className="h-14 w-14 rounded-full border-14px border-ds-border-muted bg-ds-bg-soft text-ds-text-plain sm:h-17.5 sm:w-17.5 sm:border-[17.5px]" />
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-2.5 text-center">
             {/* Title */}
-            <h3 className="font-semibold text-xl text-ds-text-plain">{t('title')}</h3>
+            <h3 className="text-lg font-semibold text-ds-text-plain sm:text-xl">{t('title')}</h3>
 
             {/* Description */}
-            <p className="font-normal text-base text-maroon-500">{t('description')}</p>
+            <p className="text-sm font-normal text-maroon-500 sm:text-base">{t('description')}</p>
           </div>
         </div>
 
-        {/* Confirm word input */}
-        <Field className="mt-6">
-          <label htmlFor="delete-confirm-input">
-            {t('confirm-word-label', { word: confirmWord })}
-          </label>
-          <Input
-            id="delete-confirm-input"
-            value={confirmText}
-            onChange={(e) => setConfirmText(e.target.value)}
-            placeholder={confirmWord}
-            dir="auto"
-            autoComplete="off"
-            autoFocus
-            disabled={isPending}
-            aria-label={t('confirm-word-label', { word: confirmWord })}
-            className="text-center"
-          />
-        </Field>
-
-        {/* Button */}
-        <div className="flex items-center justify-center gap-2.5 mt-13">
-          {/* Cancle Delete Button */}
+        {/* Buttons */}
+        <div className="mt-8 flex w-full items-center justify-center gap-2.5 sm:mt-13">
+          {/* Cancel Delete Button */}
           <Button
-            variant={'subtle'}
+            variant="subtle"
             onClick={closeModel}
             disabled={isPending}
-            className="font-medium flex-1 cursor-pointer"
+            className="min-w-0 flex-1 cursor-pointer font-medium"
           >
             {t('cancel')}
           </Button>
@@ -109,9 +89,9 @@ export default function DeleteAccountConfirmation({
           {/* Confirm Delete Button */}
           <Button
             onClick={handleDeleteAccount}
-            variant={'destructive'}
-            disabled={isPending || !isMatch}
-            className="font-medium flex-1 cursor-pointer"
+            variant="destructive"
+            disabled={isPending}
+            className="min-w-0 flex-1 cursor-pointer font-medium"
           >
             {isPending ? t('deleting') : t('confirm')}
           </Button>

@@ -12,7 +12,6 @@ import ProductCard from '../product-card';
 import SectionTitle from '@/shared/components/section-title';
 import { useTranslations } from 'next-intl';
 
-
 interface ProductYouMayLikeCarouselSlotProps {
   products: IProduct[];
 }
@@ -20,21 +19,16 @@ interface ProductYouMayLikeCarouselSlotProps {
 export default function ProductYouMayLikeCarouselSlot({
   products,
 }: ProductYouMayLikeCarouselSlotProps) {
-
-    const t = useTranslations("order-summary");
+  const t = useTranslations('order-summary');
 
   return (
     <Carousel>
-
-        <div className=" my-10">
+      <div className=" my-10">
         <SectionTitle title={t('product-you-may-like')} />
       </div>
       <CarouselContent>
         {products.map((product) => (
-          <CarouselItem
-            key={product.id}
-            className="basis-full md:basis-1/4"
-          >
+          <CarouselItem key={product.id} className="basis-full md:basis-1/4">
             <ProductCard {...product} />
           </CarouselItem>
         ))}

@@ -1,11 +1,10 @@
 import { GUEST_WISHLIST_KEY } from '../constants/wishlist';
 import { GuestWishlistItem } from '../types/wishlist';
-export const GUEST_WISHLIST_CHANGE_EVENT = 'guest-wishlist-change'; 
+export const GUEST_WISHLIST_CHANGE_EVENT = 'guest-wishlist-change';
 
 function notifyChange() {
   window.dispatchEvent(new Event(GUEST_WISHLIST_CHANGE_EVENT));
 }
-
 
 // Get guest wishlist from localStorage
 export function getGuestWishlist(): GuestWishlistItem[] {
@@ -75,5 +74,5 @@ export function toggleGuestWishlistItem(productId: string) {
 // Clear guest wishlist
 export function clearGuestWishlist() {
   localStorage.removeItem(GUEST_WISHLIST_KEY);
-  notifyChange(); 
+  notifyChange();
 }

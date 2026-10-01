@@ -24,6 +24,7 @@ export async function addToCart(body: CartItemRequest) {
 
   const data: IApiResponse<AddToCartPayload> = await response.json();
 
+  console.log(data)
   if (!response.ok || !data.status) {
     throw new Error(data.message || 'Failed to add product to cart');
   }

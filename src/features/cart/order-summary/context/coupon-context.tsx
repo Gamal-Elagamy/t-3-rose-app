@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 import { ICoupon } from '../types/copons';
 
@@ -15,17 +10,10 @@ interface CouponContextType {
   clearCoupon: () => void;
 }
 
-const CouponContext = createContext<
-  CouponContextType | undefined
->(undefined);
+const CouponContext = createContext<CouponContextType | undefined>(undefined);
 
-export function CouponProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const [coupon, setCoupon] =
-    useState<ICoupon | null>(null);
+export function CouponProvider({ children }: { children: ReactNode }) {
+  const [coupon, setCoupon] = useState<ICoupon | null>(null);
 
   const clearCoupon = () => {
     setCoupon(null);
@@ -48,10 +36,8 @@ export function useCoupon() {
   const context = useContext(CouponContext);
 
   if (!context) {
-    throw new Error(
-      'useCoupon must be used inside CouponProvider'
-    );
+    throw new Error('useCoupon must be used inside CouponProvider');
   }
 
-  return context; 
+  return context;
 }

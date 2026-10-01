@@ -1,4 +1,3 @@
-
 import { Heart } from 'lucide-react';
 import { EmptyWishlist } from './empty-wishlist';
 import { ContinueShoppingButton } from './continue-shopping-button';
@@ -29,12 +28,14 @@ export function WishlistLayout({
         {clearAction}
       </div>
 
-      {count === 0 ? (<EmptyWishlist />) :(
+      {count === 0 ? (
+        <EmptyWishlist />
+      ) : (
         <>
-        <div className="mt-6 flex flex-col">{children}</div>
-        <ContinueShoppingButton/>
+          <div className="mt-6 flex flex-col">{children}</div>
+          <ContinueShoppingButton />
         </>
-      ) }
+      )}
     </div>
   );
 }

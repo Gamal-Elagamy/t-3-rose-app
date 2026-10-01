@@ -4,11 +4,8 @@ import GetCoupon from '../apis/get-coupon.api';
 export default function useApplyCoupon() {
   return useMutation({
     mutationFn: async (couponCode: string) => {
-      console.log('MUTATION START:', couponCode);
 
       const response = await GetCoupon(couponCode);
-
-      console.log('MUTATION RESPONSE:', response);
 
       return response;
     },

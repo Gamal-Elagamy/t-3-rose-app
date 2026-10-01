@@ -16,6 +16,7 @@ import useUpdateProfile from '../hooks/use-update-profile';
 import { toast } from 'sonner';
 import ProfilePhoto from './profile-photo';
 import getProfileData from '../api/get-profile-data.api';
+import { Link } from '@/i18n/navigation';
 
 export default function ProfileForm({
   profileData,
@@ -32,7 +33,7 @@ export default function ProfileForm({
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
 
   // Context
-  const { update } = useSession();
+  const { update, data } = useSession();
 
   // Mutation
   const { updateProfileAction, isPending } = useUpdateProfile();
@@ -179,15 +180,28 @@ export default function ProfileForm({
         </div>
 
         {/* Buttons */}
-        <div className="actions pt-15 flex items-center justify-between">
-          {/* Delete Button */}
-          <button
-            onClick={() => setIsDeleteAccountModalOpen(true)}
-            type="button"
-            className="font-medium text-base text-maroon-500 cursor-pointer"
-          >
-            {t('delete-account')}
-          </button>
+        <div className="actions flex flex-col-reverse gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-10 md:pt-15">
+          <div className="flex flex-col sm:flex-row gap-2.5 items-start sm:items-center">
+            {/* Delete Button */}
+            <button
+              onClick={() => setIsDeleteAccountModalOpen(true)}
+              type="button"
+              className="cursor-pointer self-start text-sm font-medium text-maroon-500 sm:text-base mx-3"
+            >
+              {t('delete-account')}
+            </button>
+            <div>
+              {data?.user?.role === 'ADMIN' && (
+                <Link
+                  href="/admin/account-settings/change-password"
+                  type="button"
+                  className="cursor-pointer self-start text-sm font-medium hover:text-maroon-500 sm:text-base"
+                >
+                  {t('change-password')}
+                </Link>
+              )}
+            </div>
+          </div>
 
           {/* Submit Button */}
           <Button
@@ -199,7 +213,7 @@ export default function ProfileForm({
           </Button>
         </div>
 
-        {/* Delet Model */}
+        {/* Delete Modal */}
         {isDeleteAccountModalOpen && (
           <DeleteAccountConfirmation onClose={() => setIsDeleteAccountModalOpen(false)} />
         )}

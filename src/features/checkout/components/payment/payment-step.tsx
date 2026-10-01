@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 import { useCheckout } from '../../context/checkout-context';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
@@ -11,55 +11,67 @@ import Image from 'next/image';
 import { useCheckoutMutation } from '../../hooks/checkout.hook';
 import { useTransition } from 'react';
 import { PaymentMethod } from '../../types/checkout';
-import { id } from 'zod/v4/locales';
+import { toast } from 'sonner';
 
-
-
-const paymentMethods :{ id: PaymentMethod, image: string, }[] = [
+const paymentMethods: { id: PaymentMethod; image: string }[] = [
   {
     id: 'CASH_ON_DELIVERY',
-    image: cashIcon,
+    image: creditIcon,
   },
   {
     id: 'CREDIT_CARD',
-    image: creditIcon,
+    image: cashIcon,
   },
 ] as const;
 
 export function PaymentStep() {
   //  Translations
   const t = useTranslations('checkout.paymentMethod');
+  const tCheckout = useTranslations('checkout');
+  const locale = useLocale();
   // States
   const [isPending, startTransition] = useTransition();
 
   // Mutation
   const { mutateAsync: checkout } = useCheckoutMutation();
+  // const { mutateAsync: postPaymentIntent } = usePostPaymentIntentMutation();
 
   // Checkout stepper
   const { goToPreviousStep, isLastStep } = useCheckoutStepper();
 
   // Checkout context
   const {
-    checkout: { paymentMethod , addressId ,couponCode },
+    checkout: { paymentMethod, addressId, couponCode },
     updateCheckout,
   } = useCheckout();
 
+  console.log({paymentMethod})
   // Handle checkout
   function handleCheckout() {
     startTransition(async() => {
+      try {
+        const baseUrl = window.location.origin;
+        const successUrl = `${baseUrl}/${locale}/orders`;
+        const cancelUrl = `${baseUrl}/${locale}/cart/checkout`;
 
-      await checkout({
-        addressId,
-        couponCode,
-        paymentMethod
-      })
+        await checkout({
+          addressId,
+          couponCode,
+          paymentMethod,
+          successUrl,
+          cancelUrl,
+        });
+        toast.success(tCheckout('orderSuccess'));
+      } catch {
+        toast.error(tCheckout('orderFailed'));
+      }
     })
   }
 
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-          <button
+        <button
           type="button"
           onClick={goToPreviousStep}
           className="rounded-xl flex items-center px-3 py-1.5 hover:bg-zinc-200 bg-zinc-100 dark:bg-zinc-700 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-50 cursor-pointer"
@@ -79,22 +91,27 @@ export function PaymentStep() {
             <button
               key={method.id}
               type="button"
-              onClick={() =>
-                updateCheckout({ paymentMethod: method.id })
-              }
+              onClick={() => updateCheckout({ paymentMethod: method.id })}
               className={cn(
                 'rounded-xl border border-zinc-200 dark:border-zinc-700 p-8 text-center transition-all',
                 'hover:border-primary hover:shadow-md flex flex-col items-center justify-center cursor-pointer',
-                isSelected
-                  ? 'bg-zinc-50 dark:bg-zinc-800'
-                  : ''
+                isSelected ? 'bg-zinc-50 dark:bg-zinc-800' : ''
               )}
             >
-              <Image src={imageSrc} className='dark:brightness-0 dark:invert' height={250} width={200} alt={method.id} />
-              <h3 className={cn('text-2xl font-semibold', isSelected && 'text-maroon-600 dark:text-ds-bg-primary')}>
-                {method.id === 'CASH_ON_DELIVERY'
-                  ? t('cashOnDelivery')
-                  : t('creditCard')}
+              <Image
+                src={imageSrc}
+                className="dark:brightness-0 dark:invert"
+                height={250}
+                width={200}
+                alt={method.id}
+              />
+              <h3
+                className={cn(
+                  'text-2xl font-semibold',
+                  isSelected && 'text-maroon-600 dark:text-ds-bg-primary'
+                )}
+              >
+                {method.id === 'CASH_ON_DELIVERY' ? t('cashOnDelivery') : t('creditCard')}
               </h3>
 
               <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
@@ -115,7 +132,7 @@ export function PaymentStep() {
             onClick={handleCheckout}
             className="rounded-lg bg-maroon-600 dark:bg-soft-pink-300 text-white dark:text-zinc-700 flex items-center gap-1.5 px-6 py-2.5 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
           >
-            {isPending && <Loader2 className='animate-spin transition-all' />}
+            {isPending && <Loader2 className="animate-spin transition-all" />}
             {t('checkout')}
             <ArrowRight size={16} className="ms-2 rtl:rotate-180" />
           </button>
