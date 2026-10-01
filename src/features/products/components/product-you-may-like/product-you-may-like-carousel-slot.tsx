@@ -21,7 +21,7 @@ export default function ProductYouMayLikeCarouselSlot({
   products,
 }: ProductYouMayLikeCarouselSlotProps) {
 
-    const t = useTranslations('order-summary');
+    const t = useTranslations("order-summary");
 
   return (
     <Carousel>
