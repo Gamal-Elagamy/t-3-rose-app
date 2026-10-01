@@ -393,6 +393,8 @@
     "cart-button": "متابعة التسوق"
   },
   "checkout": {
+    "orderSuccess": "تم إنشاء الطلب بنجاح!",
+    "orderFailed": "فشل في إنشاء الطلب. يرجى المحاولة مرة أخرى.",
     "shipping": {
       "title": "عنوان الشحن",
       "addNewAddress": "إضافة عنوان جديد",
@@ -523,200 +525,19 @@
       "delete-failed": "فشل حذف الحساب. حاول مرة أخرى."
     }
   },
-  "dashboard": {
-    "navMain": {
-      "overview": "لوحة التحكم",
-      "products": "المنتجات",
-      "categories": "الاقسام",
-      "occasions": "المناسبات"
-    },
-    "categoriesPage": {
-      "header": "كل التصنيفات",
-      "titleAdd": "إضافة تصنيف جديد",
-      "search": "بحث",
-      "searchPlaceholder": "ابحث...",
-      "add": "إضافة تصنيف",
-      "updateCategory": "تعديل التصنيف:",
-      "update": "تحديث التصنيف",
-      "edit": "تعديل",
-      "delete": "حذف",
-      "deleteing": "جاري الحذف...",
-      "deleteSuccess": "تم حذف التصنيف بنجاح",
-      "deleteConfirmDescription": "هل أنت متأكد من حذف هذا التصنيف؟",
-      "cancle": "إلغاء",
-      "table": {
-        "name": "الاسم",
-        "products": "المنتجات",
-        "productCount": "{count, plural, zero {منتج} one {منتج} two {منتجين} few {منتجات} many {منتج} other {منتج}}",
-        "actions": "الإجراءات",
-        "empty": "لا توجد نتائج مطابقة للبحث"
-      },
-      "fields": {
-        "name": {
-          "label": "الاسم",
-          "placeholder": "أدخل اسم التصنيف"
-        },
-        "description": {
-          "label": "الوصف",
-          "placeholder": "أدخل وصف التصنيف"
-        },
-        "image": {
-          "label": "صورة التصنيف",
-          "view": "عرض صورة التصنيف",
-          "uploading": "جاري الرفع..."
-        },
-        "errors": {
-          "nameRequired": "الاسم مطلوب",
-          "descriptionRequired": "الوصف مطلوب",
-          "imageRequired": "الصورة مطلوبة",
-          "imageInvalidType": "نوع الملف غير مدعوم",
-          "imageTooLarge": "حجم الملف يجب ألا يتجاوز 1 ميجا",
-          "addFailed": "فشل إضافة التصنيف",
-          "uploadFailed": "فشل رفع الصورة"
-        }
-      }
-    },
-    "occasionsPage": {
-      "header": "كل المناسبات",
-      "titleAdd": "إضافة مناسبة جديدة",
-      "search": "بحث",
-      "searchPlaceholder": "ابحث...",
-      "add": "إضافة مناسبة",
-      "updateOccasion": "تعديل المناسبة:",
-      "update": "تحديث المناسبة",
-      "edit": "تعديل",
-      "delete": "حذف",
-      "deleteing": "جاري الحذف...",
-      "deleteSuccess": "تم حذف المناسبة بنجاح",
-      "deleteConfirmDescription": "هل أنت متأكد من حذف هذه المناسبة؟",
-      "cancle": "إلغاء",
-      "table": {
-        "name": "الاسم",
-        "products": "المنتجات",
-        "productCount": "{count, plural, zero {منتج} one {منتج} two {منتجين} few {منتجات} many {منتج} other {منتج}}",
-        "actions": "الإجراءات",
-        "empty": "لا توجد نتائج مطابقة للبحث"
-      },
-      "fields": {
-        "name": {
-          "label": "الاسم",
-          "placeholder": "أدخل اسم المناسبة"
-        },
-        "description": {
-          "label": "الوصف",
-          "placeholder": "أدخل وصف المناسبة"
-        },
-        "image": {
-          "label": "صورة المناسبة",
-          "view": "عرض صورة المناسبة",
-          "uploading": "جاري الرفع..."
-        },
-        "errors": {
-          "nameRequired": "الاسم مطلوب",
-          "descriptionRequired": "الوصف مطلوب",
-          "imageRequired": "الصورة مطلوبة",
-          "imageInvalidType": "نوع الملف غير مدعوم",
-          "imageTooLarge": "حجم الملف يجب ألا يتجاوز 1 ميجا",
-          "addFailed": "فشل إضافة المناسبة",
-          "uploadFailed": "فشل رفع الصورة"
-        }
-      }
-    },
-    "products": {
-      "addProduct": "إضافة منتج",
-      "addProductPageTitle": "إضافة منتج جديد",
-      "updateProduct": "تحديث المنتج",
-      "updateProductPageTitle": "تحديث المنتج: {title}",
-      "title": "العنوان",
-      "description": "الوصف",
-      "price": "السعر",
-      "discount": "الخصم",
-      "priceAfterDiscount": "السعر بعد الخصم",
-      "quantity": "الكمية",
-      "category": "الفئة",
-      "occasion": "المناسبة",
-      "productCoverImage": "صورة غلاف المنتج",
-      "productGallery": "معرض المنتج",
-      "viewProductCover": "عرض غلاف المنتج",
-      "viewProductGallery": "عرض معرض المنتج",
-      "imagePreview": "معاينة الصورة",
-      "closePreview": "إغلاق المعاينة",
-      "previousImage": "الصورة السابقة",
-      "nextImage": "الصورة التالية",
-      "goToImage": "الانتقال إلى الصورة {number}",
-      "uploading": "جاري رفع {fileName}...",
-      "clear": "مسح",
-      "noChanges": "لا توجد تغييرات للتحديث",
-      "descriptionNotEditable": "لا يمكن تحرير الوصف بعد الإنشاء",
-      "categoryNotEditable": "لا يمكن تحرير الفئة بعد الإنشاء",
-      "occasionNotEditable": "لا يمكن تحرير المناسبة بعد الإنشاء",
-      "productCreated": "تم إنشاء المنتج بنجاح",
-      "productUpdated": "تم تحديث المنتج بنجاح",
-      "validation": {
-        "titleRequired": "عنوان المنتج مطلوب",
-        "descriptionRequired": "وصف المنتج مطلوب",
-        "priceRequired": "يرجى إدخال سعر صحيح",
-        "priceAfterDiscountRequired": "يرجى إدخال سعر صحيح بعد الخصم",
-        "quantityRequired": "كمية المنتج مطلوبة",
-        "categoryRequired": "يرجى اختيار فئة للمنتج",
-        "occasionRequired": "يرجى اختيار مناسبة للمنتج",
-        "coverRequired": "غلاف المنتج مطلوب",
-        "galleryRequired": "صور معرض المنتج مطلوبة",
-        "uploadCoverFailed": "فشل رفع صورة الغلاف",
-        "uploadGalleryFailed": "فشل رفع صور المعرض"
-      },
-      "placeholders": {
-        "title": "أدخل عنوان المنتج",
-        "description": "أدخل وصف المنتج",
-        "price": "مثال: 5000",
-        "discount": "مثال: 5",
-        "quantity": "مثال: 200"
-      }
-    },
-    "charts": {
-      "order-status": "حالة الطلب",
-      "no-data": "لا يوجد بيانات",
-      "completed": "مكتمل",
-      "in-progress": "قيد التنفيذ",
-      "canceled": "تم الغاء",
-      "revenue": "المبيعات",
-      "monthly": "شهري",
-      "last-Week": "اخر اسبوع"
+  "order-summary": {
+      "title": "ملخص الطلب",
+      "apply-button": " تطبيق الكوبون",
+      "subtotal": "المجموع الفرعي",
+      "total": "المجموع",
+      "checkout-button": "الدفع",
+      "no-coupon": "لم يتم تطبيق الكوبون",
+      "coupon-Placeholder": "كود الكوبون",
+      "loading": "جارى التطبيق...",
+      "coupon-found": "تم تطبيق الكوبون بنجاح",
+      "coupon-not-found": "الكوبون غير موجود.",
+      "sub-total": "المجموع الفرعي",
+      "coupon-empty": "يرجى ادخال كود الكوبون",
+      "product-you-may-like": "المنتجات التي تحبها"
     }
-  },
-  "admin-dashboard": {
-    "summary": {
-      "total-products": "إجمالي المنتجات",
-      "total-orders": "إجمالي الطلبات",
-      "total-categories": "إجمالي الفئات",
-      "total-revenue": "إجمالي الإيرادات"
-    },
-    "categories": {
-      "title": "كل الفئات",
-      "empty": "لا توجد فئات",
-      "products-count": "{count, plural, =0 {لا يوجد منتجات} one {منتج واحد} two {منتجان} few {# منتجات} many {# منتجًا} other {# منتج}}"
-    },
-    "top-selling": {
-      "title": "الأكثر مبيعًا",
-      "empty": "لا توجد مبيعات بعد",
-      "sold": "{count, plural, =0 {لا يوجد مبيعات} one {تم بيع قطعة واحدة} two {تم بيع قطعتين} few {تم بيع # قطع} many {تم بيع # قطعة} other {تم بيع # قطعة}}",
-      "no-more": "لا مزيد من المنتجات",
-      "load-failed": "فشل تحميل الأكثر مبيعًا",
-      "currency": "جنيه"
-    },
-    "low-stock": {
-      "title": "منتجات على وشك النفاد",
-      "empty": "لا توجد منتجات منخفضة المخزون",
-      "left": "{count, plural, =0 {نفدت الكمية} one {قطعة واحدة متبقية} two {قطعتان متبقيتان} few {# قطع متبقية} many {# قطعة متبقية} other {# قطعة متبقية}}",
-      "no-more": "لا مزيد من المنتجات",
-      "load-failed": "فشل تحميل منتجات المخزون المنخفض"
-    },
-    "errors": {
-      "load-failed": "فشل تحميل بيانات لوحة التحكم"
-    },
-    "currency": "جنيه"
-  },
-  "change-password": {
-    "title": "تغيير كلمة المرور"
-  }
 }

@@ -1,4 +1,6 @@
 'use client';
+import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
@@ -38,10 +40,7 @@ export function AddressList({
     addresses.find((address) => address.isPrimary)?.id
   );
 
-  const { updateCheckout } = useCheckout();
-
   const onSelectAddress = (address: IAddress) => {
-    setSelectedAddressId(address.id);
     updateCheckout({ addressId: address.id });
   };
 

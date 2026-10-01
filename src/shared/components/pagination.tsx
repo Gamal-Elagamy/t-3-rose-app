@@ -2,7 +2,7 @@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ReactNode, useCallback, useMemo } from 'react';
-import { getPageNumbers } from '../../../shared/lib/utils/pagination.utils';
+import { getPageNumbers } from '../lib/utils/pagination.utils';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 type PageButtonProps = {
@@ -46,7 +46,7 @@ type PaginationProps = {
   totalPages?: number;
 };
 
-export default function PaginationProducts({ page, totalPages = 10 }: PaginationProps) {
+export default function Pagination({ page, totalPages = 10 }: PaginationProps) {
   // Hooks
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -15,12 +15,11 @@ interface CartLayoutProps {
 export default async function CartLayout({ children }: CartLayoutProps) {
   const products = await getYouMayLikeProducts();
   return (
-    <>
-      <CheckoutProvider>
-        <div className="grid min-h-screen grid-cols-3 gap-4">
-          <section className="col-span-2 mt-15 ms-10">{children}</section>
+    <CheckoutProvider>
+      <div className="grid h-screen grid-cols-3 gap-4">
+        <section className="col-span-2">{children}</section>
 
-          <CouponProvider>
+        <CouponProvider>
             <section className="col-span-1">
               <OrderSummary
                 couponForm={<CouponSection />}
@@ -37,6 +36,5 @@ export default async function CartLayout({ children }: CartLayoutProps) {
           <ProductYouMayLikeCarouselSlot products={products} />
         </section>
       </CheckoutProvider>
-    </>
   );
 }

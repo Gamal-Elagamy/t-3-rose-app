@@ -1,9 +1,11 @@
 export type PaymentMethod = 'CREDIT_CARD' | 'CASH_ON_DELIVERY';
 
 export interface PayloadCheckOut {
-  addressId: string;
-  paymentMethod: PaymentMethod;
-  couponCode?: string;
+    addressId: string,
+    paymentMethod: PaymentMethod
+    couponCode?: string,
+    successUrl?: string,
+    cancelUrl?: string,
 }
 export type OrderStatus =
   | 'PENDING'

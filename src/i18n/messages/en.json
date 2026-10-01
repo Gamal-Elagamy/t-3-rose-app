@@ -393,6 +393,8 @@
     "cart-button": "Continue Shopping"
   },
   "checkout": {
+    "orderSuccess": "Order placed successfully!",
+    "orderFailed": "Failed to place order. Please try again.",
     "shipping": {
       "title": "Shipping Address",
       "addNewAddress": "Add New Address",
@@ -456,13 +458,13 @@
     "total": "Total",
     "checkout-button": "Checkout",
     "no-coupon": "No coupon applied",
-    "coupon-Placeholder": "Coupon code",
+    "coupon-Placeholder": "coupon code",
     "loading": "Applying...",
     "coupon-found": "Coupon applied successfully",
     "coupon-not-found": "Coupon not found.",
     "sub-total": "Subtotal",
     "coupon-empty": "Please enter coupon code",
-    "product-you-may-like": "Products you may like"
+    "product-you-may-like": "Product you may like"
   },
   "accountSettings": {
     "title": "Account Settings",
@@ -524,200 +526,19 @@
       "delete-failed": "Failed to delete your account. Please try again."
     }
   },
-  "dashboard": {
-    "navMain": {
-      "overview": "Overview",
-      "products": "Products",
-      "categories": "Categories",
-      "occasions": "Occasions"
-    },
-    "categoriesPage": {
-      "header": "All Categories",
-      "titleAdd": "Add a New Category",
-      "search": "Search",
-      "searchPlaceholder": "Search...",
-      "add": "Add Category",
-      "updateCategory": "Update Category:",
-      "update": "Update Category",
-      "edit": "Edit",
-      "delete": "Delete",
-      "deleteing": "Deleting...",
-      "deleteSuccess": "Category deleted successfully",
-      "deleteConfirmDescription": "Are you sure you want to delete this category?",
-      "cancle": "Cancle",
-      "table": {
-        "name": "Name",
-        "products": "Products",
-        "productCount": "{count, plural, one {product} other {products}}",
-        "actions": "Actions",
-        "empty": "No categories found"
-      },
-      "fields": {
-        "name": {
-          "label": "Category Name",
-          "placeholder": "Enter category name"
-        },
-        "description": {
-          "label": "Category Description",
-          "placeholder": "Enter category description"
-        },
-        "image": {
-          "label": "Categorie Image",
-          "view": "View category image",
-          "uploading": "Uploading..."
-        },
-        "errors": {
-          "nameRequired": "Name is required",
-          "descriptionRequired": "Description is required",
-          "imageRequired": "Image is required",
-          "imageInvalidType": "File type is not supported",
-          "imageTooLarge": "File size must be less than 1MB",
-          "addFailed": "Failed to add category",
-          "uploadFailed": "Failed to upload image"
-        }
-      }
-    },
-    "occasionsPage": {
-      "header": "All Occasions",
-      "titleAdd": "Add a New Occasion",
-      "search": "Search",
-      "searchPlaceholder": "Search...",
-      "add": "Add Occasion",
-      "updateOccasion": "Update Occasion:",
-      "update": "Update Occasion",
-      "edit": "Edit",
-      "delete": "Delete",
-      "deleteing": "Deleting...",
-      "deleteSuccess": "Occasion deleted successfully",
-      "deleteConfirmDescription": "Are you sure you want to delete this occasion?",
-      "cancle": "Cancle",
-      "table": {
-        "name": "Name",
-        "products": "Products",
-        "productCount": "{count, plural, one {product} other {products}}",
-        "actions": "Actions",
-        "empty": "No occasions found"
-      },
-      "fields": {
-        "name": {
-          "label": "Occasion Name",
-          "placeholder": "Enter occasion name"
-        },
-        "description": {
-          "label": "Occasion Description",
-          "placeholder": "Enter occasion description"
-        },
-        "image": {
-          "label": "Occasion Image",
-          "view": "View occasion image",
-          "uploading": "Uploading..."
-        },
-        "errors": {
-          "nameRequired": "Name is required",
-          "descriptionRequired": "Description is required",
-          "imageRequired": "Image is required",
-          "imageInvalidType": "File type is not supported",
-          "imageTooLarge": "File size must be less than 1MB",
-          "addFailed": "Failed to add occasion",
-          "uploadFailed": "Failed to upload image"
-        }
-      }
-    },
-    "products": {
-      "addProduct": "Add Product",
-      "addProductPageTitle": "Add a New Product",
-      "updateProduct": "Update Product",
-      "updateProductPageTitle": "Update Product: {title}",
-      "title": "Title",
-      "description": "Description",
-      "price": "Price",
-      "discount": "Discount",
-      "priceAfterDiscount": "Price after discount",
-      "quantity": "Quantity",
-      "category": "Category",
-      "occasion": "Occasion",
-      "productCoverImage": "Product cover image",
-      "productGallery": "Product gallery",
-      "viewProductCover": "View product cover",
-      "viewProductGallery": "View product gallery",
-      "imagePreview": "Image preview",
-      "closePreview": "Close preview",
-      "previousImage": "Previous image",
-      "nextImage": "Next image",
-      "goToImage": "Go to image {number}",
-      "uploading": "Uploading {fileName}...",
-      "clear": "Clear",
-      "noChanges": "No changes to update",
-      "descriptionNotEditable": "Description cannot be edited after creation",
-      "categoryNotEditable": "Category cannot be edited after creation",
-      "occasionNotEditable": "Occasion cannot be edited after creation",
-      "productCreated": "Product created successfully",
-      "productUpdated": "Product updated successfully",
-      "validation": {
-        "titleRequired": "Product title is required",
-        "descriptionRequired": "Product description is required",
-        "priceRequired": "Please enter a valid price",
-        "priceAfterDiscountRequired": "Please enter a valid price after discount",
-        "quantityRequired": "Product quantity is required",
-        "categoryRequired": "Please select a category for the product",
-        "occasionRequired": "Please select an occasion for the product",
-        "coverRequired": "Product cover is required",
-        "galleryRequired": "Product gallery images are required",
-        "uploadCoverFailed": "Failed to upload cover image",
-        "uploadGalleryFailed": "Failed to upload gallery images"
-      },
-      "placeholders": {
-        "title": "Enter product title",
-        "description": "Enter product description",
-        "price": "Example: 5000",
-        "discount": "Example: 5",
-        "quantity": "Example: 200"
-      }
-    },
-    "charts": {
-      "order-status": "Order Status",
-      "no-data": "No data",
-      "completed": "Completed",
-      "in-progress": "In Progress",
-      "canceled": "Canceled",
-      "revenue": "Revenue",
-      "monthly": "Monthly",
-      "last-Week": "Weekly"
-    }
-  },
-  "admin-dashboard": {
-    "summary": {
-      "total-products": "Total Products",
-      "total-orders": "Total Orders",
-      "total-categories": "Total Categories",
-      "total-revenue": "Total Revenue"
-    },
-    "categories": {
-      "title": "All Categories",
-      "empty": "No categories found",
-      "products-count": "{count, plural, =0 {No products} one {# product} other {# products}}"
-    },
-    "top-selling": {
-      "title": "Top Selling Products",
-      "empty": "No products sold yet",
-      "sold": "{count, plural, one {# sold} other {# sold}}",
-      "no-more": "No more products",
-      "load-failed": "Failed to load top selling products",
-      "currency": "EGP"
-    },
-    "low-stock": {
-      "title": "Low Stock Products",
-      "empty": "No low stock products",
-      "left": "{count, plural, =0 {Out of stock} one {# left} other {# left}}",
-      "no-more": "No more products",
-      "load-failed": "Failed to load low stock products"
-    },
-    "errors": {
-      "load-failed": "Failed to load dashboard data"
-    },
-    "currency": "EGP"
-  },
-  "change-password": {
-    "title": "Change Password"
+  "order-summary": {
+    "title": "Summary",
+    "apply-button": "Apply Coupon",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout-button": "Checkout",
+    "no-coupon": "No coupon applied",
+    "coupon-Placeholder": "coupon code",
+    "loading": "Applying...",
+    "coupon-found": "Coupon applied successfully",
+    "coupon-not-found": "Coupon not found.",
+    "sub-total": "Subtotal",
+    "coupon-empty": "Please enter coupon code",
+    "product-you-may-like": "Product you may like"
   }
 }
