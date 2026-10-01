@@ -2,8 +2,6 @@
 
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-
-
 import { useCheckoutStepper } from '@/features/checkout/components/checkout-stepper';
 import { useCheckout } from '../../context/checkout-context';
 import { cn } from '@/shared/lib/utils/tailwind-cn';

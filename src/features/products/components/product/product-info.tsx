@@ -18,6 +18,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
   const isValidDiscountType =
     product.discountType === 'PERCENT' || product.discountType === 'FIXED';
+
   const originalPrice = isValidDiscountType
     ? calculateOriginalPrice(
         currentPrice,
@@ -41,21 +42,25 @@ export default function ProductInfo({ product }: ProductInfoProps) {
               {Math.round(originalPrice)}
             </span>
           )}
+
           <span className="text-2xl md:text-3xl font-bold text-ds-text-plain">
             {currentPrice}
+
             <span className="text-lg md:text-xl text-ds-text-plain font-semibold mx-1">
               {t('currency')}
             </span>
           </span>
+
           {!isOutOfStock && (
             <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-ds-bg-soft px-3 py-1 text-sm font-medium text-ds-text-plain">
-              <Package className="size-5 text-zinc-500" />
+              <Package className="size-5 text-zinc-500" aria-hidden="true" />
               {t('leftInStock', { count: product.stock })}
             </span>
           )}
+
           {isOutOfStock && (
             <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-3 py-1 text-sm font-medium text-red-600">
-              <Package className="size-5 text-red-600" />
+              <Package className="size-5 text-red-600" aria-hidden="true" />
               {t('outOfStock')}
             </span>
           )}
@@ -63,12 +68,18 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
         {/* Rating */}
         <div className="flex items-center gap-2 border-y border-ds-border-soft py-4">
-          <Star className="size-5 fill-yellow-500 text-yellow-500" />
+          <Star className="size-5 fill-yellow-500 text-yellow-500" aria-hidden="true" />
+
           <span className="text-sm text-ds-text-plain">
-            {t('rating', { rating: (product.rating ?? 0).toFixed(1) })}
+            {t('rating', {
+              rating: (product.rating ?? 0).toFixed(1),
+            })}
           </span>
+
           <span className="text-sm text-ds-text-info cursor-pointer">
-            {t('ratingsCount', { count: product._count.reviews })}
+            {t('ratingsCount', {
+              count: product._count.reviews,
+            })}
           </span>
         </div>
 
@@ -83,6 +94,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       {/* Add to cart and wishlist */}
       <div className="flex items-center gap-3 mt-4 md:mt-0">
         <AddToWishlist variant="details" productId={product.id} />
+
         <AddToCart variant="details" stock={product.stock} productId={product.id} />
       </div>
     </div>

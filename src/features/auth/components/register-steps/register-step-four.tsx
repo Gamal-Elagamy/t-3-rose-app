@@ -72,7 +72,9 @@ export default function RegisterStepFour({ apiError }: StepProps) {
 
       {/* General Submit Error */}
       {apiError?.message && (
-        <p className="text-ds-text-danger text-sm mt-2 text-center">{apiError.message}</p>
+        <p role="alert" className="text-ds-text-danger text-sm mt-2 text-center">
+          {apiError.message}
+        </p>
       )}
     </>
   );

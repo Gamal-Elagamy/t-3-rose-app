@@ -19,6 +19,7 @@ export async function SidebarFilters() {
     label: cat.title,
     image: cat.image,
   }));
+
   const occasions: OccasionOption[] = occasionsData.map((occ) => ({
     value: occ.id,
     label: occ.title,
@@ -26,12 +27,18 @@ export async function SidebarFilters() {
   }));
 
   return (
-    <div className="w-72 flex flex-col gap-6">
+    <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:flex lg:w-72 lg:flex-col">
       <CategoryFilter categories={categories} />
+
       <OccasionFilter occasions={occasions} />
+
       <RatingFilter />
+
       <PriceFilter />
-      <ResetAllButton />
+
+      <div className="sm:col-span-2 lg:col-span-1">
+        <ResetAllButton />
+      </div>
     </div>
   );
 }

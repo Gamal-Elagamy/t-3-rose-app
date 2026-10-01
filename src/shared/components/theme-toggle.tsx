@@ -63,12 +63,14 @@ export function ThemeToggle() {
     >
       {options.map((opt) => {
         const isActive = theme === opt.value;
+
         return (
           <Button
             key={opt.value}
             variant="ghost"
             type="button"
             aria-label={opt.label}
+            aria-pressed={isActive}
             onClick={() => setTheme(opt.value)}
             className={cn(
               'flex items-center justify-center rounded-full w-8.5 h-8.5 cursor-pointer',

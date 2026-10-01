@@ -17,12 +17,11 @@ export default async function CartLayout({ children }: CartLayoutProps) {
   return (
     <>
       <CheckoutProvider>
-        <div className="grid h-screen grid-cols-3 gap-4">
-
-          <section className="col-span-2">{children}</section>
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-4 lg:gap-8 min-h-[calc(100vh-200px)] px-4 md:px-8 pt-8">
+          <section className="lg:col-span-2">{children}</section>
 
           <CouponProvider>
-            <section className="col-span-1">
+            <section aria-label="Order summary" className="lg:col-span-1">
               <OrderSummary
                 couponForm={<CouponSection />}
                 totalPrice={<TotalPrice currency="EGP" />}
@@ -34,10 +33,10 @@ export default async function CartLayout({ children }: CartLayoutProps) {
         </div>
 
         {/* Product You May Like */}
-        <section className="mx-10 my-20">
+        <section className="mx-4 my-10 sm:mx-6 lg:mx-10 lg:my-20">
           <ProductYouMayLikeCarouselSlot products={products} />
         </section>
-      </CheckoutProvider >
+      </CheckoutProvider>
     </>
   );
 }

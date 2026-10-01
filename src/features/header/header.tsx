@@ -19,7 +19,7 @@ interface HeaderProps {
 import { useCart } from '../cart/context/cart.context';
 import { LoginPopover } from '../auth/components/login-popover/login-popover';
 
-export function Header() {
+export function Header({wishlistCount}:HeaderProps) {
   // Cart Context
   const { cartDataProducts } = useCart();
 
@@ -31,19 +31,19 @@ export function Header() {
   const itemsCount = cartDataProducts.length;
 
   return (
-    <header>
-      {/* desktop */}
-      <div className="hidden  items-center gap-6 px-6 py-4 lg:flex">
+    <header className="sticky top-0 z-50 bg-ds-bg-plain">
+      {/* Desktop */}
+      <div className="hidden items-center gap-6 px-6 py-4 lg:flex">
         <Logo />
-        {/* <DeliverTo /> */}
+
         <SearchBox />
+
         <div className="flex shrink-0 items-center gap-4">
           {isAuthenticated ? (
-            <div className="flex items-center gap-4">
+            <>
               <UserDropdown />
               <Notifications />
-              <CartButton />
-            </div>
+            </>
           ) : (
             <LoginPopover />
           )}
@@ -53,19 +53,24 @@ export function Header() {
           <LanguageSwitcher />
         </div>
       </div>
-      {/* mobile */}
+
+      {/* Mobile */}
       <div className="flex flex-col gap-3 px-4 py-3 lg:hidden">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-3">
           <MobileMenu />
+
           <Logo />
           <div className="flex items-center gap-4">
             <CartButton count={itemsCount} />
             {isAuthenticated && <Notifications />}
+            <WishlistButton authenticatedCount={wishlistCount} />
           </div>
         </div>
 
         <SearchBar />
       </div>
+
+      {/* Main Navigation */}
       <div className="hidden lg:block">
         <MainNav />
       </div>

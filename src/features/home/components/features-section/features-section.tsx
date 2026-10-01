@@ -7,22 +7,22 @@ const featuresInfo = [
   {
     id: 1,
     key: 'free-delivery',
-    icon: <Truck size={40} strokeWidth={1.46} />,
+    icon: <Truck size={40} strokeWidth={1.46} aria-hidden="true" />,
   },
   {
     id: 2,
     key: 'get-refund',
-    icon: <RefreshCw size={40} strokeWidth={1.46} />,
+    icon: <RefreshCw size={40} strokeWidth={1.46} aria-hidden="true" />,
   },
   {
     id: 3,
     key: 'safe-payment',
-    icon: <ShieldCheck size={40} strokeWidth={1.46} />,
+    icon: <ShieldCheck size={40} strokeWidth={1.46} aria-hidden="true" />,
   },
   {
     id: 4,
     key: 'support',
-    icon: <Headset size={40} strokeWidth={1.46} />,
+    icon: <Headset size={40} strokeWidth={1.46} aria-hidden="true" />,
   },
 ];
 
@@ -36,7 +36,7 @@ export default function FeaturesSection() {
       <div
         className={cn(
           // Default
-          'features bg-ds-bg-primary-fade rounded-2xl p-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-10',
+          'features grid grid-cols-1 gap-6 mt-10 rounded-2xl bg-ds-bg-primary-fade p-10 md:grid-cols-2 xl:grid-cols-4',
 
           // Dark
           'dark:bg-ds-bg-plain'
@@ -49,11 +49,12 @@ export default function FeaturesSection() {
             <div
               className={cn(
                 // Default
-                'icon py-4 px-3.5 text-ds-text-inverse bg-maroon-600 rounded-full',
+                'icon rounded-full bg-maroon-600 px-3.5 py-4 text-ds-text-inverse',
 
                 // Dark
                 'dark:bg-ds-bg-primary-saturated'
               )}
+              aria-hidden="true"
             >
               {feature.icon}
             </div>
@@ -64,7 +65,7 @@ export default function FeaturesSection() {
               <h2
                 className={cn(
                   // Default
-                  'mb-1.25 font-semibold text-xl text-maroon-600',
+                  'mb-1.25 text-xl font-semibold text-maroon-600',
 
                   // Dark
                   'dark:text-soft-pink-200'
@@ -74,7 +75,7 @@ export default function FeaturesSection() {
               </h2>
 
               {/* Features Description */}
-              <p className="font-normal text-sm text-ds-text-soft">
+              <p className="text-sm font-normal text-ds-text-soft">
                 {t(`${feature.key}.description` as Parameters<typeof t>[0])}
               </p>
             </div>

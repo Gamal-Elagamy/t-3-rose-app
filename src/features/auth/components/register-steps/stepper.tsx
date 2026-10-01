@@ -9,7 +9,7 @@ export default function Stepper({ currentStep, totalSteps }: StepperProps) {
   const steps = Array.from({ length: totalSteps }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center w-full">
+    <div className="flex items-center w-full" aria-label={`Step ${currentStep} of ${totalSteps}`}>
       {steps.map((step, index) => {
         const isCompleted = step < currentStep;
         const isActive = step === currentStep;
@@ -19,6 +19,7 @@ export default function Stepper({ currentStep, totalSteps }: StepperProps) {
           <div key={step} className="flex items-center flex-1 last:flex-none">
             {/* Circle */}
             <div
+              aria-current={isActive ? 'step' : undefined}
               className={`
                 flex items-center justify-center shrink-0
                 w-6.25 h-6.25 rounded-full text-sm font-medium

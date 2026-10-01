@@ -36,7 +36,8 @@ export default function OrderCard({ order }: OrderCardProps) {
     const formatPrice = (value: number) => format.number(value);
     const getStatusLabel = (state: string) => {
         const mapped = STATUS_MAP[state?.toLowerCase()];
-        return mapped ? { label: t(mapped.labelKey), key: mapped.key, color: mapped.color, textColor: mapped.textColor } : { label: state, key: state, color: "bg-gray-400", textColor: "text-gray-600" };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return mapped ? { label: (t as any)(mapped.labelKey), key: mapped.key, color: mapped.color, textColor: mapped.textColor } : { label: state, key: state, color: "bg-gray-400", textColor: "text-gray-600" };
     };
 
     // Variables

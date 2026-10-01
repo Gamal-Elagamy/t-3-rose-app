@@ -36,8 +36,10 @@ export function PriceFilter() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-ds-text-default">{t('filters.price')}</h3>
+
         {hasFilter && (
           <button
+            type="button"
             onClick={() => {
               resetFilter('minPrice');
               resetFilter('maxPrice');
@@ -54,8 +56,12 @@ export function PriceFilter() {
       {/* Inputs */}
       <div className="flex items-center gap-2">
         <div className="flex flex-col gap-1 flex-1">
-          <span className="text-xs text-ds-text-muted">{t('filters.from')}</span>
+          <label htmlFor="price-from" className="text-xs text-ds-text-muted">
+            {t('filters.from')}
+          </label>
+
           <input
+            id="price-from"
             type="number"
             value={localPriceFrom}
             onChange={(e) => handlePriceFromChange(e.target.value)}
@@ -65,8 +71,12 @@ export function PriceFilter() {
         </div>
 
         <div className="flex flex-col gap-1 flex-1">
-          <span className="text-xs text-ds-text-muted">{t('filters.to')}</span>
+          <label htmlFor="price-to" className="text-xs text-ds-text-muted">
+            {t('filters.to')}
+          </label>
+
           <input
+            id="price-to"
             type="number"
             value={localPriceTo}
             onChange={(e) => handlePriceToChange(e.target.value)}

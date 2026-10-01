@@ -37,8 +37,11 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
             className="h-24 w-24 rounded-full border-3 border-white object-cover shadow-md"
           />
         ) : (
-          <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-soft-pink-100 shadow-md">
-            <User className="h-10 w-10 text-soft-pink-600" />
+          <div
+            className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-soft-pink-100 shadow-md"
+            aria-hidden="true"
+          >
+            <User className="h-10 w-10 text-soft-pink-600" aria-hidden="true" />
           </div>
         )}
       </div>
@@ -49,11 +52,16 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <h3 className="text-md font-semibold text-black">{testimonial.name}</h3>
 
         {/* Rating */}
-        <div className="mt-4 flex items-center gap-1">
+        <div
+          className="mt-4 flex items-center gap-1"
+          role="img"
+          aria-label={`Rating: ${testimonial.rating} out of 5`}
+        >
           {Array.from({ length: 5 }).map((_, index) => (
             <Star
               key={index}
               size={16}
+              aria-hidden="true"
               className={
                 index < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-yellow-300'
               }

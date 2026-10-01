@@ -45,11 +45,9 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
               onClick={handleToggleAnimation}
               aria-pressed={isPaused}
               aria-label={isPaused ? t('play') : t('pause')}
-              title={isPaused ? t('play') : t('pause')}
-              className="flex items-center gap-2 rounded-full border border-ds-border px-3 py-2 text-sm transition-colors hover:bg-ds-bg-plain"
+              className="sr-only"
             >
-              {isPaused ? <Play size={16} /> : <Pause size={16} />}
-              <span>{isPaused ? t('play') : t('pause')}</span>
+              {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
             </button>
           </div>
 
