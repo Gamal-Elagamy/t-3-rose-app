@@ -18,7 +18,7 @@ const menuItems = [
   { key: 'account', href: '/account-settings', icon: User },
   { key: 'addresses', href: '/addresses', icon: MapPin },
   { key: 'orders', href: '/orders', icon: FileText },
-  { key: 'dashboard', href: '/dashboard', icon: LayoutGrid },
+  { key: 'dashboard', href: '/admin', icon: LayoutGrid },
 ] as const;
 
 export function UserDropdown() {

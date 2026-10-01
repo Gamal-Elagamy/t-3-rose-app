@@ -1,4 +1,4 @@
-export const itemPageConfig = {
+export const  itemPageConfig = {
   categories: {
     translationNamespace: 'dashboard.categoriesPage',
     listPath: '/admin/categories',

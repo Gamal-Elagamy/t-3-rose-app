@@ -464,7 +464,10 @@
     "coupon-not-found": "Coupon not found.",
     "sub-total": "Subtotal",
     "coupon-empty": "Please enter coupon code",
-    "product-you-may-like": "Product you may like"
+    "product-you-may-like": "Product you may like",
+    "errorTitle": "Error",
+    "errorDesc": "Error loading orders",
+    "go-home": "Go Home"
   },
   "accountSettings": {
     "title": "Account Settings",
@@ -526,19 +529,203 @@
       "delete-failed": "Failed to delete your account. Please try again."
     }
   },
-  "order-summary": {
-    "title": "Summary",
-    "apply-button": "Apply Coupon",
-    "subtotal": "Subtotal",
-    "total": "Total",
-    "checkout-button": "Checkout",
-    "no-coupon": "No coupon applied",
-    "coupon-Placeholder": "coupon code",
-    "loading": "Applying...",
-    "coupon-found": "Coupon applied successfully",
-    "coupon-not-found": "Coupon not found.",
-    "sub-total": "Subtotal",
-    "coupon-empty": "Please enter coupon code",
-    "product-you-may-like": "Product you may like"
+  "dashboard": {
+    "products": {
+      "addProductPageTitle": "Add Product",
+      "updateProductPageTitle": "Update Product",
+      "imagePreview": "Image Preview",
+      "closePreview": "Close Preview",
+      "goToImage": "Go to Image",
+      "previousImage": "Previous Image",
+      "nextImage": "Next Image",
+      "price": "Price",
+      "placeholders": {
+        "price": "Enter price",
+        "discount": "Enter discount",
+        "title": "Enter title",
+        "description": "Enter description",
+        "quantity": "Enter quantity"
+      },
+      "discount": "Discount",
+      "priceAfterDiscount": "Price After Discount",
+      "title": "Title",
+      "description": "Description",
+      "descriptionNotEditable": "Description not editable",
+      "quantity": "Quantity",
+      "category": "Category",
+      "occasion": "Occasion",
+      "updateProduct": "Update Product",
+      "addProduct": "Add Product",
+      "productCoverImage": "Product Cover Image",
+      "validation": {
+        "uploadCoverFailed": "Upload cover failed",
+        "uploadGalleryFailed": "Upload gallery failed"
+      },
+      "uploading": "Uploading...",
+      "clear": "Clear",
+      "productGallery": "Product Gallery",
+      "viewProductCover": "View Product Cover",
+      "viewProductGallery": "View Product Gallery",
+      "productCreated": "Product created",
+      "productUpdated": "Product updated",
+      "noChanges": "No changes"
+    },
+    "categoriesPage": {
+      "fields": {
+        "errors": {
+          "imageTooLarge": "Image too large"
+        },
+        "image": {
+          "label": "Image",
+          "uploading": "Uploading...",
+          "view": "View Image"
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter name"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Enter description"
+        }
+      },
+      "edit": "Edit",
+      "delete": "Delete",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "add": "Add",
+      "update": "Update",
+      "deleteConfirmDescription": "Are you sure you want to delete this item?",
+      "cancle": "Cancel",
+      "deleteing": "Deleting...",
+      "deleteSuccess": "Deleted successfully",
+      "table": {
+        "empty": "No items found",
+        "name": "Name",
+        "products": "Products",
+        "actions": "Actions",
+        "productCount": "{count, plural, =1 {Product} other {Products}}"
+      },
+      "header": "Categories",
+      "titleAdd": "Add Category",
+      "updateCategory": "Update Category"
+    },
+    "occasionsPage": {
+      "fields": {
+        "errors": {
+          "imageTooLarge": "Image too large"
+        },
+        "image": {
+          "label": "Image",
+          "uploading": "Uploading...",
+          "view": "View Image"
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter name"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Enter description"
+        }
+      },
+      "edit": "Edit",
+      "delete": "Delete",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "add": "Add",
+      "update": "Update",
+      "deleteConfirmDescription": "Are you sure you want to delete this item?",
+      "cancle": "Cancel",
+      "deleteing": "Deleting...",
+      "deleteSuccess": "Deleted successfully",
+      "table": {
+        "empty": "No items found",
+        "name": "Name",
+        "products": "Products",
+        "actions": "Actions",
+        "productCount": "{count, plural, =1 {Product} other {Products}}"
+      },
+      "header": "Occasions",
+      "titleAdd": "Add Occasion",
+      "updateOccasion": "Update Occasion"
+    },
+    "charts": {
+      "order-status": "Order Status",
+      "no-data": "No Data",
+      "completed": "Completed",
+      "in-progress": "In Progress",
+      "canceled": "Canceled",
+      "revenuePeriod": "Revenue Period",
+      "revenue": "Revenue",
+      "monthly": "Monthly",
+      "last-Week": "Last Week"
+    },
+    "navMain": {
+      "overview": "Overview",
+      "categories": "Categories",
+      "occasions": "Occasions",
+      "products": "Products"
+    }
+  },
+  "admin-dashboard": {
+    "title": "Admin Dashboard",
+    "categories": {
+      "title": "Categories",
+      "empty": "Empty",
+      "products-count": "Products Count"
+    },
+    "low-stock": {
+      "title": "Low Stock",
+      "load-failed": "Load failed",
+      "empty": "Empty",
+      "left": "Left",
+      "no-more": "No more"
+    },
+    "top-selling": {
+      "title": "Top Selling",
+      "load-failed": "Load failed",
+      "empty": "Empty",
+      "currency": "EGP",
+      "sold": "Sold",
+      "no-more": "No more"
+    },
+    "errors": {
+      "load-failed": "Load failed"
+    },
+    "summary": {
+      "total-products": "Total Products",
+      "total-orders": "Total Orders",
+      "total-categories": "Total Categories",
+      "total-revenue": "Total Revenue"
+    },
+    "currency": "EGP"
+  },
+  "change-password": {
+    "title": "Change Password"
+  },
+  "orders": {
+    "paid": "Paid",
+    "not-paid": "Not paid",
+    "order-header": "Order Header",
+    "created-in": "Created in",
+    "total-price": "Total Price",
+    "status": "Status",
+    "payment-method": "Payment Method",
+    "cash": "Cash",
+    "credit-card": "Credit Card",
+    "delivery-status": "Delivery Status",
+    "order-items": "Order Items",
+    "show-all": "Show All",
+    "show-less": "Show Less",
+    "no-orders": "No orders",
+    "no-orders-desc": "No orders found",
+    "go-home": "Go Home",
+    "pending": "Pending",
+    "processing": "Processing",
+    "confirmed": "Confirmed",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
   }
 }

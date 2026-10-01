@@ -11,7 +11,9 @@ interface OrderCardProps {
     order: Order;
 }
 
-const STATUS_MAP: Record<string, { labelKey: string; key: string; color: string; textColor: string }> = {
+type OrderStatusMessageKey = "pending" | "processing" | "confirmed" | "shipped" | "delivered" | "cancelled";
+
+const STATUS_MAP: Record<string, { labelKey: OrderStatusMessageKey; key: string; color: string; textColor: string }> = {
     pending: { labelKey: "pending", key: "PENDING", color: "bg-yellow-500", textColor: "text-yellow-600" },
     processing: { labelKey: "processing", key: "PROCESSING", color: "bg-blue-500", textColor: "text-blue-600" },
     confirmed: { labelKey: "confirmed", key: "CONFIRMED", color: "bg-green-500", textColor: "text-green-600" },

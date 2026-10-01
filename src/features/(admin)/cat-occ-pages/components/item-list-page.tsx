@@ -2,7 +2,7 @@ import AddButton from './add-button';
 import ItemSearchInput from './item-search-input';
 import { TableData } from './table-list';
 import { GetProductsParams } from '@/features/products/apis/products.api';
-import PaginationProducts from '@/features/products/components/pagination-products';
+import Pagination from '@/shared/components/pagination';
 import { PRODUCTS_PER_PAGE } from '@/shared/constant/products.constants';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
@@ -63,7 +63,7 @@ export default async function ItemListPage({
       </div>
 
       {/* Pagination */}
-      {totalPages > 1 && <PaginationProducts page={currentPage} totalPages={totalPages} />}
+      {totalPages > 1 && <Pagination page={currentPage} totalPages={totalPages} />}
     </div>
   );
 }
