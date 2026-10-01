@@ -5,7 +5,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Package, ShoppingCart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-type AddToCartVariant = 'card' | 'details';
+type AddToCartVariant = 'card' | 'details' | 'wishlist';
 
 interface AddToCartProps {
   variant?: AddToCartVariant;
@@ -17,15 +17,30 @@ export default function AddToCart({ variant = 'card', stock, productId }: AddToC
   const t = useTranslations('product');
   const isOutOfStock = stock === 0;
   const { mutate, isPending } = useAddToCart();
-
-  if (variant === 'details' && isOutOfStock) {
+ 
+  if ((variant === 'details' || variant === 'wishlist') && isOutOfStock) {
     return (
-      <div className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-maroon-50 px-4 py-3.5 text-maroon-600">
+      <div className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-ds-bg-primary-fade px-4 py-3.5 text-sm text-ds-text-primary">
         <Package className="size-5" aria-hidden="true" />
         <span className="font-medium">{t('outOfStock')}</span>
       </div>
     );
   }
+ if (variant === 'wishlist') {
+  return (
+    <Button
+      onClick={() => mutate({ productId, quantity: 1 })}
+      isLoading={isPending}
+      className="h-auto gap-1.5 rounded-md px-2 py-2 text-xs font-semibold"
+    >
+      <ShoppingCart className="size-3.5" />
+      {t('addToCart')}
+    </Button>
+  );
+}
+
+
+
 
   if (variant === 'details') {
     return (
